@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Felipe Figueroa — Creo herramientas digitales que generan valor." />
+  <title>Felipe Figueroa — Developer & CEO</title>
+
+  <!--
+    FUENTES:
+    · Cormorant Garamond — elegancia clásica (títulos)
+    · Space Grotesk      — precisión moderna (cuerpo)
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ── Cursor personalizado ── -->
+  <div class="c-dot"  id="c-dot"  aria-hidden="true"></div>
+  <div class="c-ring" id="c-ring" aria-hidden="true"></div>
+
+  <!-- ── Spotlight que sigue el mouse ── -->
+  <div class="spotlight" id="spotlight" aria-hidden="true"></div>
+
+  <!-- ════════════════════════════════
+       NAVEGACIÓN
+  ════════════════════════════════ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+
+      <a href="#home" class="nav-logo">
+        Felipe Figueroa<span class="logo-dot">.</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#projects" class="nav-link">Proyectos</a></li>
+        <li><a href="#services" class="nav-link">Servicios</a></li>
+        <li><a href="#about"    class="nav-link">Sobre mí</a></li>
+        <li><a href="#contact"  class="nav-link nav-cta">Contacto</a></li>
+      </ul>
+
+      <button class="nav-burger" id="nav-burger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════════
+       HERO — 100vh
+  ════════════════════════════════ -->
+  <section class="hero" id="home">
+
+    <!--
+      ── CÓMO AGREGAR UNA IMAGEN REAL ──────────────────────
+      Sube tu imagen de escultura/pintura clásica y en styles.css
+      busca "#layer-painting" y descomenta la línea:
+        background-image: url('tu-imagen.jpg');
+      ──────────────────────────────────────────────────────
+    -->
+
+    <!-- Capa 1: fondo oscuro / textura mármol (más lento) -->
+    <div class="hero-layer" id="layer-bg"      data-depth="0.012"></div>
+
+    <!-- Capa 2: pintura / escultura + chiaroscuro (velocidad media) -->
+    <div class="hero-layer" id="layer-painting" data-depth="0.038"></div>
+
+    <!-- Capa 3: grano de pintura (no se mueve, es decorativo) -->
+    <div class="hero-grain" aria-hidden="true"></div>
+
+    <!-- Capa 4: overlay oscuro para legibilidad -->
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <!-- Capa 5: partículas canvas (más rápido) -->
+    <canvas class="hero-canvas" id="hero-canvas" data-depth="0.075" aria-hidden="true"></canvas>
+
+    <!-- ── CONTENIDO HERO ── -->
+    <div class="hero-grid">
+
+      <!-- Izquierda: título enorme -->
+      <div class="hero-left">
+        <span class="hero-eyebrow">Programador &amp; CEO de Expenzo</span>
+
+        <h1 class="hero-title" id="hero-title">
+          <span class="ht-line">CREO</span>
+          <span class="ht-line ht-sub"><em>herramientas</em></span>
+          <span class="ht-line ht-grad">DIGITALES</span>
+        </h1>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-cue" aria-hidden="true">
+          <div class="scroll-cue-bar"></div>
+          <span>scroll</span>
+        </div>
+      </div>
+
+      <!-- Derecha: descripción y botones -->
+      <div class="hero-right">
+
+        <p class="hero-value">QUE GENERAN VALOR&nbsp;🚀</p>
+
+        <p class="hero-desc">
+          Desarrollo apps, páginas web y soluciones pensadas para crecer y automatizar
+        </p>
+
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-primary">
+            Ver proyectos
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-ghost">Trabajar conmigo</a>
+        </div>
+
+      </div>
+    </div><!-- /hero-grid -->
+
+  </section><!-- /hero -->
+
+  <!-- ════════════════════════════════
+       PROYECTOS
+  ════════════════════════════════ -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">Portfolio</span>
+        <h2 class="section-title">PROYECTOS</h2>
+        <p class="section-sub">Lo que construí para generar valor real</p>
+      </div>
+      <div class="projects-grid" id="projects-grid">
+        <!-- Generado por script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Franja barroca 1 ── -->
+  <div class="painting-break painting-break--top" aria-hidden="true"></div>
+
+  <!-- ════════════════════════════════
+       SERVICIOS
+  ════════════════════════════════ -->
+  <section class="section section-alt" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">Qué hago</span>
+        <h2 class="section-title">SERVICIOS</h2>
+        <p class="section-sub">Soluciones a medida según tu necesidad</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18M9 21V9"/>
+            </svg>
+          </div>
+          <h3 class="svc-name">Desarrollo Web</h3>
+          <p class="svc-desc">Sitios y apps a medida: rápidos, modernos y orientados a convertir visitantes en clientes.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 class="svc-name">Herramientas Personalizadas</h3>
+          <p class="svc-desc">Plataformas hechas para tu negocio: útiles, simples y listas para escalar sin límites.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <h3 class="svc-name">Automatización</h3>
+          <p class="svc-desc">Flujos automáticos que eliminan tareas repetitivas y optimizan tu operación.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Franja barroca 2 ── -->
+  <div class="painting-break painting-break--bottom" aria-hidden="true"></div>
+
+  <!-- ════════════════════════════════
+       SOBRE MÍ
+  ════════════════════════════════ -->
+  <section class="section about-section" id="about">
+    <div class="container">
+      <div class="about-layout">
+
+        <div class="about-visual reveal">
+          <div class="about-avatar-wrap">
+            <div class="about-avatar-glow"></div>
+            <div class="about-avatar">FF</div>
+          </div>
+          <div class="about-chips">
+            <span class="chip">CEO · Expenzo</span>
+            <span class="chip">+3 años exp.</span>
+          </div>
+        </div>
+
+        <div class="about-text reveal">
+          <span class="section-tag">Quién soy</span>
+          <h2 class="section-title">SOBRE MÍ</h2>
+          <p class="about-body">
+            Soy Felipe Figueroa, programador y CEO de Expenzo. Me enfoco en crear soluciones digitales útiles, simples y rentables que generan impacto real desde el primer día.
+          </p>
+          <p class="about-body">
+            Trabajo directo con el cliente, sin intermediarios, para entregar exactamente lo que necesita: desde una landing page hasta una plataforma completa.
+          </p>
+          <a href="#contact" class="btn btn-primary" style="margin-top:2rem">
+            Hablemos
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       CONTACTO / CTA
+  ════════════════════════════════ -->
+  <section class="contact-section" id="contact">
+    <div class="contact-bg" aria-hidden="true"></div>
+    <canvas class="contact-canvas" id="contact-canvas" aria-hidden="true"></canvas>
+    <div class="container">
+      <div class="contact-inner reveal">
+        <span class="section-tag">¿Tienes un proyecto?</span>
+        <h2 class="contact-title">TRABAJA<br><em>CONMIGO</em>&nbsp;🚀</h2>
+        <p class="contact-sub">
+          Cuéntame tu idea y la convertimos en un proyecto real.<br>
+          Cotización gratis, respondo rápido.
+        </p>
+        <div class="contact-btns">
+          <a
+            href="https://wa.me/56992508009?text=Hola%2C%20vi%20tu%20portafolio%20y%20quiero%20solicitar%20una%20cotizaci%C3%B3n%20%F0%9F%9A%80"
+            target="_blank" rel="noopener noreferrer"
+            class="btn btn-wa"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Solicitar cotización
+          </a>
+          <a href="https://instagram.com/felipe.andres_dev" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+            @felipe.andres_dev
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       FOOTER
+  ════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-logo">FF<span class="logo-dot">.</span></span>
+        <p class="footer-copy">© 2025 Felipe Figueroa · Programador &amp; CEO de Expenzo</p>
+        <a href="#home" class="footer-top" aria-label="Volver arriba">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
