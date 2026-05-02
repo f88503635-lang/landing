@@ -142,8 +142,67 @@
       <div class="projects-grid" id="projects-grid">
         <!-- Generado por script.js -->
       </div>
+
+      <!-- Banner: páginas de muestra -->
+      <div class="demos-banner reveal" id="demos-banner">
+        <div class="demos-banner-left">
+          <span class="demos-banner-icon" aria-hidden="true">🌐</span>
+          <div>
+            <p class="demos-banner-label">Páginas de muestra</p>
+            <p class="demos-banner-desc">¿Cómo se vería tu sitio web? Explora ejemplos reales según tu tipo de negocio</p>
+          </div>
+        </div>
+        <button class="btn btn-primary demos-open-btn" id="open-demos">
+          Ver ejemplos
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
     </div>
   </section>
+
+  <!-- ════════════════════════════════
+       MODAL — Páginas de muestra
+  ════════════════════════════════ -->
+  <div class="demos-overlay" id="demos-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="demos-title">
+    <div class="demos-overlay-backdrop" id="demos-backdrop"></div>
+    <div class="demos-modal">
+      <div class="demos-modal-header">
+        <div>
+          <span class="section-tag">Páginas de prueba</span>
+          <h2 class="demos-modal-title" id="demos-title">Selecciona el mercado<br>al cual te dedicas</h2>
+        </div>
+        <button class="demos-close-btn" id="demos-close" aria-label="Cerrar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="demos-search-wrap">
+        <svg class="demos-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input
+          type="text"
+          class="demos-search-input"
+          id="demos-search"
+          placeholder="Buscar tipo de negocio..."
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button class="demos-search-clear" id="demos-search-clear" aria-label="Limpiar búsqueda" style="display:none">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="demos-categories-list" id="demos-categories">
+        <!-- Renderizado por JS -->
+      </div>
+
+      <div class="demos-no-results" id="demos-no-results">
+        <span>🔍</span>
+        <p>Sin resultados para "<span id="demos-no-query"></span>"</p>
+        <p class="demos-no-sub">Intenta con otro término</p>
+      </div>
+    </div>
+  </div>
 
   <!-- ── Franja barroca 1 ── -->
   <div class="painting-break painting-break--top" aria-hidden="true"></div>

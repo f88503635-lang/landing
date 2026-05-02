@@ -428,10 +428,253 @@ function initCardGlow() {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   DATOS: PÁGINAS DE MUESTRA POR TIPO DE NEGOCIO
+═══════════════════════════════════════════════════════════ */
+const demosData = [
+  {
+    emoji: '🧑‍🔧',
+    name: 'Servicios personales',
+    items: [
+      { name: 'Barberías',                            slug: 'barberia' },
+      { name: 'Peluquerías / salones de belleza',     slug: 'peluqueria' },
+      { name: 'Centros de estética',                  slug: 'estetica' },
+      { name: 'Spa y masajes',                        slug: 'spa' },
+      { name: 'Gimnasios y entrenadores personales',  slug: 'gimnasio' },
+    ]
+  },
+  {
+    emoji: '☕',
+    name: 'Gastronomía',
+    items: [
+      { name: 'Cafeterías',               slug: 'cafeteria' },
+      { name: 'Restaurantes',             slug: 'restaurante' },
+      { name: 'Pastelerías y panaderías', slug: 'pasteleria' },
+      { name: 'Food trucks',              slug: 'food-truck' },
+      { name: 'Servicios de catering',    slug: 'catering' },
+    ]
+  },
+  {
+    emoji: '🛍️',
+    name: 'Comercio / tiendas',
+    items: [
+      { name: 'Tiendas de ropa',                slug: 'tienda-ropa' },
+      { name: 'Tiendas de tecnología',           slug: 'tienda-tech' },
+      { name: 'Librerías',                       slug: 'libreria' },
+      { name: 'Tiendas de productos naturales',  slug: 'productos-naturales' },
+      { name: 'Tiendas de mascotas',             slug: 'mascotas' },
+    ]
+  },
+  {
+    emoji: '🏠',
+    name: 'Hogar y construcción',
+    items: [
+      { name: 'Empresas de construcción',  slug: 'construccion' },
+      { name: 'Servicios de gasfitería',   slug: 'gasfiteria' },
+      { name: 'Electricistas',             slug: 'electricista' },
+      { name: 'Decoración de interiores',  slug: 'decoracion' },
+      { name: 'Venta de muebles',          slug: 'muebles' },
+    ]
+  },
+  {
+    emoji: '🚗',
+    name: 'Automotriz',
+    items: [
+      { name: 'Talleres mecánicos',     slug: 'taller' },
+      { name: 'Lavado de autos',        slug: 'lavado-autos' },
+      { name: 'Venta de repuestos',     slug: 'repuestos' },
+      { name: 'Compra/venta de autos',  slug: 'compraventa-autos' },
+    ]
+  },
+  {
+    emoji: '🏢',
+    name: 'Profesionales y empresas',
+    items: [
+      { name: 'Abogados',                               slug: 'abogado' },
+      { name: 'Contadores',                             slug: 'contador' },
+      { name: 'Consultores',                            slug: 'consultor' },
+      { name: 'Agencias de marketing',                  slug: 'agencia-marketing' },
+      { name: 'Diseñadores gráficos / freelancers',     slug: 'disenador' },
+    ]
+  },
+  {
+    emoji: '🏥',
+    name: 'Salud',
+    items: [
+      { name: 'Clínicas',        slug: 'clinica' },
+      { name: 'Dentistas',       slug: 'dentista' },
+      { name: 'Psicólogos',      slug: 'psicologo' },
+      { name: 'Nutricionistas',  slug: 'nutricionista' },
+      { name: 'Centros médicos', slug: 'centro-medico' },
+    ]
+  },
+  {
+    emoji: '🧑‍🏫',
+    name: 'Educación',
+    items: [
+      { name: 'Institutos',             slug: 'instituto' },
+      { name: 'Academias de idiomas',   slug: 'academia-idiomas' },
+      { name: 'Clases particulares',    slug: 'clases-particulares' },
+      { name: 'Cursos online',          slug: 'cursos-online' },
+    ]
+  },
+  {
+    emoji: '🏨',
+    name: 'Turismo y alojamiento',
+    items: [
+      { name: 'Hoteles',            slug: 'hotel' },
+      { name: 'Hostales',           slug: 'hostal' },
+      { name: 'Cabañas',            slug: 'cabanas' },
+      { name: 'Agencias de viajes', slug: 'agencia-viajes' },
+      { name: 'Tours',              slug: 'tours' },
+    ]
+  },
+  {
+    emoji: '📦',
+    name: 'Otros',
+    items: [
+      { name: 'Delivery de comida o productos',             slug: 'delivery' },
+      { name: 'Emprendimientos (productos artesanales)',    slug: 'emprendimiento' },
+      { name: 'Negocios con reservas (canchas, eventos)',   slug: 'reservas' },
+    ]
+  },
+];
+
+/* ═══════════════════════════════════════════════════════════
+   MODAL: PÁGINAS DE MUESTRA
+═══════════════════════════════════════════════════════════ */
+function initDemos() {
+  const openBtn   = document.getElementById('open-demos');
+  const overlay   = document.getElementById('demos-overlay');
+  const closeBtn  = document.getElementById('demos-close');
+  const backdrop  = document.getElementById('demos-backdrop');
+  const searchEl  = document.getElementById('demos-search');
+  const clearBtn  = document.getElementById('demos-search-clear');
+  const catList   = document.getElementById('demos-categories');
+  const noResults = document.getElementById('demos-no-results');
+  const noQuery   = document.getElementById('demos-no-query');
+
+  if (!openBtn || !overlay || !catList) return;
+
+  const ARROW_EXT = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>`;
+
+  /* ── Render categories ── */
+  demosData.forEach(cat => {
+    const section = document.createElement('div');
+    section.className = 'demos-category';
+    section.dataset.catName = cat.name.toLowerCase();
+
+    const itemsHTML = cat.items.map(item => `
+      <a
+        href="demos/${item.slug}.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="demos-item"
+        data-name="${item.name.toLowerCase()}"
+      >${escHtml(item.name)}${ARROW_EXT}</a>
+    `).join('');
+
+    section.innerHTML = `
+      <div class="demos-category-header">
+        <span class="demos-category-emoji" aria-hidden="true">${cat.emoji}</span>
+        <span class="demos-category-name">${escHtml(cat.name)}</span>
+      </div>
+      <div class="demos-items-grid">${itemsHTML}</div>
+    `;
+
+    catList.appendChild(section);
+  });
+
+  /* ── Add cursor hover for dynamic elements ── */
+  const ring = document.getElementById('c-ring');
+  if (ring) {
+    catList.querySelectorAll('.demos-item').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('is-hover'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('is-hover'));
+    });
+    [closeBtn, clearBtn].forEach(el => {
+      if (!el) return;
+      el.addEventListener('mouseenter', () => ring.classList.add('is-hover'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('is-hover'));
+    });
+  }
+
+  /* ── Open / close ── */
+  function openModal() {
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => searchEl && searchEl.focus(), 300);
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (searchEl) {
+      searchEl.value = '';
+      clearBtn.style.display = 'none';
+    }
+    filterItems('');
+  }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+  });
+
+  /* ── Search / filter ── */
+  function filterItems(q) {
+    const query = q.toLowerCase().trim();
+    let anyVisible = false;
+
+    catList.querySelectorAll('.demos-category').forEach(catEl => {
+      let catHasVisible = false;
+      const catName = catEl.dataset.catName || '';
+
+      catEl.querySelectorAll('.demos-item').forEach(item => {
+        const match = !query
+          || item.dataset.name.includes(query)
+          || catName.includes(query);
+        item.classList.toggle('hidden', !match);
+        if (match) catHasVisible = true;
+      });
+
+      catEl.classList.toggle('all-hidden', !catHasVisible);
+      if (catHasVisible) anyVisible = true;
+    });
+
+    if (noResults) {
+      noResults.classList.toggle('visible', !anyVisible);
+      if (noQuery) noQuery.textContent = query;
+    }
+  }
+
+  if (searchEl) {
+    searchEl.addEventListener('input', () => {
+      const q = searchEl.value;
+      clearBtn.style.display = q ? 'flex' : 'none';
+      filterItems(q);
+    });
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      searchEl.value = '';
+      clearBtn.style.display = 'none';
+      filterItems('');
+      searchEl.focus();
+    });
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
    INIT
 ═══════════════════════════════════════════════════════════ */
 function init() {
   renderProjects();
+  initDemos();
 
   initCursor();
   initSpotlight();
