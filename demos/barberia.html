@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BarberShop Clásico — Cortes, barba y tradición barbera en Santiago. Página de muestra" />
+  <title>BarberShop Clásico — Página de Muestra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="demo-base.css" />
+  <style>
+    :root {
+      --primary: #d4af37;
+      --primary-rgb: 212,175,55;
+      --bg: #0d0b08;
+      --bg-alt: #121009;
+      --surface: #1a1710;
+      --text: #f0ece6;
+      --text-dim: #9a9490;
+      --text-muted: #504c48;
+      --border: rgba(255,255,255,0.08);
+      --nav-bg: rgba(13,11,8,0.95);
+      --hero-overlay: rgba(0,0,0,0.55);
+    }
+    .section-alt { background: var(--bg-alt); }
+    .card { background: var(--surface); border-color: var(--border); }
+    .testi { background: var(--surface); border-color: var(--border); }
+    .stat { background: var(--surface); border-color: var(--border); }
+    .footer { background: #000; }
+  </style>
+</head>
+<body>
+
+  <div class="demo-badge">
+    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">BarberShop<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#servicios" class="nav-link">Servicios</a></li>
+        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="hero-bg" style="background: linear-gradient(135deg, #1a1510 0%, #0d0b08 50%, #1a1208 100%)"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tag">Barbería Premium</p>
+      <h1 class="hero-title">Precisión. Estilo.<br><em>Tradición.</em></h1>
+      <p class="hero-sub">El arte del corte masculino de la vieja escuela, con técnicas modernas. Tu look perfecto te espera en nuestras sillas de cuero.</p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn btn-primary">Reservar hora</a>
+        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="servicios">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Nuestros servicios</span>
+        <h2 class="section-title">Lo que ofrecemos</h2>
+        <p class="section-desc">Servicios de barbería clásica y moderna, con los mejores productos y técnicas para tu look perfecto.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">✂️</div>
+          <h3 class="card-title">Corte Clásico</h3>
+          <p class="card-desc">Corte a tijera o máquina con técnica tradicional. Incluye lavado, corte y secado estilizado.</p>
+          <p class="card-price">$8.000</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🪒</div>
+          <h3 class="card-title">Barba Completa</h3>
+          <p class="card-desc">Perfilado, afeitado con navaja y arreglo de barba completo. Toalla caliente incluida.</p>
+          <p class="card-price">$6.000</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💈</div>
+          <h3 class="card-title">Corte + Barba</h3>
+          <p class="card-desc">El combo completo: corte de pelo y arreglo de barba a un precio especial. El favorito del local.</p>
+          <p class="card-price">$12.000</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💆</div>
+          <h3 class="card-title">Tratamiento Capilar</h3>
+          <p class="card-desc">Hidratación profunda, queratina o tratamiento anti-caída para mantener tu cabello sano.</p>
+          <p class="card-price">$15.000</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="nosotros">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-img">💈</div>
+        <div>
+          <span class="about-label">¿Por qué elegirnos?</span>
+          <h2 class="about-title">Más de 5 años cortando con precisión</h2>
+          <p class="about-text">Somos una barbería de barrio con alma de clásico y visión moderna. Nuestros barberos se forman en técnicas tradicionales europeas y se actualizan constantemente en tendencias actuales.</p>
+          <p class="about-text">Cada cliente entra como visita y sale como amigo. La atención personalizada y la calidad de los productos que usamos marcan la diferencia en cada corte.</p>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-number">+500</div><div class="stat-label">Clientes satisfechos</div></div>
+        <div class="stat"><div class="stat-number">5</div><div class="stat-label">Años de experiencia</div></div>
+        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación promedio</div></div>
+        <div class="stat"><div class="stat-number">3</div><div class="stat-label">Barberos expertos</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="opiniones">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Opiniones</span>
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"El mejor corte que me han hecho en años. El Diego sabe exactamente lo que uno quiere con solo describirlo. Ambiente de primera, volvería todos los meses."</p>
+          <div class="testi-author">Rodrigo Muñoz</div>
+          <div class="testi-role">Cliente frecuente · 2 años</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Llegué sin saber qué corte quería y salí con el look perfecto. El servicio de barba con navaja es una experiencia que no tiene precio. Recomendadísimo."</p>
+          <div class="testi-author">Diego Fuentes</div>
+          <div class="testi-role">Nuevo cliente</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Llevo 3 años viniendo y nunca me han fallado. El combo corte + barba es imbatible en precio y calidad. Local limpio, música buena, atención impecable."</p>
+          <div class="testi-author">Matías Araya</div>
+          <div class="testi-role">Cliente frecuente · 3 años</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contacto">
+    <div class="container">
+      <h2 class="section-title">¿Listo para renovar tu look?</h2>
+      <p class="section-desc">Contáctanos por WhatsApp para reservar tu hora. Atendemos de lunes a sábado de 9:00 a 20:00 hrs.</p>
+      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
+        💬 Reservar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p><strong>BarberShop Clásico</strong> · Santiago, Chile</p>
+        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

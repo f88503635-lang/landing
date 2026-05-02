@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GymForce — Gimnasio con entrenamiento personal y clases grupales en Santiago. Página de muestra" />
+  <title>GymForce — Página de Muestra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="demo-base.css" />
+  <style>
+    :root {
+      --primary: #f97316;
+      --primary-rgb: 249,115,22;
+      --bg: #0a0a0a;
+      --bg-alt: #111;
+      --surface: #1a1a1a;
+      --text: #f5f5f5;
+      --text-dim: #a0a0a0;
+      --text-muted: #606060;
+      --border: rgba(255,255,255,0.1);
+      --nav-bg: rgba(10,10,10,0.96);
+    }
+    .section-alt { background: var(--bg-alt); }
+    .card { background: var(--surface); border-color: var(--border); }
+    .testi { background: var(--surface); border-color: var(--border); }
+    .stat { background: var(--surface); border-color: var(--border); }
+    .footer { background: #000; }
+  </style>
+</head>
+<body>
+
+  <div class="demo-badge">
+    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">GymForce<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#servicios" class="nav-link">Servicios</a></li>
+        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="hero-bg" style="background: linear-gradient(135deg, #1a0a00 0%, #0a0a0a 50%, #1a0500 100%)"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tag">Gimnasio Premium</p>
+      <h1 class="hero-title">Rompe tus<br><em>límites.</em></h1>
+      <p class="hero-sub">Equipamiento de última generación, entrenadores certificados y una comunidad que te impulsa a ser mejor cada día. El cambio comienza hoy.</p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn btn-primary">Prueba gratis</a>
+        <a href="#servicios" class="btn btn-outline">Ver planes</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="servicios">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Nuestros planes</span>
+        <h2 class="section-title">Elige tu plan ideal</h2>
+        <p class="section-desc">Planes flexibles para todos los niveles. Sin contratos de permanencia, empieza cuando quieras.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">💪</div>
+          <h3 class="card-title">Plan Básico</h3>
+          <p class="card-desc">Acceso al gimnasio de lunes a viernes en horario normal. Incluye evaluación física inicial sin costo.</p>
+          <p class="card-price">$25.000/mes</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🏆</div>
+          <h3 class="card-title">Plan Completo</h3>
+          <p class="card-desc">Acceso ilimitado 7 días a la semana, incluyendo clases grupales y acceso a sauna. El plan más popular.</p>
+          <p class="card-price">$40.000/mes</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h3 class="card-title">Entrenamiento Personal</h3>
+          <p class="card-desc">Sesiones one-on-one con un entrenador certificado. Rutina 100% personalizada según tus objetivos.</p>
+          <p class="card-price">Desde $15.000/sesión</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🤸</div>
+          <h3 class="card-title">Clases Grupales</h3>
+          <p class="card-desc">Spinning, funcional, yoga, zumba y más. Más de 20 clases semanales con instructores top.</p>
+          <p class="card-price">Incluido en Plan Completo</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="nosotros">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-img">🏋️</div>
+        <div>
+          <span class="about-label">¿Por qué elegirnos?</span>
+          <h2 class="about-title">5 años transformando cuerpos y mentalidades</h2>
+          <p class="about-text">Contamos con más de 800 metros cuadrados de equipamiento de última generación, incluyendo zona de pesas, cardio, funcional, sauna y sala de clases grupales.</p>
+          <p class="about-text">Nuestros 8 entrenadores son profesionales certificados en educación física con especialización en nutrición deportiva y entrenamiento de fuerza.</p>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-number">+300</div><div class="stat-label">Miembros activos</div></div>
+        <div class="stat"><div class="stat-number">5</div><div class="stat-label">Años de experiencia</div></div>
+        <div class="stat"><div class="stat-number">4.8★</div><div class="stat-label">Calificación promedio</div></div>
+        <div class="stat"><div class="stat-number">8</div><div class="stat-label">Entrenadores certificados</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="opiniones">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Opiniones</span>
+        <h2 class="section-title">Resultados que hablan por sí solos</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"En 4 meses bajé 12 kilos y gané músculo que nunca había tenido. El entrenador personal diseñó una rutina perfecta para mí. El mejor dinero que he invertido en mi salud."</p>
+          <div class="testi-author">Ignacio Sepúlveda</div>
+          <div class="testi-role">Miembro · entrenamiento personal</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Las clases de spinning son las mejores que he tomado en Santiago. La instructora es increíble y la energía del grupo te motiva a dar el máximo. No fallo ni un martes."</p>
+          <div class="testi-author">Javiera Contreras</div>
+          <div class="testi-role">Miembro · clases grupales</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Llevo 2 años en GymForce y no cambiaría nada. El ambiente es motivador, el equipo está siempre impecable y los precios son muy razonables para la calidad que ofrecen."</p>
+          <div class="testi-author">Felipe Ortega</div>
+          <div class="testi-role">Miembro · 2 años</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contacto">
+    <div class="container">
+      <h2 class="section-title">¿Listo para empezar?</h2>
+      <p class="section-desc">Contáctanos y obtén tu primera semana de prueba completamente gratis. Sin compromisos, sin letra chica.</p>
+      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
+        💬 Prueba gratis por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p><strong>GymForce</strong> · Santiago, Chile</p>
+        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

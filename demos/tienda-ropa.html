@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Moda Urbana Store — Tienda de ropa y accesorios para hombre y mujer en Santiago. Página de muestra" />
+  <title>Moda Urbana Store — Página de Muestra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="demo-base.css" />
+  <style>
+    :root {
+      --primary: #0f172a;
+      --primary-rgb: 15,23,42;
+      --bg: #fff;
+      --bg-alt: #f8fafc;
+    }
+    .hero-tag { background: rgba(15,23,42,0.15); border-color: rgba(15,23,42,0.3); color: #fff; }
+    .nav-cta { background: #0f172a; }
+  </style>
+</head>
+<body>
+
+  <div class="demo-badge">
+    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">ModaUrbana<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#servicios" class="nav-link">Colecciones</a></li>
+        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+        <li><a href="#contacto" class="nav-cta nav-link">Comprar</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="hero-bg" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tag">Moda & Estilo</p>
+      <h1 class="hero-title">Tu estilo,<br><em>tu identidad.</em></h1>
+      <p class="hero-sub">Ropa contemporánea para hombre y mujer con marcas nacionales e internacionales. Nuevas colecciones cada semana para que siempre estés a la moda.</p>
+      <div class="hero-btns">
+        <a href="#servicios" class="btn btn-primary">Ver colecciones</a>
+        <a href="#contacto" class="btn btn-outline">Contactar</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="servicios">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Nuestras colecciones</span>
+        <h2 class="section-title">Moda para todos los estilos</h2>
+        <p class="section-desc">Desde ropa casual hasta prendas para ocasiones especiales. Todo con la mejor calidad y los precios más competitivos.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">👗</div>
+          <h3 class="card-title">Ropa Mujer</h3>
+          <p class="card-desc">Vestidos, blusas, pantalones, jeans y más. Tallas XS a 3XL. Colecciones que siguen las últimas tendencias internacionales.</p>
+          <p class="card-price">Desde $12.000</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">👔</div>
+          <h3 class="card-title">Ropa Hombre</h3>
+          <p class="card-desc">Poleras, camisas, pantalones, chaquetas y ropa deportiva. Estilo casual, formal y streetwear para todos los momentos.</p>
+          <p class="card-price">Desde $9.000</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">👜</div>
+          <h3 class="card-title">Accesorios</h3>
+          <p class="card-desc">Bolsos, carteras, cinturones, gorros y joyería de moda. El complemento perfecto para cualquier outfit.</p>
+          <p class="card-price">Desde $5.000</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🆕</div>
+          <h3 class="card-title">Nuevos Ingresos</h3>
+          <p class="card-desc">Cada semana llegan nuevas prendas directamente de proveedores seleccionados. Suscríbete para recibir novedades primero.</p>
+          <p class="card-price">Revisa siempre</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="nosotros">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-img">🛍️</div>
+        <div>
+          <span class="about-label">¿Por qué elegirnos?</span>
+          <h2 class="about-title">4 años vistiendo Santiago con estilo</h2>
+          <p class="about-text">Somos una tienda multimarca con curación de moda. Nuestro equipo de compras viaja dos veces al año a ferias internacionales para traer las mejores tendencias antes que nadie.</p>
+          <p class="about-text">Ofrecemos cambios y devoluciones hasta 30 días sin preguntas. También contamos con asesoría de imagen gratuita para ayudarte a armar tu guardarropa ideal.</p>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-number">+500</div><div class="stat-label">Productos disponibles</div></div>
+        <div class="stat"><div class="stat-number">4</div><div class="stat-label">Años de experiencia</div></div>
+        <div class="stat"><div class="stat-number">4.7★</div><div class="stat-label">Calificación promedio</div></div>
+        <div class="stat"><div class="stat-number">Semanal</div><div class="stat-label">Nuevos ingresos</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="opiniones">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Opiniones</span>
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"La ropa es de muy buena calidad y los precios son súper razonables. La atención es excelente, te ayudan a combinar sin presionarte. Mi tienda favorita del barrio."</p>
+          <div class="testi-author">Valentina Soto</div>
+          <div class="testi-role">Clienta frecuente · 2 años</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Encontré el vestido perfecto para el matrimonio de mi amiga aquí. Me ayudaron a elegir accesorios y salí completamente lista en una hora. Servicio de primera categoría."</p>
+          <div class="testi-author">Isidora Vega</div>
+          <div class="testi-role">Clienta · evento especial</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Como hombre que no sabe mucho de moda, me encantó que me asesoraron sin juzgarme. Salí con un look completo moderno y cómodo. Totalmente recomendado para cualquier estilo."</p>
+          <div class="testi-author">Sebastián Tapia</div>
+          <div class="testi-role">Cliente · asesoría de imagen</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contacto">
+    <div class="container">
+      <h2 class="section-title">¿Lista para renovar tu guardarropa?</h2>
+      <p class="section-desc">Escríbenos por WhatsApp para consultas, pedidos o reservar una sesión de asesoría de imagen gratuita.</p>
+      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
+        💬 Contactar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p><strong>Moda Urbana Store</strong> · Santiago, Chile</p>
+        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

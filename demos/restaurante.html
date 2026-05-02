@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Restaurante La Tradición — Cocina chilena tradicional y menú ejecutivo en Santiago. Página de muestra" />
+  <title>Restaurante La Tradición — Página de Muestra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="demo-base.css" />
+  <style>
+    :root {
+      --primary: #dc2626;
+      --primary-rgb: 220,38,38;
+      --bg: #0a0805;
+      --bg-alt: #111009;
+      --surface: #1a1710;
+      --text: #f0ece6;
+      --text-dim: #9a9490;
+      --text-muted: #504c48;
+      --border: rgba(255,255,255,0.08);
+      --nav-bg: rgba(10,8,5,0.96);
+    }
+    .section-alt { background: var(--bg-alt); }
+    .card { background: var(--surface); border-color: var(--border); }
+    .testi { background: var(--surface); border-color: var(--border); }
+    .stat { background: var(--surface); border-color: var(--border); }
+    .footer { background: #000; }
+  </style>
+</head>
+<body>
+
+  <div class="demo-badge">
+    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">La Tradición<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#servicios" class="nav-link">Carta</a></li>
+        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+        <li><a href="#contacto" class="nav-cta nav-link">Reservar</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="hero-bg" style="background: linear-gradient(135deg, #1a0505 0%, #0f0303 50%, #200808 100%)"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tag">Restaurante Chileno</p>
+      <h1 class="hero-title">Sabores que<br><em>cuentan historias.</em></h1>
+      <p class="hero-sub">15 años recreando los sabores auténticos de la cocina chilena con productos frescos de temporada y las recetas de siempre.</p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn btn-primary">Reservar mesa</a>
+        <a href="#servicios" class="btn btn-outline">Ver carta</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="servicios">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Nuestra carta</span>
+        <h2 class="section-title">Cocina chilena de corazón</h2>
+        <p class="section-desc">Platos preparados con ingredientes frescos seleccionados diariamente. Sabor casero con presentación de restaurante.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">🍽️</div>
+          <h3 class="card-title">Carta del Día</h3>
+          <p class="card-desc">Cazuela, pastel de choclo, porotos granados y más platos tradicionales que cambian según la temporada.</p>
+          <p class="card-price">Desde $5.500</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🥗</div>
+          <h3 class="card-title">Menú Ejecutivo</h3>
+          <p class="card-desc">Entrada + plato de fondo + postre + bebida. Perfecto para almuerzo laboral. Cambia cada día de lunes a viernes.</p>
+          <p class="card-price">$8.500</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🌙</div>
+          <h3 class="card-title">Cenas Especiales</h3>
+          <p class="card-desc">Carta nocturna con platos de fondo elaborados, mariscos frescos, parrilla y selección de vinos chilenos.</p>
+          <p class="card-price">Desde $9.000</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎉</div>
+          <h3 class="card-title">Eventos Privados</h3>
+          <p class="card-desc">Celebraciones de empresa, cumpleaños y reuniones familiares. Capacidad para hasta 80 personas. Cotización sin costo.</p>
+          <p class="card-price">Cotización gratis</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="nosotros">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-img">🍲</div>
+        <div>
+          <span class="about-label">¿Por qué elegirnos?</span>
+          <h2 class="about-title">15 años siendo el restaurante favorito del barrio</h2>
+          <p class="about-text">Comenzamos como un pequeño local familiar y hoy somos el punto de encuentro de cientos de familias y empresas que confían en nuestra cocina para sus momentos especiales.</p>
+          <p class="about-text">Nuestro chef trabaja directamente con productores locales y agricultores de la región para garantizar frescura e ingredientes de primera calidad en cada plato.</p>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-number">15</div><div class="stat-label">Años de trayectoria</div></div>
+        <div class="stat"><div class="stat-number">+50</div><div class="stat-label">Platos en carta</div></div>
+        <div class="stat"><div class="stat-number">4.8★</div><div class="stat-label">Calificación Google</div></div>
+        <div class="stat"><div class="stat-number">Lun-Dom</div><div class="stat-label">Abiertos todos los días</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="opiniones">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Opiniones</span>
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"El pastel de choclo me recordó al de mi abuela. Una cosa difícil de encontrar hoy en día. Vengo cada quince días con mi familia y nunca nos ha fallado. Gracias por mantener la tradición."</p>
+          <div class="testi-author">Luis Barrera</div>
+          <div class="testi-role">Cliente frecuente · 5 años</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"El menú ejecutivo es el mejor del sector. Por $8.500 comes como rey: entrada, fondo, postre y bebida. El servicio es rápido y el ambiente muy agradable para almorzar con clientes."</p>
+          <div class="testi-author">Roberto Saavedra</div>
+          <div class="testi-role">Cliente empresarial</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Hicimos el cumpleaños de 60 años de mi mamá aquí y fue perfecto. La comida excelente, el servicio atento y el local muy bonito. Todos los invitados quedaron encantados."</p>
+          <div class="testi-author">Carmen Gloria Fuentes</div>
+          <div class="testi-role">Evento privado · familia</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contacto">
+    <div class="container">
+      <h2 class="section-title">¿Listo para reservar?</h2>
+      <p class="section-desc">Reserva tu mesa por WhatsApp. Atendemos de lunes a domingo en horario de almuerzo y cena.</p>
+      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
+        💬 Reservar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p><strong>Restaurante La Tradición</strong> · Santiago, Chile</p>
+        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

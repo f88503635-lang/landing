@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Café Renacimiento — Cafetería especializada con granos de origen y desayunos artesanales. Página de muestra" />
+  <title>Café Renacimiento — Página de Muestra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="demo-base.css" />
+  <style>
+    :root {
+      --primary: #92400e;
+      --primary-rgb: 146,64,14;
+      --bg: #fff;
+      --bg-alt: #fefce8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="demo-badge">
+    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Renacimiento<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#servicios" class="nav-link">Carta</a></li>
+        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+        <li><a href="#contacto" class="nav-cta nav-link">Visítanos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="hero-bg" style="background: linear-gradient(135deg, #1c0d00 0%, #2d1500 50%, #1a0c00 100%)"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tag">Café de Especialidad</p>
+      <h1 class="hero-title">El aroma que<br><em>despierta tu día.</em></h1>
+      <p class="hero-sub">Granos de origen seleccionados, preparados con técnica y pasión. Cada taza es una experiencia sensorial que no olvidarás.</p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn btn-primary">Visítanos hoy</a>
+        <a href="#servicios" class="btn btn-outline">Ver carta</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="servicios">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Nuestra carta</span>
+        <h2 class="section-title">Café, desayunos y más</h2>
+        <p class="section-desc">Todo preparado al momento con los mejores ingredientes. Porque un buen café merece una buena compañía.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">☕</div>
+          <h3 class="card-title">Espresso & Americano</h3>
+          <p class="card-desc">Extracción perfecta con granos de origen colombiano. Espresso, cortado, americano y café de filtro frío.</p>
+          <p class="card-price">Desde $1.800</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🧋</div>
+          <h3 class="card-title">Cafés Especiales</h3>
+          <p class="card-desc">Latte art, cappuccino, flat white, matcha latte y cold brew. Opciones con leche de avena, almendra o coco.</p>
+          <p class="card-price">Desde $2.800</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🥐</div>
+          <h3 class="card-title">Desayunos</h3>
+          <p class="card-desc">Avocado toast, tostadas artesanales, huevos revueltos y granola con fruta fresca. Desayuno de lunes a viernes.</p>
+          <p class="card-price">Desde $4.500</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🍰</div>
+          <h3 class="card-title">Postres Artesanales</h3>
+          <p class="card-desc">Cheesecake, brownie, muffins y tortas del día elaboradas en casa. Opciones veganas disponibles.</p>
+          <p class="card-price">Desde $2.200</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="nosotros">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-img">☕</div>
+        <div>
+          <span class="about-label">¿Por qué elegirnos?</span>
+          <h2 class="about-title">6 años sirviendo el mejor café de Santiago</h2>
+          <p class="about-text">Somos fanáticos del café de especialidad. Trabajamos directamente con productores de Colombia, Etiopía y Guatemala para traerte los mejores granos del mundo a tu taza.</p>
+          <p class="about-text">Nuestro barista es campeón regional de latte art y cada miembro del equipo está certificado en preparación de café de especialidad. Aquí el café es un arte, no una rutina.</p>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-number">+200</div><div class="stat-label">Tazas por día</div></div>
+        <div class="stat"><div class="stat-number">6</div><div class="stat-label">Años abiertos</div></div>
+        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación Google</div></div>
+        <div class="stat"><div class="stat-number">3</div><div class="stat-label">Granos de origen</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="opiniones">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Opiniones</span>
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"El mejor espresso que he tomado en Santiago, sin exagerar. Se nota la diferencia del grano de calidad. El local tiene una atmósfera preciosa para trabajar o leer."</p>
+          <div class="testi-author">Patricio Lazo</div>
+          <div class="testi-role">Cliente frecuente · espresso</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Los desayunos son una maravilla. El avocado toast con huevo pochado y su café de filtro frío es mi combo favorito de los lunes. El personal siempre muy amable."</p>
+          <div class="testi-author">Alejandra Cisternas</div>
+          <div class="testi-role">Clienta · desayunos</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"El cheesecake de mango es pecaminoso y el latte de matcha es el mejor que he probado. Vengo todos los viernes con mis colegas. Siempre una experiencia especial."</p>
+          <div class="testi-author">Daniela Espinoza</div>
+          <div class="testi-role">Clienta · postres y cafés</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contacto">
+    <div class="container">
+      <h2 class="section-title">¿Listo para probar el mejor café?</h2>
+      <p class="section-desc">Encuéntranos de lunes a viernes 7:30–20:00 y sábado 9:00–18:00. También hacemos pedidos por WhatsApp.</p>
+      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
+        💬 Contactar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p><strong>Café Renacimiento</strong> · Santiago, Chile</p>
+        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

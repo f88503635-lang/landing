@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hotel Gran Palacio — Hotel 4 estrellas con restaurante gourmet y spa en Santiago. Página de muestra" />
+  <title>Hotel Gran Palacio — Página de Muestra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="demo-base.css" />
+  <style>
+    :root {
+      --primary: #c9a44a;
+      --primary-rgb: 201,164,74;
+      --bg: #0a0805;
+      --bg-alt: #100e08;
+      --surface: #1a1810;
+      --text: #f0ece6;
+      --text-dim: #9a9490;
+      --text-muted: #504c48;
+      --border: rgba(255,255,255,0.08);
+      --nav-bg: rgba(10,8,5,0.96);
+    }
+    .section-alt { background: var(--bg-alt); }
+    .card { background: var(--surface); border-color: var(--border); }
+    .testi { background: var(--surface); border-color: var(--border); }
+    .stat { background: var(--surface); border-color: var(--border); }
+    .footer { background: #000; }
+  </style>
+</head>
+<body>
+
+  <div class="demo-badge">
+    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Gran Palacio<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#servicios" class="nav-link">Habitaciones</a></li>
+        <li><a href="#nosotros" class="nav-link">El Hotel</a></li>
+        <li><a href="#opiniones" class="nav-link">Huéspedes</a></li>
+        <li><a href="#contacto" class="nav-cta nav-link">Reservar</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="hero-bg" style="background: linear-gradient(135deg, #1a1508 0%, #0a0805 50%, #1a1208 100%)"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tag">Hotel 4 Estrellas</p>
+      <h1 class="hero-title">Lujo y confort en<br><em>cada detalle.</em></h1>
+      <p class="hero-sub">Donde la elegancia y la calidez se encuentran. 80 habitaciones de lujo, restaurante gourmet, spa exclusivo y servicio de concierge 24 horas en el corazón de Santiago.</p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn btn-primary">Reservar ahora</a>
+        <a href="#servicios" class="btn btn-outline">Ver habitaciones</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="servicios">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Nuestros servicios</span>
+        <h2 class="section-title">Una experiencia de lujo completa</h2>
+        <p class="section-desc">Desde habitaciones elegantes hasta experiencias gastronómicas únicas. Cada detalle pensado para que tu estadía sea inolvidable.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">🛏️</div>
+          <h3 class="card-title">Habitaciones Estándar</h3>
+          <p class="card-desc">40 habitaciones dobles y simples con cama king o twin, minibar, TV 55", escritorio ejecutivo y baño con amenities premium.</p>
+          <p class="card-price">Desde $85.000/noche</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">👑</div>
+          <h3 class="card-title">Suites de Lujo</h3>
+          <p class="card-desc">10 suites con sala de estar separada, jacuzzi, vista panorámica de Santiago y servicio de mayordomo personalizado las 24 horas.</p>
+          <p class="card-price">Desde $220.000/noche</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🍽️</div>
+          <h3 class="card-title">Restaurante Gourmet</h3>
+          <p class="card-desc">Gastronomía de autor con ingredientes locales de temporada. Carta de vinos nacionales e internacionales seleccionada por nuestro sommelier.</p>
+          <p class="card-price">Desayuno buffet $18.000</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🧖</div>
+          <h3 class="card-title">Spa & Wellness</h3>
+          <p class="card-desc">Spa completo con piscina climatizada, sauna, hammam y sala de tratamientos. Masajes, faciales y circuito de aguas disponibles.</p>
+          <p class="card-price">Desde $35.000/sesión</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="nosotros">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-img">🏨</div>
+        <div>
+          <span class="about-label">¿Por qué elegirnos?</span>
+          <h2 class="about-title">Donde la tradición hotelera se encuentra con el lujo moderno</h2>
+          <p class="about-text">El Hotel Gran Palacio combina la elegancia clásica con todas las comodidades contemporáneas. Nuestro equipo de más de 80 colaboradores está capacitado en los más altos estándares de hospitalidad internacional.</p>
+          <p class="about-text">Ubicados en el centro financiero de Santiago, somos la primera opción de empresas y viajeros que exigen excelencia. Estacionamiento, sala de reuniones y business center incluidos para huéspedes.</p>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-number">80</div><div class="stat-label">Habitaciones</div></div>
+        <div class="stat"><div class="stat-number">4</div><div class="stat-label">Estrellas</div></div>
+        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">TripAdvisor</div></div>
+        <div class="stat"><div class="stat-number">24h</div><div class="stat-label">Check-in disponible</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="opiniones">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Huéspedes</span>
+        <h2 class="section-title">Lo que dicen quienes nos visitaron</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"La suite que reservé para nuestra luna de miel fue perfecta. La atención fue impecable desde el check-in hasta el desayuno en la habitación. El jacuzzi en la suite es una experiencia única. Volveremos."</p>
+          <div class="testi-author">Cristóbal y Macarena Rojas</div>
+          <div class="testi-role">Huéspedes · luna de miel</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Hotel de primer nivel para viajes de negocios. La sala de reuniones es excelente, el WiFi rapidísimo y el restaurante ofrece un menú de altura. Siempre elijo este hotel para mis visitas a Santiago."</p>
+          <div class="testi-author">Ricardo Guzmán</div>
+          <div class="testi-role">Huésped empresarial frecuente</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"El spa del hotel es de categoría internacional. El circuito de aguas y el masaje que recibí son de los mejores que he experimentado en Chile. El desayuno buffet también es un punto alto. Totalmente recomendado."</p>
+          <div class="testi-author">Isabel Muñoz</div>
+          <div class="testi-role">Huéspeda · experiencia de fin de semana</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contacto">
+    <div class="container">
+      <h2 class="section-title">¿Listo para vivir la experiencia Gran Palacio?</h2>
+      <p class="section-desc">Reserva directamente por WhatsApp y obtén desayuno gratuito para dos personas en tu primera noche.</p>
+      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
+        💬 Reservar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p><strong>Hotel Gran Palacio</strong> · Santiago, Chile</p>
+        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
