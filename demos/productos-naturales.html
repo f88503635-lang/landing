@@ -1,157 +1,275 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Tierra Viva — Suplementos naturales, alimentos orgánicos y cosmética natural en Santiago. Página de muestra" />
-  <title>Tierra Viva — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tierra Viva — Productos Naturales</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #16a34a;
-      --primary-rgb: 22,163,74;
-      --bg: #fff;
-      --bg-alt: #f0fdf4;
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--green:#2d6a4f;--green-light:#40916c;--sage:#95d5b2;--cream:#fefdf8;--light-green:#d8f3dc;--dark:#0d2218;--text:#0d2218;--dim:#557a65;--border:#c8e6d0}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:.4s}
+    nav.scrolled{background:rgba(254,253,248,.97);backdrop-filter:blur(16px);box-shadow:0 1px 20px rgba(45,106,79,.1)}
+    .nav-logo{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#fff;text-decoration:none}
+    nav.scrolled .nav-logo{color:var(--green)}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-link{text-decoration:none;color:rgba(255,255,255,.85);font-size:.85rem;font-weight:500;transition:.3s}
+    nav.scrolled .nav-link{color:var(--dim)}
+    .nav-link:hover{color:var(--green)}
+    .nav-cta{background:var(--green)!important;color:#fff!important;padding:.5rem 1.5rem;border-radius:100px}
+
+    /* HERO */
+    .hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(110deg,rgba(13,34,24,.92) 0%,rgba(45,106,79,.7) 60%,rgba(13,34,24,.4) 100%)}
+    .hero-content{position:relative;z-index:2;padding:8rem 3rem 4rem;max-width:620px;margin-left:max(2rem,7vw)}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(149,213,178,.15);border:1px solid rgba(149,213,178,.4);color:var(--sage);padding:.4rem 1rem;border-radius:100px;font-size:.72rem;font-weight:600;margin-bottom:1.5rem;letter-spacing:.06em}
+    .hero-title{font-family:'DM Serif Display',serif;font-size:clamp(2.8rem,5.5vw,5rem);color:#fff;line-height:1.1;margin-bottom:1.2rem}
+    .hero-title em{font-style:italic;color:var(--sage)}
+    .hero-sub{color:rgba(255,255,255,.7);line-height:1.75;margin-bottom:2.5rem;font-weight:300;font-size:.95rem}
+    .btn-green{display:inline-block;background:var(--green);color:#fff;padding:.95rem 2.4rem;border-radius:100px;text-decoration:none;font-weight:700;font-size:.9rem;transition:.3s;margin-right:.8rem}
+    .btn-green:hover{background:var(--green-light);transform:translateY(-2px)}
+    .btn-ghost{display:inline-block;border:1px solid rgba(255,255,255,.35);color:#fff;padding:.9rem 2.2rem;border-radius:100px;text-decoration:none;font-weight:500;font-size:.88rem;transition:.3s}
+    .btn-ghost:hover{border-color:rgba(255,255,255,.7)}
+
+    /* VALUES */
+    .values-bar{background:var(--green);padding:1.5rem 2rem}
+    .values-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:1rem}
+    .val-item{color:rgba(255,255,255,.85)}
+    .val-icon{font-size:1.5rem;margin-bottom:.4rem}
+    .val-label{font-size:.78rem;font-weight:600;letter-spacing:.05em}
+
+    /* SECTIONS */
+    section{padding:6rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .sec-label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);font-weight:700}
+    .sec-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,3.5vw,3rem);margin:.4rem 0 1rem;line-height:1.2}
+    .sec-desc{color:var(--dim);line-height:1.75;font-weight:300;max-width:500px}
+
+    /* CATEGORIES */
+    .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+    .cat-card{border-radius:16px;overflow:hidden;position:relative;cursor:pointer;aspect-ratio:3/4}
+    .cat-card img{width:100%;height:100%;object-fit:cover;transition:.6s}
+    .cat-card:hover img{transform:scale(1.06)}
+    .cat-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,34,24,.85) 0%,rgba(13,34,24,.2) 60%,transparent 100%)}
+    .cat-content{position:absolute;bottom:0;left:0;right:0;padding:1.5rem}
+    .cat-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);margin-bottom:.3rem}
+    .cat-name{font-family:'DM Serif Display',serif;font-size:1.3rem;color:#fff;font-weight:400}
+
+    /* PRODUCTS */
+    .products-section{background:var(--light-green);padding:6rem 2rem}
+    .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+    .prod-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(45,106,79,.07);transition:.4s;cursor:pointer}
+    .prod-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(45,106,79,.18)}
+    .prod-img{height:200px;overflow:hidden;position:relative}
+    .prod-img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+    .prod-card:hover .prod-img img{transform:scale(1.06)}
+    .prod-badge{position:absolute;top:.8rem;left:.8rem;background:var(--green);color:#fff;font-size:.62rem;font-weight:700;padding:.2rem .6rem;border-radius:100px;letter-spacing:.06em}
+    .prod-body{padding:1.2rem}
+    .prod-cat{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:.3rem}
+    .prod-name{font-family:'DM Serif Display',serif;font-size:1rem;margin-bottom:.3rem;line-height:1.3}
+    .prod-desc{font-size:.78rem;color:var(--dim);line-height:1.5;margin-bottom:.8rem}
+    .prod-bottom{display:flex;justify-content:space-between;align-items:center}
+    .prod-price{font-weight:700;color:var(--green);font-size:.95rem}
+    .prod-add{background:var(--green);color:#fff;border:none;padding:.45rem .9rem;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:700;cursor:pointer;transition:.3s}
+    .prod-add:hover{background:var(--green-light)}
+
+    /* ABOUT */
+    .about{padding:7rem 2rem}
+    .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
+    .about-visual{position:relative}
+    .about-visual img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px}
+    .about-cert{position:absolute;bottom:-2rem;right:-2rem;background:#fff;border-radius:16px;padding:1.2rem;box-shadow:0 8px 32px rgba(45,106,79,.15);text-align:center}
+    .about-cert-icon{font-size:2rem;margin-bottom:.5rem}
+    .about-cert p{font-size:.75rem;font-weight:700;color:var(--green)}
+    .about-label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);font-weight:700}
+    .about-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,3.5vw,3rem);margin:.4rem 0 1.2rem;line-height:1.2}
+    .about-title em{font-style:italic}
+    .about-text{color:var(--dim);line-height:1.8;margin-bottom:1rem;font-weight:300}
+    .cert-badges{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
+    .cert-badge{display:flex;align-items:center;gap:.4rem;background:var(--light-green);color:var(--green);font-size:.75rem;font-weight:600;padding:.35rem .9rem;border-radius:100px}
+    .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border)}
+    .stat-n{font-family:'DM Serif Display',serif;font-size:2.5rem;color:var(--green)}
+    .stat-l{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:.2rem}
+
+    /* TESTIMONIALS */
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .testi{background:var(--light-green);padding:2rem;border-radius:16px}
+    .stars{color:var(--green);margin-bottom:.8rem;letter-spacing:.1em}
+    .testi-q{font-family:'DM Serif Display',serif;font-style:italic;font-size:1rem;line-height:1.7;margin-bottom:1.2rem}
+    .testi-name{font-weight:700;font-size:.88rem;color:var(--green)}
+    .testi-sub{font-size:.75rem;color:var(--dim);margin-top:.2rem}
+
+    /* CTA */
+    .cta{position:relative;padding:8rem 2rem;text-align:center;overflow:hidden}
+    .cta-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .cta-overlay{position:absolute;inset:0;background:rgba(13,34,24,.88)}
+    .cta-inner{position:relative;z-index:1}
+    .cta-title{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,4vw,3.5rem);color:#fff;margin-bottom:1rem}
+    .cta-sub{color:rgba(255,255,255,.7);margin-bottom:2.5rem;max-width:450px;margin-left:auto;margin-right:auto;line-height:1.7;font-weight:300}
+    .btn-lg{display:inline-block;background:var(--green);color:#fff;padding:1.1rem 3rem;border-radius:100px;text-decoration:none;font-weight:700;font-size:.95rem;transition:.3s}
+    .btn-lg:hover{background:var(--green-light);transform:translateY(-3px);box-shadow:0 12px 32px rgba(45,106,79,.4)}
+
+    footer{background:var(--dark);color:rgba(255,255,255,.4);padding:3rem 2rem;text-align:center;font-size:.82rem}
+    footer a{color:var(--sage);text-decoration:none}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:900px){.cat-grid{grid-template-columns:repeat(2,1fr)}.prod-grid{grid-template-columns:repeat(2,1fr)}.about-inner{grid-template-columns:1fr}.about-visual{display:none}.values-inner{grid-template-columns:repeat(2,1fr)}.testi-grid{grid-template-columns:1fr}.nav-links{display:none}.hero-content{padding:7rem 1.5rem 3rem;margin-left:0}}
   </style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(13,34,24,.97);border:1px solid rgba(149,213,178,.25);border-radius:100px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#95d5b2;font-weight:700">Felipe Figueroa</a></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Tierra Viva.</a>
+  <ul class="nav-links">
+    <li><a href="#categorias" class="nav-link">Productos</a></li>
+    <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+    <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+    <li><a href="#contacto" class="nav-link nav-cta">Pedir</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🌿 100% Natural · Orgánico Certificado</div>
+    <h1 class="hero-title">De la tierra<br>a tu <em>vida</em></h1>
+    <p class="hero-sub">Suplementos, superfoods, cuidado natural y productos orgánicos certificados. Bienestar de verdad, sin ingredientes de laboratorio.</p>
+    <div>
+      <a href="#categorias" class="btn-green">Ver productos</a>
+      <a href="#nosotros" class="btn-ghost">Nuestra filosofía</a>
+    </div>
   </div>
+</section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Tierra Viva<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Productos</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Pedir</a></li>
-      </ul>
+<div class="values-bar">
+  <div class="values-inner">
+    <div class="val-item"><div class="val-icon">🌱</div><div class="val-label">100% Orgánico</div></div>
+    <div class="val-item"><div class="val-icon">🔬</div><div class="val-label">Certificado USDA</div></div>
+    <div class="val-item"><div class="val-icon">🚚</div><div class="val-label">Despacho en 24hrs</div></div>
+    <div class="val-item"><div class="val-icon">♻️</div><div class="val-label">Empaques sostenibles</div></div>
+  </div>
+</div>
+
+<section id="categorias">
+  <div class="container">
+    <span class="sec-label">Categorías</span>
+    <h2 class="sec-title">Todo lo que tu cuerpo<br>necesita de la naturaleza</h2>
+    <div class="cat-grid reveal">
+      <div class="cat-card"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500&q=80" alt="Superfoods"/><div class="cat-overlay"></div><div class="cat-content"><p class="cat-label">Nutrición</p><p class="cat-name">Superfoods</p></div></div>
+      <div class="cat-card"><img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=500&q=80" alt="Suplementos"/><div class="cat-overlay"></div><div class="cat-content"><p class="cat-label">Salud</p><p class="cat-name">Suplementos</p></div></div>
+      <div class="cat-card"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=500&q=80" alt="Cuidado personal"/><div class="cat-overlay"></div><div class="cat-content"><p class="cat-label">Belleza</p><p class="cat-name">Cuidado natural</p></div></div>
+      <div class="cat-card"><img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=500&q=80" alt="Infusiones"/><div class="cat-overlay"></div><div class="cat-content"><p class="cat-label">Bienestar</p><p class="cat-name">Infusiones & Tés</p></div></div>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #052e16 0%, #14532d 50%, #052e16 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Productos Naturales</p>
-      <h1 class="hero-title">Lo mejor de la<br><em>naturaleza para ti.</em></h1>
-      <p class="hero-sub">Suplementos naturales, alimentos orgánicos y cosmética sin químicos dañinos. Cuida tu salud y la del planeta con productos que realmente funcionan.</p>
-      <div class="hero-btns">
-        <a href="#servicios" class="btn btn-primary">Ver productos</a>
-        <a href="#contacto" class="btn btn-outline">Asesoría gratis</a>
+<section class="products-section" id="productos">
+  <div class="container">
+    <span class="sec-label">Más vendidos</span>
+    <h2 class="sec-title">Los favoritos de<br>nuestra comunidad</h2>
+    <div class="prod-grid">
+      <div class="prod-card reveal">
+        <div class="prod-img"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=500&q=80" alt="Spirulina"/><span class="prod-badge">⭐ FAVORITO</span></div>
+        <div class="prod-body"><p class="prod-cat">Superfood</p><p class="prod-name">Espirulina Orgánica 250g</p><p class="prod-desc">Proteína vegetal completa. 60% proteína, rica en hierro y vitamina B12.</p><div class="prod-bottom"><span class="prod-price">$18.900</span><button class="prod-add">+ Agregar</button></div></div>
+      </div>
+      <div class="prod-card reveal" style="transition-delay:.1s">
+        <div class="prod-img"><img src="https://images.unsplash.com/photo-1607532941433-304659e8198a?auto=format&fit=crop&w=500&q=80" alt="Cúrcuma"/><span class="prod-badge">NUEVO</span></div>
+        <div class="prod-body"><p class="prod-cat">Anti-inflamatorio</p><p class="prod-name">Cúrcuma + Pimienta Negra 120 cáps</p><p class="prod-desc">Fórmula con piperina para máxima absorción de curcumina.</p><div class="prod-bottom"><span class="prod-price">$22.500</span><button class="prod-add">+ Agregar</button></div></div>
+      </div>
+      <div class="prod-card reveal" style="transition-delay:.2s">
+        <div class="prod-img"><img src="https://images.unsplash.com/photo-1544376798-89aa6b2198fc?auto=format&fit=crop&w=500&q=80" alt="Aceite"/><span class="prod-badge">⭐ FAVORITO</span></div>
+        <div class="prod-body"><p class="prod-cat">Cuidado</p><p class="prod-name">Aceite de Argán Puro 50ml</p><p class="prod-desc">Prensado en frío, virgen extra. Para piel, cabello y uñas.</p><div class="prod-bottom"><span class="prod-price">$24.900</span><button class="prod-add">+ Agregar</button></div></div>
+      </div>
+      <div class="prod-card reveal" style="transition-delay:.3s">
+        <div class="prod-img"><img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=500&q=80" alt="Té"/></div>
+        <div class="prod-body"><p class="prod-cat">Infusiones</p><p class="prod-name">Té Matcha Ceremonial 100g</p><p class="prod-desc">Grado ceremonial de Uji, Japón. Rico en L-teanina y antioxidantes.</p><div class="prod-bottom"><span class="prod-price">$28.900</span><button class="prod-add">+ Agregar</button></div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros productos</span>
-        <h2 class="section-title">Naturaleza en su estado más puro</h2>
-        <p class="section-desc">Todo seleccionado con criterio, certificado y sin ingredientes cuestionables. Porque tu cuerpo merece lo mejor.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">💊</div>
-          <h3 class="card-title">Suplementos Naturales</h3>
-          <p class="card-desc">Vitaminas, minerales, probióticos, proteína vegetal y adaptógenos. Marcas certificadas orgánicas y sin GMO.</p>
-          <p class="card-price">Desde $8.990</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🌾</div>
-          <h3 class="card-title">Alimentos Orgánicos</h3>
-          <p class="card-desc">Quinoa, chía, cacao puro, superfoods y alimentos integrales. Producción local y de comercio justo certificado.</p>
-          <p class="card-price">Desde $3.990</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🧴</div>
-          <h3 class="card-title">Cosmética Natural</h3>
-          <p class="card-desc">Aceites esenciales, cremas, jabones artesanales y productos de cuidado personal sin parabenos ni sulfatos.</p>
-          <p class="card-price">Desde $6.990</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🌿</div>
-          <h3 class="card-title">Hierbas Medicinales</h3>
-          <p class="card-desc">Hierbas secas, tinturas, infusiones y mezclas terapéuticas. Con asesoría de nuestra naturópata certificada.</p>
-          <p class="card-price">Desde $2.990</p>
-        </div>
-      </div>
+<section id="nosotros">
+  <div class="about-inner container">
+    <div class="about-visual reveal">
+      <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=800&q=80" alt="Naturaleza"/>
+      <div class="about-cert"><div class="about-cert-icon">🏆</div><p>USDA Organic<br>Certificado</p></div>
     </div>
-  </section>
-
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🌱</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">6 años promoviendo el bienestar natural en Chile</h2>
-          <p class="about-text">Somos más que una tienda: somos una comunidad de personas comprometidas con la salud natural y el cuidado del medioambiente. Cada producto que vendemos lo probamos primero nosotros.</p>
-          <p class="about-text">Contamos con una naturópata certificada que ofrece asesorías gratuitas para orientarte en el producto más adecuado para tu situación de salud específica.</p>
-        </div>
+    <div>
+      <span class="about-label">Nuestra filosofía</span>
+      <h2 class="about-title">La naturaleza<br>lo tiene todo,<br><em>nosotros lo traemos</em></h2>
+      <p class="about-text">Tierra Viva nació de la convicción de que la salud verdadera viene de la naturaleza. Seleccionamos cada producto con estrictos criterios de pureza, origen y certificación.</p>
+      <p class="about-text">Trabajamos directamente con agricultores orgánicos certificados en Chile y el mundo. Sin intermediarios, con trazabilidad completa.</p>
+      <div class="cert-badges">
+        <span class="cert-badge">✓ USDA Organic</span>
+        <span class="cert-badge">✓ Non-GMO Verified</span>
+        <span class="cert-badge">✓ Vegan Certified</span>
+        <span class="cert-badge">✓ Gluten Free</span>
       </div>
       <div class="stats-row">
-        <div class="stat"><div class="stat-number">+300</div><div class="stat-label">Productos disponibles</div></div>
-        <div class="stat"><div class="stat-number">6</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación Google</div></div>
-        <div class="stat"><div class="stat-number">100%</div><div class="stat-label">Natural y certificado</div></div>
+        <div><div class="stat-n" data-count="300" data-suffix="+">0</div><div class="stat-l">Productos</div></div>
+        <div><div class="stat-n" data-count="8000" data-suffix="+">0</div><div class="stat-l">Clientes</div></div>
+        <div><div class="stat-n" data-count="6" data-suffix=" años">0</div><div class="stat-l">Experiencia</div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Empecé a tomar los probióticos y en un mes mi digestión mejoró completamente. La asesoría de la naturópata fue muy útil para elegir el producto correcto. Totalmente recomendado."</p>
-          <div class="testi-author">Ana Belén Soto</div>
-          <div class="testi-role">Clienta · suplementos digestivos</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Los aceites esenciales son de muy buena calidad y precio justo. Me encanta que todo está certificado y que explican bien cómo usar cada producto. Mi tienda natural de cabecera."</p>
-          <div class="testi-author">Lorena Campos</div>
-          <div class="testi-role">Clienta · cosmética natural</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"La quinoa y los superfoods son de primera calidad. Se nota la diferencia con los que venden en supermercado. Además, el delivery es muy rápido y el packaging es sustentable."</p>
-          <div class="testi-author">Jorge Figueroa</div>
-          <div class="testi-role">Cliente · alimentos orgánicos</div>
-        </div>
-      </div>
+<section id="opiniones" style="background:var(--light-green)">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="sec-label">Comunidad</span>
+      <h2 class="sec-title">Lo que dice nuestra comunidad</h2>
     </div>
-  </section>
-
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Quieres empezar a vivir más natural?</h2>
-      <p class="section-desc">Escríbenos por WhatsApp y recibe asesoría gratuita de nuestra naturópata para encontrar el producto ideal para ti.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Asesoría gratis por WhatsApp
-      </a>
+    <div class="testi-grid">
+      <div class="testi reveal"><div class="stars">★★★★★</div><p class="testi-q">"La espirulina cambió mi energía completamente. Llevo 3 meses tomándola y la diferencia en mi rendimiento en el gym es notable. Calidad premium."</p><div class="testi-name">Diego Marchetti</div><div class="testi-sub">Deportista</div></div>
+      <div class="testi reveal" style="transition-delay:.15s"><div class="stars">★★★★★</div><p class="testi-q">"El aceite de argán es maravilloso para el cabello. Lo uso antes de dormir y al despertar el brillo es increíble. Y dura muchísimo, una botellita es para meses."</p><div class="testi-name">Alejandra Ríos</div><div class="testi-sub">Clienta frecuente</div></div>
+      <div class="testi reveal" style="transition-delay:.3s"><div class="stars">★★★★★</div><p class="testi-q">"La atención al cliente es excepcional. Me explicaron todo sobre la cúrcuma y los beneficios. El despacho llegó muy bien empacado y antes de lo esperado."</p><div class="testi-name">Rocío Palma</div><div class="testi-sub">Clienta nueva</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Tierra Viva</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
+<section class="cta" id="contacto">
+  <div class="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="cta-inner">
+    <h2 class="cta-title">Empieza tu<br>camino natural hoy</h2>
+    <p class="cta-sub">Te asesoramos gratis según tus objetivos de salud. Primera compra con 10% de descuento.</p>
+    <a href="https://wa.me/56900000000?text=Hola%2C+quiero+asesor%C3%ADa+sobre+productos+Tierra+Viva" target="_blank" rel="noopener" class="btn-lg">🌿 Hablar con un asesor</a>
+  </div>
+</section>
 
+<footer>
+  <div class="container">
+    <p style="font-family:'DM Serif Display',serif;font-size:1.3rem;color:rgba(255,255,255,.5);margin-bottom:.5rem">Tierra Viva.</p>
+    <p>San Diego 1234, Santiago · pedidos@tierraviva.cl</p>
+    <p style="margin-top:1rem">Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      let cur=0;const step=target/60;
+      const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+      io.unobserve(el);
+    },{threshold:.5});io.observe(el);
+  });
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+  });
+</script>
 </body>
 </html>

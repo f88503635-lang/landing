@@ -1,157 +1,299 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Centro Estético Glow — Tratamientos faciales, depilación y masajes en Santiago. Página de muestra" />
-  <title>Centro Estético Glow — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aura Estética — Centro de Belleza Integral</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #9b59b6;
-      --primary-rgb: 155,89,182;
-      --bg: #fff;
-      --bg-alt: #faf5ff;
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --purple:#5b21b6;--purple-light:#7c3aed;--lavender:#ede9fe;
+      --cream:#faf8ff;--dark:#1e0a3c;--gold:#a78bfa;
+      --text:#1e0a3c;--dim:#6b5b8d;
+    }
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:transparent;transition:.4s}
+    nav.scrolled{background:rgba(250,248,255,.97);backdrop-filter:blur(16px);box-shadow:0 1px 24px rgba(91,33,182,.1)}
+    .nav-logo{font-family:'Libre Baskerville',serif;font-size:1.4rem;color:#fff;text-decoration:none;letter-spacing:.05em}
+    nav.scrolled .nav-logo{color:var(--purple)}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-link{text-decoration:none;color:rgba(255,255,255,.8);font-size:.85rem;font-weight:500;transition:.3s}
+    nav.scrolled .nav-link{color:var(--dim)}
+    .nav-cta{background:var(--purple)!important;color:#fff!important;padding:.5rem 1.5rem;border-radius:8px}
+
+    /* HERO */
+    .hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+    .hero-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1570172619644-ce25c0be59e7?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,10,60,.8) 0%,rgba(91,33,182,.6) 100%)}
+    .hero-content{position:relative;z-index:2;padding:2rem}
+    .hero-badge{display:inline-block;background:rgba(167,139,250,.2);border:1px solid rgba(167,139,250,.4);color:var(--gold);padding:.4rem 1.2rem;border-radius:100px;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:2rem;backdrop-filter:blur(8px)}
+    .hero-title{font-family:'Libre Baskerville',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:400;color:#fff;line-height:1.15;margin-bottom:1.5rem}
+    .hero-title em{font-style:italic;color:var(--gold)}
+    .hero-sub{color:rgba(255,255,255,.75);font-size:1.05rem;line-height:1.7;max-width:520px;margin:0 auto 2.5rem;font-weight:300}
+    .btn-glow{display:inline-block;background:linear-gradient(135deg,var(--purple),var(--purple-light));color:#fff;padding:1rem 2.8rem;border-radius:12px;text-decoration:none;font-weight:600;font-size:.95rem;box-shadow:0 8px 32px rgba(91,33,182,.4);transition:.3s}
+    .btn-glow:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(91,33,182,.5)}
+    .btn-ghost{display:inline-block;border:1px solid rgba(255,255,255,.35);color:#fff;padding:1rem 2.4rem;border-radius:12px;text-decoration:none;font-weight:500;font-size:.9rem;margin-left:1rem;transition:.3s}
+    .btn-ghost:hover{background:rgba(255,255,255,.1)}
+
+    /* FEATURES BAR */
+    .features-bar{background:var(--purple);padding:1.8rem 2rem}
+    .features-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center}
+    .feat-item{color:rgba(255,255,255,.85);font-size:.85rem}
+    .feat-icon{font-size:1.4rem;margin-bottom:.4rem}
+    .feat-label{font-weight:600;font-size:.8rem;letter-spacing:.06em}
+
+    /* TREATMENTS */
+    .section{padding:7rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .section-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--purple-light);font-weight:600}
+    .section-title{font-family:'Libre Baskerville',serif;font-size:clamp(1.8rem,3vw,2.8rem);margin:.6rem 0 1rem;line-height:1.25}
+    .section-desc{color:var(--dim);line-height:1.75;max-width:540px;font-weight:300}
+
+    .treatments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .treat-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 16px rgba(91,33,182,.06);transition:.4s;cursor:pointer}
+    .treat-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(91,33,182,.15)}
+    .treat-top{height:180px;position:relative;overflow:hidden}
+    .treat-top img{width:100%;height:100%;object-fit:cover;transition:.5s}
+    .treat-card:hover .treat-top img{transform:scale(1.08)}
+    .treat-badge{position:absolute;top:1rem;left:1rem;background:var(--purple);color:#fff;font-size:.7rem;font-weight:700;padding:.25rem .8rem;border-radius:100px;letter-spacing:.08em}
+    .treat-body{padding:1.5rem}
+    .treat-body h3{font-family:'Libre Baskerville',serif;font-size:1.1rem;margin-bottom:.5rem}
+    .treat-body p{font-size:.85rem;color:var(--dim);line-height:1.6;margin-bottom:1rem}
+    .treat-meta{display:flex;justify-content:space-between;align-items:center}
+    .treat-duration{font-size:.78rem;color:var(--dim);}
+    .treat-price{font-weight:700;color:var(--purple);font-size:1rem}
+
+    /* PROCESS */
+    .process-section{background:var(--dark);padding:7rem 2rem;color:#fff}
+    .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3.5rem;position:relative}
+    .process-steps::before{content:'';position:absolute;top:2.5rem;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,.4),transparent)}
+    .step{text-align:center}
+    .step-num{width:5rem;height:5rem;background:linear-gradient(135deg,var(--purple),var(--purple-light));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;font-family:'Libre Baskerville',serif;font-size:1.5rem;color:#fff;position:relative;z-index:1}
+    .step h3{font-size:.95rem;font-weight:600;color:#fff;margin-bottom:.5rem}
+    .step p{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.6}
+
+    /* STATS */
+    .stats-section{background:var(--lavender);padding:5rem 2rem}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+    .stat-big{font-family:'Libre Baskerville',serif;font-size:3.5rem;font-weight:700;color:var(--purple);line-height:1}
+    .stat-sub{font-size:.8rem;color:var(--dim);margin-top:.5rem;letter-spacing:.05em;text-transform:uppercase}
+
+    /* TESTIMONIALS */
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .testi{background:#fff;padding:2rem;border-radius:16px;border-left:4px solid var(--purple)}
+    .stars{color:var(--gold);font-size:1.1rem;margin-bottom:1rem}
+    .testi-text{font-family:'Libre Baskerville',serif;font-style:italic;font-size:1rem;line-height:1.7;color:var(--text);margin-bottom:1.5rem}
+    .testi-author{font-weight:700;font-size:.9rem;color:var(--purple)}
+    .testi-role{font-size:.78rem;color:var(--dim);margin-top:.2rem}
+
+    /* CTA */
+    .cta{background:linear-gradient(135deg,var(--dark) 0%,var(--purple) 100%);padding:8rem 2rem;text-align:center}
+    .cta-title{font-family:'Libre Baskerville',serif;font-size:clamp(2rem,4vw,3.2rem);color:#fff;margin-bottom:1rem}
+    .cta-sub{color:rgba(255,255,255,.7);margin-bottom:2.5rem;max-width:450px;margin-left:auto;margin-right:auto;line-height:1.7}
+    .btn-white{display:inline-block;background:#fff;color:var(--purple);padding:1rem 2.8rem;border-radius:12px;text-decoration:none;font-weight:700;font-size:.95rem;transition:.3s;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+    .btn-white:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,.3)}
+
+    footer{background:#0f0520;color:rgba(255,255,255,.45);padding:3rem 2rem;text-align:center;font-size:.83rem}
+    footer a{color:var(--gold);text-decoration:none}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:768px){
+      .treatments-grid{grid-template-columns:1fr}
+      .features-inner{grid-template-columns:repeat(2,1fr)}
+      .process-steps{grid-template-columns:repeat(2,1fr)}
+      .process-steps::before{display:none}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .testi-grid{grid-template-columns:1fr}
+      .nav-links{display:none}
     }
   </style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(30,10,60,.95);border:1px solid rgba(167,139,250,.25);border-radius:100px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#a78bfa;font-weight:700">Felipe Figueroa</a></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Aura Estética.</a>
+  <ul class="nav-links">
+    <li><a href="#tratamientos" class="nav-link">Tratamientos</a></li>
+    <li><a href="#proceso" class="nav-link">Proceso</a></li>
+    <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+    <li><a href="#contacto" class="nav-link nav-cta">Reservar</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✨ Centro Premium de Estética · Santiago</div>
+    <h1 class="hero-title">Tu bienestar,<br><em>nuestra pasión</em></h1>
+    <p class="hero-sub">Tratamientos faciales y corporales con tecnología de punta. Resultados visibles desde la primera sesión.</p>
+    <div>
+      <a href="#contacto" class="btn-glow">Reservar tratamiento</a>
+      <a href="#tratamientos" class="btn-ghost">Ver catálogo</a>
+    </div>
   </div>
+</section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Glow<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
-      </ul>
-    </div>
-  </nav>
+<div class="features-bar">
+  <div class="features-inner">
+    <div class="feat-item"><div class="feat-icon">🏅</div><div class="feat-label">Certified Premium</div></div>
+    <div class="feat-item"><div class="feat-icon">🔬</div><div class="feat-label">Tecnología Avanzada</div></div>
+    <div class="feat-item"><div class="feat-icon">👩‍⚕️</div><div class="feat-label">Profesionales certificadas</div></div>
+    <div class="feat-item"><div class="feat-icon">✅</div><div class="feat-label">Resultados garantizados</div></div>
+  </div>
+</div>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #2d1b4e 0%, #4a1d6e 50%, #6b2d8c 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Centro Estético</p>
-      <h1 class="hero-title">Realza tu<br><em>belleza natural.</em></h1>
-      <p class="hero-sub">Tratamientos faciales personalizados, depilación profesional y masajes relajantes. Tu piel merece los mejores cuidados.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Reservar hora</a>
-        <a href="#servicios" class="btn btn-outline">Ver tratamientos</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">Tratamientos especializados</h2>
-        <p class="section-desc">Cada tratamiento es personalizado según las necesidades de tu piel, a cargo de especialistas certificadas.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">✨</div>
-          <h3 class="card-title">Limpieza Facial</h3>
-          <p class="card-desc">Limpieza profunda con extracción, peeling enzimático y mascarilla hidratante. Piel fresca y luminosa.</p>
-          <p class="card-price">Desde $18.000</p>
+<section class="section" id="tratamientos">
+  <div class="container">
+    <span class="section-label">Catálogo</span>
+    <h2 class="section-title">Tratamientos estrella</h2>
+    <p class="section-desc">Cada tratamiento es diseñado según tu tipo de piel y objetivos. Usamos equipos certificados y productos de alta gama.</p>
+    <div class="treatments-grid">
+      <div class="treat-card reveal">
+        <div class="treat-top">
+          <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=600&q=80" alt="Facial"/>
+          <span class="treat-badge">FACIAL</span>
         </div>
-        <div class="card">
-          <div class="card-icon">🌟</div>
-          <h3 class="card-title">Tratamiento Antiedad</h3>
-          <p class="card-desc">Radiofrecuencia, ultrasonido o mesoterapia facial para reducir arrugas y reafirmar la piel. Resultados visibles.</p>
-          <p class="card-price">Desde $35.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🌸</div>
-          <h3 class="card-title">Depilación</h3>
-          <p class="card-desc">Depilación con cera, hilo o láser en todas las zonas del cuerpo. Resultados duraderos y piel suave.</p>
-          <p class="card-price">Desde $8.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">💆</div>
-          <h3 class="card-title">Masajes Relajantes</h3>
-          <p class="card-desc">Masaje relajante corporal, drenaje linfático o masaje descontracturante. Libera tensiones y activa la circulación.</p>
-          <p class="card-price">Desde $22.000</p>
+        <div class="treat-body">
+          <h3>Limpieza Facial Profunda</h3>
+          <p>Extracción, exfoliación y mascarilla personalizada. Piel luminosa desde el día uno.</p>
+          <div class="treat-meta"><span class="treat-duration">⏱ 60 min</span><span class="treat-price">$35.000</span></div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🌺</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">4 años cuidando la piel de nuestras clientas</h2>
-          <p class="about-text">Contamos con 8 especialistas certificadas en estética avanzada, con formación en técnicas europeas y equipos de última generación para garantizar los mejores resultados.</p>
-          <p class="about-text">Usamos exclusivamente cosméticos de origen natural y tecnología no invasiva, priorizando siempre la salud y el bienestar de tu piel.</p>
+      <div class="treat-card reveal" style="transition-delay:.1s">
+        <div class="treat-top">
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80" alt="Radiofrecuencia"/>
+          <span class="treat-badge">ANTI-EDAD</span>
+        </div>
+        <div class="treat-body">
+          <h3>Radiofrecuencia Facial</h3>
+          <p>Estimula colágeno, tensión y lifting natural. Ideal para arrugas y flacidez.</p>
+          <div class="treat-meta"><span class="treat-duration">⏱ 75 min</span><span class="treat-price">$65.000</span></div>
         </div>
       </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+600</div><div class="stat-label">Tratamientos/mes</div></div>
-        <div class="stat"><div class="stat-number">4</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación promedio</div></div>
-        <div class="stat"><div class="stat-number">8</div><div class="stat-label">Especialistas</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestras clientas</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Vine con manchas y acné y después de 4 sesiones de limpieza mi piel está irreconocible. La esteticista fue muy detallada y me explicó todo el proceso."</p>
-          <div class="testi-author">María José Pacheco</div>
-          <div class="testi-role">Clienta frecuente · limpieza facial</div>
+      <div class="treat-card reveal" style="transition-delay:.2s">
+        <div class="treat-top">
+          <img src="https://images.unsplash.com/photo-1570172619644-ce25c0be59e7?auto=format&fit=crop&w=600&q=80" alt="Hidratación"/>
+          <span class="treat-badge">HIDRATACIÓN</span>
         </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El tratamiento antiedad con radiofrecuencia es increíble. A los 45 años mi piel se ve más firme y joven que nunca. Totalmente recomendado para cualquier edad."</p>
-          <div class="testi-author">Andrea Lagos</div>
-          <div class="testi-role">Clienta · tratamiento antiedad</div>
+        <div class="treat-body">
+          <h3>Hidratación Profunda HydraBioSkin</h3>
+          <p>Relleno de ácido hialurónico tópico y vitamina C. Piel jugosa y plump.</p>
+          <div class="treat-meta"><span class="treat-duration">⏱ 50 min</span><span class="treat-price">$48.000</span></div>
         </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El masaje drenaje linfático fue una experiencia transformadora. Salí sintiéndome liviana y relajada. El local es muy acogedor y limpio, vuelvo sin dudarlo."</p>
-          <div class="testi-author">Claudia Riquelme</div>
-          <div class="testi-role">Clienta · masajes</div>
+      </div>
+      <div class="treat-card reveal" style="transition-delay:.1s">
+        <div class="treat-top">
+          <img src="https://images.unsplash.com/photo-1614267861476-0d129972a0f4?auto=format&fit=crop&w=600&q=80" alt="Peeling"/>
+          <span class="treat-badge">RENOVACIÓN</span>
+        </div>
+        <div class="treat-body">
+          <h3>Peeling Químico</h3>
+          <p>Exfoliación con ácidos AHA/BHA. Elimina manchas, cicatrices y poros dilatados.</p>
+          <div class="treat-meta"><span class="treat-duration">⏱ 45 min</span><span class="treat-price">$55.000</span></div>
+        </div>
+      </div>
+      <div class="treat-card reveal" style="transition-delay:.2s">
+        <div class="treat-top">
+          <img src="https://images.unsplash.com/photo-1611174275728-5561a9f6da95?auto=format&fit=crop&w=600&q=80" alt="Masajes"/>
+          <span class="treat-badge">CORPORAL</span>
+        </div>
+        <div class="treat-body">
+          <h3>Masaje Drenaje Linfático</h3>
+          <p>Reduce retención de líquidos, celulitis y mejora la circulación. Técnica manual.</p>
+          <div class="treat-meta"><span class="treat-duration">⏱ 90 min</span><span class="treat-price">$55.000</span></div>
+        </div>
+      </div>
+      <div class="treat-card reveal" style="transition-delay:.3s">
+        <div class="treat-top">
+          <img src="https://images.unsplash.com/photo-1487412912498-0447578fcca8?auto=format&fit=crop&w=600&q=80" alt="Pack"/>
+          <span class="treat-badge">⭐ PACK</span>
+        </div>
+        <div class="treat-body">
+          <h3>Pack Bella Total (5 sesiones)</h3>
+          <p>Combinación personalizada de facial + corporal. El más solicitado del centro.</p>
+          <div class="treat-meta"><span class="treat-duration">⏱ Sesiones 60 min</span><span class="treat-price">$220.000</span></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Lista para lucir radiante?</h2>
-      <p class="section-desc">Agenda tu consulta gratuita por WhatsApp. Te asesoramos en el tratamiento ideal para tu tipo de piel.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Agendar por WhatsApp
-      </a>
+<section class="process-section" id="proceso">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="section-label" style="color:var(--gold)">¿Cómo funciona?</span>
+      <h2 class="section-title" style="color:#fff">Tu camino a la piel perfecta</h2>
     </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Centro Estético Glow</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
+    <div class="process-steps">
+      <div class="step reveal"><div class="step-num">01</div><h3>Diagnóstico</h3><p>Evaluamos tu tipo de piel, preocupaciones y objetivos en una consulta inicial gratuita.</p></div>
+      <div class="step reveal" style="transition-delay:.15s"><div class="step-num">02</div><h3>Plan personalizado</h3><p>Diseñamos tu protocolo de tratamiento considerando tu piel, tiempo y presupuesto.</p></div>
+      <div class="step reveal" style="transition-delay:.3s"><div class="step-num">03</div><h3>Tratamiento</h3><p>Sesiones en un ambiente relajante con tecnología de última generación y productos premium.</p></div>
+      <div class="step reveal" style="transition-delay:.45s"><div class="step-num">04</div><h3>Seguimiento</h3><p>Monitoreo de resultados y ajustes en tu rutina de mantención para conservar los logros.</p></div>
     </div>
-  </footer>
+  </div>
+</section>
 
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div style="text-align:center"><div class="stat-big" data-count="3000" data-suffix="+">0</div><div class="stat-sub">Pacientes atendidas</div></div>
+      <div style="text-align:center"><div class="stat-big" data-count="97" data-suffix="%">0</div><div class="stat-sub">Satisfacción</div></div>
+      <div style="text-align:center"><div class="stat-big" data-count="12">0</div><div class="stat-sub">Años de experiencia</div></div>
+      <div style="text-align:center"><div class="stat-big" data-count="20" data-suffix="+">0</div><div class="stat-sub">Tratamientos disponibles</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="opiniones">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="section-label">Testimonios</span>
+      <h2 class="section-title">Resultados reales</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal"><div class="stars">★★★★★</div><p class="testi-text">"La radiofrecuencia cambió mi cara. Llevaba años buscando un tratamiento para la flacidez y aquí encontré los resultados que nadie más me había dado."</p><div class="testi-author">María José Torres</div><div class="testi-role">Clienta, 42 años</div></div>
+      <div class="testi reveal" style="transition-delay:.15s"><div class="stars">★★★★★</div><p class="testi-text">"El drenaje linfático es adictivo. Salgo liviana, relajada y se nota la diferencia en la celulitis. Llevo 3 meses viniendo cada semana."</p><div class="testi-author">Pamela Vidal</div><div class="testi-role">Clienta frecuente</div></div>
+      <div class="testi reveal" style="transition-delay:.3s"><div class="stars">★★★★★</div><p class="testi-text">"El diagnóstico fue súper completo y la esteticista me explicó todo. Siento que por fin entiendo mi piel. ¡El peeling eliminó mis manchas por completo!"</p><div class="testi-author">Claudia Herrera</div><div class="testi-role">Clienta nueva</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <h2 class="cta-title">Agenda tu consulta<br><em>gratuita hoy</em></h2>
+  <p class="cta-sub">Sin compromiso. Diagnóstico de piel incluido. Cupos limitados por semana.</p>
+  <a href="https://wa.me/56900000000?text=Hola%2C+quiero+agendar+en+Aura+Est%C3%A9tica" target="_blank" rel="noopener" class="btn-white">💬 Agendar por WhatsApp</a>
+</section>
+
+<footer>
+  <p style="font-family:'Libre Baskerville',serif;font-size:1.2rem;color:rgba(255,255,255,.6);margin-bottom:.5rem">Aura Estética.</p>
+  <p>Av. Las Condes 5678, Santiago · Lunes a Sábado 9:00–20:00</p>
+  <p style="margin-top:1rem">Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      let cur=0;const step=target/70;
+      const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+      io.unobserve(el);
+    },{threshold:.5});io.observe(el);
+  });
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+  });
+</script>
 </body>
 </html>

@@ -1,168 +1,238 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GymForce — Gimnasio con entrenamiento personal y clases grupales en Santiago. Página de muestra" />
-  <title>GymForce — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #f97316;
-      --primary-rgb: 249,115,22;
-      --bg: #0a0a0a;
-      --bg-alt: #111;
-      --surface: #1a1a1a;
-      --text: #f5f5f5;
-      --text-dim: #a0a0a0;
-      --text-muted: #606060;
-      --border: rgba(255,255,255,0.1);
-      --nav-bg: rgba(10,10,10,0.96);
-    }
-    .section-alt { background: var(--bg-alt); }
-    .card { background: var(--surface); border-color: var(--border); }
-    .testi { background: var(--surface); border-color: var(--border); }
-    .stat { background: var(--surface); border-color: var(--border); }
-    .footer { background: #000; }
-  </style>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>GymForce — Página de Muestra</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}body{background:#0a0a0a;color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}ul{list-style:none}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}.reveal.in{opacity:1;transform:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.06);transition:background .3s}
+nav.scrolled{background:rgba(10,10,10,.97);backdrop-filter:blur(16px)}
+.ni{max-width:1200px;margin:0 auto;height:100%;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.3rem;font-weight:900;letter-spacing:.06em;color:#f97316}
+.nlinks{display:flex;align-items:center;gap:2.2rem}
+.nlink{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);transition:color .2s}.nlink:hover{color:#f97316}
+.ncta{padding:.44rem 1.2rem;background:#f97316;color:#fff!important;border-radius:4px;transition:all .2s}.ncta:hover{background:#ea6600;transform:translateY(-1px)}
+/* HERO */
+.hero{height:100svh;min-height:680px;position:relative;display:flex;align-items:center;overflow:hidden}
+.hbg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1534438327167-9b49f2fe6a52?auto=format&fit=crop&w=1920&q=80') center/cover}
+.hbg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.95) 40%,rgba(10,10,10,.5) 70%,rgba(10,10,10,.1) 100%)}
+.hc{position:relative;z-index:1;max-width:1200px;width:100%;margin:0 auto;padding:0 2rem;padding-top:68px}
+.hbadge{display:inline-block;padding:.3rem .85rem;background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.4);border-radius:100px;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#f97316;margin-bottom:1.5rem}
+.ht{font-size:clamp(3.5rem,9vw,7.5rem);font-weight:900;line-height:.88;letter-spacing:-.04em;margin-bottom:1.5rem;text-transform:uppercase}
+.ht span{color:#f97316;display:block}
+.hs{font-size:1rem;color:rgba(255,255,255,.6);max-width:420px;line-height:1.72;margin-bottom:2.2rem}
+.hbtns{display:flex;gap:.9rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.78rem 1.8rem;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:4px;transition:all .2s;cursor:pointer;border:none;font-family:'Inter',sans-serif}
+.bo{background:#f97316;color:#fff}.bo:hover{background:#ea6600;transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.4)}
+.bg{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.22)}.bg:hover{border-color:#f97316;color:#f97316}
+/* BAR */
+.bar{background:#f97316;padding:1rem 0}
+.barinner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;gap:3rem;justify-content:center;flex-wrap:wrap}
+.bari{font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff}
+/* MEMBRESÍAS */
+.ms{padding:6rem 0;background:#0a0a0a}
+.ct{max-width:1200px;margin:0 auto;padding:0 2rem}
+.ey{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:#f97316;display:block;margin-bottom:.55rem}
+.st{font-size:clamp(1.9rem,4vw,3rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:-.025em}
+.sd{font-size:.93rem;color:rgba(255,255,255,.55);line-height:1.72;max-width:480px}
+.sh{margin-bottom:3.5rem}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.pc{background:#111;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:2rem;position:relative;transition:border-color .3s,transform .3s}
+.pc:hover{transform:translateY(-4px)}
+.pc.featured{border-color:#f97316;box-shadow:0 0 0 1px rgba(249,115,22,.3)}
+.pc-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#f97316;color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.1em;padding:.25rem .8rem;border-radius:100px;white-space:nowrap;text-transform:uppercase}
+.pc-name{font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1rem}
+.pc-price{font-size:2.8rem;font-weight:900;color:#fff;line-height:1;margin-bottom:.3rem}.pc-price span{font-size:1rem;color:rgba(255,255,255,.4);font-weight:400}
+.pc-desc{font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:1.5rem}
+.pc-list{display:flex;flex-direction:column;gap:.55rem;margin-bottom:2rem}
+.pc-list li{font-size:.84rem;color:rgba(255,255,255,.7);display:flex;gap:.5rem;align-items:flex-start}.pc-list li::before{content:'→';color:#f97316;flex-shrink:0;font-weight:700}
+.pc-btn{display:block;text-align:center;padding:.68rem;border-radius:5px;font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:all .2s;background:rgba(249,115,22,.1);color:#f97316;border:1px solid rgba(249,115,22,.3)}.pc.featured .pc-btn{background:#f97316;color:#fff;border-color:#f97316}.pc-btn:hover{transform:translateY(-1px)}
+/* CLASES */
+.cs{padding:5.5rem 0;background:#0d0d0d}
+.schedule{width:100%;border-collapse:collapse;margin-top:2.5rem}
+.schedule th{background:#111;color:rgba(255,255,255,.5);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.9rem 1rem;text-align:left;border:1px solid rgba(255,255,255,.06)}
+.schedule td{padding:.85rem 1rem;border:1px solid rgba(255,255,255,.06);font-size:.85rem;color:rgba(255,255,255,.8)}
+.schedule tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.clase{display:inline-block;padding:.22rem .7rem;border-radius:100px;font-size:.72rem;font-weight:600}
+.clase.fuerza{background:rgba(249,115,22,.15);color:#f97316}
+.clase.cardio{background:rgba(59,130,246,.15);color:#60a5fa}
+.clase.yoga{background:rgba(139,92,246,.15);color:#a78bfa}
+.clase.box{background:rgba(220,38,38,.15);color:#f87171}
+/* STATS */
+.stats{background:#f97316;padding:3.5rem 0}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(0,0,0,.15)}
+.stat{background:#f97316;padding:2.2rem 1.5rem;text-align:center}
+.snum{font-size:2.8rem;font-weight:900;color:#fff;display:block;margin-bottom:.35rem;line-height:1;letter-spacing:-.04em}
+.slabel{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+/* TESTIMONIOS */
+.ts{padding:5.5rem 0;background:#0a0a0a}
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.tc{background:#111;border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:1.75rem;transition:border-color .3s}.tc:hover{border-color:rgba(249,115,22,.3)}
+.tav{width:44px;height:44px;border-radius:50%;background:#f97316;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem;color:#fff;margin-bottom:.9rem}
+.stars{color:#f97316;font-size:.88rem;margin-bottom:.65rem}
+.tt{font-size:.86rem;color:rgba(255,255,255,.6);line-height:1.7;font-style:italic;margin-bottom:1.1rem}
+.tname{font-weight:700;font-size:.83rem}.trole{font-size:.76rem;color:rgba(255,255,255,.4)}
+/* CTA */
+.ctas{padding:5rem 0;background:#0d0d0d}
+.ctai{text-align:center;max-width:580px;margin:0 auto}
+.ctat{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:#fff;margin-bottom:.9rem;text-transform:uppercase;letter-spacing:-.03em}
+.ctat span{color:#f97316}
+.ctas2{font-size:.93rem;color:rgba(255,255,255,.55);margin-bottom:2.2rem;line-height:1.7}
+.bwa{display:inline-flex;align-items:center;gap:.55rem;padding:.82rem 2rem;background:#25D366;color:#fff;font-weight:700;font-size:.88rem;border-radius:5px;transition:all .2s}
+.bwa:hover{background:#1ebe5d;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.32)}
+footer{background:#050505;padding:1.75rem;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
+footer p{font-size:.78rem;color:rgba(255,255,255,.35)}footer a{color:#f97316}
+@media(max-width:768px){
+  .nlinks{display:none}.pgrid{grid-template-columns:1fr}.sgrid{grid-template-columns:repeat(2,1fr)}
+  .tg{grid-template-columns:1fr}.barinner{gap:1.5rem;justify-content:flex-start}
+  .schedule{font-size:.78rem}
+}
+</style>
 </head>
 <body>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(8,6,12,.92);border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#f97316;font-weight:700">Felipe Figueroa</a></div>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<nav id="nav">
+  <div class="ni">
+    <a href="#" class="logo">GYMFORCE</a>
+    <ul class="nlinks">
+      <li><a href="#membresias" class="nlink">Membresías</a></li>
+      <li><a href="#clases" class="nlink">Clases</a></li>
+      <li><a href="#opiniones" class="nlink">Opiniones</a></li>
+      <li><a href="#contacto" class="nlink ncta">Únete</a></li>
+    </ul>
   </div>
+</nav>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">GymForce<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
-      </ul>
+<section class="hero">
+  <div class="hbg"></div>
+  <div class="hc">
+    <div class="hbadge">Únete hoy · Primer mes gratis</div>
+    <h1 class="ht">Rompe<br><span>tus límites</span></h1>
+    <p class="hs">El gimnasio que te lleva al siguiente nivel. Entrenadores certificados, equipamiento de alta gama y una comunidad que te impulsa.</p>
+    <div class="hbtns">
+      <a href="#contacto" class="btn bo">Empezar ahora</a>
+      <a href="#membresias" class="btn bg">Ver planes</a>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #1a0a00 0%, #0a0a0a 50%, #1a0500 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Gimnasio Premium</p>
-      <h1 class="hero-title">Rompe tus<br><em>límites.</em></h1>
-      <p class="hero-sub">Equipamiento de última generación, entrenadores certificados y una comunidad que te impulsa a ser mejor cada día. El cambio comienza hoy.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Prueba gratis</a>
-        <a href="#servicios" class="btn btn-outline">Ver planes</a>
-      </div>
+<div class="bar">
+  <div class="barinner">
+    <span class="bari">🏋️ +300 máquinas</span>
+    <span class="bari">⏰ Abierto 5:00–24:00</span>
+    <span class="bari">💪 8 entrenadores</span>
+    <span class="bari">🔥 15 clases grupales</span>
+  </div>
+</div>
+
+<section class="ms" id="membresias">
+  <div class="ct">
+    <div class="sh reveal">
+      <span class="ey">Elige tu plan</span>
+      <h2 class="st">Membresías</h2>
+      <p class="sd">Sin contratos a largo plazo. Cancela cuando quieras.</p>
     </div>
-  </section>
-
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros planes</span>
-        <h2 class="section-title">Elige tu plan ideal</h2>
-        <p class="section-desc">Planes flexibles para todos los niveles. Sin contratos de permanencia, empieza cuando quieras.</p>
+    <div class="pgrid">
+      <div class="pc reveal">
+        <div class="pc-name">Plan Básico</div>
+        <div class="pc-price">$25.000<span>/mes</span></div>
+        <div class="pc-desc">Perfecto para comenzar</div>
+        <ul class="pc-list">
+          <li>Acceso sala de pesas</li><li>Cardio equipado</li><li>Casilleros y duchas</li><li>Aplicación de seguimiento</li>
+        </ul>
+        <a href="#contacto" class="pc-btn">Elegir básico</a>
       </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">💪</div>
-          <h3 class="card-title">Plan Básico</h3>
-          <p class="card-desc">Acceso al gimnasio de lunes a viernes en horario normal. Incluye evaluación física inicial sin costo.</p>
-          <p class="card-price">$25.000/mes</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🏆</div>
-          <h3 class="card-title">Plan Completo</h3>
-          <p class="card-desc">Acceso ilimitado 7 días a la semana, incluyendo clases grupales y acceso a sauna. El plan más popular.</p>
-          <p class="card-price">$40.000/mes</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🎯</div>
-          <h3 class="card-title">Entrenamiento Personal</h3>
-          <p class="card-desc">Sesiones one-on-one con un entrenador certificado. Rutina 100% personalizada según tus objetivos.</p>
-          <p class="card-price">Desde $15.000/sesión</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🤸</div>
-          <h3 class="card-title">Clases Grupales</h3>
-          <p class="card-desc">Spinning, funcional, yoga, zumba y más. Más de 20 clases semanales con instructores top.</p>
-          <p class="card-price">Incluido en Plan Completo</p>
-        </div>
+      <div class="pc featured reveal">
+        <div class="pc-badge">MÁS POPULAR</div>
+        <div class="pc-name">Plan Pro</div>
+        <div class="pc-price">$40.000<span>/mes</span></div>
+        <div class="pc-desc">El favorito de nuestros socios</div>
+        <ul class="pc-list">
+          <li>Todo del plan básico</li><li>Clases grupales ilimitadas</li><li>1 sesión mensual con entrenador</li><li>Acceso zona funcional</li><li>Nutricionista online</li>
+        </ul>
+        <a href="#contacto" class="pc-btn">Elegir Pro</a>
       </div>
-    </div>
-  </section>
-
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🏋️</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">5 años transformando cuerpos y mentalidades</h2>
-          <p class="about-text">Contamos con más de 800 metros cuadrados de equipamiento de última generación, incluyendo zona de pesas, cardio, funcional, sauna y sala de clases grupales.</p>
-          <p class="about-text">Nuestros 8 entrenadores son profesionales certificados en educación física con especialización en nutrición deportiva y entrenamiento de fuerza.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+300</div><div class="stat-label">Miembros activos</div></div>
-        <div class="stat"><div class="stat-number">5</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.8★</div><div class="stat-label">Calificación promedio</div></div>
-        <div class="stat"><div class="stat-number">8</div><div class="stat-label">Entrenadores certificados</div></div>
+      <div class="pc reveal">
+        <div class="pc-name">Plan Elite</div>
+        <div class="pc-price">$65.000<span>/mes</span></div>
+        <div class="pc-desc">Para resultados máximos</div>
+        <ul class="pc-list">
+          <li>Todo del plan Pro</li><li>Entrenamiento personal 2x semana</li><li>Plan nutricional personalizado</li><li>Acceso VIP zona premium</li><li>Masaje deportivo mensual</li>
+        </ul>
+        <a href="#contacto" class="pc-btn">Elegir Elite</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Resultados que hablan por sí solos</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"En 4 meses bajé 12 kilos y gané músculo que nunca había tenido. El entrenador personal diseñó una rutina perfecta para mí. El mejor dinero que he invertido en mi salud."</p>
-          <div class="testi-author">Ignacio Sepúlveda</div>
-          <div class="testi-role">Miembro · entrenamiento personal</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Las clases de spinning son las mejores que he tomado en Santiago. La instructora es increíble y la energía del grupo te motiva a dar el máximo. No fallo ni un martes."</p>
-          <div class="testi-author">Javiera Contreras</div>
-          <div class="testi-role">Miembro · clases grupales</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Llevo 2 años en GymForce y no cambiaría nada. El ambiente es motivador, el equipo está siempre impecable y los precios son muy razonables para la calidad que ofrecen."</p>
-          <div class="testi-author">Felipe Ortega</div>
-          <div class="testi-role">Miembro · 2 años</div>
-        </div>
-      </div>
+<section class="cs" id="clases">
+  <div class="ct">
+    <div class="sh reveal">
+      <span class="ey">Horarios</span>
+      <h2 class="st">Clases Grupales</h2>
+      <p class="sd">15 tipos de clases con los mejores instructores. Incluidas en plan Pro y Elite.</p>
     </div>
-  </section>
+    <div class="reveal" style="overflow-x:auto">
+      <table class="schedule">
+        <thead><tr><th>Horario</th><th>Lunes</th><th>Martes</th><th>Miércoles</th><th>Jueves</th><th>Viernes</th><th>Sábado</th></tr></thead>
+        <tbody>
+          <tr><td>07:00</td><td><span class="clase cardio">Cardio</span></td><td><span class="clase fuerza">Fuerza</span></td><td><span class="clase cardio">Cardio</span></td><td><span class="clase fuerza">Fuerza</span></td><td><span class="clase cardio">Cardio</span></td><td><span class="clase yoga">Yoga</span></td></tr>
+          <tr><td>12:00</td><td><span class="clase box">Box</span></td><td><span class="clase yoga">Pilates</span></td><td><span class="clase box">Box</span></td><td><span class="clase yoga">Pilates</span></td><td><span class="clase fuerza">Fuerza</span></td><td><span class="clase box">Box</span></td></tr>
+          <tr><td>18:00</td><td><span class="clase fuerza">Fuerza</span></td><td><span class="clase cardio">HIIT</span></td><td><span class="clase yoga">Yoga</span></td><td><span class="clase cardio">HIIT</span></td><td><span class="clase box">Kick Box</span></td><td><span class="clase cardio">Zumba</span></td></tr>
+          <tr><td>20:00</td><td><span class="clase cardio">Spinning</span></td><td><span class="clase fuerza">Crossfit</span></td><td><span class="clase cardio">Spinning</span></td><td><span class="clase fuerza">Crossfit</span></td><td><span class="clase yoga">Meditación</span></td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Listo para empezar?</h2>
-      <p class="section-desc">Contáctanos y obtén tu primera semana de prueba completamente gratis. Sin compromisos, sin letra chica.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Prueba gratis por WhatsApp
+<section class="stats">
+  <div class="ct">
+    <div class="sgrid">
+      <div class="stat"><span class="snum" data-count="300" data-suffix="+">0</span><span class="slabel">Socios activos</span></div>
+      <div class="stat"><span class="snum" data-count="5" data-suffix=" años">0</span><span class="slabel">De experiencia</span></div>
+      <div class="stat"><span class="snum" data-count="8">0</span><span class="slabel">Entrenadores cert.</span></div>
+      <div class="stat"><span class="snum" data-count="15">0</span><span class="slabel">Tipos de clases</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="ts" id="opiniones">
+  <div class="ct">
+    <div class="sh reveal"><span class="ey">Testimonios</span><h2 class="st">Lo que dicen<br>nuestros socios</h2></div>
+    <div class="tg">
+      <div class="tc reveal"><div class="tav">CP</div><div class="stars">★★★★★</div><p class="tt">"Bajé 15 kilos en 4 meses con el plan Elite. El entrenador personal es increíble, siempre motivándome y adaptando los ejercicios."</p><div class="tname">Carlos Pérez</div><div class="trole">Socio Elite, 8 meses</div></div>
+      <div class="tc reveal"><div class="tav">AL</div><div class="stars">★★★★★</div><p class="tt">"Las clases de spinning son lo mejor. El instructor tiene una energía brutal. Los horarios son perfectos para trabajadores."</p><div class="tname">Andrea López</div><div class="trole">Socia Pro, 1 año</div></div>
+      <div class="tc reveal"><div class="tav">FS</div><div class="stars">★★★★★</div><p class="tt">"El equipamiento está siempre en perfecto estado. La zona funcional es espectacular. Vale cada peso de la membresía."</p><div class="tname">Felipe Silva</div><div class="trole">Socio Básico, 2 años</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ctas" id="contacto">
+  <div class="ct">
+    <div class="ctai reveal">
+      <h2 class="ctat">¿Listo para<br><span>cambiar tu vida?</span></h2>
+      <p class="ctas2">El primer mes es gratis. Sin contratos, sin excusas. Tu transformación comienza hoy.</p>
+      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20info%20sobre%20las%20membresias" target="_blank" class="bwa">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Quiero mi mes gratis
       </a>
     </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>GymForce</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
-
+  </div>
+</section>
+<footer><p><strong>GymForce</strong> · Santiago, Chile · Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p></footer>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const io=new IntersectionObserver(([e])=>{if(!e.isIntersecting)return;const target=+el.dataset.count,suffix=el.dataset.suffix||'';let cur=0;const step=target/70;const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},20);io.unobserve(el);},{threshold:.5});io.observe(el);
+});
+document.querySelectorAll('.reveal').forEach(el=>{new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);});
+</script>
 </body>
 </html>

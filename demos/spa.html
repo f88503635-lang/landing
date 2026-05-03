@@ -1,157 +1,196 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Spa Serenidad — Masajes, hidroterapia y aromaterapia para tu bienestar. Página de muestra" />
-  <title>Spa Serenidad — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #2d8a5e;
-      --primary-rgb: 45,138,94;
-      --bg: #fff;
-      --bg-alt: #f0fdf4;
-    }
-  </style>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Spa Serenidad — Página de Muestra</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}body{background:#fafaf7;color:#1a2418;font-family:'Inter',sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}ul{list-style:none}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}.reveal.in{opacity:1;transform:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:70px;transition:background .4s}
+nav.scrolled{background:rgba(250,250,247,.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(45,106,79,.1)}
+.ni{max-width:1200px;margin:0 auto;height:100%;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Playfair Display',serif;font-size:1.2rem;letter-spacing:.08em;color:#1a2418}
+.logo span{color:#2d6a4f}
+.nlinks{display:flex;align-items:center;gap:2.2rem}
+.nlink{font-size:.8rem;font-weight:400;letter-spacing:.06em;color:#6b7280;transition:color .2s}.nlink:hover{color:#2d6a4f}
+.ncta{padding:.48rem 1.3rem;border:1px solid #2d6a4f;color:#2d6a4f!important;border-radius:50px;font-size:.8rem;transition:all .2s}.ncta:hover{background:#2d6a4f;color:#fff!important}
+/* HERO */
+.hero{height:100svh;min-height:680px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hbg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1920&q=80') center/cover}
+.hbg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(15,30,20,.7) 0%,rgba(15,30,20,.45) 50%,rgba(15,30,20,.7) 100%)}
+.hc{position:relative;z-index:1;text-align:center;max-width:700px;padding:0 2rem;padding-top:70px}
+.hleaf{font-size:2rem;margin-bottom:1.5rem;display:block;animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hey{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:1rem;font-weight:300}
+.ht{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6vw,5.5rem);font-weight:700;color:#fff;line-height:1;letter-spacing:-.01em;margin-bottom:1.4rem}
+.ht em{font-style:italic;font-weight:400;color:rgba(255,255,255,.85)}
+.hline{width:40px;height:1px;background:rgba(255,255,255,.5);margin:1.4rem auto;position:relative}.hline::before,.hline::after{content:'';position:absolute;top:0;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.6);top:-2px}.hline::before{left:-10px}.hline::after{right:-10px}
+.hs{font-size:.97rem;color:rgba(255,255,255,.72);line-height:1.8;margin-bottom:2.2rem;font-weight:300}
+.hbtns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.8rem;font-size:.82rem;font-weight:600;letter-spacing:.04em;border-radius:50px;transition:all .2s;cursor:pointer;border:none;font-family:'Inter',sans-serif}
+.bp{background:#2d6a4f;color:#fff}.bp:hover{background:#1f4d38;transform:translateY(-2px);box-shadow:0 8px 24px rgba(45,106,79,.4)}
+.bo{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(8px)}.bo:hover{background:rgba(255,255,255,.2)}
+/* TRATAMIENTOS */
+.ts{padding:6rem 0;background:#fafaf7}
+.ct{max-width:1200px;margin:0 auto;padding:0 2rem}
+.ey{font-size:.67rem;letter-spacing:.24em;text-transform:uppercase;color:#2d6a4f;display:block;margin-bottom:.6rem;font-weight:600}
+.st{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:#1a2418;line-height:1.1;margin-bottom:.7rem}
+.sd{font-size:.93rem;color:#6b7280;line-height:1.72;max-width:460px}
+.sh{margin-bottom:3.5rem}
+.tlist{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(45,106,79,.12);border-radius:12px;overflow:hidden}
+.titem{display:flex;align-items:center;justify-content:space-between;padding:1.4rem 1.8rem;border-bottom:1px solid rgba(45,106,79,.08);border-right:1px solid rgba(45,106,79,.08);transition:background .3s;gap:1rem}
+.titem:nth-child(odd){border-right:1px solid rgba(45,106,79,.08)}.titem:nth-child(even){border-right:none}
+.titem:hover{background:rgba(45,106,79,.04)}
+.titem:nth-last-child(-n+2){border-bottom:none}
+.tinfo{flex:1}
+.tname{font-family:'Playfair Display',serif;font-size:1.05rem;color:#1a2418;margin-bottom:.2rem}
+.tdur{font-size:.78rem;color:#9a9490;display:flex;align-items:center;gap:.4rem}
+.tdur::before{content:'⏱';font-size:.75rem}
+.tprice{font-family:'Playfair Display',serif;font-size:1.2rem;color:#2d6a4f;font-weight:700;white-space:nowrap}
+/* ESPACIOS */
+.es{padding:5.5rem 0;background:#f0f4f0}
+.egrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:3rem}
+.ecard{background:#fff;border-radius:12px;padding:2rem;display:flex;gap:1.2rem;align-items:flex-start;transition:box-shadow .3s}.ecard:hover{box-shadow:0 12px 40px rgba(45,106,79,.12)}
+.eicon{font-size:2.2rem;flex-shrink:0}
+.ename{font-family:'Playfair Display',serif;font-size:1.05rem;color:#1a2418;margin-bottom:.4rem}
+.edesc{font-size:.85rem;color:#6b7280;line-height:1.65}
+/* STATS */
+.stats{background:#1a3028;padding:3.5rem 0}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06)}
+.stat{background:#1a3028;padding:2.2rem 1.5rem;text-align:center}
+.snum{font-family:'Playfair Display',serif;font-size:2.8rem;color:#a8d5be;display:block;margin-bottom:.35rem;line-height:1}
+.slabel{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+/* TESTI */
+.tss{padding:5.5rem 0;background:#fafaf7}
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.tc{background:#fff;border:1px solid rgba(45,106,79,.1);border-radius:12px;padding:1.75rem;transition:box-shadow .3s}.tc:hover{box-shadow:0 8px 30px rgba(45,106,79,.1)}
+.tav{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#2d6a4f,#a8d5be);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.85rem;color:#fff;margin-bottom:.9rem}
+.stars{color:#2d6a4f;font-size:.88rem;margin-bottom:.65rem}
+.tt{font-size:.86rem;color:#6b7280;line-height:1.72;font-style:italic;margin-bottom:1.1rem}
+.tname{font-weight:600;font-size:.83rem;color:#1a2418}.trole{font-size:.75rem;color:#9a9490}
+/* CTA */
+.ctas{padding:5rem 0;background:url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1920&q=80') center/cover fixed;position:relative}
+.ctas::before{content:'';position:absolute;inset:0;background:rgba(15,30,20,.75)}
+.ctai{position:relative;text-align:center;max-width:540px;margin:0 auto}
+.ctat{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);color:#fff;margin-bottom:1rem;line-height:1.2}
+.ctas2{font-size:.93rem;color:rgba(255,255,255,.72);margin-bottom:2.2rem;line-height:1.72;font-weight:300}
+.bwa{display:inline-flex;align-items:center;gap:.55rem;padding:.82rem 2rem;background:#25D366;color:#fff;font-weight:700;font-size:.88rem;border-radius:50px;transition:all .2s}
+.bwa:hover{background:#1ebe5d;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.32)}
+footer{background:#1a2418;padding:1.75rem;text-align:center}
+footer p{font-size:.78rem;color:rgba(255,255,255,.4)}footer a{color:#a8d5be}
+@media(max-width:768px){
+  .nlinks{display:none}.tlist{grid-template-columns:1fr}.titem{border-right:none!important}
+  .egrid{grid-template-columns:1fr}.sgrid{grid-template-columns:repeat(2,1fr)}.tg{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(8,6,12,.92);border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#a8d5be;font-weight:700">Felipe Figueroa</a></div>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<nav id="nav">
+  <div class="ni">
+    <a href="#" class="logo">SERENIDAD<span>.</span></a>
+    <ul class="nlinks">
+      <li><a href="#tratamientos" class="nlink">Tratamientos</a></li>
+      <li><a href="#espacios" class="nlink">Espacios</a></li>
+      <li><a href="#opiniones" class="nlink">Opiniones</a></li>
+      <li><a href="#contacto" class="nlink ncta">Reservar</a></li>
+    </ul>
   </div>
+</nav>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Serenidad<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
-      </ul>
+<section class="hero">
+  <div class="hbg"></div>
+  <div class="hc">
+    <span class="hleaf">🌿</span>
+    <p class="hey">Spa & Bienestar · Santiago</p>
+    <h1 class="ht">Bienestar para<br><em>cuerpo y mente</em></h1>
+    <div class="hline"></div>
+    <p class="hs">Un refugio de paz en la ciudad. Terapias ancestrales, técnicas modernas y el cuidado que mereces para reconectar contigo.</p>
+    <div class="hbtns">
+      <a href="#contacto" class="btn bp">Reservar sesión</a>
+      <a href="#tratamientos" class="btn bo">Ver tratamientos</a>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #0f2e1a 0%, #1a4a2e 50%, #0d3320 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Spa & Bienestar</p>
-      <h1 class="hero-title">Bienestar para<br><em>cuerpo y mente.</em></h1>
-      <p class="hero-sub">Escapa del estrés diario con nuestros tratamientos de spa diseñados para restaurar tu energía y equilibrio interior.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Reservar sesión</a>
-        <a href="#servicios" class="btn btn-outline">Ver tratamientos</a>
-      </div>
+<section class="ts" id="tratamientos">
+  <div class="ct">
+    <div class="sh reveal">
+      <span class="ey">Nuestros tratamientos</span>
+      <h2 class="st">Una experiencia<br>para cada sentido</h2>
+      <p class="sd">Todos nuestros tratamientos incluyen té de bienvenida, aromaterapia y uso de instalaciones.</p>
     </div>
-  </section>
-
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">Experiencias de bienestar</h2>
-        <p class="section-desc">Cada terapia está diseñada para reconectar tu cuerpo y mente en un ambiente de paz y tranquilidad.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">💆</div>
-          <h3 class="card-title">Masaje Relajante</h3>
-          <p class="card-desc">Masaje sueco de cuerpo completo con aceites esenciales. Libera tensiones y activa la circulación sanguínea.</p>
-          <p class="card-price">Desde $25.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🏋️</div>
-          <h3 class="card-title">Masaje Deportivo</h3>
-          <p class="card-desc">Técnica profunda para deportistas y personas con contracturas musculares. Recuperación activa y alivio de dolor.</p>
-          <p class="card-price">Desde $30.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🌊</div>
-          <h3 class="card-title">Hidroterapia</h3>
-          <p class="card-desc">Circuito de baños de contraste, jacuzzi y ducha escocesa. Activa el sistema inmune y mejora la circulación.</p>
-          <p class="card-price">Desde $20.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🌿</div>
-          <h3 class="card-title">Aromaterapia</h3>
-          <p class="card-desc">Terapia con aceites esenciales puras para equilibrar el sistema nervioso. Ideal para ansiedad y estrés crónico.</p>
-          <p class="card-price">Desde $22.000</p>
-        </div>
-      </div>
+    <div class="tlist">
+      <div class="titem reveal"><div class="tinfo"><div class="tname">Masaje Relajante</div><div class="tdur">60 min</div></div><span class="tprice">$35.000</span></div>
+      <div class="titem reveal"><div class="tinfo"><div class="tname">Masaje Deportivo</div><div class="tdur">60 min</div></div><span class="tprice">$38.000</span></div>
+      <div class="titem reveal"><div class="tinfo"><div class="tname">Aromaterapia Completa</div><div class="tdur">75 min</div></div><span class="tprice">$42.000</span></div>
+      <div class="titem reveal"><div class="tinfo"><div class="tname">Hidroterapia</div><div class="tdur">45 min</div></div><span class="tprice">$30.000</span></div>
+      <div class="titem reveal"><div class="tinfo"><div class="tname">Facial Anti-Stress</div><div class="tdur">50 min</div></div><span class="tprice">$32.000</span></div>
+      <div class="titem reveal"><div class="tinfo"><div class="tname">Ritual Pareja</div><div class="tdur">90 min</div></div><span class="tprice">$75.000</span></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🧘</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">10 años creando experiencias de bienestar únicas</h2>
-          <p class="about-text">Nuestro equipo de 6 terapeutas certificados combina técnicas orientales y occidentales para crear tratamientos únicos que responden a las necesidades de cada persona.</p>
-          <p class="about-text">Trabajamos con productos 100% naturales y orgánicos, en un ambiente diseñado para la relajación total desde el momento en que cruzas la puerta.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">10+</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">+1200</div><div class="stat-label">Clientes satisfechos</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación promedio</div></div>
-        <div class="stat"><div class="stat-number">6</div><div class="stat-label">Terapeutas certificados</div></div>
-      </div>
+<section class="es" id="espacios">
+  <div class="ct">
+    <div class="sh reveal">
+      <span class="ey">Nuestro espacio</span>
+      <h2 class="st">Un mundo de<br>tranquilidad</h2>
+      <p class="sd">800 m² diseñados para que cada visita sea una experiencia de reconexión total.</p>
     </div>
-  </section>
-
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El circuito de hidroterapia es simplemente espectacular. Llegué agotada del trabajo y salí renacida. El servicio es impecable y el ambiente muy relajante."</p>
-          <div class="testi-author">Francisca Vidal</div>
-          <div class="testi-role">Clienta · hidroterapia</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Vine con una contractura terrible en la espalda y el masaje deportivo me dejó como nuevo. La terapeuta fue muy profesional y precisa. Ya agendé para el próximo mes."</p>
-          <div class="testi-author">Gonzalo Herrera</div>
-          <div class="testi-role">Cliente · masaje deportivo</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Regalé una sesión de aromaterapia a mi mamá por su cumpleaños y quedó encantada. Dice que fue el mejor regalo que le han hecho. Gracias por la atención tan cálida."</p>
-          <div class="testi-author">Catalina Morales</div>
-          <div class="testi-role">Clienta · regalo corporativo</div>
-        </div>
-      </div>
+    <div class="egrid">
+      <div class="ecard reveal"><span class="eicon">🛁</span><div><div class="ename">Sala de Masajes Privada</div><div class="edesc">5 salas insonorizadas con camillas calefaccionadas, iluminación tenue y música envolvente.</div></div></div>
+      <div class="ecard reveal"><span class="eicon">💧</span><div><div class="ename">Jacuzzi & Hidromasaje</div><div class="edesc">Tina de hidromasaje con sales minerales del Himalaya. Temperatura ideal 38°C.</div></div></div>
+      <div class="ecard reveal"><span class="eicon">🔥</span><div><div class="ename">Sauna Finlandés</div><div class="edesc">Sauna tradicional de madera de cedro con temperatura entre 80-90°C y sala de reposo.</div></div></div>
+      <div class="ecard reveal"><span class="eicon">☕</span><div><div class="ename">Zona de Relax</div><div class="edesc">Salón de té con infusiones orgánicas, música zen y luz natural filtrada. Para extender tu paz.</div></div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Listo para relajarte?</h2>
-      <p class="section-desc">Reserva tu sesión por WhatsApp. También ofrecemos paquetes de regalo para sorprender a quien más quieres.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Reservar por WhatsApp
+<section class="stats">
+  <div class="ct">
+    <div class="sgrid">
+      <div class="stat"><span class="snum" data-count="10" data-suffix=" años">0</span><span class="slabel">De bienestar</span></div>
+      <div class="stat"><span class="snum" data-count="1200" data-suffix="+">0</span><span class="slabel">Clientes satisfechos</span></div>
+      <div class="stat"><span class="snum" data-count="6">0</span><span class="slabel">Terapeutas cert.</span></div>
+      <div class="stat"><span class="snum" data-count="4" data-suffix=".9★">0</span><span class="slabel">Calificación Google</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tss" id="opiniones">
+  <div class="ct">
+    <div class="sh reveal"><span class="ey">Opiniones</span><h2 class="st">Lo que dicen<br>nuestros visitantes</h2></div>
+    <div class="tg">
+      <div class="tc reveal"><div class="tav">SC</div><div class="stars">★★★★★</div><p class="tt">"El ritual de pareja fue el regalo perfecto para nuestro aniversario. El masaje, el jacuzzi, la atención... todo impecable. Volvemos seguro."</p><div class="tname">Sofía Castillo</div><div class="trole">Ritual de pareja</div></div>
+      <div class="tc reveal"><div class="tav">LM</div><div class="stars">★★★★★</div><p class="tt">"El masaje deportivo después de mi maratón fue exactamente lo que necesitaba. La terapeuta conocía perfectamente cada punto de tensión."</p><div class="tname">Luis Morales</div><div class="trole">Masaje deportivo</div></div>
+      <div class="tc reveal"><div class="tav">CR</div><div class="stars">★★★★★</div><p class="tt">"Vengo una vez al mes y es mi momento sagrado de la semana. La aromaterapia es una experiencia que te lleva a otro nivel. Totalmente recomendado."</p><div class="tname">Constanza Rojas</div><div class="trole">Clienta mensual</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ctas" id="contacto">
+  <div class="ct">
+    <div class="ctai reveal">
+      <h2 class="ctat">¿Te mereces un momento<br>para ti?</h2>
+      <p class="ctas2">Reserva tu sesión ahora. Disponemos de horarios de lunes a domingo, incluyendo fines de semana y festivos.</p>
+      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20reservar%20una%20sesi%C3%B3n%20de%20spa" target="_blank" class="bwa">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Reservar por WhatsApp
       </a>
     </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Spa Serenidad</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
-
+  </div>
+</section>
+<footer><p><strong>Spa Serenidad</strong> · Santiago, Chile · Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p></footer>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+document.querySelectorAll('[data-count]').forEach(el=>{const io=new IntersectionObserver(([e])=>{if(!e.isIntersecting)return;const target=+el.dataset.count,suffix=el.dataset.suffix||'';let cur=0;const step=target/70;const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},20);io.unobserve(el);},{threshold:.5});io.observe(el);});
+document.querySelectorAll('.reveal').forEach(el=>{new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);});
+</script>
 </body>
 </html>

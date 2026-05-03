@@ -1,157 +1,252 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Librería El Saber — Libros nacionales, universitarios, papelería y delivery en Santiago. Página de muestra" />
-  <title>Librería El Saber — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>El Rincón del Libro — Librería Independiente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #92400e;
-      --primary-rgb: 146,64,14;
-      --bg: #fffdf5;
-      --bg-alt: #fef9ec;
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--ink:#1a1008;--paper:#faf7f0;--warm:#f5f0e5;--amber:#c17f24;--rust:#8b3a0f;--dim:#7a6a55;--border:#e8e0d0}
+    body{font-family:'Source Sans 3',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(250,247,240,.97);border-bottom:1px solid var(--border);transition:.3s}
+    .nav-logo{font-family:'Lora',serif;font-size:1.3rem;font-weight:600;color:var(--ink);text-decoration:none}
+    .nav-logo em{font-style:italic;color:var(--amber)}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-link{text-decoration:none;color:var(--dim);font-size:.85rem;font-weight:600;transition:.3s}
+    .nav-link:hover{color:var(--ink)}
+    .nav-cta{background:var(--ink)!important;color:var(--paper)!important;padding:.45rem 1.3rem;font-family:'Lora',serif}
+
+    /* HERO */
+    .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;padding-top:0}
+    .hero-left{background:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:8rem 4rem 4rem;position:relative;overflow:hidden}
+    .hero-left::after{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=900&q=80') center/cover;opacity:.2}
+    .hero-left-inner{position:relative;z-index:2}
+    .hero-tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:1.5rem;font-weight:700}
+    .hero-title{font-family:'Lora',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:400;line-height:1.15;color:#fff;margin-bottom:1.5rem}
+    .hero-title em{font-style:italic;color:var(--amber)}
+    .hero-sub{color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:2.5rem;font-weight:300;font-size:.95rem;max-width:400px}
+    .btn-amber{display:inline-block;background:var(--amber);color:#fff;padding:.9rem 2.2rem;text-decoration:none;font-weight:700;font-size:.85rem;font-family:'Lora',serif;transition:.3s;margin-right:.8rem}
+    .btn-amber:hover{background:#a86c18;transform:translateY(-2px)}
+    .btn-ghost{display:inline-block;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.75);padding:.87rem 2rem;text-decoration:none;font-weight:600;font-size:.83rem;transition:.3s}
+    .btn-ghost:hover{border-color:rgba(255,255,255,.6);color:#fff}
+    .hero-right{background:var(--warm);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px}
+    .hero-book{overflow:hidden}
+    .hero-book img{width:100%;height:100%;object-fit:cover;transition:.6s}
+    .hero-book:hover img{transform:scale(1.05)}
+
+    /* FEATURED BOOKS */
+    section{padding:6rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .sec-label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);font-weight:700}
+    .sec-title{font-family:'Lora',serif;font-size:clamp(1.8rem,3vw,2.8rem);margin:.4rem 0 1rem;line-height:1.2;font-weight:600}
+    .sec-desc{color:var(--dim);line-height:1.8;max-width:480px;font-weight:300}
+
+    .genre-nav{display:flex;gap:.6rem;margin:2rem 0;flex-wrap:wrap}
+    .genre-btn{background:none;border:1px solid var(--border);color:var(--dim);padding:.45rem 1.1rem;font-family:'Source Sans 3',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:.3s;border-radius:4px}
+    .genre-btn.active,.genre-btn:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+
+    .books-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.5rem}
+    .book-card{cursor:pointer;transition:.3s}
+    .book-card:hover{transform:translateY(-4px)}
+    .book-cover{aspect-ratio:2/3;border-radius:4px;overflow:hidden;box-shadow:4px 4px 16px rgba(26,16,8,.15);position:relative;background:var(--warm)}
+    .book-cover img{width:100%;height:100%;object-fit:cover;transition:.4s}
+    .book-card:hover .book-cover img{opacity:.9}
+    .book-cover-badge{position:absolute;top:.5rem;right:.5rem;background:var(--rust);color:#fff;font-size:.6rem;font-weight:700;padding:.2rem .5rem;border-radius:3px;letter-spacing:.06em}
+    .book-body{padding:.8rem 0}
+    .book-title{font-family:'Lora',serif;font-size:.9rem;font-weight:600;margin-bottom:.2rem;line-height:1.3}
+    .book-author{font-size:.75rem;color:var(--dim);margin-bottom:.4rem}
+    .book-price{font-weight:700;font-size:.9rem;color:var(--amber)}
+
+    /* ABOUT */
+    .about{background:var(--ink);color:#fff;padding:7rem 2rem}
+    .about-inner{display:grid;grid-template-columns:1fr 1.3fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
+    .about-img{border-radius:4px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+    .about-img img{width:100%;height:500px;object-fit:cover}
+    .about-tag{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);font-weight:700}
+    .about-title{font-family:'Lora',serif;font-size:clamp(2rem,3.5vw,3rem);margin:.4rem 0 1.5rem;line-height:1.2;font-weight:400}
+    .about-title em{font-style:italic}
+    .about-text{color:rgba(255,255,255,.65);line-height:1.85;margin-bottom:1rem;font-weight:300}
+    .service-list{display:flex;flex-direction:column;gap:.8rem;margin-top:2rem}
+    .service-item{display:flex;align-items:center;gap:.8rem;font-size:.88rem;color:rgba(255,255,255,.7)}
+    .service-item::before{content:'✦';color:var(--amber);font-size:.7rem}
+    .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1)}
+    .ab-stat-n{font-family:'Lora',serif;font-size:2.5rem;font-weight:600;color:var(--amber)}
+    .ab-stat-l{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.2rem}
+
+    /* EVENTS */
+    .events-section{background:var(--warm);padding:6rem 2rem}
+    .events-list{display:flex;flex-direction:column;gap:1px;margin-top:3rem;border:1px solid var(--border)}
+    .event-row{background:var(--paper);padding:2rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:2rem;transition:.3s;cursor:pointer}
+    .event-row:hover{background:var(--warm)}
+    .event-date{text-align:center;min-width:4rem}
+    .event-day{font-family:'Lora',serif;font-size:2rem;font-weight:600;color:var(--amber);line-height:1}
+    .event-month{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim)}
+    .event-info h3{font-family:'Lora',serif;font-size:1.05rem;font-weight:600;margin-bottom:.3rem}
+    .event-info p{font-size:.83rem;color:var(--dim)}
+    .event-tag{font-size:.68rem;font-weight:700;padding:.25rem .7rem;border:1px solid var(--amber);color:var(--amber);letter-spacing:.06em;text-transform:uppercase}
+
+    /* TESTIMONIALS */
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .testi{background:var(--warm);padding:2rem;border-left:3px solid var(--amber)}
+    .stars{color:var(--amber);margin-bottom:.8rem;letter-spacing:.1em}
+    .testi-q{font-family:'Lora',serif;font-style:italic;font-size:1rem;line-height:1.7;margin-bottom:1.2rem}
+    .testi-name{font-weight:700;font-size:.88rem}
+    .testi-sub{font-size:.75rem;color:var(--dim);margin-top:.2rem}
+
+    /* CTA */
+    .cta{background:var(--amber);padding:7rem 2rem;text-align:center}
+    .cta-title{font-family:'Lora',serif;font-size:clamp(2rem,4vw,3.5rem);color:#fff;margin-bottom:1rem;font-weight:400}
+    .cta-sub{color:rgba(255,255,255,.85);margin-bottom:2.5rem;line-height:1.7;font-weight:300}
+    .btn-dark{display:inline-block;background:var(--ink);color:#fff;padding:1rem 2.8rem;text-decoration:none;font-weight:700;font-size:.9rem;font-family:'Lora',serif;transition:.3s}
+    .btn-dark:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+
+    footer{background:var(--ink);color:rgba(255,255,255,.4);padding:3rem 2rem;text-align:center;font-size:.82rem}
+    footer a{color:var(--amber);text-decoration:none}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto}.hero-right{display:none}.books-grid{grid-template-columns:repeat(2,1fr)}.about-inner{grid-template-columns:1fr}.about-img{display:none}.testi-grid{grid-template-columns:1fr}.nav-links{display:none}.hero-left{padding:7rem 1.5rem 3rem}}
   </style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(26,16,8,.97);border:1px solid rgba(193,127,36,.3);border-radius:4px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#c17f24;font-weight:700">Felipe Figueroa</a></div>
+
+<nav>
+  <a href="#" class="nav-logo">El Rincón <em>del Libro.</em></a>
+  <ul class="nav-links">
+    <li><a href="#libros" class="nav-link">Catálogo</a></li>
+    <li><a href="#eventos" class="nav-link">Eventos</a></li>
+    <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+    <li><a href="#contacto" class="nav-link nav-cta">Visítanos</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-left-inner">
+      <p class="hero-tag">Librería independiente · Barrio Lastarria</p>
+      <h1 class="hero-title">Cada libro,<br><em>un universo</em><br>nuevo</h1>
+      <p class="hero-sub">Selección cuidada de literatura nacional e internacional. Novela, ensayo, poesía, infantil y mucho más. Te ayudamos a encontrar tu próxima lectura.</p>
+      <div>
+        <a href="#libros" class="btn-amber">Ver catálogo</a>
+        <a href="#eventos" class="btn-ghost">Próximos eventos</a>
+      </div>
+    </div>
   </div>
+  <div class="hero-right">
+    <div class="hero-book"><img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80" alt=""/></div>
+    <div class="hero-book"><img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=600&q=80" alt=""/></div>
+    <div class="hero-book"><img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=600&q=80" alt=""/></div>
+    <div class="hero-book"><img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=600&q=80" alt=""/></div>
+  </div>
+</section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">El Saber<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Catálogo</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Pedir</a></li>
-      </ul>
+<section id="libros">
+  <div class="container">
+    <span class="sec-label">Novedades</span>
+    <h2 class="sec-title">Lecturas recomendadas<br>por nuestro equipo</h2>
+    <p class="sec-desc">Cada libro en vitrina lo leímos nosotros. Solo recomendamos lo que nos movió algo por dentro.</p>
+    <div class="genre-nav">
+      <button class="genre-btn active">Todos</button>
+      <button class="genre-btn">Novela</button>
+      <button class="genre-btn">Ensayo</button>
+      <button class="genre-btn">Poesía</button>
+      <button class="genre-btn">Infantil</button>
+      <button class="genre-btn">Chile</button>
     </div>
-  </nav>
-
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #1c1000 0%, #2d1a00 50%, #1a1000 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Librería & Papelería</p>
-      <h1 class="hero-title">Cada libro,<br><em>un nuevo mundo.</em></h1>
-      <p class="hero-sub">Más de 8.000 títulos disponibles, desde bestsellers hasta libros universitarios técnicos. Con delivery en 24 horas y atención personalizada.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Buscar libro</a>
-        <a href="#servicios" class="btn btn-outline">Ver catálogo</a>
-      </div>
+    <div class="books-grid">
+      <div class="book-card reveal"><div class="book-cover"><img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=300&q=80" alt=""/><span class="book-cover-badge">STAFF ♥</span></div><div class="book-body"><p class="book-title">Los Detectives Salvajes</p><p class="book-author">Roberto Bolaño</p><p class="book-price">$18.900</p></div></div>
+      <div class="book-card reveal" style="transition-delay:.08s"><div class="book-cover"><img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=300&q=80" alt=""/></div><div class="book-body"><p class="book-title">La Casa de los Espíritus</p><p class="book-author">Isabel Allende</p><p class="book-price">$16.500</p></div></div>
+      <div class="book-card reveal" style="transition-delay:.16s"><div class="book-cover"><img src="https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?auto=format&fit=crop&w=300&q=80" alt=""/><span class="book-cover-badge">NUEVO</span></div><div class="book-body"><p class="book-title">Baumgartner</p><p class="book-author">Paul Auster</p><p class="book-price">$21.900</p></div></div>
+      <div class="book-card reveal" style="transition-delay:.24s"><div class="book-cover"><img src="https://images.unsplash.com/photo-1476275466078-4cdc8de9cc18?auto=format&fit=crop&w=300&q=80" alt=""/></div><div class="book-body"><p class="book-title">Sapiens</p><p class="book-author">Yuval Noah Harari</p><p class="book-price">$19.900</p></div></div>
+      <div class="book-card reveal" style="transition-delay:.32s"><div class="book-cover"><img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=300&q=80" alt=""/><span class="book-cover-badge">STAFF ♥</span></div><div class="book-body"><p class="book-title">Poeta Chileno</p><p class="book-author">Alejandro Zambra</p><p class="book-price">$17.000</p></div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestro catálogo</span>
-        <h2 class="section-title">El libro que buscas, aquí lo encontramos</h2>
-        <p class="section-desc">Stock permanente de las principales editoriales y sistema de pedidos especiales para títulos difíciles de encontrar.</p>
+<section class="about" id="nosotros">
+  <div class="about-inner">
+    <div class="about-img reveal">
+      <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=800&q=80" alt="Librería"/>
+    </div>
+    <div>
+      <span class="about-tag">Nuestra historia</span>
+      <h2 class="about-title">Más que una<br>librería, un<br><em>punto de encuentro</em></h2>
+      <p class="about-text">Abrimos el 2012 con 300 títulos cuidadosamente elegidos. Hoy tenemos más de 8.000, pero seguimos seleccionando cada libro con la misma pasión de siempre.</p>
+      <p class="about-text">Nuestro equipo son todos lectores voraces. Si no sabes qué leer, dinos qué buscas y te encontramos el libro perfecto.</p>
+      <div class="service-list">
+        <div class="service-item">Envíos a todo Chile en 48 horas</div>
+        <div class="service-item">Pedidos de libros no disponibles en stock</div>
+        <div class="service-item">Club de lectura mensual gratuito</div>
+        <div class="service-item">Servicio de regalo con envoltorio incluido</div>
+        <div class="service-item">Descuento permanente para estudiantes e instituciones</div>
       </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">📚</div>
-          <h3 class="card-title">Literatura Nacional e Importada</h3>
-          <p class="card-desc">Novelas, poesía, ensayos y cuentos. Autores chilenos y latinoamericanos, más los grandes títulos internacionales.</p>
-          <p class="card-price">Desde $7.990</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🎓</div>
-          <h3 class="card-title">Libros Universitarios</h3>
-          <p class="card-desc">Textos de medicina, derecho, ingeniería, administración y más. Servicio especial de pedidos para facultades y colegios.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">✏️</div>
-          <h3 class="card-title">Papelería</h3>
-          <p class="card-desc">Cuadernos, bolígrafos, material escolar y de oficina. Todo en un mismo lugar para facilitar tus compras.</p>
-          <p class="card-price">Desde $490</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📦</div>
-          <h3 class="card-title">Pedidos Especiales</h3>
-          <p class="card-desc">¿No encuentras el libro que buscas? Lo conseguimos en 3-5 días hábiles desde Chile o importado. Sin cargo extra.</p>
-          <p class="card-price">Sin recargo</p>
-        </div>
+      <div class="about-stats">
+        <div><div class="ab-stat-n" data-count="8000" data-suffix="+">0</div><div class="ab-stat-l">Títulos</div></div>
+        <div><div class="ab-stat-n" data-count="12" data-suffix=" años">0</div><div class="ab-stat-l">En Lastarria</div></div>
+        <div><div class="ab-stat-n" data-count="5000" data-suffix="+">0</div><div class="ab-stat-l">Lectores</div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">📖</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">12 años siendo el punto de encuentro de los amantes de los libros</h2>
-          <p class="about-text">Somos una librería independiente gestionada por personas que aman la lectura. Nuestro equipo lee todo lo que vende y puede recomendarte con conocimiento real y honestidad.</p>
-          <p class="about-text">Ofrecemos delivery gratuito en Santiago para compras sobre $15.000 y envíos a regiones en 24-48 horas. También tenemos programa de fidelidad con descuentos para clientes frecuentes.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+8000</div><div class="stat-label">Títulos disponibles</div></div>
-        <div class="stat"><div class="stat-number">12</div><div class="stat-label">Años de trayectoria</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación Google</div></div>
-        <div class="stat"><div class="stat-number">24h</div><div class="stat-label">Delivery Santiago</div></div>
-      </div>
+<section class="events-section" id="eventos">
+  <div class="container">
+    <span class="sec-label">Agenda cultural</span>
+    <h2 class="sec-title">Próximos eventos</h2>
+    <p class="sec-desc">Presentaciones de libros, club de lectura, talleres de escritura y firma de autores. Todos gratuitos.</p>
+    <div class="events-list reveal">
+      <div class="event-row"><div class="event-date"><div class="event-day">14</div><div class="event-month">Jun</div></div><div class="event-info"><h3>Presentación: "Cartografía del caos" de Claudia Apablaza</h3><p>La autora presenta su nueva novela. Firma de ejemplares después del evento.</p></div><span class="event-tag">Presentación</span></div>
+      <div class="event-row"><div class="event-date"><div class="event-day">21</div><div class="event-month">Jun</div></div><div class="event-info"><h3>Club de lectura — "Las malas" de Camila Sosa Villada</h3><p>Conversación guiada. Cupos limitados a 20 personas. Inscripción gratuita.</p></div><span class="event-tag">Club</span></div>
+      <div class="event-row"><div class="event-date"><div class="event-day">05</div><div class="event-month">Jul</div></div><div class="event-info"><h3>Taller de escritura creativa — Iniciación</h3><p>4 sesiones de 2 horas. Facilitado por la escritora Nona Fernández. Arancel $15.000.</p></div><span class="event-tag">Taller</span></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros lectores</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Busqué un libro de economía muy específico y me lo consiguieron en 4 días. La atención fue excelente y el precio muy razonable. Mi librería de confianza para libros técnicos."</p>
-          <div class="testi-author">Rodrigo Ibáñez</div>
-          <div class="testi-role">Cliente · libros universitarios</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Me encanta que las personas que trabajan aquí han leído los libros que venden. Te recomiendan con convicción y eso hace toda la diferencia. He descubierto autores maravillosos gracias a ellos."</p>
-          <div class="testi-author">Cecilia Bravo</div>
-          <div class="testi-role">Lectora frecuente · 4 años</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Pedí 30 libros para el colegio donde hago clases y me los prepararon en tiempo récord. Delivery al colegio sin problema. Precios mejores que las grandes cadenas. Seguiremos comprando aquí."</p>
-          <div class="testi-author">Marcela Donoso</div>
-          <div class="testi-role">Profesora · pedido institucional</div>
-        </div>
-      </div>
+<section id="opiniones">
+  <div class="container">
+    <span class="sec-label">Lo que dicen</span>
+    <h2 class="sec-title">Lectores que<br>encontraron su libro</h2>
+    <div class="testi-grid">
+      <div class="testi reveal"><div class="stars">★★★★★</div><p class="testi-q">"La recomendación del equipo fue perfecta. Le describí lo que buscaba y me sugirieron tres opciones. Todas eran exactamente lo que necesitaba."</p><div class="testi-name">Isidora Urquiza</div><div class="testi-sub">Lectora habitual</div></div>
+      <div class="testi reveal" style="transition-delay:.15s"><div class="stars">★★★★★</div><p class="testi-q">"El club de lectura mensual es lo mejor. Conocí gente increíble y descubrí autores que nunca habría leído por mi cuenta. Totalmente recomendado."</p><div class="testi-name">Gabriel Morán</div><div class="testi-sub">Miembro del club</div></div>
+      <div class="testi reveal" style="transition-delay:.3s"><div class="stars">★★★★★</div><p class="testi-q">"Pedí un libro que no tenían y lo consiguieron en 3 días. El envoltorio de regalo fue hermoso. Mi amiga quedó encantada. Siempre vuelvo aquí."</p><div class="testi-name">Marcela Cisternas</div><div class="testi-sub">Clienta frecuente</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Buscas un libro en particular?</h2>
-      <p class="section-desc">Escríbenos por WhatsApp con el título o autor y te decimos si tenemos stock o cuándo podemos conseguirlo.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Buscar libro por WhatsApp
-      </a>
-    </div>
-  </section>
+<section class="cta" id="contacto">
+  <h2 class="cta-title">¿Cuál es tu<br>próxima lectura?</h2>
+  <p class="cta-sub">Visítanos en Barrio Lastarria o escríbenos. Te ayudamos a encontrar el libro perfecto para el momento que vives.</p>
+  <a href="https://wa.me/56900000000?text=Hola%2C+quiero+una+recomendaci%C3%B3n+de+libros" target="_blank" rel="noopener" class="btn-dark">📚 Pedir recomendación</a>
+</section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Librería El Saber</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
+<footer>
+  <div class="container">
+    <p style="font-family:'Lora',serif;font-size:1.2rem;color:rgba(255,255,255,.5);margin-bottom:.5rem">El Rincón del Libro.</p>
+    <p>Av. José Victorino Lastarria 156, Santiago · Lunes a Domingo 10:00–20:00</p>
+    <p style="margin-top:1rem">Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p>
+  </div>
+</footer>
 
+<script>
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      let cur=0;const step=target/60;
+      const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+      io.unobserve(el);
+    },{threshold:.5});io.observe(el);
+  });
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+  });
+</script>
 </body>
 </html>

@@ -1,157 +1,272 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Rodante Food Truck — Burgers gourmet y tacos artesanales en Santiago. Página de muestra" />
-  <title>Rodante Food Truck — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>La Rueda — Food Truck Gourmet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,800;1,600&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #f59e0b;
-      --primary-rgb: 245,158,11;
-      --bg: #fff;
-      --bg-alt: #fffbeb;
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --yellow:#fbbf24;--yellow-dark:#f59e0b;--black:#090909;--dark:#111010;
+      --red:#dc2626;--text:#1a1a1a;--dim:#6b6b6b;--light:#f9f6f0;
     }
+    body{font-family:'Barlow',sans-serif;background:var(--black);color:#fff;overflow-x:hidden}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:.4s}
+    nav.scrolled{background:rgba(9,9,9,.97);backdrop-filter:blur(12px);border-bottom:2px solid var(--yellow)}
+    .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--yellow);text-decoration:none;letter-spacing:.12em}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-link{text-decoration:none;color:rgba(255,255,255,.8);font-size:.88rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:.3s}
+    .nav-link:hover{color:var(--yellow)}
+    .nav-cta{background:var(--yellow)!important;color:var(--black)!important;padding:.5rem 1.4rem;border-radius:4px;font-weight:800}
+
+    /* HERO */
+    .hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(9,9,9,.95) 0%,rgba(9,9,9,.8) 50%,rgba(9,9,9,.4) 100%)}
+    .hero-content{position:relative;z-index:2;padding:8rem 3rem 4rem;max-width:700px;margin-left:max(2rem,6vw)}
+    .hero-badge{display:inline-block;background:var(--red);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1rem;padding:.3rem 1rem;letter-spacing:.15em;margin-bottom:1.5rem;border-radius:2px}
+    .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,10vw,8rem);line-height:.95;color:#fff;margin-bottom:.5rem;letter-spacing:.04em}
+    .hero-title span{color:var(--yellow);display:block}
+    .hero-sub{font-size:1.05rem;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:2.5rem;font-weight:300;max-width:460px}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn-yellow{display:inline-block;background:var(--yellow);color:var(--black);padding:.95rem 2.4rem;border-radius:4px;text-decoration:none;font-weight:800;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;transition:.3s}
+    .btn-yellow:hover{background:var(--yellow-dark);transform:translateY(-2px)}
+    .btn-border{display:inline-block;border:2px solid rgba(255,255,255,.3);color:#fff;padding:.9rem 2rem;border-radius:4px;text-decoration:none;font-weight:600;font-size:.88rem;letter-spacing:.06em;text-transform:uppercase;transition:.3s}
+    .btn-border:hover{border-color:var(--yellow);color:var(--yellow)}
+
+    /* STATS STRIP */
+    .stats-strip{background:var(--yellow);padding:1.5rem 2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center}
+    .ss-num{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--black);line-height:1}
+    .ss-lab{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(0,0,0,.6)}
+
+    /* MENU */
+    .section{padding:6rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .section-label{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.2em;color:var(--yellow)}
+    .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);line-height:1;margin:.3rem 0 .8rem;letter-spacing:.04em}
+    .section-desc{color:rgba(255,255,255,.55);line-height:1.7;font-weight:300;max-width:500px}
+
+    .menu-list{display:flex;flex-direction:column;gap:1px;margin-top:3rem}
+    .menu-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:2rem;padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,.07);transition:.3s;cursor:pointer}
+    .menu-row:hover{padding-left:.5rem;border-bottom-color:var(--yellow)}
+    .menu-num{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:rgba(255,255,255,.1);min-width:2rem}
+    .menu-info{}
+    .menu-info h3{font-size:1.1rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.3rem}
+    .menu-info p{font-size:.85rem;color:rgba(255,255,255,.5);font-weight:300}
+    .menu-tags{display:flex;gap:.4rem;margin-top:.5rem}
+    .menu-tag{font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;border-radius:3px}
+    .menu-tag.hot{background:var(--red);color:#fff}
+    .menu-tag.new{background:var(--yellow);color:var(--black)}
+    .menu-tag.veg{background:#16a34a;color:#fff}
+    .menu-price{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--yellow)}
+
+    /* LOCATIONS */
+    .loc-section{background:#141414;padding:6rem 2rem}
+    .loc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .loc-card{background:#1c1c1c;border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:2rem;transition:.3s;position:relative;overflow:hidden}
+    .loc-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--yellow)}
+    .loc-card:hover{border-color:rgba(251,191,36,.3);transform:translateY(-4px)}
+    .loc-day{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--yellow);letter-spacing:.1em}
+    .loc-name{font-weight:800;font-size:1rem;text-transform:uppercase;letter-spacing:.04em;margin:.3rem 0}
+    .loc-address{font-size:.83rem;color:rgba(255,255,255,.5)}
+    .loc-time{display:inline-block;background:rgba(251,191,36,.1);color:var(--yellow);font-size:.75rem;font-weight:700;padding:.25rem .7rem;border-radius:4px;margin-top:.8rem;letter-spacing:.06em}
+    .loc-today{position:absolute;top:1rem;right:1rem;background:var(--red);color:#fff;font-size:.65rem;font-weight:800;padding:.2rem .6rem;border-radius:3px;letter-spacing:.06em}
+
+    /* ABOUT */
+    .about{padding:7rem 2rem;overflow:hidden}
+    .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
+    .about-img{position:relative;border-radius:8px;overflow:hidden}
+    .about-img img{width:100%;height:500px;object-fit:cover}
+    .about-img::after{content:'DESDE\A2019';white-space:pre;position:absolute;bottom:2rem;right:-2rem;background:var(--yellow);color:var(--black);font-family:'Bebas Neue',sans-serif;font-size:1.4rem;padding:1rem 1.5rem;letter-spacing:.08em;line-height:1.2}
+    .about-label{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.2em;color:var(--yellow)}
+    .about-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,4vw,3.5rem);line-height:1;margin:.3rem 0 1.2rem;letter-spacing:.04em}
+    .about-text{color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:1rem;font-weight:300}
+
+    /* TESTIMONIALS */
+    .testi-section{background:#141414;padding:6rem 2rem}
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .testi{background:#1c1c1c;padding:2rem;border-radius:8px;border-top:3px solid var(--yellow)}
+    .stars{color:var(--yellow);margin-bottom:1rem;letter-spacing:.08em}
+    .testi-q{font-size:1rem;line-height:1.7;color:rgba(255,255,255,.75);margin-bottom:1.5rem;font-style:italic;font-weight:300}
+    .testi-name{font-weight:800;font-size:.9rem;text-transform:uppercase;letter-spacing:.04em}
+    .testi-sub{font-size:.75rem;color:rgba(255,255,255,.35);margin-top:.2rem}
+
+    /* CTA */
+    .cta{position:relative;padding:8rem 2rem;text-align:center;overflow:hidden}
+    .cta-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .cta-overlay{position:absolute;inset:0;background:rgba(9,9,9,.88)}
+    .cta-inner{position:relative;z-index:1}
+    .cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,6rem);line-height:1;margin-bottom:.5rem;letter-spacing:.04em}
+    .cta-title span{color:var(--yellow)}
+    .cta-sub{color:rgba(255,255,255,.6);margin-bottom:3rem;font-size:1rem;font-weight:300}
+    .btn-lg{display:inline-block;background:var(--yellow);color:var(--black);padding:1.1rem 3rem;border-radius:4px;text-decoration:none;font-weight:800;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;transition:.3s}
+    .btn-lg:hover{background:var(--yellow-dark);transform:translateY(-3px);box-shadow:0 12px 32px rgba(251,191,36,.3)}
+
+    footer{background:var(--black);color:rgba(255,255,255,.3);padding:3rem 2rem;text-align:center;font-size:.82rem;border-top:1px solid rgba(255,255,255,.05)}
+    footer a{color:var(--yellow);text-decoration:none}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:900px){.loc-grid{grid-template-columns:1fr}.about-inner{grid-template-columns:1fr}.about-img{display:none}}
+    @media(max-width:768px){.stats-strip{grid-template-columns:repeat(2,1fr)}.testi-grid{grid-template-columns:1fr}.nav-links{display:none}.hero-content{padding:7rem 1.5rem 3rem;margin-left:0}}
   </style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(9,9,9,.97);border:1px solid rgba(251,191,36,.3);border-radius:4px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#fbbf24;font-weight:700">Felipe Figueroa</a></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">La Rueda.</a>
+  <ul class="nav-links">
+    <li><a href="#menu" class="nav-link">Menú</a></li>
+    <li><a href="#ubicaciones" class="nav-link">¿Dónde estamos?</a></li>
+    <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+    <li><a href="#contacto" class="nav-link nav-cta">Seguirnos</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🔥 Food Truck Gourmet Santiago</div>
+    <h1 class="hero-title">Comida<br><span>de verdad.</span></h1>
+    <p class="hero-sub">Hamburguesas artesanales, tacos al pastor y papas bravas que mueven multitudes. Sin local fijo, pura calle y sabor.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-yellow">Ver el menú</a>
+      <a href="#ubicaciones" class="btn-border">¿Dónde estamos hoy?</a>
+    </div>
   </div>
+</section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Rodante<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Menú</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Ubicación</a></li>
-      </ul>
-    </div>
-  </nav>
+<div class="stats-strip">
+  <div><div class="ss-num" data-count="350" data-suffix="+">0</div><div class="ss-lab">Platos/día</div></div>
+  <div><div class="ss-num" data-count="5" data-suffix=" años">0</div><div class="ss-lab">En las calles</div></div>
+  <div><div class="ss-num" data-count="4.9" data-suffix="★">0</div><div class="ss-lab">Rating Google</div></div>
+  <div><div class="ss-num" data-count="6">0</div><div class="ss-lab">Ubicaciones/semana</div></div>
+</div>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #1c1000 0%, #292200 50%, #1a1000 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Food Truck Gourmet</p>
-      <h1 class="hero-title">Comida gourmet<br><em>donde tú estés.</em></h1>
-      <p class="hero-sub">Burgers artesanales, tacos gourmet y papas fritas especiales preparados al momento con ingredientes frescos. Nos encontramos donde tú estás.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">¿Dónde estamos?</a>
-        <a href="#servicios" class="btn btn-outline">Ver menú</a>
+<section class="section" id="menu">
+  <div class="container">
+    <span class="section-label">El Menú</span>
+    <h2 class="section-title">Platos que<br>vuelven a buscar</h2>
+    <p class="section-desc">Todo hecho al momento. Sin congelados, sin microondas. Solo fuego real y ingredientes del día.</p>
+    <div class="menu-list">
+      <div class="menu-row reveal">
+        <span class="menu-num">01</span>
+        <div class="menu-info"><h3>La Rueda Burger</h3><p>Doble carne Angus, queso cheddar fundido, bacon crujiente y salsa especial de la casa.</p><div class="menu-tags"><span class="menu-tag hot">🔥 MÁS PEDIDA</span></div></div>
+        <span class="menu-price">$9.900</span>
+      </div>
+      <div class="menu-row reveal">
+        <span class="menu-num">02</span>
+        <div class="menu-info"><h3>Tacos Al Pastor (×3)</h3><p>Cerdo marinado en achiote, piña fresca, cebolla, cilantro y dos salsas.</p><div class="menu-tags"><span class="menu-tag new">NUEVO</span></div></div>
+        <span class="menu-price">$8.500</span>
+      </div>
+      <div class="menu-row reveal">
+        <span class="menu-num">03</span>
+        <div class="menu-info"><h3>Papas Bravas Deluxe</h3><p>Papas fritas artesanales, salsa brava picante, alioli y queso parmesano rallado.</p><div class="menu-tags"><span class="menu-tag veg">VEG</span></div></div>
+        <span class="menu-price">$5.500</span>
+      </div>
+      <div class="menu-row reveal">
+        <span class="menu-num">04</span>
+        <div class="menu-info"><h3>Hot Dog Gourmet</h3><p>Salchicha de cerdo artesanal, palta, tomate, mayonesa de ajo y papas paja.</p><div class="menu-tags"><span class="menu-tag hot">🔥 CLÁSICO</span></div></div>
+        <span class="menu-price">$6.900</span>
+      </div>
+      <div class="menu-row reveal">
+        <span class="menu-num">05</span>
+        <div class="menu-info"><h3>Bowl Vegano</h3><p>Quinoa, garbanzos especiados, verduras asadas, hummus y aderezo tahini.</p><div class="menu-tags"><span class="menu-tag veg">100% VEGANO</span><span class="menu-tag new">NUEVO</span></div></div>
+        <span class="menu-price">$8.200</span>
+      </div>
+      <div class="menu-row reveal">
+        <span class="menu-num">06</span>
+        <div class="menu-info"><h3>Combo La Rueda</h3><p>Burger o tacos + papas bravas + bebida o cerveza artesanal.</p><div class="menu-tags"><span class="menu-tag hot">MEJOR PRECIO</span></div></div>
+        <span class="menu-price">$13.500</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestro menú</span>
-        <h2 class="section-title">Sabores que enganchan</h2>
-        <p class="section-desc">Todo preparado al momento con ingredientes frescos. Sin fast food industrial, solo comida de verdad con ingredientes de calidad.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🍔</div>
-          <h3 class="card-title">Burgers Gourmet</h3>
-          <p class="card-desc">Carne wagyu 150g, queso artesanal, vegetales frescos y salsas caseras. Opciones: clásica, BBQ, picante y vegana.</p>
-          <p class="card-price">Desde $5.500</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🌮</div>
-          <h3 class="card-title">Tacos Artesanales</h3>
-          <p class="card-desc">Tortillas hechas a mano con rellenos de carne asada, pollo adobado o verduras grilladas. Con salsa guacamole casera.</p>
-          <p class="card-price">$2.800 c/u</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🍟</div>
-          <h3 class="card-title">Papas Fritas Especiales</h3>
-          <p class="card-desc">Papas fritas crocantes con toppings a elección: cheddar, cebolla caramelizada, bacon o jalapeños. Porción generosa.</p>
-          <p class="card-price">Desde $3.500</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🥤</div>
-          <h3 class="card-title">Bebidas Naturales</h3>
-          <p class="card-desc">Limonadas artesanales, aguas de frutas y jugos naturales preparados al momento sin azúcar refinada.</p>
-          <p class="card-price">Desde $1.800</p>
-        </div>
-      </div>
+<section class="loc-section" id="ubicaciones">
+  <div class="container">
+    <span class="section-label">Ubicaciones</span>
+    <h2 class="section-title">¿Dónde estamos<br>esta semana?</h2>
+    <p class="section-desc" style="color:rgba(255,255,255,.5)">Nos movemos para llevarte el sabor donde estés. Síguenos en Instagram para alertas en tiempo real.</p>
+    <div class="loc-grid">
+      <div class="loc-card reveal"><div class="loc-today">HOY</div><div class="loc-day">Lun</div><div class="loc-name">Mercado del Barrio Italia</div><div class="loc-address">Av. Italia 1234, Providencia</div><div class="loc-time">12:00 — 20:00</div></div>
+      <div class="loc-card reveal" style="transition-delay:.1s"><div class="loc-day">Mar</div><div class="loc-name">Parque Bustamante</div><div class="loc-address">Av. Bustamante 730, Providencia</div><div class="loc-time">12:00 — 19:00</div></div>
+      <div class="loc-card reveal" style="transition-delay:.2s"><div class="loc-day">Mié</div><div class="loc-name">Bicentenario Food Park</div><div class="loc-address">Av. Vitacura 3800, Las Condes</div><div class="loc-time">12:00 — 21:00</div></div>
+      <div class="loc-card reveal" style="transition-delay:.1s"><div class="loc-day">Jue</div><div class="loc-name">Plaza de Ñuñoa</div><div class="loc-address">Irarrázaval 1520, Ñuñoa</div><div class="loc-time">11:00 — 20:00</div></div>
+      <div class="loc-card reveal" style="transition-delay:.2s"><div class="loc-day">Vie</div><div class="loc-name">Patio Bellavista</div><div class="loc-address">Constitución 183, Providencia</div><div class="loc-time">12:00 — 22:00</div></div>
+      <div class="loc-card reveal" style="transition-delay:.3s"><div class="loc-day">Sáb — Dom</div><div class="loc-name">Feria Las Lilas</div><div class="loc-address">Av. Las Lilas 180, Providencia</div><div class="loc-time">10:00 — 21:00</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🚚</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">3 años recorriendo Santiago con la mejor comida</h2>
-          <p class="about-text">Nacimos con la convicción de que la comida callejera puede ser gourmet. Nos movemos por 5 locaciones diferentes durante la semana para estar donde más nos necesitan.</p>
-          <p class="about-text">También hacemos eventos privados, ferias y celebraciones corporativas. El food truck llega a tu evento y servimos directamente a tus invitados con el mismo estándar de siempre.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">5</div><div class="stat-label">Locaciones/semana</div></div>
-        <div class="stat"><div class="stat-number">3</div><div class="stat-label">Años rodando</div></div>
-        <div class="stat"><div class="stat-number">4.8★</div><div class="stat-label">Calificación promedio</div></div>
-        <div class="stat"><div class="stat-number">+200</div><div class="stat-label">Platos por día</div></div>
-      </div>
+<section class="about" id="nosotros">
+  <div class="about-inner">
+    <div class="about-img reveal">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80" alt="Cocinando en La Rueda"/>
     </div>
-  </section>
-
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"La burger BBQ es simplemente adictiva. El pan artesanal, la carne jugosa y la salsa BBQ casera son una combinación perfecta. Ya no puedo pasar por el barrio sin parar."</p>
-          <div class="testi-author">Nicolás Pinto</div>
-          <div class="testi-role">Cliente frecuente · burgers</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Contratamos el food truck para el aniversario de empresa y fue un éxito total. La gente quedó feliz con la comida, el servicio fue impecable y el ambiente super animado."</p>
-          <div class="testi-author">Marcela Gutiérrez</div>
-          <div class="testi-role">Evento corporativo</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Los tacos son los mejores que he comido en Santiago, sin exagerar. La tortilla casera marca la diferencia total. El guacamole está tan bueno que lo comería con cuchara."</p>
-          <div class="testi-author">Pablo Acuña</div>
-          <div class="testi-role">Cliente frecuente · tacos</div>
-        </div>
-      </div>
+    <div>
+      <span class="about-label">Nuestra historia</span>
+      <h2 class="about-title">Comenzamos<br>con una rueda<br>y un sueño</h2>
+      <p class="about-text">En 2019 compramos un viejo camión y lo convertimos en nuestra cocina. Sin inversión de millones, solo trabajo, recetas propias y las ganas de hacer algo distinto.</p>
+      <p class="about-text">Hoy somos el food truck más seguido de Santiago, con más de 15K seguidores en Instagram y una comunidad de clientes que nos encuentran donde sea que vayamos.</p>
+      <p class="about-text">Todo lo que servimos lo probamos primero. Si no nos mueve el estómago, no va al menú.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Quieres saber dónde estamos hoy?</h2>
-      <p class="section-desc">Escríbenos por WhatsApp para conocer nuestra ubicación del día o para contratar el food truck para tu evento.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Contactar por WhatsApp
-      </a>
+<section class="testi-section" id="opiniones">
+  <div class="container">
+    <span class="section-label">Reviews</span>
+    <h2 class="section-title">La gente habla</h2>
+    <div class="testi-grid">
+      <div class="testi reveal"><div class="stars">★★★★★</div><p class="testi-q">"La Rueda Burger es la mejor hamburguesa que he comido en Chile. Punto. La doble con bacon y queso cheddar derretido es una religión."</p><div class="testi-name">Felipe Orellana</div><div class="testi-sub">Habitué de Barrio Italia</div></div>
+      <div class="testi reveal" style="transition-delay:.15s"><div class="stars">★★★★★</div><p class="testi-q">"Los tacos al pastor me hicieron pensar que estaba en México. Esa combinación con piña fresca y salsa de chile de árbol es mágica. Vengo todos los jueves."</p><div class="testi-name">Javiera Contreras</div><div class="testi-sub">Cliente semanal</div></div>
+      <div class="testi reveal" style="transition-delay:.3s"><div class="stars">★★★★★</div><p class="testi-q">"Comida de verdad, precio justo y gente buena onda. Las papas bravas son adictivas. Encima los seguimos en Instagram y siempre sabemos dónde están."</p><div class="testi-name">Diego Ramírez</div><div class="testi-sub">Fanático del food truck</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Rodante Food Truck</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
+<section class="cta" id="contacto">
+  <div class="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="cta-inner">
+    <h2 class="cta-title">¿Dónde<br><span>nos vemos?</span></h2>
+    <p class="cta-sub">Síguenos en Instagram para saber nuestra ubicación diaria. También disponibles para eventos privados.</p>
+    <a href="https://wa.me/56900000000?text=Hola%2C+quiero+saber+d%C3%B3nde+est%C3%A1+La+Rueda+hoy" target="_blank" rel="noopener" class="btn-lg">💬 Preguntarnos por WhatsApp</a>
+  </div>
+</section>
 
+<footer>
+  <div class="container">
+    <p style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--yellow);margin-bottom:.5rem;letter-spacing:.1em">LA RUEDA.</p>
+    <p>Santiago de Chile · @laruedafoodtruck</p>
+    <p style="margin-top:1rem">Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      let cur=0;const step=target/60;
+      const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=+(cur.toFixed(1))+suffix;if(cur>=target)clearInterval(t);},20);
+      io.unobserve(el);
+    },{threshold:.5});io.observe(el);
+  });
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+  });
+</script>
 </body>
 </html>

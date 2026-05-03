@@ -1,157 +1,277 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Café Renacimiento — Cafetería especializada con granos de origen y desayunos artesanales. Página de muestra" />
-  <title>Café Renacimiento — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Origen Café — Specialty Coffee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #92400e;
-      --primary-rgb: 146,64,14;
-      --bg: #fff;
-      --bg-alt: #fefce8;
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --brown:#5c3317;--espresso:#1a0a02;--caramel:#d4842a;--cream:#fef8f0;
+      --warm:#f5e6d0;--text:#2d1b09;--dim:#8a7060;
+    }
+    body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:.4s}
+    nav.scrolled{background:rgba(254,248,240,.97);backdrop-filter:blur(16px);box-shadow:0 2px 20px rgba(92,51,23,.1)}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;text-decoration:none;letter-spacing:.04em}
+    nav.scrolled .nav-logo{color:var(--brown)}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-link{text-decoration:none;color:rgba(255,255,255,.85);font-size:.85rem;font-weight:600;transition:.3s}
+    nav.scrolled .nav-link{color:var(--dim)}
+    .nav-cta{background:var(--caramel)!important;color:#fff!important;padding:.5rem 1.4rem;border-radius:100px}
+
+    /* HERO */
+    .hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1495474472-28eb08a1f97a?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(110deg,rgba(26,10,2,.92) 0%,rgba(26,10,2,.7) 55%,rgba(26,10,2,.2) 100%)}
+    .hero-content{position:relative;z-index:2;max-width:600px;padding:8rem 3rem 4rem;margin-left:max(2rem,8vw)}
+    .hero-tag{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--caramel);font-weight:700;margin-bottom:1.5rem}
+    .hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5.5vw,4.8rem);font-weight:700;color:#fff;line-height:1.1;margin-bottom:1.2rem}
+    .hero-title em{font-style:italic;color:var(--caramel)}
+    .hero-sub{color:rgba(255,255,255,.7);line-height:1.75;margin-bottom:2.5rem;font-size:1rem;font-weight:300}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn-caramel{display:inline-block;background:var(--caramel);color:#fff;padding:.9rem 2.2rem;border-radius:100px;text-decoration:none;font-weight:700;font-size:.9rem;transition:.3s}
+    .btn-caramel:hover{background:#c0741f;transform:translateY(-2px)}
+    .btn-outline{display:inline-block;border:2px solid rgba(255,255,255,.4);color:#fff;padding:.85rem 2rem;border-radius:100px;text-decoration:none;font-weight:600;font-size:.9rem;transition:.3s}
+    .btn-outline:hover{border-color:#fff}
+    .hero-beans{position:absolute;right:5%;bottom:10%;width:320px;opacity:.12}
+
+    /* INFO BAR */
+    .info-bar{background:var(--brown);display:grid;grid-template-columns:repeat(3,1fr);text-align:center;padding:1.5rem 2rem;gap:1px}
+    .info-item{color:rgba(255,255,255,.8);font-size:.82rem;padding:.5rem}
+    .info-item strong{color:#fff;display:block;font-size:.95rem;margin-bottom:.2rem}
+
+    /* MENU */
+    .section{padding:6rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .section-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--caramel);font-weight:700}
+    .section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);margin:.5rem 0 .8rem}
+    .section-desc{color:var(--dim);line-height:1.7;max-width:480px}
+
+    /* TABS */
+    .tabs{margin-top:2.5rem}
+    .tab-nav{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
+    .tab-btn{background:none;border:2px solid var(--warm);color:var(--dim);padding:.6rem 1.6rem;border-radius:100px;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;transition:.3s}
+    .tab-btn.active,.tab-btn:hover{background:var(--brown);border-color:var(--brown);color:#fff}
+    .tab-panel{display:none}
+    .tab-panel.active{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;animation:fadeIn .4s}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .menu-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(92,51,23,.07);transition:.3s}
+    .menu-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(92,51,23,.15)}
+    .menu-img{height:160px;overflow:hidden}
+    .menu-img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+    .menu-card:hover .menu-img img{transform:scale(1.06)}
+    .menu-body{padding:1.2rem}
+    .menu-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin-bottom:.3rem}
+    .menu-desc{font-size:.82rem;color:var(--dim);line-height:1.5;margin-bottom:.8rem}
+    .menu-price{font-weight:700;color:var(--caramel);font-size:1.05rem}
+
+    /* ABOUT */
+    .about{background:var(--espresso);padding:7rem 2rem;color:#fff}
+    .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
+    .about-img{border-radius:2px;overflow:hidden;aspect-ratio:4/5;position:relative}
+    .about-img img{width:100%;height:100%;object-fit:cover}
+    .about-img::after{content:'';position:absolute;inset:0;border:2px solid var(--caramel);transform:translate(12px,12px);pointer-events:none;border-radius:2px}
+    .about-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--caramel);font-weight:700}
+    .about-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);margin:.6rem 0 1.2rem;line-height:1.2}
+    .about-text{color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:1rem;font-weight:300}
+    .origin-tag{display:inline-block;background:rgba(212,132,42,.15);border:1px solid rgba(212,132,42,.4);color:var(--caramel);padding:.4rem 1rem;border-radius:6px;font-size:.78rem;font-weight:700;margin:.4rem .4rem 0 0;letter-spacing:.06em}
+
+    /* STATS */
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;border-top:1px solid rgba(255,255,255,.1);padding-top:3rem;margin-top:3rem;text-align:center}
+    .stat-n{font-family:'Playfair Display',serif;font-size:3rem;color:var(--caramel)}
+    .stat-l{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.3rem}
+
+    /* TESTIMONIALS */
+    .testi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .testi{background:var(--warm);padding:2rem;border-radius:16px}
+    .stars{color:var(--caramel);letter-spacing:.1em;margin-bottom:.8rem}
+    .testi-q{font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;line-height:1.7;margin-bottom:1.2rem}
+    .testi-name{font-weight:700;font-size:.88rem}
+    .testi-sub{font-size:.75rem;color:var(--dim);margin-top:.2rem}
+
+    /* CTA */
+    .cta{padding:7rem 2rem;text-align:center;position:relative;overflow:hidden}
+    .cta-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1501339447-7cb05d2d0ead?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .cta-overlay{position:absolute;inset:0;background:rgba(92,51,23,.9)}
+    .cta-inner{position:relative;z-index:1}
+    .cta-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.5rem);color:#fff;margin-bottom:.8rem}
+    .cta-sub{color:rgba(255,255,255,.75);margin-bottom:2.5rem;font-size:1rem}
+    .btn-lg{display:inline-block;background:var(--caramel);color:#fff;padding:1.1rem 3rem;border-radius:100px;text-decoration:none;font-weight:700;font-size:1rem;transition:.3s}
+    .btn-lg:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+
+    footer{background:var(--espresso);color:rgba(255,255,255,.4);padding:3rem 2rem;text-align:center;font-size:.83rem}
+    footer a{color:var(--caramel);text-decoration:none}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:768px){
+      .about-inner{grid-template-columns:1fr}
+      .about-img{display:none}
+      .stats-row{grid-template-columns:repeat(2,1fr)}
+      .tab-panel.active{grid-template-columns:1fr}
+      .testi-row{grid-template-columns:1fr}
+      .nav-links{display:none}
+      .hero-content{padding:7rem 1.5rem 3rem;margin-left:0}
     }
   </style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(26,10,2,.97);border:1px solid rgba(212,132,42,.3);border-radius:100px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#d4842a;font-weight:700">Felipe Figueroa</a></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Origen Café.</a>
+  <ul class="nav-links">
+    <li><a href="#menu" class="nav-link">Menú</a></li>
+    <li><a href="#nosotros" class="nav-link">Nuestra historia</a></li>
+    <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+    <li><a href="#contacto" class="nav-link nav-cta">Visitarnos</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-tag">Specialty Coffee · Barrio Italia, Santiago</p>
+    <h1 class="hero-title">Del grano a<br>tu <em>taza</em></h1>
+    <p class="hero-sub">Café de especialidad de origen único. Tostado artesanal y preparado por baristas certificados. Cada sorbo cuenta una historia.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-caramel">Ver menú</a>
+      <a href="#nosotros" class="btn-outline">Nuestra historia</a>
+    </div>
   </div>
+</section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Renacimiento<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Carta</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Visítanos</a></li>
-      </ul>
-    </div>
-  </nav>
+<div class="info-bar">
+  <div class="info-item"><strong>Lunes — Viernes</strong>7:30 – 20:00</div>
+  <div class="info-item"><strong>Sábado — Domingo</strong>9:00 – 21:00</div>
+  <div class="info-item"><strong>Barrio Italia</strong>Santa Isabel 1234, Piso 2</div>
+</div>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #1c0d00 0%, #2d1500 50%, #1a0c00 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Café de Especialidad</p>
-      <h1 class="hero-title">El aroma que<br><em>despierta tu día.</em></h1>
-      <p class="hero-sub">Granos de origen seleccionados, preparados con técnica y pasión. Cada taza es una experiencia sensorial que no olvidarás.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Visítanos hoy</a>
-        <a href="#servicios" class="btn btn-outline">Ver carta</a>
+<section class="section" id="menu">
+  <div class="container">
+    <span class="section-label">Carta</span>
+    <h2 class="section-title">Todo lo que preparamos<br>con amor</h2>
+    <p class="section-desc">Granos de Colombia, Etiopía y Guatemala. Métodos V60, Chemex, espresso y cold brew.</p>
+    <div class="tabs">
+      <div class="tab-nav">
+        <button class="tab-btn active" data-tab="cafes">☕ Cafés</button>
+        <button class="tab-btn" data-tab="desayunos">🥐 Desayunos</button>
+        <button class="tab-btn" data-tab="postres">🍰 Postres</button>
+        <button class="tab-btn" data-tab="especiales">✨ Especiales</button>
+      </div>
+      <div class="tab-panel active" id="tab-cafes">
+        <div class="menu-card"><div class="menu-img"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=500&q=80" alt="Espresso"/></div><div class="menu-body"><p class="menu-name">Espresso Doble</p><p class="menu-desc">30ml de oro líquido. Blend Origen house roast.</p><p class="menu-price">$2.500</p></div></div>
+        <div class="menu-card"><div class="menu-img"><img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=80" alt="Latte"/></div><div class="menu-body"><p class="menu-name">Latte Art</p><p class="menu-desc">Espresso + leche vaporizada con arte en cada taza.</p><p class="menu-price">$3.500</p></div></div>
+        <div class="menu-card"><div class="menu-img"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=500&q=80" alt="Cold Brew"/></div><div class="menu-body"><p class="menu-name">Cold Brew 12h</p><p class="menu-desc">Extracción fría de 12 horas. Suave y bajo en acidez.</p><p class="menu-price">$4.200</p></div></div>
+      </div>
+      <div class="tab-panel" id="tab-desayunos">
+        <div class="menu-card"><div class="menu-img"><img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=500&q=80" alt="Tostadas"/></div><div class="menu-body"><p class="menu-name">Tostadas con Palta</p><p class="menu-desc">Pan artesanal, palta, huevo pochado y semillas.</p><p class="menu-price">$7.900</p></div></div>
+        <div class="menu-card"><div class="menu-img"><img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=500&q=80" alt="Bowl"/></div><div class="menu-body"><p class="menu-name">Açaí Bowl</p><p class="menu-desc">Açaí, granola casera, fruta fresca y miel orgánica.</p><p class="menu-price">$8.500</p></div></div>
+        <div class="menu-card"><div class="menu-img"><img src="https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?auto=format&fit=crop&w=500&q=80" alt="Croissant"/></div><div class="menu-body"><p class="menu-name">Croissant Mantequilla</p><p class="menu-desc">Horneado en el local cada mañana. Relleno opcional.</p><p class="menu-price">$3.800</p></div></div>
+      </div>
+      <div class="tab-panel" id="tab-postres">
+        <div class="menu-card"><div class="menu-img"><img src="https://images.unsplash.com/photo-1506459225024-1428097a7e18?auto=format&fit=crop&w=500&q=80" alt="Cheesecake"/></div><div class="menu-body"><p class="menu-name">Cheesecake Berries</p><p class="menu-desc">Cheesecake horneado con coulis de berries frescos.</p><p class="menu-price">$5.500</p></div></div>
+        <div class="menu-card"><div class="menu-img"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=500&q=80" alt="Brownie"/></div><div class="menu-body"><p class="menu-name">Brownie Valrhona</p><p class="menu-desc">Chocolate 70% cacao belga. Textura fudge perfecta.</p><p class="menu-price">$4.200</p></div></div>
+        <div class="menu-card"><div class="menu-img"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=500&q=80" alt="Tiramisú"/></div><div class="menu-body"><p class="menu-name">Tiramisú Espresso</p><p class="menu-desc">Clásico italiano con nuestro espresso de la casa.</p><p class="menu-price">$5.800</p></div></div>
+      </div>
+      <div class="tab-panel" id="tab-especiales">
+        <div class="menu-card"><div class="menu-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=500&q=80" alt="Matcha"/></div><div class="menu-body"><p class="menu-name">Matcha Latte</p><p class="menu-desc">Matcha ceremonial japonés con leche de avena.</p><p class="menu-price">$4.500</p></div></div>
+        <div class="menu-card"><div class="menu-img"><img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=500&q=80" alt="Flat White"/></div><div class="menu-body"><p class="menu-name">Flat White</p><p class="menu-desc">Doble ristretto + microespuma sedosa. El favorito de los baristas.</p><p class="menu-price">$3.800</p></div></div>
+        <div class="menu-card"><div class="menu-img"><img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=500&q=80" alt="Affogato"/></div><div class="menu-body"><p class="menu-name">Affogato</p><p class="menu-desc">Helado de vainilla ahogado en espresso caliente.</p><p class="menu-price">$4.200</p></div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestra carta</span>
-        <h2 class="section-title">Café, desayunos y más</h2>
-        <p class="section-desc">Todo preparado al momento con los mejores ingredientes. Porque un buen café merece una buena compañía.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">☕</div>
-          <h3 class="card-title">Espresso & Americano</h3>
-          <p class="card-desc">Extracción perfecta con granos de origen colombiano. Espresso, cortado, americano y café de filtro frío.</p>
-          <p class="card-price">Desde $1.800</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🧋</div>
-          <h3 class="card-title">Cafés Especiales</h3>
-          <p class="card-desc">Latte art, cappuccino, flat white, matcha latte y cold brew. Opciones con leche de avena, almendra o coco.</p>
-          <p class="card-price">Desde $2.800</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🥐</div>
-          <h3 class="card-title">Desayunos</h3>
-          <p class="card-desc">Avocado toast, tostadas artesanales, huevos revueltos y granola con fruta fresca. Desayuno de lunes a viernes.</p>
-          <p class="card-price">Desde $4.500</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🍰</div>
-          <h3 class="card-title">Postres Artesanales</h3>
-          <p class="card-desc">Cheesecake, brownie, muffins y tortas del día elaboradas en casa. Opciones veganas disponibles.</p>
-          <p class="card-price">Desde $2.200</p>
-        </div>
-      </div>
+<section class="about" id="nosotros">
+  <div class="about-inner">
+    <div class="about-img reveal">
+      <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80" alt="Barista"/>
     </div>
-  </section>
-
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">☕</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">6 años sirviendo el mejor café de Santiago</h2>
-          <p class="about-text">Somos fanáticos del café de especialidad. Trabajamos directamente con productores de Colombia, Etiopía y Guatemala para traerte los mejores granos del mundo a tu taza.</p>
-          <p class="about-text">Nuestro barista es campeón regional de latte art y cada miembro del equipo está certificado en preparación de café de especialidad. Aquí el café es un arte, no una rutina.</p>
-        </div>
+    <div>
+      <span class="about-label">Nuestra historia</span>
+      <h2 class="about-title">Café como<br>experiencia de vida</h2>
+      <p class="about-text">Origen nació de una obsesión: encontrar el mejor café del mundo y llevarlo a tu taza en Santiago. Viajamos a las fincas, conocemos a los agricultores y tostamos con dedicación artesanal.</p>
+      <p class="about-text">Trabajamos con café de especialidad puntuado sobre 85 en escala SCA. Cada origen tiene su historia y nosotros te la contamos con cada sorbo.</p>
+      <div style="margin-top:1.5rem">
+        <span class="origin-tag">Colombia Huila</span>
+        <span class="origin-tag">Etiopía Yirgacheffe</span>
+        <span class="origin-tag">Guatemala Antigua</span>
+        <span class="origin-tag">Brasil Minas Gerais</span>
       </div>
       <div class="stats-row">
-        <div class="stat"><div class="stat-number">+200</div><div class="stat-label">Tazas por día</div></div>
-        <div class="stat"><div class="stat-number">6</div><div class="stat-label">Años abiertos</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación Google</div></div>
-        <div class="stat"><div class="stat-number">3</div><div class="stat-label">Granos de origen</div></div>
+        <div><div class="stat-n" data-count="8" data-suffix=" orígenes">0</div><div class="stat-l">Disponibles</div></div>
+        <div><div class="stat-n" data-count="4" data-suffix=" años">0</div><div class="stat-l">En Barrio Italia</div></div>
+        <div><div class="stat-n" data-count="200" data-suffix="+">0</div><div class="stat-l">Clientes diarios</div></div>
+        <div><div class="stat-n" data-count="3">0</div><div class="stat-l">Baristas SCA</div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El mejor espresso que he tomado en Santiago, sin exagerar. Se nota la diferencia del grano de calidad. El local tiene una atmósfera preciosa para trabajar o leer."</p>
-          <div class="testi-author">Patricio Lazo</div>
-          <div class="testi-role">Cliente frecuente · espresso</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Los desayunos son una maravilla. El avocado toast con huevo pochado y su café de filtro frío es mi combo favorito de los lunes. El personal siempre muy amable."</p>
-          <div class="testi-author">Alejandra Cisternas</div>
-          <div class="testi-role">Clienta · desayunos</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El cheesecake de mango es pecaminoso y el latte de matcha es el mejor que he probado. Vengo todos los viernes con mis colegas. Siempre una experiencia especial."</p>
-          <div class="testi-author">Daniela Espinoza</div>
-          <div class="testi-role">Clienta · postres y cafés</div>
-        </div>
-      </div>
+<section class="section" id="opiniones" style="background:var(--warm)">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="section-label">Opiniones</span>
+      <h2 class="section-title">Los mejores clientes cuentan</h2>
     </div>
-  </section>
-
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Listo para probar el mejor café?</h2>
-      <p class="section-desc">Encuéntranos de lunes a viernes 7:30–20:00 y sábado 9:00–18:00. También hacemos pedidos por WhatsApp.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Contactar por WhatsApp
-      </a>
+    <div class="testi-row">
+      <div class="testi reveal"><div class="stars">★★★★★</div><p class="testi-q">"El mejor café del barrio sin discusión. El V60 de Etiopía es una obra de arte. Los baristas son apasionados y te explican cada detalle del origen."</p><div class="testi-name">Sebastián Moya</div><div class="testi-sub">Habitué de lunes</div></div>
+      <div class="testi reveal" style="transition-delay:.15s"><div class="stars">★★★★★</div><p class="testi-q">"El desayuno con tostadas de palta y cold brew me convirtió en una adicta. Vengo cada sábado con mi grupo de amigas. El ambiente es increíble."</p><div class="testi-name">Fernanda Aliaga</div><div class="testi-sub">Clienta del fin de semana</div></div>
+      <div class="testi reveal" style="transition-delay:.3s"><div class="stars">★★★★★</div><p class="testi-q">"El brownie de Valrhona junto al espresso doble es una experiencia trascendental. Nunca pensé que un café podía cambiarme la mañana así."</p><div class="testi-name">Roberto Carvallo</div><div class="testi-sub">Cliente frecuente</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Café Renacimiento</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
+<section class="cta" id="contacto">
+  <div class="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="cta-inner">
+    <h2 class="cta-title">¿Cuándo nos visitas?</h2>
+    <p class="cta-sub">Abierto todos los días. Terraza disponible. Pedidos para llevar y suscripción mensual de granos.</p>
+    <a href="https://wa.me/56900000000?text=Hola%2C+quiero+info+sobre+Origen+Caf%C3%A9" target="_blank" rel="noopener" class="btn-lg">💬 Escribirnos por WhatsApp</a>
+  </div>
+</section>
 
+<footer>
+  <div class="container">
+    <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:rgba(255,255,255,.6);margin-bottom:.5rem">Origen Café.</p>
+    <p>Santa Isabel 1234, Barrio Italia, Santiago · 7:30–21:00</p>
+    <p style="margin-top:1rem">Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    });
+  });
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      let cur=0;const step=target/60;
+      const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+      io.unobserve(el);
+    },{threshold:.5});io.observe(el);
+  });
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+  });
+</script>
 </body>
 </html>

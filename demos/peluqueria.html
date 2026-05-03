@@ -1,157 +1,309 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Salón Belle — Peluquería femenina especializada en corte, color y peinado. Página de muestra" />
-  <title>Salón Belle — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maison Belle — Peluquería</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #e879a0;
-      --primary-rgb: 232,121,160;
-      --bg: #fff;
-      --bg-alt: #fdf6f9;
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --rose:#8b1a4a;--rose-light:#b8315f;--cream:#fdf6f0;--dark:#1a0a10;
+      --gold:#c9985a;--text:#2d1018;--dim:#8a6070;
+    }
+    body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.4rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:.4s}
+    nav.scrolled{background:rgba(253,246,240,.97);backdrop-filter:blur(12px);box-shadow:0 1px 20px rgba(139,26,74,.08)}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:#fff;text-decoration:none;letter-spacing:.08em}
+    nav.scrolled .nav-logo{color:var(--rose)}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-link{text-decoration:none;color:rgba(255,255,255,.85);font-size:.85rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:.3s}
+    nav.scrolled .nav-link{color:var(--dim)}
+    .nav-link:hover{color:#fff}
+    nav.scrolled .nav-link:hover{color:var(--rose)}
+    .nav-cta{background:var(--rose)!important;color:#fff!important;padding:.5rem 1.4rem;border-radius:100px}
+
+    /* HERO SPLIT */
+    .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative}
+    .hero-left{background:var(--dark);display:flex;flex-direction:column;justify-content:center;padding:8rem 4rem 4rem;position:relative;overflow:hidden}
+    .hero-left::after{content:'';position:absolute;right:-60px;top:0;bottom:0;width:120px;background:var(--dark);transform:skewX(-4deg);z-index:2}
+    .hero-tag{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5vw,5rem);font-weight:300;line-height:1.1;color:#fff;margin-bottom:1.5rem}
+    .hero-title em{font-style:italic;color:var(--gold)}
+    .hero-sub{color:rgba(255,255,255,.6);line-height:1.7;max-width:380px;margin-bottom:2.5rem;font-weight:300}
+    .btn-rose{display:inline-block;background:var(--rose);color:#fff;padding:.9rem 2.4rem;border-radius:100px;text-decoration:none;font-size:.85rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:.3s}
+    .btn-rose:hover{background:var(--rose-light);transform:translateY(-2px)}
+    .btn-outline-white{display:inline-block;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);padding:.9rem 2.4rem;border-radius:100px;text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.06em;transition:.3s;margin-left:1rem}
+    .btn-outline-white:hover{border-color:#fff;color:#fff}
+    .hero-right{position:relative}
+    .hero-right img{width:100%;height:100%;object-fit:cover}
+    .hero-right::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,var(--dark) 0%,transparent 30%);z-index:1}
+
+    /* MARQUEE */
+    .marquee-bar{background:var(--rose);color:#fff;padding:.7rem 0;overflow:hidden;white-space:nowrap}
+    .marquee-inner{display:inline-flex;gap:3rem;animation:marquee 18s linear infinite;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+    .marquee-inner span{opacity:.7}
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* SERVICES */
+    .section{padding:6rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .section-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);font-weight:600}
+    .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;margin:.6rem 0 1rem;line-height:1.2}
+    .section-desc{color:var(--dim);line-height:1.7;max-width:540px;font-weight:300}
+
+    .services-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-top:3rem}
+    .service-list{display:flex;flex-direction:column;gap:0}
+    .service-item{display:flex;align-items:center;gap:1.5rem;padding:1.4rem 0;border-bottom:1px solid rgba(139,26,74,.12);cursor:pointer;transition:.3s}
+    .service-item:hover{padding-left:.5rem}
+    .service-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:rgba(139,26,74,.2);min-width:2.5rem}
+    .service-info h3{font-size:1rem;font-weight:600;margin-bottom:.2rem}
+    .service-info p{font-size:.85rem;color:var(--dim)}
+    .service-price{margin-left:auto;font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--rose);white-space:nowrap}
+    .services-img{position:sticky;top:5rem;border-radius:2px;overflow:hidden;aspect-ratio:4/5}
+    .services-img img{width:100%;height:100%;object-fit:cover}
+
+    /* TEAM */
+    .section-cream{background:var(--dark);color:#fff;padding:6rem 2rem}
+    .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+    .team-card{text-align:center}
+    .team-img{width:180px;height:180px;border-radius:50%;object-fit:cover;margin:0 auto 1.2rem;display:block;border:3px solid var(--rose);filter:grayscale(20%)}
+    .team-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:#fff;margin-bottom:.3rem}
+    .team-role{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+    .team-bio{font-size:.85rem;color:rgba(255,255,255,.5);margin-top:.8rem;line-height:1.6}
+
+    /* STATS */
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:4rem;padding-top:3rem;border-top:1px solid rgba(255,255,255,.1)}
+    .stat-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--gold)}
+    .stat-label{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:.3rem}
+
+    /* GALLERY */
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:200px 200px;gap:.5rem;margin-top:3rem}
+    .gallery-item{overflow:hidden;background:#e8d5dc}
+    .gallery-item:first-child{grid-column:span 2;grid-row:span 2}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;transition:.5s}
+    .gallery-item:hover img{transform:scale(1.05)}
+
+    /* TESTIMONIALS */
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+    .testi{background:#fff;padding:2rem;border-radius:2px;border-top:3px solid var(--rose)}
+    .stars{color:var(--gold);margin-bottom:1rem;letter-spacing:.1em}
+    .testi-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;line-height:1.7;color:var(--text);margin-bottom:1.5rem}
+    .testi-author{font-weight:600;font-size:.9rem}
+    .testi-role{font-size:.78rem;color:var(--dim);margin-top:.2rem}
+
+    /* CTA */
+    .cta-section{background:var(--rose);padding:6rem 2rem;text-align:center;position:relative;overflow:hidden}
+    .cta-section::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1560066984-138daef929c0?auto=format&fit=crop&w=1920&q=80') center/cover;opacity:.15}
+    .cta-inner{position:relative;z-index:1}
+    .cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;color:#fff;margin-bottom:1rem}
+    .cta-sub{color:rgba(255,255,255,.8);margin-bottom:2.5rem;font-weight:300}
+    .btn-white{display:inline-block;background:#fff;color:var(--rose);padding:1rem 2.8rem;border-radius:100px;text-decoration:none;font-weight:700;font-size:.9rem;letter-spacing:.06em;transition:.3s}
+    .btn-white:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.2)}
+
+    /* FOOTER */
+    footer{background:var(--dark);color:rgba(255,255,255,.5);padding:3rem 2rem;text-align:center;font-size:.85rem}
+    footer a{color:var(--gold);text-decoration:none}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:768px){
+      .hero{grid-template-columns:1fr;min-height:auto}
+      .hero-right{height:300px}
+      .hero-left{padding:7rem 1.5rem 3rem}
+      .hero-left::after{display:none}
+      .services-layout{grid-template-columns:1fr}
+      .services-img{display:none}
+      .team-grid{grid-template-columns:1fr}
+      .stats-row{grid-template-columns:repeat(2,1fr)}
+      .testi-grid{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}
+      .gallery-item:first-child{grid-column:span 1;grid-row:span 1}
+      .nav-links{display:none}
     }
   </style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(26,10,16,.95);border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#c9985a;font-weight:700">Felipe Figueroa</a></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Maison Belle.</a>
+  <ul class="nav-links">
+    <li><a href="#servicios" class="nav-link">Servicios</a></li>
+    <li><a href="#equipo" class="nav-link">Equipo</a></li>
+    <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+    <li><a href="#contacto" class="nav-link nav-cta">Reservar</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Peluquería & Colorimetría · Providencia</p>
+    <h1 class="hero-title">El arte de<br><em>realzar tu</em><br>belleza</h1>
+    <p class="hero-sub">Especialistas en color, corte y tratamientos premium. Transforma tu look con las técnicas más actuales de colorimetría y cuidado capilar.</p>
+    <div>
+      <a href="#contacto" class="btn-rose">Reservar hora</a>
+      <a href="#servicios" class="btn-outline-white">Ver servicios</a>
+    </div>
   </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1560066984-138daef929c0?auto=format&fit=crop&w=1000&q=80" alt="Peluquería Maison Belle"/>
+  </div>
+</section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Salón Belle<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
-      </ul>
-    </div>
-  </nav>
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span>✦</span> Colorimetría Avanzada <span>✦</span> Corte & Peinado <span>✦</span> Tratamientos Capilares <span>✦</span> Keratina <span>✦</span> Mechas Balayage <span>✦</span> Alisados <span>✦</span> Nutrición Capilar <span>✦</span> Colorimetría Avanzada <span>✦</span> Corte & Peinado <span>✦</span> Tratamientos Capilares <span>✦</span> Keratina <span>✦</span> Mechas Balayage <span>✦</span> Alisados <span>✦</span> Nutrición Capilar
+  </div>
+</div>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #4a1040 0%, #831843 50%, #9d174d 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Peluquería Femenina</p>
-      <h1 class="hero-title">Tu belleza,<br><em>nuestra pasión.</em></h1>
-      <p class="hero-sub">Especialistas en corte femenino, coloración y tratamientos capilares. Transformamos tu cabello con amor y técnica de primera.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Reservar hora</a>
-        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
+<section class="section" id="servicios">
+  <div class="container">
+    <div class="services-layout">
+      <div>
+        <span class="section-label">Menú de servicios</span>
+        <h2 class="section-title">Cada servicio,<br>un arte</h2>
+        <p class="section-desc">Trabajamos con las marcas más exclusivas: L'Oréal Professionnel, Kérastase y Redken.</p>
+        <div class="service-list reveal" style="margin-top:2rem">
+          <div class="service-item">
+            <span class="service-num">01</span>
+            <div class="service-info"><h3>Corte + Peinado</h3><p>Diagnóstico personalizado y técnica premium</p></div>
+            <span class="service-price">$28.000</span>
+          </div>
+          <div class="service-item">
+            <span class="service-num">02</span>
+            <div class="service-info"><h3>Coloración completa</h3><p>Color uniforme con productos L'Oréal Pro</p></div>
+            <span class="service-price">$55.000</span>
+          </div>
+          <div class="service-item">
+            <span class="service-num">03</span>
+            <div class="service-info"><h3>Balayage / Mechas</h3><p>Técnica californiana o highlights modernos</p></div>
+            <span class="service-price">desde $75.000</span>
+          </div>
+          <div class="service-item">
+            <span class="service-num">04</span>
+            <div class="service-info"><h3>Keratina brasileña</h3><p>Alisado progresivo + nutrición profunda</p></div>
+            <span class="service-price">$90.000</span>
+          </div>
+          <div class="service-item">
+            <span class="service-num">05</span>
+            <div class="service-info"><h3>Tratamiento Kérastase</h3><p>Ritual de nutrición intensiva Fusio-Dose</p></div>
+            <span class="service-price">$35.000</span>
+          </div>
+          <div class="service-item">
+            <span class="service-num">06</span>
+            <div class="service-info"><h3>Peinado de novia</h3><p>Prueba incluida, recogido o semi-recogido</p></div>
+            <span class="service-price">$120.000</span>
+          </div>
+        </div>
+      </div>
+      <div class="services-img">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="Servicio"/>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">Lo que ofrecemos</h2>
-        <p class="section-desc">De cortes modernos a tratamientos de keratina, tenemos todo para que luzcas radiante.</p>
+<section class="section-cream" id="equipo">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="section-label" style="color:var(--gold)">Nuestro equipo</span>
+      <h2 class="section-title" style="color:#fff">Artistas del cabello</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <img class="team-img" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80" alt="Valentina"/>
+        <p class="team-name">Valentina Rojas</p>
+        <p class="team-role">Directora Artística</p>
+        <p class="team-bio">12 años de experiencia. Especialista en colorimetría y formada en Paris con los mejores maestros.</p>
       </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">✂️</div>
-          <h3 class="card-title">Corte Mujer</h3>
-          <p class="card-desc">Corte personalizado según tu tipo de rostro y estilo. Incluye lavado y secado profesional.</p>
-          <p class="card-price">Desde $12.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🎨</div>
-          <h3 class="card-title">Tinte y Coloración</h3>
-          <p class="card-desc">Coloraciones completas, mechas californianas, balayage y técnicas de moda. Productos de alta gama.</p>
-          <p class="card-price">Desde $25.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">💎</div>
-          <h3 class="card-title">Alisado Keratina</h3>
-          <p class="card-desc">Tratamiento de keratina brasileña o progresiva. Elimina el frizz y da brillo por hasta 6 meses.</p>
-          <p class="card-price">Desde $45.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">💄</div>
-          <h3 class="card-title">Peinado y Maquillaje</h3>
-          <p class="card-desc">Peinados para eventos, matrimonios, graduaciones y más. Servicio de maquillaje profesional incluido.</p>
-          <p class="card-price">Desde $20.000</p>
-        </div>
+      <div class="team-card reveal" style="transition-delay:.15s">
+        <img class="team-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80" alt="Camila"/>
+        <p class="team-name">Camila Vega</p>
+        <p class="team-role">Especialista Balayage</p>
+        <p class="team-bio">Experta en técnicas de iluminación y degradados. Certificada por L'Oréal Professionnel.</p>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.3s">
+        <img class="team-img" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=400&q=80" alt="Daniela"/>
+        <p class="team-name">Daniela Morales</p>
+        <p class="team-role">Técnica en Tratamientos</p>
+        <p class="team-bio">Especialista en recuperación capilar y alisados. Transforma el cabello dañado en sano y brillante.</p>
       </div>
     </div>
-  </section>
-
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">💇‍♀️</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">7 años haciendo brillar la belleza de nuestras clientas</h2>
-          <p class="about-text">Somos un equipo de 5 estilistas apasionadas por la belleza femenina, formadas en las mejores escuelas de Santiago y actualizadas en las últimas tendencias internacionales.</p>
-          <p class="about-text">Usamos exclusivamente productos libres de sulfatos y amoniaco para cuidar la salud de tu cabello. Cada visita es una experiencia de bienestar, no solo un servicio.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+800</div><div class="stat-label">Clientas satisfechas</div></div>
-        <div class="stat"><div class="stat-number">7</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.8★</div><div class="stat-label">Calificación promedio</div></div>
-        <div class="stat"><div class="stat-number">5</div><div class="stat-label">Estilistas expertas</div></div>
-      </div>
+    <div class="stats-row">
+      <div style="text-align:center"><div class="stat-num" data-count="1200" data-suffix="+">0</div><div class="stat-label">Clientas satisfechas</div></div>
+      <div style="text-align:center"><div class="stat-num" data-count="8" data-suffix=" años">0</div><div class="stat-label">En el mercado</div></div>
+      <div style="text-align:center"><div class="stat-num" data-count="98" data-suffix="%">0</div><div class="stat-label">Recomendarían</div></div>
+      <div style="text-align:center"><div class="stat-num" data-count="3" data-suffix=" premios">0</div><div class="stat-label">Reconocimientos</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestras clientas</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Me hice el balayage más hermoso de mi vida aquí. La Camila es una artista con el color. El resultado superó todas mis expectativas y duró meses."</p>
-          <div class="testi-author">Valentina Rojas</div>
-          <div class="testi-role">Cliente frecuente · coloración</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Vine para el peinado de mi matrimonio y quedé espectacular. El equipo es muy profesional y me hicieron sentir como reina. Totalmente recomendado."</p>
-          <div class="testi-author">Carolina Muñoz</div>
-          <div class="testi-role">Novia · peinado de matrimonio</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"La keratina que me aplicaron cambió mi vida. El frizz desapareció y el cabello quedó suave como seda. Ya voy por mi tercera aplicación, no cambio este salón."</p>
-          <div class="testi-author">Sofía Torres</div>
-          <div class="testi-role">Cliente frecuente · tratamientos</div>
-        </div>
-      </div>
+<section class="section" id="galeria">
+  <div class="container">
+    <span class="section-label">Portfolio</span>
+    <h2 class="section-title">Nuestros trabajos</h2>
+    <div class="gallery reveal">
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?auto=format&fit=crop&w=800&q=80" alt=""/></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=500&q=80" alt=""/></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1522336572468-97b06e8ef143?auto=format&fit=crop&w=500&q=80" alt=""/></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=500&q=80" alt=""/></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=500&q=80" alt=""/></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Lista para tu transformación?</h2>
-      <p class="section-desc">Escríbenos por WhatsApp y agenda tu hora. Atendemos de martes a sábado de 9:00 a 19:00 hrs.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Reservar por WhatsApp
-      </a>
+<section class="section" id="opiniones" style="background:var(--cream)">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="section-label">Opiniones</span>
+      <h2 class="section-title">Lo que dicen nuestras clientas</h2>
     </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Salón Belle</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
+    <div class="testi-grid">
+      <div class="testi reveal"><div class="stars">★★★★★</div><p class="testi-text">"Valentina transformó mi cabello. Llegué con el pelo muy dañado y salí con un balayage espectacular. El color es exactamente lo que pedí."</p><div class="testi-author">Francisca Peña</div><div class="testi-role">Clienta frecuente</div></div>
+      <div class="testi reveal" style="transition-delay:.15s"><div class="stars">★★★★★</div><p class="testi-text">"El mejor salón de Providencia sin duda. Camila es una artista del balayage, y la atención es de primera. Ya llevo 3 años viniendo."</p><div class="testi-author">Andrea Morales</div><div class="testi-role">Clienta habitual</div></div>
+      <div class="testi reveal" style="transition-delay:.3s"><div class="stars">★★★★★</div><p class="testi-text">"Vine para mi boda y el peinado fue simplemente perfecto. Todas mis amigas me preguntaron quién me lo había hecho. ¡100% recomendado!"</p><div class="testi-author">Isidora Fuentes</div><div class="testi-role">Novia</div></div>
     </div>
-  </footer>
+  </div>
+</section>
 
+<section class="cta-section" id="contacto">
+  <div class="cta-inner">
+    <h2 class="cta-title">¿Lista para tu<br><em>nueva versión?</em></h2>
+    <p class="cta-sub">Reserva tu hora online y recibe confirmación inmediata. Estacionamiento gratuito disponible.</p>
+    <a href="https://wa.me/56900000000?text=Hola%2C+quiero+reservar+hora+en+Maison+Belle" target="_blank" rel="noopener" class="btn-white">💬 Reservar por WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:rgba(255,255,255,.7);margin-bottom:.5rem">Maison Belle.</p>
+    <p>Av. Providencia 1234, Santiago · Lunes a Sábado 9:00–19:00</p>
+    <p style="margin-top:1rem">Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      let cur=0;const step=target/70;
+      const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+      io.unobserve(el);
+    },{threshold:.5});io.observe(el);
+  });
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+  });
+</script>
 </body>
 </html>

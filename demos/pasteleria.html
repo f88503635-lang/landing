@@ -1,157 +1,269 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Dulce Encanto Pastelería — Tortas personalizadas, cupcakes y pan artesanal. Página de muestra" />
-  <title>Dulce Encanto Pastelería — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sucré Pâtisserie — Pastelería Artesanal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Bodoni+Moda:ital,wght@0,400;0,600;1,400&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #db2777;
-      --primary-rgb: 219,39,119;
-      --bg: #fff;
-      --bg-alt: #fdf2f8;
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --pink:#c2185b;--pink-light:#e91e8c;--blush:#fce4ec;--rose-pale:#fff0f5;
+      --dark:#2a0a18;--gold:#d4a067;--text:#2a0a18;--dim:#8a6070;
     }
+    body{font-family:'Quicksand',sans-serif;background:#fff;color:var(--text);overflow-x:hidden}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:.4s}
+    nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(16px);box-shadow:0 1px 20px rgba(194,24,91,.1)}
+    .nav-logo{font-family:'Italiana',serif;font-size:1.8rem;color:#fff;text-decoration:none;letter-spacing:.06em}
+    nav.scrolled .nav-logo{color:var(--pink)}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-link{text-decoration:none;color:rgba(255,255,255,.85);font-size:.85rem;font-weight:600;transition:.3s}
+    nav.scrolled .nav-link{color:var(--dim)}
+    .nav-cta{background:var(--pink)!important;color:#fff!important;padding:.5rem 1.5rem;border-radius:100px}
+
+    /* HERO */
+    .hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1464349095954-1c6e60e80d9c?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,10,24,.75) 0%,rgba(194,24,91,.5) 60%,rgba(42,10,24,.8) 100%)}
+    .hero-content{position:relative;z-index:2;max-width:700px;padding:2rem}
+    .hero-icon{font-size:3rem;margin-bottom:1rem;display:block}
+    .hero-title{font-family:'Italiana',serif;font-size:clamp(3.5rem,7vw,6.5rem);color:#fff;line-height:1;margin-bottom:1rem;letter-spacing:.04em}
+    .hero-tag{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:1.5rem;font-weight:600}
+    .hero-sub{color:rgba(255,255,255,.7);font-size:1rem;line-height:1.75;max-width:480px;margin:0 auto 2.5rem;font-weight:400}
+    .btn-pink{display:inline-block;background:var(--pink);color:#fff;padding:.95rem 2.5rem;border-radius:100px;text-decoration:none;font-weight:700;font-size:.9rem;letter-spacing:.06em;transition:.3s;margin:.4rem}
+    .btn-pink:hover{background:var(--pink-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(194,24,91,.4)}
+    .btn-outline-w{display:inline-block;border:2px solid rgba(255,255,255,.5);color:#fff;padding:.9rem 2.2rem;border-radius:100px;text-decoration:none;font-weight:600;font-size:.88rem;transition:.3s;margin:.4rem}
+    .btn-outline-w:hover{background:rgba(255,255,255,.1);border-color:#fff}
+
+    /* FLOATING BADGES */
+    .badges{display:flex;justify-content:center;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+    .badge{background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);color:#fff;padding:.4rem 1rem;border-radius:100px;font-size:.75rem;font-weight:600;letter-spacing:.08em}
+
+    /* SPECIALTY BAR */
+    .spec-bar{background:var(--pink);padding:1.5rem 2rem;overflow:hidden;white-space:nowrap}
+    .spec-inner{display:inline-flex;gap:3rem;animation:marquee 16s linear infinite;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.9)}
+    .spec-inner span{opacity:.6}
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* SECTIONS */
+    .section{padding:6rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .section-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);font-weight:700}
+    .section-title{font-family:'Bodoni Moda',serif;font-size:clamp(2rem,3.5vw,3rem);margin:.5rem 0 .8rem;line-height:1.2}
+    .section-title em{font-style:italic}
+    .section-desc{color:var(--dim);line-height:1.75;font-weight:400;max-width:500px}
+
+    /* PRODUCTS MASONRY */
+    .products-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem}
+    .filter-btns{display:flex;gap:.5rem;flex-wrap:wrap}
+    .filter-btn{background:none;border:2px solid var(--blush);color:var(--dim);padding:.45rem 1.2rem;border-radius:100px;font-family:'Quicksand',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:.3s}
+    .filter-btn.active,.filter-btn:hover{background:var(--pink);border-color:var(--pink);color:#fff}
+    .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+    .product-card{border-radius:16px;overflow:hidden;box-shadow:0 2px 16px rgba(194,24,91,.07);background:#fff;transition:.4s;cursor:pointer}
+    .product-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(194,24,91,.18)}
+    .product-card.featured{grid-column:span 2;grid-row:span 2}
+    .product-img{overflow:hidden;height:200px}
+    .product-card.featured .product-img{height:100%}
+    .product-img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+    .product-card:hover .product-img img{transform:scale(1.08)}
+    .product-body{padding:1rem}
+    .product-name{font-family:'Bodoni Moda',serif;font-size:.95rem;font-weight:600;margin-bottom:.2rem}
+    .product-desc{font-size:.78rem;color:var(--dim);line-height:1.5;margin-bottom:.6rem}
+    .product-price{color:var(--pink);font-weight:700;font-size:.95rem}
+
+    /* PROCESS */
+    .process{background:var(--blush);padding:6rem 2rem}
+    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+    .proc-step{background:#fff;border-radius:16px;padding:2rem;text-align:center;box-shadow:0 2px 12px rgba(194,24,91,.06)}
+    .proc-icon{font-size:2.5rem;margin-bottom:1rem}
+    .proc-num{font-family:'Bodoni Moda',serif;font-size:3rem;font-weight:600;color:var(--pink);opacity:.15;line-height:1;margin-bottom:.5rem}
+    .proc-step h3{font-family:'Bodoni Moda',serif;font-size:1rem;font-weight:600;margin-bottom:.5rem}
+    .proc-step p{font-size:.82rem;color:var(--dim);line-height:1.6}
+
+    /* STATS */
+    .stats-strip{background:var(--dark);padding:4rem 2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;max-width:100%}
+    .st-num{font-family:'Italiana',serif;font-size:3.5rem;color:var(--pink)}
+    .st-lab{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:.3rem}
+
+    /* TESTIMONIALS */
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .testi{background:var(--rose-pale);padding:2rem;border-radius:16px;border-top:3px solid var(--pink)}
+    .stars{color:var(--pink);margin-bottom:.8rem;letter-spacing:.1em}
+    .testi-q{font-family:'Bodoni Moda',serif;font-style:italic;font-size:1rem;line-height:1.7;margin-bottom:1.2rem}
+    .testi-name{font-weight:700;font-size:.88rem;color:var(--pink)}
+    .testi-sub{font-size:.75rem;color:var(--dim);margin-top:.2rem}
+
+    /* CTA */
+    .cta{background:linear-gradient(135deg,var(--dark) 0%,var(--pink) 100%);padding:7rem 2rem;text-align:center;position:relative;overflow:hidden}
+    .cta::before{content:'🎂🍰🧁🍩🍪';position:absolute;top:2rem;left:50%;transform:translateX(-50%);font-size:2.5rem;opacity:.08;letter-spacing:2rem;white-space:nowrap}
+    .cta-title{font-family:'Italiana',serif;font-size:clamp(2.5rem,5vw,4.5rem);color:#fff;margin-bottom:1rem}
+    .cta-sub{color:rgba(255,255,255,.75);margin-bottom:2.5rem;max-width:450px;margin-left:auto;margin-right:auto;line-height:1.7}
+    .btn-wh{display:inline-block;background:#fff;color:var(--pink);padding:1rem 3rem;border-radius:100px;text-decoration:none;font-weight:700;font-size:1rem;transition:.3s;margin:.4rem}
+    .btn-wh:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.2)}
+
+    footer{background:var(--dark);color:rgba(255,255,255,.4);padding:3rem 2rem;text-align:center;font-size:.82rem}
+    footer a{color:var(--gold);text-decoration:none}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:900px){.products-grid{grid-template-columns:repeat(2,1fr)}.product-card.featured{grid-column:span 1;grid-row:span 1}}
+    @media(max-width:768px){.process-grid{grid-template-columns:repeat(2,1fr)}.stats-strip{grid-template-columns:repeat(2,1fr)}.testi-grid{grid-template-columns:1fr}.nav-links{display:none}}
   </style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(42,10,24,.95);border:1px solid rgba(194,24,91,.3);border-radius:100px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#d4a067;font-weight:700">Felipe Figueroa</a></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Sucré.</a>
+  <ul class="nav-links">
+    <li><a href="#productos" class="nav-link">Productos</a></li>
+    <li><a href="#proceso" class="nav-link">Proceso</a></li>
+    <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+    <li><a href="#contacto" class="nav-link nav-cta">Pedir</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-icon">🎂</span>
+    <p class="hero-tag">Pâtisserie Artesanal · Santiago</p>
+    <h1 class="hero-title">Sucré</h1>
+    <p class="hero-sub">Pastelería artesanal hecha con ingredientes premium, recetas francesas y el amor que cada pieza merece. Sin conservantes, sin atajos.</p>
+    <div>
+      <a href="#productos" class="btn-pink">Ver tortas & postres</a>
+      <a href="#contacto" class="btn-outline-w">Pedir por encargo</a>
+    </div>
+    <div class="badges">
+      <span class="badge">Sin conservantes</span>
+      <span class="badge">Recetas francesas</span>
+      <span class="badge">Pedidos personalizados</span>
+      <span class="badge">Entrega a domicilio</span>
+    </div>
   </div>
+</section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Dulce Encanto<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Productos</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Pedir</a></li>
-      </ul>
-    </div>
-  </nav>
+<div class="spec-bar">
+  <div class="spec-inner">
+    <span>✦</span> Tortas de Matrimonio <span>✦</span> Macarons <span>✦</span> Croissants <span>✦</span> Cheesecake <span>✦</span> Éclairs <span>✦</span> Mille-Feuille <span>✦</span> Tortas Personalizadas <span>✦</span> Tortas de Matrimonio <span>✦</span> Macarons <span>✦</span> Croissants <span>✦</span> Cheesecake <span>✦</span> Éclairs <span>✦</span> Mille-Feuille <span>✦</span> Tortas Personalizadas
+  </div>
+</div>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #500724 0%, #831843 50%, #9d174d 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Pastelería Artesanal</p>
-      <h1 class="hero-title">Hecho con amor,<br><em>pensado para ti.</em></h1>
-      <p class="hero-sub">Tortas personalizadas, cupcakes, pan artesanal y postres de temporada elaborados con ingredientes naturales y la mejor dedicación.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Hacer pedido</a>
-        <a href="#servicios" class="btn btn-outline">Ver productos</a>
+<section class="section" id="productos">
+  <div class="container">
+    <div class="products-head">
+      <div>
+        <span class="section-label">Vitrina</span>
+        <h2 class="section-title">Dulces que<br><em>cuentan historias</em></h2>
+      </div>
+      <div class="filter-btns">
+        <button class="filter-btn active">Todos</button>
+        <button class="filter-btn">Tortas</button>
+        <button class="filter-btn">Petit Fours</button>
+        <button class="filter-btn">Encargos</button>
       </div>
     </div>
-  </section>
-
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros productos</span>
-        <h2 class="section-title">Dulces que enamoran</h2>
-        <p class="section-desc">Todo hecho a mano en nuestro taller con ingredientes frescos. Personalización total para eventos especiales.</p>
+    <div class="products-grid">
+      <div class="product-card featured reveal">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=800&q=80" alt="Torta principal"/></div>
+        <div class="product-body"><p class="product-name">Torta Frambuesa & Vainilla</p><p class="product-desc">Bizcocho de vainilla bourbon, mousse de frambuesa y espejo brillante. La más solicitada.</p><p class="product-price">desde $48.000</p></div>
       </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🎂</div>
-          <h3 class="card-title">Tortas Personalizadas</h3>
-          <p class="card-desc">Tortas decoradas para cumpleaños, matrimonios y eventos. Diseño a tu elección, sabores: chocolate, vainilla, red velvet y más.</p>
-          <p class="card-price">Desde $25.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🧁</div>
-          <h3 class="card-title">Cupcakes</h3>
-          <p class="card-desc">Cupcakes artesanales con frosting de mantequilla y decoraciones personalizadas. Mínimo 12 unidades por pedido.</p>
-          <p class="card-price">$1.500 c/u</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🍞</div>
-          <h3 class="card-title">Pan Artesanal</h3>
-          <p class="card-desc">Pan de masa madre, focaccia, hallullas y pan de nuez. Horneado fresco cada mañana sin conservantes ni aditivos.</p>
-          <p class="card-price">Desde $800</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🍮</div>
-          <h3 class="card-title">Postres de Temporada</h3>
-          <p class="card-desc">Cheesecakes, tiramisú, mil hojas, flan y más postres que cambian según la temporada y disponibilidad de frutas.</p>
-          <p class="card-price">Desde $2.500</p>
-        </div>
+      <div class="product-card reveal" style="transition-delay:.1s">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&w=500&q=80" alt="Macarons"/></div>
+        <div class="product-body"><p class="product-name">Macarons (caja ×12)</p><p class="product-desc">8 sabores distintos. Rellenos al momento.</p><p class="product-price">$16.800</p></div>
+      </div>
+      <div class="product-card reveal" style="transition-delay:.2s">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=500&q=80" alt="Tiramisú"/></div>
+        <div class="product-body"><p class="product-name">Tiramisú Clásico</p><p class="product-desc">Ladyfingers, mascarpone y espresso italiano.</p><p class="product-price">$8.900/porción</p></div>
+      </div>
+      <div class="product-card reveal" style="transition-delay:.1s">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=500&q=80" alt="Éclair"/></div>
+        <div class="product-body"><p class="product-name">Éclairs de Chocolate</p><p class="product-desc">Pasta choux, crema pastelera y glaseado Valrhona.</p><p class="product-price">$3.500 c/u</p></div>
+      </div>
+      <div class="product-card reveal" style="transition-delay:.2s">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=500&q=80" alt="Torta boda"/></div>
+        <div class="product-body"><p class="product-name">Torta de Matrimonio</p><p class="product-desc">Diseño personalizado, 3 pisos, flores naturales o de azúcar.</p><p class="product-price">desde $120.000</p></div>
+      </div>
+      <div class="product-card reveal" style="transition-delay:.3s">
+        <div class="product-img"><img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=500&q=80" alt="Cupcakes"/></div>
+        <div class="product-body"><p class="product-name">Cupcakes Premium (caja ×6)</p><p class="product-desc">Sabores de temporada con decoración artesanal.</p><p class="product-price">$12.900</p></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🎂</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">8 años endulzando los momentos más especiales</h2>
-          <p class="about-text">Somos una pastelería familiar con alma artesanal. Todo se hace en nuestro taller con ingredientes frescos, sin conservantes ni saborizantes artificiales. La calidad se nota en cada mordida.</p>
-          <p class="about-text">Nuestra pastelera jefa se formó en Santiago y Barcelona, trayendo técnicas europeas a los sabores que más amamos los chilenos. Cada torta es única, como el momento que celebra.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+1000</div><div class="stat-label">Tortas al año</div></div>
-        <div class="stat"><div class="stat-number">8</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">5.0★</div><div class="stat-label">Calificación perfecta</div></div>
-        <div class="stat"><div class="stat-number">100%</div><div class="stat-label">Artesanal</div></div>
-      </div>
+<section class="process" id="proceso">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="section-label">Nuestro método</span>
+      <h2 class="section-title">Del horno a tu mesa</h2>
+      <p class="section-desc" style="margin:0 auto;text-align:center;max-width:500px">Cada pieza se hace a mano, con ingredientes que elegimos personalmente en el mercado cada mañana.</p>
     </div>
-  </section>
-
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"La torta de cumpleaños de mi hija fue un sueño hecho realidad. La diseñamos juntas y quedó exactamente como la imaginamos. El sabor era increíble y todos pidieron el contacto."</p>
-          <div class="testi-author">Pilar Navarrete</div>
-          <div class="testi-role">Clienta · torta personalizada</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Pedimos 60 cupcakes para el matrimonio y llegaron perfectos, hermosos y deliciosos. Todos los invitados preguntaron dónde los habíamos encargado. Volveremos para el bautizo."</p>
-          <div class="testi-author">Javiera Mena</div>
-          <div class="testi-role">Clienta · evento matrimonio</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El pan de masa madre es el mejor de Santiago, lo digo con total convicción. Vengo cada sábado a comprar y nunca ha fallado. La focaccia con aceitunas es adictiva."</p>
-          <div class="testi-author">Hernán Vargas</div>
-          <div class="testi-role">Cliente frecuente · panadería</div>
-        </div>
-      </div>
+    <div class="process-grid">
+      <div class="proc-step reveal"><div class="proc-icon">🛒</div><div class="proc-num">01</div><h3>Ingredientes frescos</h3><p>Compramos cada día en el mercado. Sin congelados, sin conservantes.</p></div>
+      <div class="proc-step reveal" style="transition-delay:.15s"><div class="proc-icon">⚗️</div><div class="proc-num">02</div><h3>Preparación artesanal</h3><p>Recetas francesas clásicas adaptadas con ingredientes locales de calidad premium.</p></div>
+      <div class="proc-step reveal" style="transition-delay:.3s"><div class="proc-icon">🔥</div><div class="proc-num">03</div><h3>Horneado perfecto</h3><p>Hornos profesionales calibrados. Cada producto tiene su temperatura y tiempo exacto.</p></div>
+      <div class="proc-step reveal" style="transition-delay:.45s"><div class="proc-icon">🎀</div><div class="proc-num">04</div><h3>Entrega impecable</h3><p>Empaque premium y refrigeración durante el transporte. Tu pedido llega perfecto.</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Listo para endulzar tu evento?</h2>
-      <p class="section-desc">Escríbenos por WhatsApp para hacer tu pedido. Tiempo de preparación mínimo 48 horas para tortas personalizadas.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Hacer pedido por WhatsApp
-      </a>
+<div class="stats-strip">
+  <div><div class="st-num" data-count="5000" data-suffix="+">0</div><div class="st-lab">Tortas entregadas</div></div>
+  <div><div class="st-num" data-count="6" data-suffix=" años">0</div><div class="st-lab">De experiencia</div></div>
+  <div><div class="st-num" data-count="98" data-suffix="%">0</div><div class="st-lab">Clientes satisfechos</div></div>
+  <div><div class="st-num" data-count="40" data-suffix="+">0</div><div class="st-lab">Recetas disponibles</div></div>
+</div>
+
+<section class="section" id="opiniones">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="section-label">Testimonios</span>
+      <h2 class="section-title">Dulces recuerdos</h2>
     </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Dulce Encanto Pastelería</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
+    <div class="testi-grid">
+      <div class="testi reveal"><div class="stars">★★★★★</div><p class="testi-q">"La torta de matrimonio superó todas mis expectativas. Bella, deliciosa y el diseño fue exactamente el que pedí. Todos los invitados la elogiaron."</p><div class="testi-name">Constanza Silva</div><div class="testi-sub">Novia — enero 2025</div></div>
+      <div class="testi reveal" style="transition-delay:.15s"><div class="stars">★★★★★</div><p class="testi-q">"Los macarons son los mejores que he probado en Chile. La caja de 12 llegó perfecta a domicilio y los sabores eran increíbles. ¡La sal marina es imperdible!"</p><div class="testi-name">Ignacio Bravo</div><div class="testi-sub">Cliente habitual</div></div>
+      <div class="testi reveal" style="transition-delay:.3s"><div class="stars">★★★★★</div><p class="testi-q">"Pedí una torta personalizada de Bluey para el cumpleaños de mi hija. El resultado fue hermoso y los niños no podían creer lo deliciosa que estaba. ¡Muchas gracias!"</p><div class="testi-name">Paz Espinoza</div><div class="testi-sub">Mamá clienta</div></div>
     </div>
-  </footer>
+  </div>
+</section>
 
+<section class="cta" id="contacto">
+  <h2 class="cta-title">¿Cuál es<br>la ocasión?</h2>
+  <p class="cta-sub">Bodas, cumpleaños, empresas o simplemente el antojo del día. Hacemos magia con harina y azúcar. Pedidos con 72 hrs de anticipación.</p>
+  <a href="https://wa.me/56900000000?text=Hola%2C+quiero+hacer+un+pedido+en+Sucr%C3%A9" target="_blank" rel="noopener" class="btn-wh">🎂 Hacer pedido por WhatsApp</a>
+</section>
+
+<footer>
+  <div class="container">
+    <p style="font-family:'Italiana',serif;font-size:1.6rem;color:rgba(255,255,255,.6);margin-bottom:.5rem">Sucré.</p>
+    <p>Av. Pedro de Valdivia 789, Providencia · pedidos@sucre.cl</p>
+    <p style="margin-top:1rem">Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      let cur=0;const step=target/60;
+      const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+      io.unobserve(el);
+    },{threshold:.5});io.observe(el);
+  });
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+  });
+</script>
 </body>
 </html>

@@ -1,157 +1,252 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="TechZone — Computadores, celulares, periféricos gaming y servicio técnico en Santiago. Página de muestra" />
-  <title>TechZone — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TechHub — Tienda de Tecnología</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #2563eb;
-      --primary-rgb: 37,99,235;
-      --bg: #fff;
-      --bg-alt: #eff6ff;
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--blue:#0066ff;--blue-dark:#0047cc;--blue-glow:rgba(0,102,255,.3);--dark:#060912;--surface:#0d1525;--surface2:#131e30;--text:#e8edf5;--dim:#8899aa;--border:rgba(255,255,255,.07)}
+    body{font-family:'Space Grotesk',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(6,9,18,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .nav-logo{font-size:1.3rem;font-weight:700;color:#fff;text-decoration:none;letter-spacing:.02em}
+    .nav-logo span{color:var(--blue)}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-link{text-decoration:none;color:var(--dim);font-size:.83rem;font-weight:500;transition:.3s}
+    .nav-link:hover{color:#fff}
+    .nav-cta{background:var(--blue)!important;color:#fff!important;padding:.45rem 1.4rem;border-radius:8px;font-weight:700}
+
+    /* HERO */
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:8rem 3rem 4rem}
+    .hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,102,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,102,255,.04) 1px,transparent 1px);background-size:60px 60px}
+    .hero-glow{position:absolute;top:-20%;left:30%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,102,255,.15) 0%,transparent 70%);pointer-events:none}
+    .hero-inner{position:relative;z-index:2;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,102,255,.1);border:1px solid rgba(0,102,255,.3);color:var(--blue);padding:.35rem 1rem;border-radius:100px;font-size:.72rem;font-weight:700;margin-bottom:1.5rem;letter-spacing:.05em}
+    .hero-badge::before{content:'';width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+    .hero-title{font-size:clamp(2.5rem,5vw,4rem);font-weight:700;line-height:1.1;margin-bottom:1rem;letter-spacing:-.02em}
+    .hero-title span{color:var(--blue)}
+    .hero-sub{color:var(--dim);line-height:1.7;margin-bottom:2.5rem;font-size:.95rem}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn-blue{display:inline-block;background:var(--blue);color:#fff;padding:.9rem 2.2rem;border-radius:10px;text-decoration:none;font-weight:700;font-size:.88rem;transition:.3s;box-shadow:0 4px 20px var(--blue-glow)}
+    .btn-blue:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 8px 32px var(--blue-glow)}
+    .btn-outline{display:inline-block;border:1px solid var(--border);color:var(--text);padding:.87rem 2rem;border-radius:10px;text-decoration:none;font-weight:600;font-size:.87rem;transition:.3s}
+    .btn-outline:hover{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.04)}
+    .hero-visual{position:relative}
+    .hero-device{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;overflow:hidden}
+    .hero-device::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,102,255,.08),transparent);pointer-events:none}
+    .hero-device img{width:100%;border-radius:12px;display:block}
+    .floating-chip{position:absolute;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:.8rem 1.2rem;display:flex;align-items:center;gap:.7rem;font-size:.78rem;font-weight:600;backdrop-filter:blur(8px)}
+    .floating-chip.a{bottom:-1rem;left:-2rem;animation:float1 4s ease-in-out infinite}
+    .floating-chip.b{top:-1rem;right:-2rem;animation:float2 5s ease-in-out infinite}
+    .chip-icon{font-size:1.2rem}
+    .chip-sub{font-size:.65rem;color:var(--dim);margin-top:.1rem}
+    @keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    @keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+    /* STATS */
+    .stats-bar{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2rem 3rem;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:2rem;max-width:100%}
+    .sb-num{font-size:2rem;font-weight:700;color:var(--blue)}
+    .sb-lab{font-size:.72rem;color:var(--dim);margin-top:.3rem;font-weight:500}
+
+    /* PRODUCTS */
+    .section{padding:6rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .sec-label{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);font-weight:700}
+    .sec-title{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;margin:.4rem 0 .8rem;letter-spacing:-.02em}
+    .sec-desc{color:var(--dim);line-height:1.7;max-width:500px;font-size:.9rem}
+
+    .cat-tabs{display:flex;gap:.5rem;margin:2rem 0;flex-wrap:wrap}
+    .cat-tab{background:none;border:1px solid var(--border);color:var(--dim);padding:.5rem 1.2rem;border-radius:8px;font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;transition:.3s}
+    .cat-tab.active,.cat-tab:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+
+    .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+    .prod-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:.4s;cursor:pointer;position:relative}
+    .prod-card:hover{border-color:rgba(0,102,255,.4);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.4),0 0 0 1px rgba(0,102,255,.15)}
+    .prod-img{height:180px;display:flex;align-items:center;justify-content:center;background:var(--surface2);position:relative;overflow:hidden}
+    .prod-img img{height:130px;object-fit:contain;transition:.4s;filter:drop-shadow(0 4px 16px rgba(0,102,255,.2))}
+    .prod-card:hover .prod-img img{transform:scale(1.05)}
+    .prod-badge{position:absolute;top:.7rem;left:.7rem;font-size:.6rem;font-weight:700;padding:.2rem .6rem;border-radius:6px;letter-spacing:.06em}
+    .prod-badge.new{background:var(--blue);color:#fff}
+    .prod-badge.hot{background:#ef4444;color:#fff}
+    .prod-badge.sale{background:#f59e0b;color:#000}
+    .prod-body{padding:1.2rem}
+    .prod-brand{font-size:.68rem;color:var(--dim);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem}
+    .prod-name{font-size:.88rem;font-weight:600;margin-bottom:.4rem;line-height:1.3}
+    .prod-spec{font-size:.72rem;color:var(--dim);margin-bottom:.8rem}
+    .prod-bottom{display:flex;justify-content:space-between;align-items:center}
+    .prod-price{font-size:1rem;font-weight:700;color:var(--blue)}
+    .prod-original{font-size:.75rem;color:var(--dim);text-decoration:line-through;display:block}
+    .prod-btn{background:var(--blue);color:#fff;border:none;padding:.45rem .9rem;border-radius:8px;font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:700;cursor:pointer;transition:.3s}
+    .prod-btn:hover{background:var(--blue-dark)}
+
+    /* FEATURES */
+    .features-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:5rem 2rem}
+    .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+    .feat-card{background:var(--dark);border:1px solid var(--border);border-radius:14px;padding:2rem;transition:.3s}
+    .feat-card:hover{border-color:rgba(0,102,255,.3)}
+    .feat-icon{font-size:2rem;margin-bottom:1rem}
+    .feat-title{font-size:1rem;font-weight:700;margin-bottom:.5rem}
+    .feat-desc{font-size:.83rem;color:var(--dim);line-height:1.6}
+
+    /* TESTIMONIALS */
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .testi{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:2rem}
+    .stars{color:var(--blue);margin-bottom:.8rem;letter-spacing:.06em}
+    .testi-q{font-size:.88rem;line-height:1.7;color:var(--dim);margin-bottom:1.2rem}
+    .testi-name{font-weight:700;font-size:.85rem}
+    .testi-sub{font-size:.72rem;color:var(--dim);margin-top:.2rem}
+
+    /* CTA */
+    .cta{background:var(--surface);border-top:1px solid var(--border);padding:7rem 2rem;text-align:center;position:relative;overflow:hidden}
+    .cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(0,102,255,.12),transparent 70%);pointer-events:none}
+    .cta-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:700;margin-bottom:1rem;letter-spacing:-.02em}
+    .cta-title span{color:var(--blue)}
+    .cta-sub{color:var(--dim);margin-bottom:2.5rem;line-height:1.7}
+    .btn-cta{display:inline-block;background:var(--blue);color:#fff;padding:1.1rem 3rem;border-radius:12px;text-decoration:none;font-weight:700;font-size:.95rem;transition:.3s;box-shadow:0 8px 32px var(--blue-glow)}
+    .btn-cta:hover{transform:translateY(-3px);box-shadow:0 14px 48px var(--blue-glow)}
+
+    footer{background:var(--dark);color:var(--dim);padding:3rem 2rem;text-align:center;font-size:.78rem;border-top:1px solid var(--border)}
+    footer a{color:var(--blue);text-decoration:none}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:900px){.hero-inner{grid-template-columns:1fr}.hero-visual{display:none}.prod-grid{grid-template-columns:repeat(2,1fr)}.features-grid{grid-template-columns:1fr}.testi-grid{grid-template-columns:1fr}.stats-bar{grid-template-columns:repeat(2,1fr)}.nav-links{display:none}.hero{padding:6rem 1.5rem 3rem}}
   </style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
-  </div>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(6,9,18,.97);border:1px solid rgba(0,102,255,.3);border-radius:8px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#0066ff;font-weight:700">Felipe Figueroa</a></div>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Tech<span>Zone.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Productos</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
-      </ul>
-    </div>
-  </nav>
+<nav id="nav">
+  <a href="#" class="nav-logo">Tech<span>Hub.</span></a>
+  <ul class="nav-links">
+    <li><a href="#productos" class="nav-link">Productos</a></li>
+    <li><a href="#garantias" class="nav-link">Garantías</a></li>
+    <li><a href="#opiniones" class="nav-link">Reviews</a></li>
+    <li><a href="#contacto" class="nav-link nav-cta">Comprar</a></li>
+  </ul>
+</nav>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #0c1445 0%, #1e3a8a 50%, #0a1035 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Tecnología & Gaming</p>
-      <h1 class="hero-title">Tecnología<br><em>para todos.</em></h1>
-      <p class="hero-sub">La tienda de tecnología más completa de Santiago. Computadores, celulares, accesorios gaming y servicio técnico certificado con garantía de 12 meses.</p>
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">EN VIVO <span>· Nueva colección 2025</span></div>
+      <h1 class="hero-title">Tecnología que<br><span>mueve tu mundo</span></h1>
+      <p class="hero-sub">Los mejores smartphones, laptops, audio y accesorios tech. Stock permanente, garantía oficial y asesoría de expertos para elegir el equipo perfecto.</p>
       <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Cotizar ahora</a>
-        <a href="#servicios" class="btn btn-outline">Ver productos</a>
+        <a href="#productos" class="btn-blue">Ver productos</a>
+        <a href="#contacto" class="btn-outline">Hablar con experto</a>
       </div>
     </div>
-  </section>
-
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros productos</span>
-        <h2 class="section-title">Todo en tecnología</h2>
-        <p class="section-desc">Las mejores marcas al mejor precio. Stock permanente y pedidos por encargo en 24-48 horas.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">💻</div>
-          <h3 class="card-title">Computadores y Laptops</h3>
-          <p class="card-desc">Laptops para trabajo, estudio y gaming. Marcas: Apple, Dell, HP, Lenovo, ASUS. Configuración personalizada incluida.</p>
-          <p class="card-price">Desde $299.990</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📱</div>
-          <h3 class="card-title">Celulares y Accesorios</h3>
-          <p class="card-desc">iPhone, Samsung, Xiaomi y más marcas. Accesorios originales y compatibles. Protectores, cargadores y audífonos.</p>
-          <p class="card-price">Desde $89.990</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🎮</div>
-          <h3 class="card-title">Periféricos Gaming</h3>
-          <p class="card-desc">Mouse, teclado mecánico, headsets, monitores gamer y sillas ergonómicas. Todo para armar tu setup perfecto.</p>
-          <p class="card-price">Desde $19.990</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🔧</div>
-          <h3 class="card-title">Servicio Técnico</h3>
-          <p class="card-desc">Reparación de laptops, celulares y PC. Cambio de pantalla, batería, limpieza interna y actualización de software.</p>
-          <p class="card-price">Diagnóstico gratis</p>
-        </div>
+    <div class="hero-visual">
+      <div class="hero-device">
+        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=800&q=80" alt="Tech products"/>
+        <div class="floating-chip a"><span class="chip-icon">🚚</span><div><div>Envío en 24hrs</div><div class="chip-sub">A todo Chile</div></div></div>
+        <div class="floating-chip b"><span class="chip-icon">🛡️</span><div><div>Garantía oficial</div><div class="chip-sub">12 meses</div></div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🖥️</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">5 años siendo la tienda tech de confianza en Santiago</h2>
-          <p class="about-text">Somos distribuidores autorizados de las principales marcas del mercado. Todos nuestros productos incluyen garantía de 12 meses y boleta electrónica para tu tranquilidad.</p>
-          <p class="about-text">Nuestro equipo técnico tiene más de 10 años de experiencia en reparación y cuenta con certificaciones de Apple, Samsung y otras marcas líderes del sector tecnológico.</p>
-        </div>
+<div class="stats-bar">
+  <div><div class="sb-num" data-count="5000" data-suffix="+">0</div><div class="sb-lab">Productos disponibles</div></div>
+  <div><div class="sb-num" data-count="8" data-suffix=" años">0</div><div class="sb-lab">En el mercado</div></div>
+  <div><div class="sb-num" data-count="15000" data-suffix="+">0</div><div class="sb-lab">Clientes satisfechos</div></div>
+  <div><div class="sb-num" data-count="24" data-suffix="/7">0</div><div class="sb-lab">Soporte técnico</div></div>
+</div>
+
+<section class="section" id="productos">
+  <div class="container">
+    <span class="sec-label">Catálogo</span>
+    <h2 class="sec-title">Elige tu próximo<br>equipo favorito</h2>
+    <p class="sec-desc">Marcas oficiales, stock garantizado, financiamiento hasta 24 cuotas sin interés.</p>
+    <div class="cat-tabs">
+      <button class="cat-tab active">Todos</button>
+      <button class="cat-tab">Smartphones</button>
+      <button class="cat-tab">Laptops</button>
+      <button class="cat-tab">Audio</button>
+      <button class="cat-tab">Accesorios</button>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card reveal">
+        <div class="prod-img"><img src="https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=400&q=80" alt="Smartphone"/><span class="prod-badge hot">🔥 TOP</span></div>
+        <div class="prod-body"><p class="prod-brand">Samsung</p><p class="prod-name">Galaxy S25 Ultra 256GB</p><p class="prod-spec">12GB RAM · 200MP · Titanio</p><div class="prod-bottom"><div><p class="prod-price">$1.199.000</p></div><button class="prod-btn">Agregar</button></div></div>
       </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+1000</div><div class="stat-label">Productos disponibles</div></div>
-        <div class="stat"><div class="stat-number">5</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.8★</div><div class="stat-label">Calificación promedio</div></div>
-        <div class="stat"><div class="stat-number">12 meses</div><div class="stat-label">Garantía</div></div>
+      <div class="prod-card reveal" style="transition-delay:.1s">
+        <div class="prod-img"><img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80" alt="MacBook"/><span class="prod-badge new">NUEVO</span></div>
+        <div class="prod-body"><p class="prod-brand">Apple</p><p class="prod-name">MacBook Air M4 15"</p><p class="prod-spec">16GB RAM · 512GB SSD</p><div class="prod-bottom"><div><p class="prod-price">$1.499.000</p></div><button class="prod-btn">Agregar</button></div></div>
+      </div>
+      <div class="prod-card reveal" style="transition-delay:.2s">
+        <div class="prod-img"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80" alt="Headphones"/><span class="prod-badge sale">-20%</span></div>
+        <div class="prod-body"><p class="prod-brand">Sony</p><p class="prod-name">WH-1000XM5</p><p class="prod-spec">ANC · 30 hrs batería · Bluetooth 5.2</p><div class="prod-bottom"><div><p class="prod-price">$279.000</p><p class="prod-original">$349.000</p></div><button class="prod-btn">Agregar</button></div></div>
+      </div>
+      <div class="prod-card reveal" style="transition-delay:.3s">
+        <div class="prod-img"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80" alt="Smartwatch"/><span class="prod-badge new">NUEVO</span></div>
+        <div class="prod-body"><p class="prod-brand">Apple</p><p class="prod-name">Apple Watch Ultra 2</p><p class="prod-spec">49mm · Titanio · GPS + Cellular</p><div class="prod-bottom"><div><p class="prod-price">$699.000</p></div><button class="prod-btn">Agregar</button></div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Compré mi laptop gaming aquí y la asesoría fue increíble. Me explicaron todo sin intentar venderme más de lo que necesitaba. El precio fue el mejor que encontré en Santiago."</p>
-          <div class="testi-author">Diego Castillo</div>
-          <div class="testi-role">Cliente · laptop gaming</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Llevé mi iPhone con la pantalla rota y en 2 horas me lo devolvieron como nuevo. La calidad de la reparación es excelente y el precio muy justo. Mi servicio técnico de cabecera."</p>
-          <div class="testi-author">Francisca Ríos</div>
-          <div class="testi-role">Clienta · servicio técnico</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Armé mi setup completo de gaming aquí: monitor, teclado mecánico, mouse y headset. Todo con garantía y a muy buen precio. El equipo conoce mucho del tema y te ayuda a elegir bien."</p>
-          <div class="testi-author">Tomás Urrutia</div>
-          <div class="testi-role">Cliente · setup gaming</div>
-        </div>
-      </div>
+<section class="features-section" id="garantias">
+  <div class="container">
+    <span class="sec-label">¿Por qué TechHub?</span>
+    <h2 class="sec-title">Compramos diferente</h2>
+    <p class="sec-desc">Somos distribuidores oficiales de todas las marcas que vendemos. Sin importaciones grises.</p>
+    <div class="features-grid">
+      <div class="feat-card reveal"><div class="feat-icon">🛡️</div><h3 class="feat-title">Garantía oficial de marca</h3><p class="feat-desc">12 meses de garantía directa con el fabricante. Sin intermediarios, sin letras chicas.</p></div>
+      <div class="feat-card reveal" style="transition-delay:.15s"><div class="feat-icon">🚀</div><h3 class="feat-title">Envío en 24 horas</h3><p class="feat-desc">Despacho a domicilio en Santiago en el día. Regiones en 24–48 horas hábiles.</p></div>
+      <div class="feat-card reveal" style="transition-delay:.3s"><div class="feat-icon">💳</div><h3 class="feat-title">Hasta 24 cuotas sin interés</h3><p class="feat-desc">Con todas las tarjetas de crédito del mercado. Financiamiento directo disponible.</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Buscas tecnología al mejor precio?</h2>
-      <p class="section-desc">Cotiza por WhatsApp y te respondemos de inmediato. También puedes visitarnos en tienda de lunes a sábado.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Cotizar por WhatsApp
-      </a>
+<section class="section" id="opiniones">
+  <div class="container">
+    <span class="sec-label">Reviews</span>
+    <h2 class="sec-title">Lo dicen nuestros clientes</h2>
+    <div class="testi-grid">
+      <div class="testi reveal"><div class="stars">★★★★★</div><p class="testi-q">"Compré el iPhone 16 Pro y llegó al día siguiente en perfecto estado. La asesoría fue excelente para elegir la capacidad correcta. ¡100% recomendado!"</p><div class="testi-name">Cristóbal Araya</div><div class="testi-sub">Cliente verificado</div></div>
+      <div class="testi reveal" style="transition-delay:.15s"><div class="stars">★★★★★</div><p class="testi-q">"Los audífonos Sony WH-1000XM5 son increíbles y el precio fue el más bajo que encontré en Chile. El servicio post-venta cuando tuve una duda fue impecable."</p><div class="testi-name">Andrea Sepúlveda</div><div class="testi-sub">Cliente verificada</div></div>
+      <div class="testi reveal" style="transition-delay:.3s"><div class="stars">★★★★★</div><p class="testi-q">"La MacBook me llegó en 24 horas con su garantía oficial Apple. El asesor me explicó todo sobre los modelos y me ayudó a elegir exactamente lo que necesitaba."</p><div class="testi-name">Martín Torres</div><div class="testi-sub">Comprador habitual</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>TechZone</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
+<section class="cta" id="contacto">
+  <h2 class="cta-title">¿Buscas algo<br><span>específico?</span></h2>
+  <p class="cta-sub">Nuestros expertos te asesoran gratuitamente para encontrar el equipo perfecto según tu presupuesto y necesidades.</p>
+  <a href="https://wa.me/56900000000?text=Hola%2C+quiero+asesoría+en+TechHub" target="_blank" rel="noopener" class="btn-cta">💬 Hablar con un experto</a>
+</section>
 
+<footer>
+  <div class="container">
+    <p style="font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:.5rem">Tech<span style="color:#0066ff">Hub.</span></p>
+    <p>Av. Apoquindo 3650, Las Condes · Santiago · Lunes a Sábado 10:00–20:00</p>
+    <p style="margin-top:1rem">Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      let cur=0;const step=target/60;
+      const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+      io.unobserve(el);
+    },{threshold:.5});io.observe(el);
+  });
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+  });
+</script>
 </body>
 </html>

@@ -1,169 +1,210 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="BarberShop Clásico — Cortes, barba y tradición barbera en Santiago. Página de muestra" />
-  <title>BarberShop Clásico — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #d4af37;
-      --primary-rgb: 212,175,55;
-      --bg: #0d0b08;
-      --bg-alt: #121009;
-      --surface: #1a1710;
-      --text: #f0ece6;
-      --text-dim: #9a9490;
-      --text-muted: #504c48;
-      --border: rgba(255,255,255,0.08);
-      --nav-bg: rgba(13,11,8,0.95);
-      --hero-overlay: rgba(0,0,0,0.55);
-    }
-    .section-alt { background: var(--bg-alt); }
-    .card { background: var(--surface); border-color: var(--border); }
-    .testi { background: var(--surface); border-color: var(--border); }
-    .stat { background: var(--surface); border-color: var(--border); }
-    .footer { background: #000; }
-  </style>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BarberShop Clásico — Página de Muestra</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#d4af37;--bg:#0a0804;--s1:#111009;--s2:#1a1710;--t:#f0ece6;--dim:#9a9490;--b:rgba(255,255,255,.08)}
+html{scroll-behavior:smooth}body{background:var(--bg);color:var(--t);font-family:'Inter',sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}ul{list-style:none}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}.reveal.in{opacity:1;transform:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;transition:background .3s}
+nav.scrolled{background:rgba(10,8,4,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--b)}
+.ni{max-width:1200px;margin:0 auto;height:100%;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Playfair Display',serif;font-size:1.25rem;letter-spacing:.1em;color:var(--t)}.logo span{color:var(--gold)}
+.nlinks{display:flex;align-items:center;gap:2.5rem}
+.nlink{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);transition:color .2s}.nlink:hover{color:var(--gold)}
+.ncta{padding:.45rem 1.3rem;border:1px solid var(--gold);color:var(--gold)!important;border-radius:3px;transition:background .2s}.ncta:hover{background:rgba(212,175,55,.1)}
+/* HERO */
+.hero{height:100svh;min-height:650px;position:relative;display:flex;align-items:flex-end;padding-bottom:5rem;overflow:hidden}
+.hbg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1920&q=80') center/cover}
+.hbg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,4,.97) 0%,rgba(10,8,4,.55) 45%,rgba(10,8,4,.15) 100%)}
+.hc{position:relative;z-index:1;max-width:1200px;width:100%;margin:0 auto;padding:0 2rem}
+.hline{width:44px;height:1px;background:var(--gold);margin-bottom:1.4rem}
+.hey{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
+.ht{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,8vw,7rem);font-weight:700;line-height:.92;letter-spacing:-.015em;margin-bottom:1.4rem}
+.hs{font-size:.97rem;color:var(--dim);max-width:400px;line-height:1.72;margin-bottom:2rem}
+.hbtns{display:flex;gap:.9rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.75rem;font-size:.8rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border-radius:3px;transition:all .2s;cursor:pointer;border:none;font-family:'Inter',sans-serif}
+.bg{background:var(--gold);color:#0a0804}.bg:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(212,175,55,.35)}
+.bo{background:transparent;color:var(--t);border:1px solid rgba(255,255,255,.22)}.bo:hover{border-color:var(--gold);color:var(--gold)}
+/* SERVICIOS */
+.ss{background:var(--s1);padding:6rem 0}
+.ct{max-width:1200px;margin:0 auto;padding:0 2rem}
+.ey{font-size:.67rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.55rem}
+.st{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;color:var(--t);line-height:1.1;margin-bottom:.7rem}
+.sd{font-size:.93rem;color:var(--dim);line-height:1.7;max-width:480px}
+.sh{margin-bottom:3rem}
+.slist{display:flex;flex-direction:column;gap:.65rem}
+.si{display:flex;align-items:center;justify-content:space-between;padding:1.4rem 1.75rem;background:var(--s2);border:1px solid var(--b);border-radius:6px;transition:border-color .3s}
+.si:hover{border-color:rgba(212,175,55,.4)}
+.sil{display:flex;align-items:center;gap:1.2rem}
+.sn{font-family:'Playfair Display',serif;font-size:1.5rem;color:rgba(212,175,55,.3);min-width:2.2rem}
+.sname{font-size:.97rem;font-weight:600;margin-bottom:.18rem}
+.sdesc{font-size:.8rem;color:var(--dim)}
+.sp{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--gold);font-weight:700;white-space:nowrap}
+/* WHY */
+.wy{padding:5.5rem 0;background:var(--bg)}
+.wgrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.wvis{background:var(--s2);border:1px solid var(--b);border-radius:8px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:4.5rem;gap:1rem;position:relative;overflow:hidden}
+.wvis::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 70%,rgba(212,175,55,.1) 0%,transparent 65%)}
+.wcap{font-size:.75rem;color:var(--dim);letter-spacing:.12em;text-transform:uppercase}
+.perks{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-top:1.5rem}
+.pk{display:flex;align-items:center;gap:.55rem;font-size:.84rem;color:var(--t)}.pk::before{content:'✦';color:var(--gold);font-size:.65rem}
+/* STATS */
+.stats{background:var(--s1);padding:3.5rem 0}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--b)}
+.stat{background:var(--s1);padding:2.2rem 1.5rem;text-align:center}
+.snum{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--gold);display:block;margin-bottom:.4rem;line-height:1}
+.slabel{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+/* TESTIMONIOS */
+.ts{padding:5.5rem 0;background:var(--bg)}
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.tc{background:var(--s2);border:1px solid var(--b);border-radius:8px;padding:1.75rem;transition:border-color .3s}.tc:hover{border-color:rgba(212,175,55,.3)}
+.tav{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold),rgba(212,175,55,.4));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#0a0804;margin-bottom:.9rem}
+.stars{color:var(--gold);font-size:.88rem;margin-bottom:.65rem;letter-spacing:.08em}
+.tt{font-size:.86rem;color:var(--dim);line-height:1.7;font-style:italic;margin-bottom:1.1rem}
+.tname{font-weight:700;font-size:.83rem}.trole{font-size:.76rem;color:var(--dim)}
+/* CTA */
+.ctas{padding:5rem 0;background:linear-gradient(135deg,var(--s2) 0%,var(--bg) 100%);border-top:1px solid var(--b)}
+.ctai{text-align:center;max-width:580px;margin:0 auto}
+.ctat{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:.9rem;line-height:1.2}
+.ctas2{font-size:.93rem;color:var(--dim);margin-bottom:2.2rem;line-height:1.7}
+.bwa{display:inline-flex;align-items:center;gap:.55rem;padding:.82rem 1.9rem;background:#25D366;color:#fff;font-weight:700;font-size:.88rem;border-radius:5px;transition:all .2s}
+.bwa:hover{background:#1ebe5d;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.32)}
+footer{background:#050402;padding:1.75rem;text-align:center;border-top:1px solid var(--b)}
+footer p{font-size:.78rem;color:var(--dim)}footer a{color:var(--gold)}
+@media(max-width:768px){
+  .nlinks{display:none}.hero{align-items:center;padding:0;text-align:center}
+  .hline{margin:0 auto 1.4rem}.hs{margin:0 auto 2rem}.hbtns{justify-content:center}
+  .wgrid{grid-template-columns:1fr}.wvis{display:none}
+  .sgrid{grid-template-columns:repeat(2,1fr)}.tg{grid-template-columns:1fr}.perks{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(8,6,12,.92);border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#d4af37;font-weight:700">Felipe Figueroa</a></div>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<nav id="nav">
+  <div class="ni">
+    <a href="#" class="logo">BARBER<span>.</span></a>
+    <ul class="nlinks">
+      <li><a href="#servicios" class="nlink">Servicios</a></li>
+      <li><a href="#nosotros" class="nlink">Nosotros</a></li>
+      <li><a href="#opiniones" class="nlink">Opiniones</a></li>
+      <li><a href="#contacto" class="nlink ncta">Reservar</a></li>
+    </ul>
   </div>
+</nav>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">BarberShop<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
-      </ul>
+<section class="hero">
+  <div class="hbg"></div>
+  <div class="hc">
+    <div class="hline"></div>
+    <p class="hey">Barbería premium · Santiago</p>
+    <h1 class="ht">El Arte<br>del Buen<br>Corte</h1>
+    <p class="hs">Precisión, estilo y tradición. Más de 5 años siendo la barbería de confianza del sector.</p>
+    <div class="hbtns">
+      <a href="#contacto" class="btn bg">Reservar ahora</a>
+      <a href="#servicios" class="btn bo">Ver servicios</a>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #1a1510 0%, #0d0b08 50%, #1a1208 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Barbería Premium</p>
-      <h1 class="hero-title">Precisión. Estilo.<br><em>Tradición.</em></h1>
-      <p class="hero-sub">El arte del corte masculino de la vieja escuela, con técnicas modernas. Tu look perfecto te espera en nuestras sillas de cuero.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Reservar hora</a>
-        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
-      </div>
+<section class="ss" id="servicios">
+  <div class="ct">
+    <div class="sh reveal">
+      <span class="ey">Lo que hacemos</span>
+      <h2 class="st">Nuestros Servicios</h2>
+      <p class="sd">Cada servicio con productos premium: American Crew, Layrite y Barba Española.</p>
     </div>
-  </section>
+    <div class="slist">
+      <div class="si reveal"><div class="sil"><span class="sn">01</span><div><div class="sname">Corte Clásico</div><div class="sdesc">A tijera o máquina con acabado perfecto</div></div></div><span class="sp">$8.000</span></div>
+      <div class="si reveal"><div class="sil"><span class="sn">02</span><div><div class="sname">Barba Completa</div><div class="sdesc">Perfilado, rasurado y arreglo profesional</div></div></div><span class="sp">$6.000</span></div>
+      <div class="si reveal"><div class="sil"><span class="sn">03</span><div><div class="sname">Corte + Barba</div><div class="sdesc">El combo perfecto, ahorra $2.000</div></div></div><span class="sp">$12.000</span></div>
+      <div class="si reveal"><div class="sil"><span class="sn">04</span><div><div class="sname">Afeitado con Navaja</div><div class="sdesc">Experiencia clásica con toallas calientes</div></div></div><span class="sp">$9.000</span></div>
+      <div class="si reveal"><div class="sil"><span class="sn">05</span><div><div class="sname">Corte Niños</div><div class="sdesc">Para los más pequeños, con paciencia</div></div></div><span class="sp">$6.000</span></div>
+      <div class="si reveal"><div class="sil"><span class="sn">06</span><div><div class="sname">Tratamiento Capilar</div><div class="sdesc">Hidratación y nutrición del cuero cabelludo</div></div></div><span class="sp">$15.000</span></div>
+    </div>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">Lo que ofrecemos</h2>
-        <p class="section-desc">Servicios de barbería clásica y moderna, con los mejores productos y técnicas para tu look perfecto.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">✂️</div>
-          <h3 class="card-title">Corte Clásico</h3>
-          <p class="card-desc">Corte a tijera o máquina con técnica tradicional. Incluye lavado, corte y secado estilizado.</p>
-          <p class="card-price">$8.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🪒</div>
-          <h3 class="card-title">Barba Completa</h3>
-          <p class="card-desc">Perfilado, afeitado con navaja y arreglo de barba completo. Toalla caliente incluida.</p>
-          <p class="card-price">$6.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">💈</div>
-          <h3 class="card-title">Corte + Barba</h3>
-          <p class="card-desc">El combo completo: corte de pelo y arreglo de barba a un precio especial. El favorito del local.</p>
-          <p class="card-price">$12.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">💆</div>
-          <h3 class="card-title">Tratamiento Capilar</h3>
-          <p class="card-desc">Hidratación profunda, queratina o tratamiento anti-caída para mantener tu cabello sano.</p>
-          <p class="card-price">$15.000</p>
+<section class="wy" id="nosotros">
+  <div class="ct">
+    <div class="wgrid">
+      <div class="wvis reveal">✂️<span class="wcap">Barberos certificados</span></div>
+      <div class="reveal">
+        <span class="ey">Quiénes somos</span>
+        <h2 class="st">Tradición y<br>Precisión</h2>
+        <p class="sd" style="max-width:100%;margin-bottom:1rem">Llevamos 5 años en Santiago combinando técnicas clásicas con tendencias actuales. Nuestros barberos están certificados y se capacitan constantemente.</p>
+        <p class="sd" style="max-width:100%">Usamos solo productos de primera línea porque creemos que tu cabello merece lo mejor. Sin apuros, sin comprometer calidad.</p>
+        <div class="perks">
+          <span class="pk">Sin cita previa</span><span class="pk">Café de cortesía</span>
+          <span class="pk">WiFi gratis</span><span class="pk">Pago con tarjeta</span>
+          <span class="pk">Productos premium</span><span class="pk">Estacionamiento</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">💈</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">Más de 5 años cortando con precisión</h2>
-          <p class="about-text">Somos una barbería de barrio con alma de clásico y visión moderna. Nuestros barberos se forman en técnicas tradicionales europeas y se actualizan constantemente en tendencias actuales.</p>
-          <p class="about-text">Cada cliente entra como visita y sale como amigo. La atención personalizada y la calidad de los productos que usamos marcan la diferencia en cada corte.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+500</div><div class="stat-label">Clientes satisfechos</div></div>
-        <div class="stat"><div class="stat-number">5</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación promedio</div></div>
-        <div class="stat"><div class="stat-number">3</div><div class="stat-label">Barberos expertos</div></div>
-      </div>
+<section class="stats">
+  <div class="ct">
+    <div class="sgrid">
+      <div class="stat"><span class="snum" data-count="500" data-suffix="+">0</span><span class="slabel">Clientes satisfechos</span></div>
+      <div class="stat"><span class="snum" data-count="5" data-suffix=" años">0</span><span class="slabel">De experiencia</span></div>
+      <div class="stat"><span class="snum" data-count="3">0</span><span class="slabel">Barberos expertos</span></div>
+      <div class="stat"><span class="snum" data-count="98" data-suffix="%">0</span><span class="slabel">Clientes que repiten</span></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El mejor corte que me han hecho en años. El Diego sabe exactamente lo que uno quiere con solo describirlo. Ambiente de primera, volvería todos los meses."</p>
-          <div class="testi-author">Rodrigo Muñoz</div>
-          <div class="testi-role">Cliente frecuente · 2 años</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Llegué sin saber qué corte quería y salí con el look perfecto. El servicio de barba con navaja es una experiencia que no tiene precio. Recomendadísimo."</p>
-          <div class="testi-author">Diego Fuentes</div>
-          <div class="testi-role">Nuevo cliente</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Llevo 3 años viniendo y nunca me han fallado. El combo corte + barba es imbatible en precio y calidad. Local limpio, música buena, atención impecable."</p>
-          <div class="testi-author">Matías Araya</div>
-          <div class="testi-role">Cliente frecuente · 3 años</div>
-        </div>
-      </div>
+<section class="ts" id="opiniones">
+  <div class="ct">
+    <div class="sh reveal">
+      <span class="ey">Opiniones</span>
+      <h2 class="st">Lo que dicen<br>nuestros clientes</h2>
     </div>
-  </section>
+    <div class="tg">
+      <div class="tc reveal"><div class="tav">RM</div><div class="stars">★★★★★</div><p class="tt">"La mejor barbería de Santiago. El ambiente, el trato y el resultado son de primer nivel. Mi corte favorito lo hace Don Jorge."</p><div class="tname">Rodrigo Muñoz</div><div class="trole">Cliente desde 2021</div></div>
+      <div class="tc reveal"><div class="tav">DF</div><div class="stars">★★★★★</div><p class="tt">"Vine por primera vez sin saber qué esperar y quedé fascinado. El afeitado con navaja es una experiencia que hay que vivir."</p><div class="tname">Diego Fuentes</div><div class="trole">Cliente frecuente</div></div>
+      <div class="tc reveal"><div class="tav">MA</div><div class="stars">★★★★★</div><p class="tt">"Traigo a mi hijo cada mes y siempre sale feliz. Los barberos son muy pacientes con los niños. El café de cortesía es un gran detalle."</p><div class="tname">Matías Araya</div><div class="trole">Padre de familia</div></div>
+    </div>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Listo para renovar tu look?</h2>
-      <p class="section-desc">Contáctanos por WhatsApp para reservar tu hora. Atendemos de lunes a sábado de 9:00 a 20:00 hrs.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Reservar por WhatsApp
+<section class="ctas" id="contacto">
+  <div class="ct">
+    <div class="ctai reveal">
+      <h2 class="ctat">¿Cuándo es tu<br>próximo corte?</h2>
+      <p class="ctas2">Reserva tu hora ahora. También atendemos sin cita, pero reservar garantiza tu turno en el horario que prefieras.</p>
+      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20reservar%20un%20turno" target="_blank" class="bwa">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Reservar por WhatsApp
       </a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>BarberShop Clásico</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
+<footer><p><strong>BarberShop Clásico</strong> · Santiago, Chile · Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p></footer>
 
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const io=new IntersectionObserver(([e])=>{
+    if(!e.isIntersecting)return;
+    const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+    let cur=0;const step=target/70;
+    const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+    io.unobserve(el);
+  },{threshold:.5});io.observe(el);
+});
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+});
+</script>
 </body>
 </html>
