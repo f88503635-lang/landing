@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hostal El Viajero — Alojamiento cómodo y accesible. Página de muestra." />
+  <title>Hostal El Viajero — Página de Muestra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="demo-base.css" />
+  <style>
+    :root {
+      --primary: #0d9488;
+      --primary-rgb: 13,148,136;
+      --bg: #ffffff;
+      --bg-alt: #f0fdfa;
+      --surface: #f0fdfa;
+      --text: #0f172a;
+      --text-dim: #64748b;
+      --text-muted: #94a3b8;
+      --border: #e2e8f0;
+      --nav-bg: rgba(255,255,255,0.94);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="demo-badge">
+    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">El Viajero<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#servicios" class="nav-link">Habitaciones</a></li>
+        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+        <li><a href="#contacto" class="nav-cta nav-link">Reservar</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="hero-bg" style="background: linear-gradient(135deg, #0a2830 0%, #0d5060 50%, #082028 100%)"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tag">Alojamiento · Santiago</p>
+      <h1 class="hero-title">Tu hogar <em>lejos de casa</em></h1>
+      <p class="hero-sub">Habitaciones cómodas, ambiente familiar y la mejor ubicación para explorar la ciudad. Desde $15.000 la noche.</p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn btn-primary">Reservar ahora</a>
+        <a href="#servicios" class="btn btn-outline">Ver habitaciones</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="servicios">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Nuestras habitaciones</span>
+        <h2 class="section-title">Elige tu espacio ideal</h2>
+        <p class="section-desc">Todas nuestras habitaciones incluyen WiFi, ropa de cama y acceso a cocina compartida.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">🛏️</div>
+          <h3 class="card-title">Cama en dormitorio compartido</h3>
+          <p class="card-desc">Dormitorio mixto o separado por género, con lockers individuales. Ideal para mochileros.</p>
+          <p class="card-price">Desde $15.000/noche</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🚪</div>
+          <h3 class="card-title">Habitación privada simple</h3>
+          <p class="card-desc">Tu propio espacio con cama doble, escritorio y ventana. Baño compartido en el pasillo.</p>
+          <p class="card-price">Desde $28.000/noche</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">👨‍👩‍👧</div>
+          <h3 class="card-title">Habitación familiar</h3>
+          <p class="card-desc">Perfecta para parejas o familias. Cama matrimonial más camarotes. Baño privado incluido.</p>
+          <p class="card-price">Desde $45.000/noche</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🍳</div>
+          <h3 class="card-title">Servicios incluidos</h3>
+          <p class="card-desc">Desayuno continental, cocina equipada, salón común, terraza con vista y WiFi de alta velocidad.</p>
+          <p class="card-price">Todo incluido</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="nosotros">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-img">🏡</div>
+        <div>
+          <span class="about-label">¿Por qué elegirnos?</span>
+          <h2 class="about-title">Un lugar donde siempre eres bienvenido</h2>
+          <p class="about-text">Llevamos 5 años recibiendo viajeros de todo el mundo en el corazón de Santiago. Nuestro equipo habla español e inglés y está disponible las 24 horas para ayudarte en lo que necesites.</p>
+          <p class="about-text">A pasos del metro y de los principales atractivos turísticos, somos el punto de partida perfecto para explorar Chile.</p>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-number">30</div><div class="stat-label">Camas disponibles</div></div>
+        <div class="stat"><div class="stat-number">5</div><div class="stat-label">Años de experiencia</div></div>
+        <div class="stat"><div class="stat-number">4.8★</div><div class="stat-label">Calificación promedio</div></div>
+        <div class="stat"><div class="stat-number">24/7</div><div class="stat-label">Recepción abierta</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="opiniones">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Opiniones</span>
+        <h2 class="section-title">Lo que dicen nuestros huéspedes</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Increíble relación calidad-precio. La habitación estaba limpia, el desayuno rico y el personal súper amable. Ya tengo ganas de volver."</p>
+          <div class="testi-author">Camila Herrera</div>
+          <div class="testi-role">Mochilera, Concepción</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"La ubicación es perfecta, a dos cuadras del metro. El hostal tiene muy buen ambiente para conocer gente. Lo recomiendo al 100%."</p>
+          <div class="testi-author">Andrés Pizarro</div>
+          <div class="testi-role">Viajero frecuente</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★☆</div>
+          <p class="testi-text">"Muy buen lugar para estadías cortas y largas. La cocina compartida está muy bien equipada. El personal siempre dispuesto a ayudar."</p>
+          <div class="testi-author">Javiera Muñoz</div>
+          <div class="testi-role">Estudiante en intercambio</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contacto">
+    <div class="container">
+      <h2 class="section-title">¿Cuándo nos visitas?</h2>
+      <p class="section-desc">Consulta disponibilidad y reserva tu cama o habitación hoy mismo. ¡Te esperamos con los brazos abiertos!</p>
+      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20reservar%20en%20el%20hostal" target="_blank" rel="noopener" class="btn btn-light">
+        💬 Reservar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p><strong>Hostal El Viajero</strong> · Santiago, Chile</p>
+        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

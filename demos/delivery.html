@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="RapidoDelivery — Más rápido de lo que imaginas. Página de muestra." />
+  <title>RapidoDelivery — Página de Muestra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="demo-base.css" />
+  <style>
+    :root {
+      --primary: #dc2626;
+      --primary-rgb: 220,38,38;
+      --bg: #ffffff;
+      --bg-alt: #fff5f5;
+      --surface: #fff5f5;
+      --text: #0f172a;
+      --text-dim: #64748b;
+      --text-muted: #94a3b8;
+      --border: #e2e8f0;
+      --nav-bg: rgba(255,255,255,0.94);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="demo-badge">
+    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Rapido<span>Delivery.</span></a>
+      <ul class="nav-links">
+        <li><a href="#servicios" class="nav-link">Servicios</a></li>
+        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+        <li><a href="#contacto" class="nav-cta nav-link">Pedir ahora</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="hero-bg" style="background: linear-gradient(135deg, #1a0505 0%, #2d0a0a 50%, #1a0303 100%)"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tag">Delivery Express · Santiago</p>
+      <h1 class="hero-title">Más rápido de lo<br>que <em>imaginas</em></h1>
+      <p class="hero-sub">Comida, productos y encomiendas en tu puerta en 30 minutos. Cobertura en toda la ciudad, los 7 días de la semana.</p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn btn-primary">Hacer un pedido</a>
+        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="servicios">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Nuestros servicios</span>
+        <h2 class="section-title">Todo lo que necesitas, cuando lo necesitas</h2>
+        <p class="section-desc">Servicio de delivery rápido, confiable y con seguimiento en tiempo real.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">🍕</div>
+          <h3 class="card-title">Delivery de comida</h3>
+          <p class="card-desc">Recogemos de tu restaurante favorito y te lo entregamos caliente. Todos los tipos de cocina, toda la ciudad.</p>
+          <p class="card-price">Desde $1.500 el envío</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📦</div>
+          <h3 class="card-title">Delivery de productos</h3>
+          <p class="card-desc">Farmacias, supermercados, tiendas de barrio. Compramos y te entregamos cualquier producto que necesites.</p>
+          <p class="card-price">Desde $2.000 el envío</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3 class="card-title">Encomiendas express</h3>
+          <p class="card-desc">Envía documentos, paquetes o encomiendas entre puntos de la ciudad de forma rápida y segura.</p>
+          <p class="card-price">Desde $2.500 el envío</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🗓️</div>
+          <h3 class="card-title">Envíos programados</h3>
+          <p class="card-desc">Programa tus entregas con anticipación. Ideal para negocios que necesitan logística recurrente y confiable.</p>
+          <p class="card-price">Planes mensuales disponibles</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="nosotros">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-img">🛵</div>
+        <div>
+          <span class="about-label">¿Por qué elegirnos?</span>
+          <h2 class="about-title">4 años siendo la solución de entrega de Santiago</h2>
+          <p class="about-text">Contamos con más de 50 repartidores activos en toda la ciudad. Nuestra plataforma de seguimiento en tiempo real te permite saber exactamente dónde está tu pedido en cada momento.</p>
+          <p class="about-text">Trabajamos con negocios locales, restaurantes y particulares. Si tienes un negocio, pregunta por nuestros planes de delivery mensual con tarifas especiales.</p>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-number">30 min</div><div class="stat-label">Tiempo de entrega promedio</div></div>
+        <div class="stat"><div class="stat-number">+200</div><div class="stat-label">Pedidos por día</div></div>
+        <div class="stat"><div class="stat-number">4.7★</div><div class="stat-label">Calificación clientes</div></div>
+        <div class="stat"><div class="stat-number">7 días</div><div class="stat-label">Disponibilidad semanal</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="opiniones">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">Opiniones</span>
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Pedí comida de un restaurante que no hacía delivery y RapidoDelivery me lo trajo en 25 minutos. La comida llegó caliente. Increíble servicio."</p>
+          <div class="testi-author">Nicolás Araya</div>
+          <div class="testi-role">Cliente frecuente, Providencia</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text">"Tengo una tienda online y uso su servicio de delivery diario. Puntualísimos, cuidadosos con los paquetes y muy profesionales. ¡Los recomiendo!"</p>
+          <div class="testi-author">Catalina Vega</div>
+          <div class="testi-role">Emprendedora, Las Condes</div>
+        </div>
+        <div class="testi">
+          <div class="stars">★★★★☆</div>
+          <p class="testi-text">"Necesitaba medicamentos a las 11 de la noche y los trajeron en 35 minutos. El repartidor fue muy amable. El seguimiento en tiempo real es un plus enorme."</p>
+          <div class="testi-author">Jorge Henríquez</div>
+          <div class="testi-role">Cliente, Ñuñoa</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contacto">
+    <div class="container">
+      <h2 class="section-title">¿Necesitas algo ahora?</h2>
+      <p class="section-desc">Haz tu pedido en segundos. Estamos disponibles todos los días de 9:00 a 23:00 hrs.</p>
+      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20hacer%20un%20pedido%20de%20delivery" target="_blank" rel="noopener" class="btn btn-light">
+        💬 Pedir por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p><strong>RapidoDelivery</strong> · Santiago, Chile</p>
+        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
