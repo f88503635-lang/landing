@@ -1,157 +1,393 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Centro Médico Bienestar — Medicina interna, pediatría, ginecología y traumatología en Santiago. Página de muestra" />
-  <title>Centro Médico Bienestar — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #1d4ed8;
-      --primary-rgb: 29,78,216;
-      --bg: #fff;
-      --bg-alt: #eff6ff;
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Centro Médico Integral — Salud Familiar</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Serif:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#1a56db;--dark-blue:#1239a0;--sky:#e8f0fe;--teal:#0e9f6e;--red:#e02424;--dark:#111827;--gray:#6b7280;--offwhite:#f9fafb;--white:#fff}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--white);color:var(--dark);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* TOP BAR */
+.topbar{background:var(--dark-blue);padding:.5rem 5%;display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:rgba(255,255,255,.75)}
+.topbar-left{display:flex;gap:2rem}
+.topbar-item{display:flex;align-items:center;gap:.4rem}
+.topbar-right .urgent{background:var(--red);color:#fff;padding:.25rem .7rem;border-radius:3px;font-weight:700;font-size:.72rem;letter-spacing:1px}
+
+/* NAV */
+nav{background:var(--white);border-bottom:2px solid var(--blue);padding:1rem 5%;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.nav-logo{display:flex;align-items:center;gap:.8rem}
+.nav-logo-cross{width:36px;height:36px;background:var(--blue);border-radius:6px;display:grid;place-items:center}
+.nav-logo-cross::before{content:'+';color:#fff;font-size:1.5rem;font-weight:700;line-height:1}
+.nav-logo-text{font-family:'IBM Plex Serif',serif;font-size:1.1rem;color:var(--dark);line-height:1.2}
+.nav-logo-text span{display:block;font-size:.65rem;color:var(--gray);font-family:'IBM Plex Sans',sans-serif;letter-spacing:1px}
+.nav-links{display:flex;gap:2rem;font-size:.87rem;font-weight:600;color:var(--gray)}
+.nav-links a:hover{color:var(--blue)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-phone{font-weight:700;color:var(--blue);font-size:.9rem}
+.nav-cta{background:var(--blue);color:#fff;padding:.55rem 1.3rem;border-radius:4px;font-weight:700;font-size:.82rem;transition:.2s}
+.nav-cta:hover{background:var(--dark-blue)}
+
+/* HERO */
+.hero{background:url('https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;min-height:75vh;display:flex;align-items:center;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,24,39,.95) 50%,rgba(17,24,39,.5))}
+.hero-content{position:relative;z-index:2;padding:0 5%;max-width:620px}
+.hero-pills{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.hero-pill{background:rgba(26,86,219,.25);border:1px solid rgba(26,86,219,.5);color:rgba(255,255,255,.85);font-size:.7rem;font-weight:700;padding:.3rem .7rem;border-radius:3px;letter-spacing:1px}
+.hero h1{font-family:'IBM Plex Serif',serif;font-size:clamp(2.2rem,4.5vw,3.5rem);line-height:1.15;color:#fff;margin-bottom:1rem}
+.hero-desc{color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:2rem;max-width:480px}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-blue{background:var(--blue);color:#fff;padding:.85rem 1.8rem;border-radius:4px;font-weight:700;font-size:.9rem;transition:.2s}
+.btn-blue:hover{background:var(--dark-blue);transform:translateY(-2px)}
+.btn-white{background:#fff;color:var(--blue);padding:.8rem 1.8rem;border-radius:4px;font-weight:700;font-size:.9rem;transition:.2s}
+.btn-white:hover{background:var(--sky)}
+.hero-side{position:absolute;right:5%;top:50%;transform:translateY(-50%);z-index:2;background:rgba(255,255,255,.96);border-radius:8px;padding:1.5rem;box-shadow:0 12px 40px rgba(0,0,0,.2);min-width:220px}
+.hs-title{font-weight:700;font-size:.85rem;color:var(--dark);margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid rgba(0,0,0,.07)}
+.hs-item{display:flex;align-items:center;gap.8rem;gap:.7rem;padding:.5rem 0;border-bottom:1px solid rgba(0,0,0,.05)}
+.hs-item:last-child{border:none}
+.hs-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.hs-dot.green{background:var(--teal)}
+.hs-dot.blue{background:var(--blue)}
+.hs-dot.red{background:var(--red)}
+.hs-spec{font-size:.8rem;font-weight:600;color:var(--dark);flex:1}
+.hs-avail{font-size:.7rem;color:var(--teal);font-weight:700}
+
+/* SERVICES CARDS */
+.services{padding:6rem 5%;background:var(--offwhite)}
+.section-label{font-size:.7rem;letter-spacing:3px;color:var(--blue);font-weight:700;margin-bottom:.5rem}
+.section-title{font-family:'IBM Plex Serif',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);margin-bottom:.5rem}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3rem}
+.serv-card{background:var(--white);padding:1.8rem;border-radius:6px;border:1px solid rgba(0,0,0,.07);border-top:3px solid var(--blue);transition:.3s}
+.serv-card:hover{box-shadow:0 8px 30px rgba(26,86,219,.1);transform:translateY(-3px)}
+.serv-icon{font-size:1.8rem;margin-bottom:1rem}
+.serv-card h3{font-weight:700;font-size:.95rem;color:var(--dark);margin-bottom:.4rem}
+.serv-card p{font-size:.78rem;color:var(--gray);line-height:1.6}
+.serv-link{display:inline-block;color:var(--blue);font-size:.75rem;font-weight:700;margin-top:.8rem}
+
+/* SPLIT INFO */
+.split{padding:6rem 5%;background:var(--white);display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.split-img img{width:100%;height:450px;object-fit:cover;border-radius:6px}
+.split-text .about-text{color:var(--gray);line-height:1.8;margin-bottom:1.5rem}
+.feature-list{display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem}
+.feat-item{display:flex;align-items:flex-start;gap:1rem;background:var(--offwhite);border-radius:6px;padding:1rem 1.2rem}
+.feat-icon{font-size:1.2rem;flex-shrink:0}
+.feat-text{font-size:.85rem;color:var(--dark);font-weight:600;line-height:1.4}
+.feat-sub{font-size:.75rem;color:var(--gray);font-weight:400;margin-top:.2rem}
+
+/* STATS */
+.stats{background:var(--blue);padding:5rem 5%;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-item{text-align:center;padding:2rem;border-right:1px solid rgba(255,255,255,.15)}
+.stat-item:last-child{border:none}
+.stat-num{font-family:'IBM Plex Serif',serif;font-size:3rem;color:#fff}
+.stat-label{font-size:.72rem;letter-spacing:2px;color:rgba(255,255,255,.6);margin-top:.5rem}
+
+/* TEAM */
+.team{padding:6rem 5%;background:var(--offwhite)}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+.team-card{background:var(--white);border-radius:6px;overflow:hidden;border:1px solid rgba(0,0,0,.06);transition:.3s}
+.team-card:hover{box-shadow:0 8px 25px rgba(26,86,219,.1)}
+.team-img{height:220px;overflow:hidden}
+.team-img img{width:100%;height:100%;object-fit:cover;object-position:top;transition:.3s}
+.team-card:hover .team-img img{transform:scale(1.04)}
+.team-info{padding:1.2rem}
+.team-name{font-weight:700;font-size:.95rem;color:var(--dark);margin-bottom:.2rem}
+.team-spec{font-size:.72rem;font-weight:700;color:var(--blue);letter-spacing:1px;margin-bottom:.3rem}
+.team-degree{font-size:.75rem;color:var(--gray)}
+.team-avail{display:inline-flex;align-items:center;gap:.4rem;font-size:.68rem;color:var(--teal);font-weight:700;margin-top:.5rem}
+.team-avail::before{content:'';width:6px;height:6px;background:var(--teal);border-radius:50%}
+
+/* CONVENIOS */
+.convenios{padding:4rem 5%;background:var(--white);border-top:1px solid rgba(0,0,0,.06)}
+.conv-row{display:flex;justify-content:center;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+.conv-item{padding:.6rem 1.2rem;border:1px solid rgba(0,0,0,.1);border-radius:4px;font-size:.8rem;font-weight:700;color:var(--gray);transition:.2s}
+.conv-item:hover{border-color:var(--blue);color:var(--blue)}
+
+/* TESTIMONIALS */
+.testimonials{padding:6rem 5%;background:var(--offwhite)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.testi-card{background:var(--white);border-radius:6px;padding:2rem;border:1px solid rgba(0,0,0,.06);border-left:4px solid var(--blue)}
+.testi-stars{color:#f59e0b;margin-bottom:.8rem;font-size:.9rem}
+.testi-text{font-size:.87rem;color:var(--gray);line-height:1.7;margin-bottom:1.2rem}
+.testi-name{font-weight:700;font-size:.88rem;color:var(--dark)}
+.testi-detail{font-size:.72rem;color:var(--gray)}
+
+/* CTA */
+.cta{background:var(--dark);padding:6rem 5%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.cta h2{font-family:'IBM Plex Serif',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);color:#fff;margin-bottom:1rem}
+.cta p{color:rgba(255,255,255,.55);line-height:1.8}
+.cta-actions{display:flex;flex-direction:column;gap:1rem}
+.cta-action{display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:1.2rem 1.5rem;transition:.2s}
+.cta-action:hover{border-color:rgba(26,86,219,.5);background:rgba(26,86,219,.1)}
+.cta-action-icon{font-size:1.5rem;flex-shrink:0}
+.cta-action-text{font-weight:700;color:#fff;font-size:.9rem}
+.cta-action-sub{font-size:.75rem;color:rgba(255,255,255,.45);margin-top:.2rem}
+
+/* FOOTER */
+footer{background:rgba(0,0,0,.8);padding:2.5rem 5%;border-top:1px solid rgba(255,255,255,.05);text-align:center;font-size:.8rem;color:rgba(255,255,255,.3)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .topbar{display:none}
+  .hero-side{display:none}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .split{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr}
+  .cta{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-item">📍 Av. Irarrázaval 3141, Ñuñoa</div>
+    <div class="topbar-item">⏰ Lun-Vie 8:00-20:00 · Sáb 9:00-14:00</div>
+    <div class="topbar-item">📞 +56 9 0000 0000</div>
   </div>
+  <div class="topbar-right">
+    <span class="urgent">🚨 URGENCIAS 24/7</span>
+  </div>
+</div>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Centro Bienestar<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Especialidades</a></li>
-        <li><a href="#nosotros" class="nav-link">El Centro</a></li>
-        <li><a href="#opiniones" class="nav-link">Pacientes</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Agendar</a></li>
-      </ul>
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-cross"></div>
+    <div class="nav-logo-text">Centro Médico Integral<span>SALUD FAMILIAR · Santiago</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#medicos">Médicos</a>
+    <a href="#convenios">Convenios</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-phone">📞 +56 9 0000 0000</div>
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20agendar%20una%20hora%20médica" class="nav-cta">Agendar Hora</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-pills">
+      <div class="hero-pill">FONASA A·B·C·D</div>
+      <div class="hero-pill">TODAS LAS ISAPRES</div>
+      <div class="hero-pill">URGENCIAS 24/7</div>
     </div>
-  </nav>
-
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #0a0e28 0%, #1e2d6e 50%, #0a0c20 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Centro Médico</p>
-      <h1 class="hero-title">Atención integral<br><em>para toda tu familia.</em></h1>
-      <p class="hero-sub">20 años cuidando la salud de miles de familias en Santiago. Más de 15 especialidades médicas, sistema de agenda online y convenio con todas las isapres.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Agendar hora</a>
-        <a href="#servicios" class="btn btn-outline">Ver especialidades</a>
-      </div>
+    <h1>Tu salud familiar<br/>en manos de expertos</h1>
+    <p class="hero-desc">Centro médico multidisciplinario con más de 15 especialidades. Atención inmediata, horas disponibles hoy y tecnología diagnóstica de punta.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/56900000000?text=Hola,%20quiero%20agendar%20hora%20médica" class="btn-blue">📅 Agendar hora</a>
+      <a href="tel:+56900000000" class="btn-white">📞 Llamar ahora</a>
     </div>
-  </section>
+  </div>
+  <div class="hero-side">
+    <div class="hs-title">🟢 Disponibilidad hoy</div>
+    <div class="hs-item"><div class="hs-dot green"></div><div class="hs-spec">Medicina General</div><div class="hs-avail">Horas disponibles</div></div>
+    <div class="hs-item"><div class="hs-dot green"></div><div class="hs-spec">Pediatría</div><div class="hs-avail">Horas disponibles</div></div>
+    <div class="hs-item"><div class="hs-dot blue"></div><div class="hs-spec">Ginecología</div><div class="hs-avail">Mañana</div></div>
+    <div class="hs-item"><div class="hs-dot blue"></div><div class="hs-spec">Cardiología</div><div class="hs-avail">Pasado mañana</div></div>
+    <div class="hs-item"><div class="hs-dot red"></div><div class="hs-spec">Urgencias</div><div class="hs-avail" style="color:var(--red)">24/7 sin cita</div></div>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Especialidades</span>
-        <h2 class="section-title">15+ especialidades bajo un mismo techo</h2>
-        <p class="section-desc">Toda la atención médica que tu familia necesita en un solo lugar. Sin derivaciones engorrosas, con coordinación entre especialistas.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🫀</div>
-          <h3 class="card-title">Medicina Interna</h3>
-          <p class="card-desc">Diagnóstico y tratamiento de enfermedades crónicas: hipertensión, diabetes, enfermedades autoinmunes y más. Control periódico incluido.</p>
-          <p class="card-price">Desde $30.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">👶</div>
-          <h3 class="card-title">Pediatría</h3>
-          <p class="card-desc">Atención especializada para niños desde recién nacidos hasta 15 años. Controles de sano, vacunación y urgencias pediátricas.</p>
-          <p class="card-price">Desde $28.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🌸</div>
-          <h3 class="card-title">Ginecología</h3>
-          <p class="card-desc">Control ginecológico anual, ecografía, colposcopía, planificación familiar y seguimiento de embarazo. Con ginecólogas especializadas.</p>
-          <p class="card-price">Desde $35.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🦴</div>
-          <h3 class="card-title">Traumatología</h3>
-          <p class="card-desc">Diagnóstico y tratamiento de lesiones musculoesqueléticas, fracturas, tendinitis y lesiones deportivas. Kinesiterapia integrada.</p>
-          <p class="card-price">Desde $35.000</p>
-        </div>
-      </div>
+<section class="services" id="servicios">
+  <div class="section-label">ESPECIALIDADES</div>
+  <h2 class="section-title reveal">Más de 15 especialidades médicas</h2>
+  <div class="services-grid">
+    <div class="serv-card reveal">
+      <div class="serv-icon">👨‍👩‍👧‍👦</div>
+      <h3>Medicina General</h3>
+      <p>Consultas, controles, certificados médicos y derivaciones. Tu médico de cabecera.</p>
+      <div class="serv-link">→ Ver horas</div>
     </div>
-  </section>
-
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🏥</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">20 años siendo el centro médico de confianza de las familias</h2>
-          <p class="about-text">Más de 15 especialidades en un mismo centro, con historia clínica unificada que permite a todos los especialistas ver tu historial completo y coordinar mejor tu atención.</p>
-          <p class="about-text">Convenio con todas las isapres y Fonasa. Agenda online disponible 24/7 para que reserves tu hora cuando más te acomode, sin llamar ni esperar.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+8000</div><div class="stat-label">Pacientes activos</div></div>
-        <div class="stat"><div class="stat-number">20</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.8★</div><div class="stat-label">Calificación Google</div></div>
-        <div class="stat"><div class="stat-number">15+</div><div class="stat-label">Especialidades</div></div>
-      </div>
+    <div class="serv-card reveal">
+      <div class="serv-icon">👶</div>
+      <h3>Pediatría</h3>
+      <p>Controles del niño sano, vacunas y atención de enfermedades en niños de 0 a 14 años.</p>
+      <div class="serv-link">→ Ver horas</div>
     </div>
-  </section>
-
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros pacientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Toda mi familia se atiende aquí hace 10 años. Lo que más valoro es que los médicos se conocen entre sí y coordinan muy bien cuando necesitamos ver varios especialistas. Un centro médico de verdad."</p>
-          <div class="testi-author">Sergio Fuentes</div>
-          <div class="testi-role">Paciente familiar · 10 años</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El control de mi embarazo lo llevé completamente aquí: ginecóloga, ecografías, nutricionista y preparación al parto. Todo en un solo lugar. La atención fue excelente en cada etapa."</p>
-          <div class="testi-author">Viviana Rojas</div>
-          <div class="testi-role">Paciente · control de embarazo</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"La agenda online es muy cómoda y los recordatorios por WhatsApp son un detalle que valoro mucho. El traumatólogo fue muy claro en el diagnóstico y el tratamiento fue muy efectivo."</p>
-          <div class="testi-author">Álvaro Soto</div>
-          <div class="testi-role">Paciente · traumatología</div>
-        </div>
-      </div>
+    <div class="serv-card reveal">
+      <div class="serv-icon">🦷</div>
+      <h3>Odontología</h3>
+      <p>Limpiezas, tratamientos, ortodoncia y blanqueamiento con tecnología digital.</p>
+      <div class="serv-link">→ Ver horas</div>
     </div>
-  </section>
-
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Necesitas atención médica?</h2>
-      <p class="section-desc">Agenda tu hora por WhatsApp o a través de nuestra plataforma online. Convenio con todas las isapres y Fonasa.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Agendar por WhatsApp
-      </a>
+    <div class="serv-card reveal">
+      <div class="serv-icon">🔬</div>
+      <h3>Laboratorio</h3>
+      <p>Más de 200 exámenes. Resultados online el mismo día.</p>
+      <div class="serv-link">→ Ver exámenes</div>
     </div>
-  </section>
+    <div class="serv-card reveal">
+      <div class="serv-icon">📷</div>
+      <h3>Imagenología</h3>
+      <p>Radiografías, ecografías y mamografías digitales con informe inmediato.</p>
+      <div class="serv-link">→ Ver disponibilidad</div>
+    </div>
+    <div class="serv-card reveal">
+      <div class="serv-icon">🫀</div>
+      <h3>Cardiología</h3>
+      <p>ECG, Holter, ecocardiograma y evaluación de riesgo cardiovascular.</p>
+      <div class="serv-link">→ Ver horas</div>
+    </div>
+    <div class="serv-card reveal">
+      <div class="serv-icon">🧘</div>
+      <h3>Kinesiología</h3>
+      <p>Rehabilitación, traumatología, respiratoria y neurológica.</p>
+      <div class="serv-link">→ Ver horas</div>
+    </div>
+    <div class="serv-card reveal">
+      <div class="serv-icon">🚨</div>
+      <h3>Urgencias 24/7</h3>
+      <p>Atención de urgencias médicas sin cita previa las 24 horas del día.</p>
+      <div class="serv-link">→ Ir ahora</div>
+    </div>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Centro Médico Bienestar</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
+<section class="split" id="nosotros">
+  <div class="split-img reveal">
+    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80" alt="Centro médico"/>
+  </div>
+  <div class="reveal">
+    <div class="section-label">NUESTRO CENTRO</div>
+    <h2 class="section-title">Medicina de calidad<br/>para tu familia</h2>
+    <p class="about-text">Somos un centro médico integral acreditado por el Ministerio de Salud, con más de 15 años prestando servicios de salud de excelencia a familias de Santiago. Nuestra misión es ofrecer atención cercana, oportuna y con los mejores estándares clínicos.</p>
+    <div class="feature-list">
+      <div class="feat-item">
+        <div class="feat-icon">🏥</div>
+        <div><div class="feat-text">Instalaciones modernas</div><div class="feat-sub">Equipamiento de última generación en todas las especialidades</div></div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">💻</div>
+        <div><div class="feat-text">Ficha médica digital</div><div class="feat-sub">Accede a tus resultados y recetas desde el celular</div></div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">💊</div>
+        <div><div class="feat-text">Farmacia en el centro</div><div class="feat-sub">Retira tus medicamentos sin salir del edificio</div></div>
       </div>
     </div>
-  </footer>
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20información%20sobre%20el%20centro%20médico" class="btn-blue">Conocer más</a>
+  </div>
+</section>
 
+<div class="stats">
+  <div class="stat-item reveal"><div class="stat-num" data-count="15" data-suffix="+">0</div><div class="stat-label">AÑOS DE EXPERIENCIA</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="45" data-suffix="+">0</div><div class="stat-label">PROFESIONALES</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="15" data-suffix="+">0</div><div class="stat-label">ESPECIALIDADES</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="35000" data-suffix="+">0</div><div class="stat-label">PACIENTES AL AÑO</div></div>
+</div>
+
+<section class="team" id="medicos">
+  <div class="section-label">NUESTROS MÉDICOS</div>
+  <h2 class="section-title reveal">Especialistas de excelencia</h2>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-img"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=400&q=80" alt="Dr."/></div>
+      <div class="team-info"><div class="team-name">Dr. Felipe Andrade</div><div class="team-spec">MEDICINA GENERAL</div><div class="team-degree">U. de Chile</div><div class="team-avail">Disponible hoy</div></div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-img"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80" alt="Dra."/></div>
+      <div class="team-info"><div class="team-name">Dra. Carmen Rojas</div><div class="team-spec">PEDIATRÍA</div><div class="team-degree">PUC · Subespecialista</div><div class="team-avail">Disponible hoy</div></div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-img"><img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&q=80" alt="Dr."/></div>
+      <div class="team-info"><div class="team-name">Dr. Mauricio Vega</div><div class="team-spec">CARDIOLOGÍA</div><div class="team-degree">U. de Concepción · Fellow USA</div><div class="team-avail">Disponible mañana</div></div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-img"><img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=400&q=80" alt="Dra."/></div>
+      <div class="team-info"><div class="team-name">Dra. Marcela Torres</div><div class="team-spec">GINECOLOGÍA</div><div class="team-degree">U. Austral · Magíster</div><div class="team-avail">Disponible mañana</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="convenios" id="convenios">
+  <div class="section-label" style="text-align:center">CONVENIOS</div>
+  <h2 class="section-title reveal" style="text-align:center">Aceptamos tu isapre o Fonasa</h2>
+  <div class="conv-row">
+    <div class="conv-item">FONASA A/B/C/D</div>
+    <div class="conv-item">BANMÉDICA</div>
+    <div class="conv-item">COLMENA</div>
+    <div class="conv-item">CONSALUD</div>
+    <div class="conv-item">CRUZ BLANCA</div>
+    <div class="conv-item">MASVIDA</div>
+    <div class="conv-item">VIDA TRES</div>
+    <div class="conv-item">ISAPRE ING</div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-label">OPINIONES</div>
+  <h2 class="section-title reveal">Lo que dicen nuestros pacientes</h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Excelente atención en todas las especialidades. El laboratorio entregó resultados en 4 horas y el Dr. Andrade fue muy claro en sus explicaciones."</p>
+      <div class="testi-name">Carlos Soto</div><div class="testi-detail">Medicina General y Laboratorio</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Atendemos a toda la familia aquí. Los pediatras son increíbles con los niños y siempre tienen horas disponibles. Lo recomiendo a todos mis amigos."</p>
+      <div class="testi-name">Patricia Muñoz</div><div class="testi-detail">Pediatría · 3 años como paciente</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Vine de urgencia a las 11 PM y me atendieron al tiro. Profesional, limpio y con buena infraestructura. Exactamente lo que necesitaba."</p>
+      <div class="testi-name">Rodrigo Fuentes</div><div class="testi-detail">Urgencias</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <div class="reveal">
+    <div class="section-label">CONTÁCTANOS</div>
+    <h2>¿Necesitas atención médica hoy?</h2>
+    <p>Tenemos horas disponibles para varias especialidades. Escríbenos o llámanos y te agendamos en minutos. Atendemos Fonasa e Isapres.</p>
+  </div>
+  <div class="cta-actions reveal">
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20agendar%20una%20hora%20médica" class="cta-action">
+      <div class="cta-action-icon">💬</div>
+      <div><div class="cta-action-text">WhatsApp</div><div class="cta-action-sub">Respuesta inmediata</div></div>
+    </a>
+    <a href="tel:+56900000000" class="cta-action">
+      <div class="cta-action-icon">📞</div>
+      <div><div class="cta-action-text">+56 9 0000 0000</div><div class="cta-action-sub">Lun-Vie 8:00-20:00</div></div>
+    </a>
+    <div class="cta-action" style="cursor:default">
+      <div class="cta-action-icon">📍</div>
+      <div><div class="cta-action-text">Av. Irarrázaval 3141</div><div class="cta-action-sub">Ñuñoa, Santiago · Metro Irarrázaval</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Centro Médico Integral · Acreditado MINSAL · Santiago, Chile</p>
+</footer>
+
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(17,24,39,.93);border:1px solid rgba(26,86,219,.35);border-radius:4px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.75)">🎯 Página de Muestra · <a href="../" style="color:#1a56db;font-weight:700">Felipe Figueroa</a></div>
+
+<script>
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const io=new IntersectionObserver(([e])=>{
+    if(!e.isIntersecting)return;
+    const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+    let cur=0;const step=target/60;
+    const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.round(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+    io.unobserve(el);
+  },{threshold:.5});io.observe(el);
+});
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+});
+</script>
 </body>
 </html>

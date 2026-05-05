@@ -1,157 +1,227 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Estudio Jurídico Pérez & Asociados — Derecho civil, laboral, familia y penal en Santiago. Página de muestra" />
-  <title>Pérez & Asociados — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lagos & Asociados — Estudio Jurídico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #1d4ed8;
-      --primary-rgb: 29,78,216;
-      --bg: #fff;
-      --bg-alt: #eff6ff;
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--navy:#0c1f35;--navy-mid:#15304f;--gold:#c9a84c;--cream:#f8f6f1;--warm:#f0ece3;--text:#0c1f35;--dim:#6a7a8d}
+    body{font-family:'Manrope',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.4rem 3rem;display:flex;align-items:center;justify-content:space-between;transition:.4s}
+    nav.scrolled{background:rgba(248,246,241,.97);backdrop-filter:blur(16px);box-shadow:0 1px 20px rgba(12,31,53,.08)}
+    .nav-logo{font-family:'EB Garamond',serif;font-size:1.3rem;color:#fff;text-decoration:none;letter-spacing:.06em}
+    nav.scrolled .nav-logo{color:var(--navy)}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-link{text-decoration:none;color:rgba(255,255,255,.75);font-size:.8rem;font-weight:500;letter-spacing:.06em;transition:.3s}
+    nav.scrolled .nav-link{color:var(--dim)}
+    .nav-link:hover{color:var(--gold)}
+    .nav-cta{border:1px solid rgba(255,255,255,.35)!important;color:#fff!important;padding:.45rem 1.4rem}
+    nav.scrolled .nav-cta{border-color:var(--gold)!important;color:var(--gold)!important}
+
+    .hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(12,31,53,.97) 0%,rgba(12,31,53,.85) 55%,rgba(12,31,53,.5) 100%)}
+    .hero-content{position:relative;z-index:2;padding:8rem 3rem 4rem;max-width:680px;margin-left:max(2rem,7vw)}
+    .hero-tag{font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:block}
+    .hero-title{font-family:'EB Garamond',serif;font-size:clamp(2.8rem,5.5vw,5rem);color:#fff;line-height:1.1;margin-bottom:1.2rem;font-weight:600}
+    .hero-title em{font-style:italic;color:var(--gold)}
+    .hero-sub{color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:2.5rem;font-weight:300;max-width:480px}
+    .btn-gold{display:inline-block;background:var(--gold);color:#fff;padding:.9rem 2.4rem;text-decoration:none;font-weight:600;font-size:.85rem;transition:.3s;margin-right:.8rem}
+    .btn-gold:hover{opacity:.9;transform:translateY(-2px)}
+    .btn-ghost{display:inline-block;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);padding:.88rem 2rem;text-decoration:none;font-weight:500;font-size:.83rem;transition:.3s}
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+    .areas-bar{background:var(--navy);padding:1.5rem 3rem;display:flex;justify-content:center;gap:3rem;flex-wrap:wrap}
+    .area-item{color:rgba(255,255,255,.6);font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+    .area-item strong{display:block;color:var(--gold);font-size:.7rem;margin-bottom:.2rem;font-weight:600}
+
+    section{padding:7rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .sec-eyebrow{font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);font-weight:600}
+    .sec-title{font-family:'EB Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);margin:.5rem 0 1rem;line-height:1.2;font-weight:600}
+    .sec-desc{color:var(--dim);line-height:1.8;max-width:500px;font-weight:300}
+
+    .areas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:3rem;background:rgba(0,0,0,.06)}
+    .area-card{background:var(--cream);padding:3rem 2.5rem;transition:.4s;cursor:pointer}
+    .area-card:hover{background:var(--navy);color:#fff}
+    .area-card:hover .area-desc{color:rgba(255,255,255,.6)}
+    .area-card:hover .area-price{color:var(--gold)}
+    .area-icon{font-size:2.5rem;margin-bottom:1.5rem}
+    .area-card h3{font-family:'EB Garamond',serif;font-size:1.3rem;font-weight:600;margin-bottom:.7rem;transition:.3s}
+    .area-desc{font-size:.83rem;color:var(--dim);line-height:1.7;transition:.3s;margin-bottom:.8rem}
+    .area-price{font-size:.78rem;color:var(--gold);font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:.3s}
+
+    .team-section{background:var(--navy);padding:7rem 2rem;color:#fff}
+    .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+    .team-card{border:1px solid rgba(255,255,255,.06);padding:2.5rem}
+    .team-img{width:100%;aspect-ratio:3/4;object-fit:cover;margin-bottom:1.5rem;filter:grayscale(20%)}
+    .team-name{font-family:'EB Garamond',serif;font-size:1.3rem;font-weight:600;margin-bottom:.3rem}
+    .team-role{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
+    .team-bio{font-size:.83rem;color:rgba(255,255,255,.55);line-height:1.7}
+
+    .stats-band{background:var(--gold);padding:4rem 2rem;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:2rem}
+    .st-n{font-family:'EB Garamond',serif;font-size:3.5rem;font-weight:600;color:#fff;line-height:1}
+    .st-l{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:.4rem}
+
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+    .testi{padding:2.5rem;border:1px solid rgba(0,0,0,.07);position:relative}
+    .testi::before{content:'"';font-family:'EB Garamond',serif;font-size:6rem;color:var(--gold);opacity:.12;position:absolute;top:.5rem;left:1.5rem;line-height:1}
+    .testi-q{font-family:'EB Garamond',serif;font-style:italic;font-size:1.05rem;line-height:1.7;margin-bottom:1.5rem}
+    .testi-name{font-weight:600;font-size:.88rem;color:var(--navy)}
+    .testi-sub{font-size:.75rem;color:var(--dim);margin-top:.2rem}
+
+    .cta{background:var(--navy);padding:8rem 2rem;text-align:center;position:relative;overflow:hidden}
+    .cta::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1920&q=80') center/cover;opacity:.07}
+    .cta-inner{position:relative;z-index:1}
+    .cta-title{font-family:'EB Garamond',serif;font-size:clamp(2.5rem,5vw,4.5rem);color:#fff;margin-bottom:1rem;font-weight:600;line-height:1.1}
+    .cta-title em{font-style:italic;color:var(--gold)}
+    .cta-sub{color:rgba(255,255,255,.6);margin-bottom:2.5rem;line-height:1.8;max-width:450px;margin-left:auto;margin-right:auto;font-weight:300}
+    .btn-lg{display:inline-block;background:var(--gold);color:#fff;padding:1rem 2.8rem;text-decoration:none;font-weight:600;font-size:.88rem;letter-spacing:.06em;transition:.3s}
+    .btn-lg:hover{opacity:.9;transform:translateY(-3px)}
+
+    footer{background:#060f1d;color:rgba(255,255,255,.35);padding:3rem 2rem;text-align:center;font-size:.8rem}
+    footer a{color:var(--gold);text-decoration:none}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:900px){.areas-grid{grid-template-columns:1fr}.team-grid{grid-template-columns:1fr}.stats-band{grid-template-columns:repeat(2,1fr)}.testi-grid{grid-template-columns:1fr}.areas-bar{gap:1.5rem}.nav-links{display:none}.hero-content{padding:7rem 1.5rem 3rem;margin-left:0}}
   </style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(12,31,53,.97);border:1px solid rgba(201,168,76,.3);padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#c9a84c;font-weight:700">Felipe Figueroa</a></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Lagos & Asociados.</a>
+  <ul class="nav-links">
+    <li><a href="#areas" class="nav-link">Áreas de práctica</a></li>
+    <li><a href="#equipo" class="nav-link">El equipo</a></li>
+    <li><a href="#opiniones" class="nav-link">Testimonios</a></li>
+    <li><a href="#contacto" class="nav-link nav-cta">Consulta</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Estudio Jurídico · Santiago de Chile · Desde 1998</span>
+    <h1 class="hero-title">Defendemos<br>sus <em>derechos</em><br>con excelencia</h1>
+    <p class="hero-sub">Más de 25 años de trayectoria en derecho civil, laboral, empresarial e inmobiliario. Soluciones legales claras y resultados probados.</p>
+    <div>
+      <a href="#contacto" class="btn-gold">Consulta confidencial</a>
+      <a href="#areas" class="btn-ghost">Áreas de práctica</a>
+    </div>
   </div>
+</section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Pérez & Asociados<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Áreas</a></li>
-        <li><a href="#nosotros" class="nav-link">El Estudio</a></li>
-        <li><a href="#opiniones" class="nav-link">Clientes</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Consultar</a></li>
-      </ul>
+<div class="areas-bar">
+  <div class="area-item"><strong>Derecho Civil</strong>Contratos & Familia</div>
+  <div class="area-item"><strong>Derecho Laboral</strong>Trabajadores & Empresas</div>
+  <div class="area-item"><strong>Derecho Inmobiliario</strong>Propiedades & Arriendo</div>
+  <div class="area-item"><strong>Derecho Empresarial</strong>Sociedades & Contratos</div>
+</div>
+
+<section id="areas">
+  <div class="container">
+    <span class="sec-eyebrow">Áreas de práctica</span>
+    <h2 class="sec-title">Soluciones legales<br>para cada necesidad</h2>
+    <p class="sec-desc">Asesoría integral en las principales ramas del derecho chileno, con experiencia en litigación y negociación.</p>
+    <div class="areas-grid reveal">
+      <div class="area-card"><div class="area-icon">👨‍👩‍👧</div><h3>Derecho de Familia</h3><p class="area-desc">Divorcios, alimentos, tuiciones, herencias y particiones. Mediación familiar y acuerdos extrajudiciales.</p><p class="area-price">Consulta desde $50.000</p></div>
+      <div class="area-card"><div class="area-icon">🏢</div><h3>Derecho Laboral</h3><p class="area-desc">Despidos, derechos del trabajador, negociación colectiva y asesoría para empresas en materia de RR.HH.</p><p class="area-price">Consulta desde $60.000</p></div>
+      <div class="area-card"><div class="area-icon">🏠</div><h3>Derecho Inmobiliario</h3><p class="area-desc">Compraventa de propiedades, contratos de arriendo, gestión de condominios y regularización de títulos.</p><p class="area-price">Consulta desde $50.000</p></div>
+      <div class="area-card"><div class="area-icon">📊</div><h3>Derecho Empresarial</h3><p class="area-desc">Constitución de sociedades, contratos mercantiles, fusiones y protección de propiedad intelectual.</p><p class="area-price">Consulta desde $80.000</p></div>
+      <div class="area-card"><div class="area-icon">⚖️</div><h3>Litigación Civil</h3><p class="area-desc">Representación en juicios civiles, cobranzas y ejecuciones. Defensa en todas las instancias del Poder Judicial.</p><p class="area-price">Honorarios según caso</p></div>
+      <div class="area-card"><div class="area-icon">🛡️</div><h3>Derecho Penal</h3><p class="area-desc">Defensa en procesos penales, delitos económicos y asesoría en denuncias ante el Ministerio Público.</p><p class="area-price">Consulta desde $80.000</p></div>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #0a0e28 0%, #1e2d6e 50%, #0a0c20 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Estudio Jurídico</p>
-      <h1 class="hero-title">Tu defensa,<br><em>nuestra misión.</em></h1>
-      <p class="hero-sub">20 años de experiencia en derecho civil, laboral, familia y penal. Asesoría jurídica profesional con primera consulta gratuita y atención personalizada.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Consulta gratis</a>
-        <a href="#servicios" class="btn btn-outline">Ver áreas</a>
-      </div>
+<section class="team-section" id="equipo">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="sec-eyebrow" style="color:var(--gold)">El equipo</span>
+      <h2 class="sec-title" style="color:#fff">Abogados con<br>trayectoria comprobada</h2>
     </div>
-  </section>
-
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Áreas de práctica</span>
-        <h2 class="section-title">Soluciones jurídicas integrales</h2>
-        <p class="section-desc">Abogados especializados en las principales áreas del derecho chileno. Representación en tribunales y asesoría preventiva.</p>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <img class="team-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt=""/>
+        <p class="team-name">Rodrigo Lagos Morales</p>
+        <p class="team-role">Socio Fundador · Derecho Civil</p>
+        <p class="team-bio">Ex-juez del Tribunal Civil de Santiago. 28 años de experiencia en litigación civil y derecho de familia. Magíster en Derecho Procesal, UC.</p>
       </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">⚖️</div>
-          <h3 class="card-title">Derecho Civil</h3>
-          <p class="card-desc">Contratos, arrendamientos, cobros de deuda, responsabilidad civil, sucesiones y bienes raíces. Soluciones jurídicas para personas y empresas.</p>
-          <p class="card-price">Consulta gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">👷</div>
-          <h3 class="card-title">Derecho Laboral</h3>
-          <p class="card-desc">Despidos injustificados, negociación colectiva, accidentes del trabajo, tutela laboral y defensa de trabajadores ante la Inspección del Trabajo.</p>
-          <p class="card-price">Consulta gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">👨‍👩‍👧</div>
-          <h3 class="card-title">Derecho de Familia</h3>
-          <p class="card-desc">Divorcios, tuición, alimentos, régimen de visitas, bienes familiares y adopciones. Mediación familiar especializada.</p>
-          <p class="card-price">Consulta gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🔐</div>
-          <h3 class="card-title">Derecho Penal</h3>
-          <p class="card-desc">Defensa penal en todas las etapas del proceso. Delitos contra la propiedad, delitos económicos y defensa en audiencias preparatorias y de juicio oral.</p>
-          <p class="card-price">Consulta gratis</p>
-        </div>
+      <div class="team-card reveal" style="transition-delay:.15s">
+        <img class="team-img" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=500&q=80" alt=""/>
+        <p class="team-name">Carmen Vargas Díaz</p>
+        <p class="team-role">Socia · Derecho Laboral</p>
+        <p class="team-bio">Especialista en relaciones laborales colectivas e individuales. 15 años asesorando empresas y sindicatos en negociaciones y conflictos.</p>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.3s">
+        <img class="team-img" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=500&q=80" alt=""/>
+        <p class="team-name">Andrés Méndez Pinto</p>
+        <p class="team-role">Socio · Derecho Empresarial</p>
+        <p class="team-bio">LLM Harvard Law School. Asesor en operaciones M&A y fusiones corporativas. 12 años estructurando negocios complejos.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">⚖️</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">20 años defendiendo los derechos de nuestros clientes</h2>
-          <p class="about-text">Somos un equipo de 5 abogados titulados con especializaciones en las principales universidades del país. Cada caso es tratado con la máxima dedicación y confidencialidad.</p>
-          <p class="about-text">Ofrecemos primera consulta gratuita para evaluar tu caso sin compromiso. Trabajamos con honorarios transparentes acordados desde el inicio, sin sorpresas.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+500</div><div class="stat-label">Casos ganados</div></div>
-        <div class="stat"><div class="stat-number">20</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación promedio</div></div>
-        <div class="stat"><div class="stat-number">Gratis</div><div class="stat-label">Primera consulta</div></div>
-      </div>
+<div class="stats-band">
+  <div><div class="st-n" data-count="25" data-suffix=" años">0</div><div class="st-l">Trayectoria</div></div>
+  <div><div class="st-n" data-count="1500" data-suffix="+">0</div><div class="st-l">Casos resueltos</div></div>
+  <div><div class="st-n" data-count="95" data-suffix="%">0</div><div class="st-l">Éxito litigios</div></div>
+  <div><div class="st-n" data-count="8">0</div><div class="st-l">Abogados</div></div>
+</div>
+
+<section id="opiniones">
+  <div class="container">
+    <span class="sec-eyebrow">Testimonios</span>
+    <h2 class="sec-title">Lo que dicen<br>nuestros clientes</h2>
+    <div class="testi-grid">
+      <div class="testi reveal"><p class="testi-q">"El Dr. Lagos resolvió mi caso de herencia en tiempo récord. Su conocimiento y calma en momentos difíciles fueron invaluables. El resultado superó nuestras expectativas."</p><div class="testi-name">Familia Espinoza</div><div class="testi-sub">Derecho de familia · Sucesión</div></div>
+      <div class="testi reveal" style="transition-delay:.15s"><p class="testi-q">"La Dra. Vargas negoció nuestro contrato colectivo de manera extraordinaria. Su conocimiento de la legislación laboral y su estrategia en la mesa fueron determinantes."</p><div class="testi-name">Sindicato Minera del Norte</div><div class="testi-sub">Negociación colectiva</div></div>
+      <div class="testi reveal" style="transition-delay:.3s"><p class="testi-q">"Andrés estructuró nuestra fusión con precisión y velocidad. Manejó aspectos muy complejos con una claridad asombrosa. Es el abogado de confianza de nuestra empresa."</p><div class="testi-name">Juan Pablo Romo</div><div class="testi-sub">CEO, empresa tecnológica</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Fui despedida injustificadamente después de 8 años en la empresa. El abogado Pérez llevó mi caso con mucha profesionalidad y ganamos la demanda. Recuperé todo lo que me correspondía."</p>
-          <div class="testi-author">Paula Aravena</div>
-          <div class="testi-role">Clienta · derecho laboral</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Proceso de divorcio muy difícil que se resolvió de forma rápida y sin pelea innecesaria. La mediación fue excelente y los términos del acuerdo fueron justos para ambas partes. Muy agradecido."</p>
-          <div class="testi-author">Cristián Varela</div>
-          <div class="testi-role">Cliente · derecho de familia</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Tenía un problema de arrendamiento muy complejo y lo resolvieron en 3 meses. Siempre mantuvieron comunicación, explicaron cada paso del proceso y el resultado fue el mejor posible."</p>
-          <div class="testi-author">Sylvia Morales</div>
-          <div class="testi-role">Clienta · derecho civil</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="cta" id="contacto">
+  <div class="cta-inner">
+    <h2 class="cta-title">Su caso merece<br><em>la mejor defensa</em></h2>
+    <p class="cta-sub">Primera consulta confidencial. Le explicamos sus opciones legales con claridad y sin tecnicismos.</p>
+    <a href="https://wa.me/56900000000?text=Hola%2C+quiero+una+consulta+jur%C3%ADdica+con+Lagos+%26+Asociados" target="_blank" rel="noopener" class="btn-lg">Solicitar consulta confidencial</a>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Necesitas asesoría legal?</h2>
-      <p class="section-desc">Contáctanos por WhatsApp para agendar tu primera consulta gratuita. Confidencialidad garantizada.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Consulta gratis por WhatsApp
-      </a>
-    </div>
-  </section>
+<footer>
+  <div class="container">
+    <p style="font-family:'EB Garamond',serif;font-size:1.2rem;color:rgba(255,255,255,.4);margin-bottom:.5rem;letter-spacing:.06em">Lagos & Asociados.</p>
+    <p>Av. Andrés Bello 2425, Piso 12, Providencia · contacto@lagosasociados.cl</p>
+    <p style="margin-top:1rem">Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p>
+  </div>
+</footer>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Estudio Jurídico Pérez & Asociados</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
-
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      let cur=0;const step=target/60;
+      const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+      io.unobserve(el);
+    },{threshold:.5});io.observe(el);
+  });
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+  });
+</script>
 </body>
 </html>

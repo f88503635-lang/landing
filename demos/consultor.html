@@ -1,157 +1,410 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Consultoría Estratégica — Consultoría de negocios, planificación estratégica y coaching ejecutivo en Santiago. Página de muestra" />
-  <title>Consultoría Estratégica — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #7c3aed;
-      --primary-rgb: 124,58,237;
-      --bg: #fff;
-      --bg-alt: #f5f3ff;
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Strategos — Consultoría Empresarial</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--dark:#09090f;--surface:#111118;--mid:#1a1a26;--purple:#6c3aff;--violet:#8b5cf6;--teal:#0de8c8;--gray:#e8e8f0}
+body{font-family:'Inter',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 5%;display:flex;align-items:center;justify-content:space-between;transition:.3s}
+nav.scrolled{background:rgba(9,9,15,.98);border-bottom:1px solid rgba(108,58,255,.2);backdrop-filter:blur(12px)}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;letter-spacing:1px}
+.nav-logo span{color:var(--purple)}
+.nav-links{display:flex;gap:2rem;font-size:.88rem;font-weight:500;color:rgba(255,255,255,.6)}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--purple);color:#fff;padding:.6rem 1.4rem;border-radius:6px;font-weight:600;font-size:.85rem;transition:.2s}
+.nav-cta:hover{background:var(--violet);transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0 5%}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;opacity:.15}
+.hero-glow{position:absolute;top:-20%;right:-5%;width:700px;height:700px;background:radial-gradient(circle,rgba(108,58,255,.25) 0%,transparent 70%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:-20%;left:30%;width:500px;height:500px;background:radial-gradient(circle,rgba(13,232,200,.1) 0%,transparent 70%);pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:700px;padding-top:100px}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(108,58,255,.15);border:1px solid rgba(108,58,255,.4);color:var(--violet);font-size:.72rem;font-weight:600;letter-spacing:2px;padding:.4rem 1rem;border-radius:30px;margin-bottom:2rem}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--teal);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:800;line-height:1.02;margin-bottom:1.5rem}
+.hero h1 span{background:linear-gradient(135deg,var(--purple),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:2.5rem;max-width:550px}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:4rem}
+.btn-purple{background:var(--purple);color:#fff;padding:.9rem 2rem;border-radius:6px;font-weight:600;font-size:.95rem;transition:.2s}
+.btn-purple:hover{background:var(--violet);transform:translateY(-2px);box-shadow:0 12px 30px rgba(108,58,255,.4)}
+.btn-ghost{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:.85rem 2rem;border-radius:6px;font-weight:500;transition:.2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.5);color:#fff}
+.hero-metrics{display:flex;gap:3rem;border-top:1px solid rgba(255,255,255,.08);padding-top:2rem}
+.metric .num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;background:linear-gradient(135deg,#fff,rgba(255,255,255,.6));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.metric .lbl{font-size:.75rem;color:rgba(255,255,255,.35);margin-top:.2rem;letter-spacing:1px}
+
+/* LOGOS */
+.logos-bar{background:var(--surface);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding:2rem 5%;overflow:hidden}
+.logos-label{text-align:center;font-size:.7rem;letter-spacing:2px;color:rgba(255,255,255,.25);margin-bottom:1.5rem}
+.logos-row{display:flex;justify-content:center;gap:4rem;flex-wrap:wrap}
+.logo-item{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:rgba(255,255,255,.12);letter-spacing:2px;transition:.3s}
+.logo-item:hover{color:rgba(255,255,255,.4)}
+
+/* SERVICES */
+.services{padding:8rem 5%;background:var(--dark)}
+.section-label{font-size:.7rem;letter-spacing:3px;color:var(--violet);font-weight:600;margin-bottom:.5rem}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.15;margin-bottom:.5rem}
+.section-sub{color:rgba(255,255,255,.35);margin-bottom:3.5rem;font-size:.95rem}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:rgba(255,255,255,.04)}
+.serv-card{background:var(--dark);padding:3rem 2.5rem;transition:.3s;position:relative;overflow:hidden}
+.serv-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(108,58,255,.08),transparent);opacity:0;transition:.3s}
+.serv-card:hover::before{opacity:1}
+.serv-card:hover{background:var(--surface)}
+.serv-icon{width:50px;height:50px;background:rgba(108,58,255,.1);border:1px solid rgba(108,58,255,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.5rem}
+.serv-card h3{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:.8rem}
+.serv-card p{font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.7}
+.serv-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--violet);font-size:.8rem;font-weight:600;margin-top:1.2rem;transition:.2s}
+.serv-link:hover{gap:.7rem}
+
+/* METHODOLOGY */
+.method{padding:8rem 5%;background:var(--surface)}
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3rem}
+.method-visual{position:relative}
+.method-visual img{width:100%;height:500px;object-fit:cover;border-radius:8px;filter:brightness(.8)}
+.method-badge{position:absolute;top:-1rem;right:-1rem;background:linear-gradient(135deg,var(--purple),var(--violet));padding:1.2rem 1.5rem;border-radius:8px;text-align:center}
+.method-badge .num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800}
+.method-badge .sm{font-size:.68rem;letter-spacing:1px;opacity:.8}
+.method-steps{display:flex;flex-direction:column;gap:2rem}
+.mstep{display:flex;gap:1.2rem;align-items:flex-start}
+.mstep-num{width:36px;height:36px;background:rgba(108,58,255,.15);border:1px solid rgba(108,58,255,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:.85rem;font-weight:800;color:var(--violet);flex-shrink:0}
+.mstep-text h4{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.3rem;font-size:.95rem}
+.mstep-text p{font-size:.83rem;color:rgba(255,255,255,.45);line-height:1.6}
+
+/* RESULTS */
+.results{padding:8rem 5%;background:var(--dark)}
+.results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.05);margin-top:3rem}
+.result-card{background:var(--dark);padding:3rem 2rem;text-align:center;position:relative}
+.result-num{font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;background:linear-gradient(135deg,var(--purple),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.result-label{font-size:.78rem;color:rgba(255,255,255,.35);letter-spacing:1px;margin-top:.7rem}
+.result-desc{font-size:.8rem;color:rgba(255,255,255,.5);margin-top:.4rem}
+
+/* CASES */
+.cases{padding:8rem 5%;background:var(--surface)}
+.cases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;margin-top:3rem}
+.case-card{background:var(--mid);border:1px solid rgba(255,255,255,.05);border-radius:8px;overflow:hidden;transition:.3s}
+.case-card:hover{border-color:rgba(108,58,255,.3);transform:translateY(-4px)}
+.case-img{height:220px;overflow:hidden}
+.case-img img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.case-card:hover .case-img img{transform:scale(1.05)}
+.case-body{padding:1.8rem}
+.case-tag{display:inline-block;background:rgba(108,58,255,.15);color:var(--violet);font-size:.65rem;font-weight:700;letter-spacing:2px;padding:.25rem .6rem;border-radius:2px;margin-bottom:.8rem}
+.case-body h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:.6rem}
+.case-body p{font-size:.83rem;color:rgba(255,255,255,.45);line-height:1.6;margin-bottom:1rem}
+.case-result{display:flex;gap:1.5rem}
+.cr-item .cr-num{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:var(--teal)}
+.cr-item .cr-lbl{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:1px}
+
+/* TESTIMONIALS */
+.testimonials{padding:8rem 5%;background:var(--dark)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.testi-card{background:var(--surface);border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:2rem;transition:.3s}
+.testi-card:hover{border-color:rgba(108,58,255,.3)}
+.testi-stars{color:#f59e0b;font-size:.9rem;margin-bottom:1rem}
+.testi-text{font-size:.88rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:1.2rem}
+.testi-author{display:flex;align-items:center;gap:.8rem;border-top:1px solid rgba(255,255,255,.05);padding-top:1rem}
+.testi-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--violet));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+.testi-name{font-weight:700;font-size:.88rem}
+.testi-company{font-size:.72rem;color:rgba(255,255,255,.35)}
+
+/* CTA */
+.cta{padding:8rem 5%;position:relative;overflow:hidden}
+.cta-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(108,58,255,.3) 0%,var(--dark) 60%)}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(108,58,255,.2),transparent 70%);pointer-events:none}
+.cta-inner{position:relative;z-index:2;text-align:center;max-width:600px;margin:0 auto}
+.cta h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:1rem;line-height:1.1}
+.cta p{color:rgba(255,255,255,.5);margin-bottom:2.5rem;line-height:1.7}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+footer{background:var(--surface);padding:3rem 5%;border-top:1px solid rgba(255,255,255,.05);text-align:center;font-size:.82rem;color:rgba(255,255,255,.25)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .services-grid{grid-template-columns:1fr}
+  .method-grid{grid-template-columns:1fr}
+  .method-visual{display:none}
+  .results-grid{grid-template-columns:repeat(2,1fr)}
+  .cases-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<nav id="nav">
+  <div class="nav-logo">STRAT<span>E</span>GOS</div>
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#metodologia">Metodología</a>
+    <a href="#casos">Casos</a>
+    <a href="#contacto">Contacto</a>
   </div>
+  <a href="https://wa.me/56900000000?text=Hola,%20quiero%20una%20sesión%20estratégica" class="nav-cta">Sesión Gratuita</a>
+</nav>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Estratégica<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Casos</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
-      </ul>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">CONSULTORÍA EMPRESARIAL · CHILE</div>
+    <h1>Transforma tu<br/>empresa con<br/><span>estrategia real</span></h1>
+    <p>No somos asesores de PowerPoint. Trabajamos codo a codo con tu equipo para implementar cambios que generan resultados medibles.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/56900000000?text=Hola,%20quiero%20una%20sesión%20estratégica%20gratuita" class="btn-purple">Sesión estratégica gratuita →</a>
+      <a href="#casos" class="btn-ghost">Ver casos de éxito</a>
     </div>
-  </nav>
-
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #1a0840 0%, #2e1065 50%, #150830 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Consultoría de Negocios</p>
-      <h1 class="hero-title">Transformamos<br><em>tu empresa.</em></h1>
-      <p class="hero-sub">10 años ayudando a empresas chilenas a crecer con estrategia, datos y metodología probada. ROI comprobado en el 95% de nuestros proyectos.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Diagnóstico gratis</a>
-        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
-      </div>
+    <div class="hero-metrics">
+      <div class="metric"><div class="num">+180%</div><div class="lbl">CRECIMIENTO PROMEDIO</div></div>
+      <div class="metric"><div class="num">85+</div><div class="lbl">EMPRESAS ESCALADAS</div></div>
+      <div class="metric"><div class="num">12 años</div><div class="lbl">EN EL MERCADO</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">Consultoría que genera resultados reales</h2>
-        <p class="section-desc">No vendemos informes, vendemos transformaciones. Acompañamos la implementación hasta ver los resultados en tus números.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🎯</div>
-          <h3 class="card-title">Consultoría de Negocios</h3>
-          <p class="card-desc">Diagnóstico empresarial, modelo de negocios, análisis de mercado y hoja de ruta de crecimiento. Metodología probada en 80+ empresas.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🗺️</div>
-          <h3 class="card-title">Planificación Estratégica</h3>
-          <p class="card-desc">Definición de misión, visión, objetivos OKR y KPIs. Plan estratégico a 1, 3 y 5 años con seguimiento mensual de avances.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">⚙️</div>
-          <h3 class="card-title">Optimización de Procesos</h3>
-          <p class="card-desc">Mapeo y rediseño de procesos internos para eliminar cuellos de botella, reducir costos y mejorar la experiencia del cliente.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🧠</div>
-          <h3 class="card-title">Coaching Ejecutivo</h3>
-          <p class="card-desc">Acompañamiento individual a gerentes y directivos para potenciar su liderazgo, toma de decisiones y gestión de equipos.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-      </div>
+<div class="logos-bar">
+  <div class="logos-label">EMPRESAS QUE HAN CONFIADO EN NOSOTROS</div>
+  <div class="logos-row">
+    <div class="logo-item">FALABELLA</div>
+    <div class="logo-item">CENCOSUD</div>
+    <div class="logo-item">ENTEL</div>
+    <div class="logo-item">BATA</div>
+    <div class="logo-item">RIPLEY</div>
+    <div class="logo-item">LATAM</div>
+  </div>
+</div>
+
+<section class="services" id="servicios">
+  <div class="section-label">ESPECIALIDADES</div>
+  <h2 class="section-title reveal">Lo que hacemos mejor</h2>
+  <p class="section-sub reveal">Consultoría de alto impacto, no de alto costo</p>
+  <div class="services-grid">
+    <div class="serv-card reveal">
+      <div class="serv-icon">🎯</div>
+      <h3>Estrategia Empresarial</h3>
+      <p>Planificación estratégica, definición de modelo de negocio, análisis competitivo y hoja de ruta a 3 años.</p>
+      <div class="serv-link">Conocer más →</div>
     </div>
-  </section>
-
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">📈</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">10 años transformando empresas con estrategia y resultados</h2>
-          <p class="about-text">Nuestro equipo de consultores tiene formación en MBA y experiencia práctica en empresas líderes de Chile y el mundo. No somos académicos: somos practicantes que han aplicado lo que enseñamos.</p>
-          <p class="about-text">Trabajamos con metodologías ágiles adaptadas al contexto chileno y latinoamericano. Resultados medibles desde el primer mes de implementación.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+80</div><div class="stat-label">Empresas asesoradas</div></div>
-        <div class="stat"><div class="stat-number">10</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación promedio</div></div>
-        <div class="stat"><div class="stat-number">ROI</div><div class="stat-label">Comprobado</div></div>
-      </div>
+    <div class="serv-card reveal">
+      <div class="serv-icon">📈</div>
+      <h3>Crecimiento y Ventas</h3>
+      <p>Diseño de embudo de ventas, estrategia go-to-market, expansión a nuevos mercados y canales.</p>
+      <div class="serv-link">Conocer más →</div>
     </div>
-  </section>
-
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Casos de éxito</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Crecimos un 40% en ventas en 8 meses después de implementar su plan estratégico. El diagnóstico fue muy preciso y las acciones muy concretas. Lo mejor que invertimos ese año."</p>
-          <div class="testi-author">Daniel Moreno</div>
-          <div class="testi-role">Gerente General · empresa de servicios</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El coaching ejecutivo me cambió como líder. Aprendí a delegar, a dar feedback efectivo y a tomar decisiones difíciles con más claridad. Mi equipo notó la diferencia de inmediato."</p>
-          <div class="testi-author">Ximena Flores</div>
-          <div class="testi-role">Gerente de Operaciones</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Rediseñaron nuestros procesos de atención al cliente y redujimos los tiempos de respuesta en un 60%. Además, la satisfacción de los clientes subió 30 puntos en el NPS. Resultados reales y medibles."</p>
-          <div class="testi-author">Rodrigo Arteaga</div>
-          <div class="testi-role">Director de Operaciones</div>
-        </div>
-      </div>
+    <div class="serv-card reveal">
+      <div class="serv-icon">⚙️</div>
+      <h3>Eficiencia Operacional</h3>
+      <p>Mapeo y optimización de procesos, reducción de costos, automatización y gestión por indicadores.</p>
+      <div class="serv-link">Conocer más →</div>
     </div>
-  </section>
-
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Tu empresa está lista para crecer?</h2>
-      <p class="section-desc">Agenda un diagnóstico gratuito de 60 minutos. Identificamos los principales cuellos de botella de tu empresa sin costo.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Diagnóstico gratis por WhatsApp
-      </a>
+    <div class="serv-card reveal">
+      <div class="serv-icon">👥</div>
+      <h3>Gestión del Talento</h3>
+      <p>Diseño organizacional, cultura empresarial, evaluación de desempeño y liderazgo efectivo.</p>
+      <div class="serv-link">Conocer más →</div>
     </div>
-  </section>
+    <div class="serv-card reveal">
+      <div class="serv-icon">💡</div>
+      <h3>Transformación Digital</h3>
+      <p>Diagnóstico digital, selección e implementación de tecnología y change management para tu equipo.</p>
+      <div class="serv-link">Conocer más →</div>
+    </div>
+    <div class="serv-card reveal">
+      <div class="serv-icon">🚀</div>
+      <h3>Mentoría para Founders</h3>
+      <p>Acompañamiento personalizado para fundadores en etapas de crecimiento, financiamiento y exit.</p>
+      <div class="serv-link">Conocer más →</div>
+    </div>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Consultoría Estratégica</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
+<section class="method" id="metodologia">
+  <div class="section-label">METODOLOGÍA</div>
+  <h2 class="section-title reveal">Cómo transformamos empresas</h2>
+  <div class="method-grid">
+    <div class="method-visual reveal">
+      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Consultoría"/>
+      <div class="method-badge"><div class="num">100%</div><div class="sm">IMPLEMENTACIÓN</div></div>
+    </div>
+    <div class="method-steps reveal">
+      <div class="mstep">
+        <div class="mstep-num">1</div>
+        <div class="mstep-text">
+          <h4>Diagnóstico profundo</h4>
+          <p>Análisis de 360° de tu empresa: finanzas, operaciones, equipo, mercado y competidores. Sin suposiciones.</p>
+        </div>
+      </div>
+      <div class="mstep">
+        <div class="mstep-num">2</div>
+        <div class="mstep-text">
+          <h4>Estrategia personalizada</h4>
+          <p>Diseñamos un plan específico para tu industria y etapa de negocio. Sin fórmulas genéricas.</p>
+        </div>
+      </div>
+      <div class="mstep">
+        <div class="mstep-num">3</div>
+        <div class="mstep-text">
+          <h4>Implementación con tu equipo</h4>
+          <p>Trabajamos in-situ junto a tu equipo. No dejamos un manual y nos vamos: nos aseguramos que funcione.</p>
+        </div>
+      </div>
+      <div class="mstep">
+        <div class="mstep-num">4</div>
+        <div class="mstep-text">
+          <h4>Medición y ajuste continuo</h4>
+          <p>Dashboard de KPIs en tiempo real. Reuniones semanales para ajustar en base a resultados reales.</p>
+        </div>
+      </div>
+      <div class="mstep">
+        <div class="mstep-num">5</div>
+        <div class="mstep-text">
+          <h4>Autonomía total</h4>
+          <p>Al finalizar, tu equipo tiene las herramientas para seguir creciendo sin depender de consultores.</p>
+        </div>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
+<section class="results">
+  <div class="section-label">RESULTADOS</div>
+  <h2 class="section-title reveal">Números que importan</h2>
+  <div class="results-grid">
+    <div class="result-card reveal">
+      <div class="result-num" data-count="180" data-suffix="%">0</div>
+      <div class="result-label">CRECIMIENTO PROMEDIO</div>
+      <div class="result-desc">en 18 meses de trabajo</div>
+    </div>
+    <div class="result-card reveal">
+      <div class="result-num" data-count="85" data-suffix="+">0</div>
+      <div class="result-label">EMPRESAS ESCALADAS</div>
+      <div class="result-desc">en 10+ industrias</div>
+    </div>
+    <div class="result-card reveal">
+      <div class="result-num" data-count="40" data-suffix="%">0</div>
+      <div class="result-label">REDUCCIÓN DE COSTOS</div>
+      <div class="result-desc">promedio en operaciones</div>
+    </div>
+    <div class="result-card reveal">
+      <div class="result-num" data-count="94" data-suffix="%">0</div>
+      <div class="result-label">SATISFACCIÓN</div>
+      <div class="result-desc">clientes que renuevan</div>
+    </div>
+  </div>
+</section>
+
+<section class="cases" id="casos">
+  <div class="section-label">CASOS DE ÉXITO</div>
+  <h2 class="section-title reveal">Resultados reales, empresas reales</h2>
+  <div class="cases-grid">
+    <div class="case-card reveal">
+      <div class="case-img"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" alt="Retail"/></div>
+      <div class="case-body">
+        <div class="case-tag">RETAIL</div>
+        <h3>Cadena de tiendas de ropa crece 3x en 12 meses</h3>
+        <p>Rediseñamos el modelo de negocio, implementamos e-commerce y abrimos 4 nuevas sucursales.</p>
+        <div class="case-result">
+          <div class="cr-item"><div class="cr-num">+220%</div><div class="cr-lbl">VENTAS</div></div>
+          <div class="cr-item"><div class="cr-num">-35%</div><div class="cr-lbl">COSTOS OP.</div></div>
+          <div class="cr-item"><div class="cr-num">4</div><div class="cr-lbl">NUEVAS TIENDAS</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="case-card reveal">
+      <div class="case-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Tech"/></div>
+      <div class="case-body">
+        <div class="case-tag">TECNOLOGÍA</div>
+        <h3>Startup SaaS logra financiamiento serie A</h3>
+        <p>Reestructuramos el producto, el modelo de precios y la narrativa para inversionistas. Resultado: USD 2.5M levantados.</p>
+        <div class="case-result">
+          <div class="cr-item"><div class="cr-num">$2.5M</div><div class="cr-lbl">FINANCIADO</div></div>
+          <div class="cr-item"><div class="cr-num">8x</div><div class="cr-lbl">ARR GROWTH</div></div>
+          <div class="cr-item"><div class="cr-num">85%</div><div class="cr-lbl">RETENCIÓN</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-label">TESTIMONIOS</div>
+  <h2 class="section-title reveal">Founders que confiaron en nosotros</h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"En 6 meses triplicamos las ventas. No son consultores típicos: se meten de lleno y realmente hacen que las cosas pasen."</p>
+      <div class="testi-author">
+        <div class="testi-av">JB</div>
+        <div><div class="testi-name">Juan Bravo</div><div class="testi-company">CEO · Constructora Bravo</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Nos ayudaron a salir de una crisis financiera y en 18 meses estábamos mejor que nunca. La inversión se recuperó en 3 meses."</p>
+      <div class="testi-author">
+        <div class="testi-av">CP</div>
+        <div><div class="testi-name">Claudia Pérez</div><div class="testi-company">Directora · Clínica del Valle</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"El análisis que hicieron de nuestro proceso de ventas fue revelador. Implementamos los cambios y los resultados fueron inmediatos."</p>
+      <div class="testi-author">
+        <div class="testi-av">MR</div>
+        <div><div class="testi-name">Marcelo Rojas</div><div class="testi-company">Founder · TechPyme</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <div class="cta-bg"></div>
+  <div class="cta-glow"></div>
+  <div class="cta-inner reveal">
+    <div class="section-label" style="text-align:center;margin-bottom:.5rem">HABLEMOS HOY</div>
+    <h2>¿Tu empresa puede crecer más?</h2>
+    <p>Agenda una sesión estratégica gratuita de 45 minutos. Sin compromisos, sin ventas forzadas. Solo una conversación honesta sobre tu negocio.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/56900000000?text=Hola,%20quiero%20agendar%20una%20sesión%20estratégica" class="btn-purple">Agendar sesión gratuita →</a>
+      <a href="tel:+56900000000" class="btn-ghost">📞 Llamar ahora</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Strategos Consultoría Empresarial · Santiago, Chile</p>
+</footer>
+
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(9,9,15,.95);border:1px solid rgba(108,58,255,.4);border-radius:6px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.7)">🎯 Página de Muestra · <a href="../" style="color:#8b5cf6;font-weight:700">Felipe Figueroa</a></div>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const io=new IntersectionObserver(([e])=>{
+    if(!e.isIntersecting)return;
+    const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+    let cur=0;const step=target/60;
+    const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.round(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+    io.unobserve(el);
+  },{threshold:.5});io.observe(el);
+});
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+});
+</script>
 </body>
 </html>

@@ -1,168 +1,423 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AutoMarket Chile — Compraventa de autos usados, financiamiento y tasación gratuita en Santiago. Página de muestra" />
-  <title>AutoMarket Chile — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #1e40af;
-      --primary-rgb: 30,64,175;
-      --bg: #0a0c14;
-      --bg-alt: #0d1020;
-      --surface: #141828;
-      --text: #f0f2f8;
-      --text-dim: #8890a8;
-      --text-muted: #505868;
-      --border: rgba(255,255,255,0.08);
-      --nav-bg: rgba(10,12,20,0.96);
-    }
-    .section-alt { background: var(--bg-alt); }
-    .card { background: var(--surface); border-color: var(--border); }
-    .testi { background: var(--surface); border-color: var(--border); }
-    .stat { background: var(--surface); border-color: var(--border); }
-    .footer { background: #050810; }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>MotorHub — Compra y Venta de Autos</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#0057ff;--dark:#050a14;--surface:#0d1a2e;--mid:#162236;--accent:#00d4ff;--light:#e8f0fe}
+body{font-family:'Archivo',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 5%;display:flex;align-items:center;justify-content:space-between;transition:.3s}
+nav.scrolled{background:rgba(5,10,20,.98);border-bottom:1px solid rgba(0,87,255,.2);backdrop-filter:blur(10px)}
+.nav-logo{font-family:'Archivo Black',sans-serif;font-size:1.5rem;letter-spacing:1px}
+.nav-logo span{color:var(--blue)}
+.nav-links{display:flex;gap:2rem;font-weight:600;font-size:.9rem}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--blue);color:#fff;padding:.6rem 1.5rem;border-radius:4px;font-weight:700;font-size:.85rem;transition:.2s}
+.nav-cta:hover{background:#003dd1;transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;position:relative;overflow:hidden}
+.hero-left{padding:8rem 5% 4rem 5%;position:relative;z-index:2}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,87,255,.15);border:1px solid rgba(0,87,255,.4);color:var(--accent);font-size:.78rem;font-weight:700;letter-spacing:2px;padding:.4rem 1rem;border-radius:2px;margin-bottom:1.5rem}
+.hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(2.5rem,5vw,4.2rem);line-height:1.05;margin-bottom:1.2rem}
+.hero h1 em{color:var(--blue);font-style:normal}
+.hero-sub{color:rgba(255,255,255,.6);font-size:1.05rem;line-height:1.7;margin-bottom:2rem}
+.search-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:1.2rem;margin-bottom:2rem}
+.search-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:.8rem;align-items:end}
+.search-field label{display:block;font-size:.72rem;color:rgba(255,255,255,.4);letter-spacing:1px;margin-bottom:.4rem;font-weight:700}
+.search-field select,.search-field input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:#fff;padding:.7rem .8rem;font-family:'Archivo',sans-serif;font-size:.88rem;border-radius:4px;appearance:none}
+.search-field select option{background:#0d1a2e}
+.btn-search{background:var(--blue);color:#fff;padding:.8rem 1.5rem;border-radius:4px;font-weight:700;font-size:.88rem;white-space:nowrap;border:none;cursor:pointer;transition:.2s}
+.btn-search:hover{background:#003dd1}
+.hero-stats{display:flex;gap:2rem}
+.h-stat{text-align:center}
+.h-stat .num{font-family:'Archivo Black',sans-serif;font-size:1.6rem;color:var(--blue)}
+.h-stat .lbl{font-size:.72rem;color:rgba(255,255,255,.4);letter-spacing:1px}
+.hero-right{position:relative;height:100vh;overflow:hidden}
+.hero-right img{width:100%;height:100%;object-fit:cover;filter:brightness(.7)}
+.hero-right::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--dark) 0%,transparent 30%)}
+.floating-card{position:absolute;background:rgba(13,26,46,.95);border:1px solid rgba(0,87,255,.3);backdrop-filter:blur(10px);border-radius:8px;padding:1rem 1.2rem}
+.fc-1{bottom:8rem;left:1.5rem}
+.fc-2{top:8rem;right:2rem}
+.fc-label{font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:1px;margin-bottom:.3rem}
+.fc-value{font-family:'Archivo Black',sans-serif;font-size:1.2rem;color:var(--accent)}
+
+/* FEATURED CARS */
+.featured{padding:6rem 5%;background:var(--surface)}
+.section-label{font-size:.72rem;letter-spacing:3px;color:var(--blue);font-weight:700;margin-bottom:.5rem}
+.section-title{font-family:'Archivo Black',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:.5rem;line-height:1.1}
+.section-sub{color:rgba(255,255,255,.4);margin-bottom:3rem}
+.filter-bar{display:flex;gap:.8rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.filter-btn{background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);padding:.5rem 1.2rem;border-radius:30px;font-size:.82rem;font-weight:600;cursor:pointer;transition:.2s}
+.filter-btn.active,.filter-btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.cars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.car-card{background:var(--mid);border-radius:8px;overflow:hidden;transition:.3s;border:1px solid rgba(255,255,255,.05)}
+.car-card:hover{transform:translateY(-6px);border-color:rgba(0,87,255,.3);box-shadow:0 20px 40px rgba(0,87,255,.15)}
+.car-img{position:relative;height:200px;overflow:hidden}
+.car-img img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.car-card:hover .car-img img{transform:scale(1.05)}
+.car-tag{position:absolute;top:.8rem;left:.8rem;padding:.3rem .7rem;font-size:.65rem;font-weight:700;letter-spacing:1px;border-radius:2px}
+.tag-nuevo{background:#10b981;color:#fff}
+.tag-usado{background:var(--blue);color:#fff}
+.tag-oferta{background:#f59e0b;color:#000}
+.car-fav{position:absolute;top:.8rem;right:.8rem;width:32px;height:32px;background:rgba(0,0,0,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;cursor:pointer;transition:.2s}
+.car-fav:hover{background:var(--blue)}
+.car-info{padding:1.2rem}
+.car-brand{font-size:.72rem;color:var(--accent);font-weight:700;letter-spacing:2px;margin-bottom:.2rem}
+.car-name{font-family:'Archivo Black',sans-serif;font-size:1.1rem;margin-bottom:.8rem}
+.car-specs{display:flex;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.car-spec{font-size:.75rem;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:.3rem}
+.car-footer{display:flex;align-items:center;justify-content:space-between;padding-top:.8rem;border-top:1px solid rgba(255,255,255,.07)}
+.car-price{font-family:'Archivo Black',sans-serif;font-size:1.3rem;color:#fff}
+.car-price span{display:block;font-family:'Archivo',sans-serif;font-size:.7rem;color:rgba(255,255,255,.35);font-weight:400}
+.car-btn{background:var(--blue);color:#fff;padding:.5rem 1rem;border-radius:4px;font-size:.8rem;font-weight:700;transition:.2s;border:none;cursor:pointer}
+.car-btn:hover{background:#003dd1}
+
+/* SERVICES */
+.services{padding:6rem 5%;background:var(--dark)}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+.serv-card{background:var(--surface);border:1px solid rgba(255,255,255,.05);padding:2rem;border-radius:8px;text-align:center;transition:.3s}
+.serv-card:hover{border-color:rgba(0,87,255,.4);transform:translateY(-4px)}
+.serv-icon{font-size:2.5rem;margin-bottom:1rem}
+.serv-card h3{font-family:'Archivo Black',sans-serif;font-size:1rem;margin-bottom:.5rem}
+.serv-card p{font-size:.83rem;color:rgba(255,255,255,.45);line-height:1.6}
+
+/* STATS BAR */
+.stats-bar{background:var(--blue);padding:4rem 5%;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-b{text-align:center;padding:1rem;border-right:1px solid rgba(255,255,255,.2)}
+.stat-b:last-child{border:none}
+.stat-b .num{font-family:'Archivo Black',sans-serif;font-size:2.8rem}
+.stat-b .lbl{font-size:.72rem;letter-spacing:2px;opacity:.8;margin-top:.3rem}
+
+/* PROCESS */
+.process{padding:6rem 5%;background:var(--surface)}
+.process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:3rem;position:relative}
+.process-steps::before{content:'';position:absolute;top:2.5rem;left:10%;right:10%;height:2px;background:rgba(0,87,255,.2)}
+.step{text-align:center;position:relative}
+.step-num{width:50px;height:50px;background:var(--mid);border:2px solid rgba(0,87,255,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Archivo Black',sans-serif;font-size:1.1rem;margin:0 auto 1rem;color:var(--blue);position:relative;z-index:1}
+.step.active .step-num{background:var(--blue);border-color:var(--blue);color:#fff}
+.step h4{font-size:.9rem;font-weight:700;margin-bottom:.4rem}
+.step p{font-size:.75rem;color:rgba(255,255,255,.4)}
+
+/* TESTIMONIALS */
+.testimonials{padding:6rem 5%;background:var(--dark)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.testi-card{background:var(--surface);border:1px solid rgba(255,255,255,.05);padding:2rem;border-radius:8px;position:relative}
+.testi-stars{color:#f59e0b;font-size:.9rem;margin-bottom:.8rem}
+.testi-text{font-size:.9rem;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:1.2rem}
+.testi-author{display:flex;align-items:center;gap:.8rem}
+.testi-avatar{width:40px;height:40px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0}
+.testi-name{font-weight:700;font-size:.9rem}
+.testi-car{font-size:.75rem;color:rgba(255,255,255,.4)}
+
+/* CTA */
+.cta{padding:8rem 5%;background:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;position:relative;text-align:center}
+.cta::before{content:'';position:absolute;inset:0;background:rgba(5,10,20,.88)}
+.cta-inner{position:relative;z-index:2;max-width:600px;margin:0 auto}
+.cta h2{font-family:'Archivo Black',sans-serif;font-size:clamp(2rem,4vw,3.2rem);margin-bottom:1rem}
+.cta p{color:rgba(255,255,255,.6);margin-bottom:2rem;font-size:1.05rem;line-height:1.7}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--blue);color:#fff;padding:.9rem 2rem;border-radius:4px;font-weight:700;font-size:.95rem;transition:.2s}
+.btn-primary:hover{background:#003dd1;transform:translateY(-2px)}
+.btn-ghost{border:2px solid rgba(255,255,255,.3);color:#fff;padding:.85rem 2rem;border-radius:4px;font-weight:600;transition:.2s}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* FOOTER */
+footer{background:rgba(0,0,0,.8);padding:3rem 5%;border-top:1px solid rgba(0,87,255,.15);text-align:center;font-size:.82rem;color:rgba(255,255,255,.35)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .search-row{grid-template-columns:1fr}
+  .cars-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .process-steps{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<nav id="nav">
+  <div class="nav-logo">MOTOR<span>HUB</span></div>
+  <div class="nav-links">
+    <a href="#catalogo">Catálogo</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#contacto">Contacto</a>
   </div>
+  <a href="https://wa.me/56900000000?text=Hola,%20quiero%20ver%20autos%20disponibles" class="nav-cta">Ver Disponibles</a>
+</nav>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">AutoMarket<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Ver autos</a></li>
-      </ul>
-    </div>
-  </nav>
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">🚗 +200 AUTOS DISPONIBLES</div>
+    <h1>Tu próximo auto<br/>te está<br/><em>esperando</em></h1>
+    <p class="hero-sub">Compra y vende con total confianza. Revisión técnica incluida, financiamiento en el acto y garantía de 6 meses en todos nuestros autos.</p>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #050810 0%, #0a0e20 50%, #080a18 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Compraventa de Autos</p>
-      <h1 class="hero-title">El auto que buscas<br><em>al precio que mereces.</em></h1>
-      <p class="hero-sub">Más de 200 vehículos certificados disponibles. Financiamiento en 48 horas, tasación gratuita y permuta de tu auto sin salir del local.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Ver catálogo</a>
-        <a href="#servicios" class="btn btn-outline">Tasar mi auto</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">Tu auto de ensueño te espera</h2>
-        <p class="section-desc">Proceso simple, transparente y rápido. Sin letras chicas ni sorpresas. Tu satisfacción es nuestra garantía.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🚗</div>
-          <h3 class="card-title">Autos Usados Certificados</h3>
-          <p class="card-desc">Todos los vehículos pasan por revisión mecánica completa de 150 puntos. Con informe técnico y garantía de 3 meses.</p>
-          <p class="card-price">Desde $3.990.000</p>
+    <div class="search-box">
+      <div class="search-row">
+        <div class="search-field">
+          <label>MARCA</label>
+          <select><option>Todas las marcas</option><option>Toyota</option><option>Chevrolet</option><option>Hyundai</option><option>Kia</option><option>Ford</option></select>
         </div>
-        <div class="card">
-          <div class="card-icon">💳</div>
-          <h3 class="card-title">Financiamiento</h3>
-          <p class="card-desc">Crédito automotriz aprobado en 48 horas con cuotas desde 12 a 60 meses. Sin pie o con el mínimo posible según tu capacidad.</p>
-          <p class="card-price">Simulación gratis</p>
+        <div class="search-field">
+          <label>PRECIO MÁX.</label>
+          <select><option>Cualquier precio</option><option>Hasta $5M</option><option>Hasta $10M</option><option>Hasta $15M</option></select>
         </div>
-        <div class="card">
-          <div class="card-icon">📋</div>
-          <h3 class="card-title">Tasación Gratuita</h3>
-          <p class="card-desc">Trae tu auto y en 30 minutos te damos el precio real de mercado. Sin compromiso y con asesoría de nuestros expertos.</p>
-          <p class="card-price">100% gratis</p>
+        <div class="search-field">
+          <label>AÑO</label>
+          <input type="text" placeholder="2018 - 2024"/>
         </div>
-        <div class="card">
-          <div class="card-icon">🔄</div>
-          <h3 class="card-title">Permuta de Vehículos</h3>
-          <p class="card-desc">Entrega tu auto como parte de pago y llévate uno de nuestros modelos disponibles. Proceso simple en un día.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
+        <button class="btn-search">🔍 BUSCAR</button>
       </div>
     </div>
-  </section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🚙</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">8 años siendo el portal de autos usados más confiable</h2>
-          <p class="about-text">Cada auto de nuestro stock pasa por una revisión técnica de 150 puntos y un historial de accidentes verificado. Solo vendemos autos que nosotros mismos compraríamos.</p>
-          <p class="about-text">Tramitamos transferencia, SOAP, revisión técnica y patente por ti. Llegas en tu auto viejo y te vas en el nuevo el mismo día, sin trámites engorrosos.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+200</div><div class="stat-label">Autos disponibles</div></div>
-        <div class="stat"><div class="stat-number">8</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.8★</div><div class="stat-label">Calificación promedio</div></div>
-        <div class="stat"><div class="stat-number">48h</div><div class="stat-label">Financiamiento aprobado</div></div>
-      </div>
+    <div class="hero-stats">
+      <div class="h-stat"><div class="num">200+</div><div class="lbl">AUTOS</div></div>
+      <div class="h-stat"><div class="num">6M</div><div class="lbl">GARANTÍA</div></div>
+      <div class="h-stat"><div class="num">15+</div><div class="lbl">AÑOS</div></div>
     </div>
-  </section>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80" alt="Auto"/>
+    <div class="floating-card fc-1">
+      <div class="fc-label">PRECIO PROMEDIO</div>
+      <div class="fc-value">$8.9M</div>
+    </div>
+    <div class="floating-card fc-2">
+      <div class="fc-label">FINANCIAMIENTO DESDE</div>
+      <div class="fc-value">$89.900/mes</div>
+    </div>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+<section class="featured" id="catalogo">
+  <div class="section-label">CATÁLOGO</div>
+  <h2 class="section-title reveal">Autos disponibles ahora</h2>
+  <p class="section-sub reveal">Todos con revisión técnica y garantía incluida</p>
+  <div class="filter-bar">
+    <button class="filter-btn active">Todos</button>
+    <button class="filter-btn">Sedanes</button>
+    <button class="filter-btn">SUV</button>
+    <button class="filter-btn">Pickups</button>
+    <button class="filter-btn">Hatchback</button>
+    <button class="filter-btn">Menos de $8M</button>
+  </div>
+  <div class="cars-grid">
+    <div class="car-card reveal">
+      <div class="car-img">
+        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80" alt="Toyota"/>
+        <div class="car-tag tag-usado">USADO</div>
+        <div class="car-fav">♡</div>
       </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Compré mi Suzuki Swift aquí y el proceso fue súper simple. Me mostraron el informe técnico completo, el financiamiento se aprobó en un día y me fui con el auto ese mismo viernes."</p>
-          <div class="testi-author">Álvaro Ramírez</div>
-          <div class="testi-role">Comprador · financiamiento</div>
+      <div class="car-info">
+        <div class="car-brand">TOYOTA</div>
+        <div class="car-name">Corolla XEI 2021</div>
+        <div class="car-specs">
+          <div class="car-spec">⛽ 2.0 Nafta</div>
+          <div class="car-spec">📍 45.000 km</div>
+          <div class="car-spec">⚙️ Automático</div>
         </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Hice una permuta y quedé muy conforme. Me dieron buen precio por mi Corolla y el proceso fue transparente de principio a fin. Los trámites de transferencia los hicieron ellos sin costo extra."</p>
-          <div class="testi-author">Macarena Silva</div>
-          <div class="testi-role">Clienta · permuta de vehículo</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"La tasación de mi Tucson fue muy honesta y acorde al mercado. Terminé vendiéndoles el auto ahí mismo porque el precio fue justo y el proceso muy rápido. Sin la presión típica de las automotoras."</p>
-          <div class="testi-author">Gonzalo Muñoz</div>
-          <div class="testi-role">Vendedor · tasación y venta</div>
+        <div class="car-footer">
+          <div class="car-price">$12.500.000<span>Financiamiento disponible</span></div>
+          <button class="car-btn">VER AUTO</button>
         </div>
       </div>
     </div>
-  </section>
-
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Listo para tu próximo auto?</h2>
-      <p class="section-desc">Escríbenos por WhatsApp con el auto que buscas o para agendar tu tasación gratuita. Respondemos de inmediato.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Contactar por WhatsApp
-      </a>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>AutoMarket Chile</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
+    <div class="car-card reveal">
+      <div class="car-img">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" alt="Hyundai"/>
+        <div class="car-tag tag-oferta">OFERTA</div>
+        <div class="car-fav">♡</div>
+      </div>
+      <div class="car-info">
+        <div class="car-brand">HYUNDAI</div>
+        <div class="car-name">Tucson Premium 2020</div>
+        <div class="car-specs">
+          <div class="car-spec">⛽ 2.0 Nafta</div>
+          <div class="car-spec">📍 58.000 km</div>
+          <div class="car-spec">⚙️ Automático</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">$10.900.000<span>Desde $98.000/mes</span></div>
+          <button class="car-btn">VER AUTO</button>
+        </div>
       </div>
     </div>
-  </footer>
+    <div class="car-card reveal">
+      <div class="car-img">
+        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80" alt="Ford"/>
+        <div class="car-tag tag-nuevo">NUEVO</div>
+        <div class="car-fav">♡</div>
+      </div>
+      <div class="car-info">
+        <div class="car-brand">FORD</div>
+        <div class="car-name">Ranger XLT 4x4 2024</div>
+        <div class="car-specs">
+          <div class="car-spec">⛽ 3.2 Diesel</div>
+          <div class="car-spec">📍 5.000 km</div>
+          <div class="car-spec">⚙️ Manual</div>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">$18.900.000<span>Desde $165.000/mes</span></div>
+          <button class="car-btn">VER AUTO</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="services" id="servicios">
+  <div class="section-label">LO QUE OFRECEMOS</div>
+  <h2 class="section-title reveal">Todo en un solo lugar</h2>
+  <div class="services-grid">
+    <div class="serv-card reveal">
+      <div class="serv-icon">🔍</div>
+      <h3>Revisión técnica incluida</h3>
+      <p>Todos nuestros autos pasan por 150 puntos de inspección antes de publicarse</p>
+    </div>
+    <div class="serv-card reveal">
+      <div class="serv-icon">💰</div>
+      <h3>Financiamiento express</h3>
+      <p>Aprobación en 24 horas con hasta 84 cuotas y tasas preferenciales</p>
+    </div>
+    <div class="serv-card reveal">
+      <div class="serv-icon">🔄</div>
+      <h3>Recibimos tu auto</h3>
+      <p>Valorizamos tu vehículo actual y lo descontamos del precio de tu nuevo auto</p>
+    </div>
+    <div class="serv-card reveal">
+      <div class="serv-icon">🛡️</div>
+      <h3>Garantía 6 meses</h3>
+      <p>Todos los autos usados incluyen garantía mecánica de 6 meses sin costo adicional</p>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat-b reveal"><div class="num" data-count="200" data-suffix="+">0</div><div class="lbl">AUTOS DISPONIBLES</div></div>
+  <div class="stat-b reveal"><div class="num" data-count="15" data-suffix=" AÑOS">0</div><div class="lbl">EN EL MERCADO</div></div>
+  <div class="stat-b reveal"><div class="num" data-count="3200" data-suffix="+">0</div><div class="lbl">AUTOS VENDIDOS</div></div>
+  <div class="stat-b reveal"><div class="num" data-count="97" data-suffix="%">0</div><div class="lbl">CLIENTES SATISFECHOS</div></div>
+</div>
+
+<section class="process" id="proceso">
+  <div class="section-label">PROCESO DE COMPRA</div>
+  <h2 class="section-title reveal">Comprar un auto nunca fue tan fácil</h2>
+  <div class="process-steps">
+    <div class="step reveal active">
+      <div class="step-num">1</div>
+      <h4>Elige tu auto</h4>
+      <p>Navega nuestro catálogo o cuéntanos qué buscas</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">2</div>
+      <h4>Prueba manejo</h4>
+      <p>Agenda una test drive sin compromiso</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">3</div>
+      <h4>Financiamiento</h4>
+      <p>Te ayudamos con el mejor plan de cuotas</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">4</div>
+      <h4>Firma y tramites</h4>
+      <p>Nos encargamos de toda la documentación</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">5</div>
+      <h4>¡Lleva tu auto!</h4>
+      <p>Mismo día o al día siguiente</p>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-label">OPINIONES</div>
+  <h2 class="section-title reveal">Lo que dicen nuestros clientes</h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Compré mi Tucson en menos de 2 días. El proceso fue rapidísimo y el auto estaba impecable. La garantía me dio mucha tranquilidad."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">MA</div>
+        <div><div class="testi-name">María Alvarado</div><div class="testi-car">Hyundai Tucson 2020</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Me recibieron el auto viejo y quedé pagando muy poco de diferencia. El financiamiento fue aprobado en el acto. Recomendado 100%."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">JM</div>
+        <div><div class="testi-name">Jorge Muñoz</div><div class="testi-car">Toyota Corolla 2021</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"La revisión de 150 puntos me convenció. Me fui seguro de que el auto no tendría sorpresas. Excelente atención y honestidad."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">CL</div>
+        <div><div class="testi-name">Camila Lagos</div><div class="testi-car">Ford Ranger 2022</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <div class="cta-inner reveal">
+    <div class="section-label" style="text-align:center;margin-bottom:.5rem">¿LISTO PARA CAMBIAR?</div>
+    <h2>Encuentra el auto perfecto para ti</h2>
+    <p>Escríbenos y te ayudamos a encontrar el auto que se ajuste a tu presupuesto y necesidades. Sin presión, sin apuros.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/56900000000?text=Hola,%20quiero%20ver%20autos%20disponibles" class="btn-primary">💬 Hablar por WhatsApp</a>
+      <a href="tel:+56900000000" class="btn-ghost">📞 Llamar ahora</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 MotorHub · Compra y Venta de Autos · Santiago, Chile</p>
+</footer>
+
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(5,10,20,.9);border:1px solid rgba(0,87,255,.4);border-radius:4px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.7)">🎯 Página de Muestra · <a href="../" style="color:#0057ff;font-weight:700">Felipe Figueroa</a></div>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const io=new IntersectionObserver(([e])=>{
+    if(!e.isIntersecting)return;
+    const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+    let cur=0;const step=target/60;
+    const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.round(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+    io.unobserve(el);
+  },{threshold:.5});io.observe(el);
+});
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+});
+</script>
 </body>
 </html>

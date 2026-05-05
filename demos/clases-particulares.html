@@ -1,157 +1,353 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Profesor Particular Online — Matemáticas, ciencias, lenguaje y preparación PAES en Santiago. Página de muestra" />
-  <title>Profesor Particular Online — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #059669;
-      --primary-rgb: 5,150,105;
-      --bg: #fff;
-      --bg-alt: #ecfdf5;
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>ProfeConnect — Clases Particulares a Domicilio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#3b82f6;--dark-blue:#1d4ed8;--sky:#e0f2fe;--purple:#8b5cf6;--green:#10b981;--dark:#0f172a;--gray:#64748b;--light:#f8fafc;--white:#fff}
+body{font-family:'Poppins',sans-serif;background:var(--white);color:var(--dark);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.97);border-bottom:1px solid rgba(0,0,0,.07);padding:1rem 5%;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(8px)}
+.nav-logo{font-size:1.2rem;font-weight:800;letter-spacing:-.5px}
+.nav-logo span{color:var(--blue)}
+.nav-links{display:flex;gap:2rem;font-size:.88rem;font-weight:500;color:var(--gray)}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{background:var(--blue);color:#fff;padding:.55rem 1.4rem;border-radius:8px;font-weight:700;font-size:.85rem;transition:.2s}
+.nav-cta:hover{background:var(--dark-blue)}
+
+/* HERO */
+.hero{padding:120px 5% 5rem;background:linear-gradient(135deg,#f0f9ff 0%,#e8f5e9 50%,#f3e8ff 100%);min-height:90vh;display:flex;align-items:center}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:1200px;margin:0 auto;width:100%}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:1px solid rgba(59,130,246,.2);color:var(--blue);font-size:.72rem;font-weight:700;padding:.4rem 1rem;border-radius:30px;margin-bottom:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:800;line-height:1.1;margin-bottom:1.2rem;letter-spacing:-.3px}
+.hero h1 span{color:var(--blue)}
+.hero-desc{color:var(--gray);line-height:1.8;margin-bottom:2rem;font-size:1rem}
+.search-bar{background:#fff;border:2px solid rgba(59,130,246,.2);border-radius:12px;padding:.4rem .4rem .4rem 1rem;display:flex;align-items:center;gap:.8rem;margin-bottom:2rem;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.search-bar select{flex:1;border:none;outline:none;font-family:'Poppins',sans-serif;font-size:.88rem;color:var(--dark);background:transparent}
+.search-btn{background:var(--blue);color:#fff;padding:.65rem 1.2rem;border-radius:8px;font-weight:700;font-size:.85rem;border:none;cursor:pointer;white-space:nowrap;transition:.2s}
+.search-btn:hover{background:var(--dark-blue)}
+.hero-trust{font-size:.8rem;color:var(--gray);display:flex;align-items:center;gap:.5rem}
+.hero-trust strong{color:var(--dark)}
+.hero-visual{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.tutor-card{background:#fff;border-radius:12px;padding:1.2rem;box-shadow:0 4px 20px rgba(0,0,0,.07);transition:.2s;border:1px solid rgba(0,0,0,.05)}
+.tutor-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(59,130,246,.1)}
+.tutor-top{display:flex;align-items:center;gap:.8rem;margin-bottom.8rem;margin-bottom:.8rem}
+.tutor-av{width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0}
+.tutor-av img{width:100%;height:100%;object-fit:cover}
+.tutor-name{font-weight:700;font-size:.88rem;color:var(--dark)}
+.tutor-subject{font-size:.72rem;color:var(--blue);font-weight:600}
+.tutor-rating{font-size:.72rem;color:var(--gray);margin-top:.3rem}
+.tutor-rating span{color:#f59e0b}
+.tutor-price{font-size:.8rem;font-weight:700;color:var(--dark);margin-top:.4rem}
+
+/* SUBJECTS */
+.subjects{padding:6rem 5%;background:var(--light)}
+.section-label{font-size:.7rem;letter-spacing:3px;color:var(--blue);font-weight:700;margin-bottom:.5rem}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-.3px;margin-bottom:.5rem}
+.section-sub{color:var(--gray);margin-bottom:3rem}
+.subjects-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.subj-card{background:#fff;border-radius:12px;padding:1.8rem;border:1px solid rgba(0,0,0,.06);text-align:center;transition:.3s;cursor:pointer}
+.subj-card:hover{box-shadow:0 8px 30px rgba(59,130,246,.1);border-color:rgba(59,130,246,.2);transform:translateY(-3px)}
+.subj-icon{font-size:2.5rem;margin-bottom.8rem;margin-bottom:.8rem}
+.subj-card h3{font-weight:700;font-size:.95rem;margin-bottom:.3rem}
+.subj-count{font-size:.75rem;color:var(--blue);font-weight:600}
+
+/* HOW IT WORKS */
+.how{padding:6rem 5%;background:var(--white)}
+.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem;position:relative}
+.how-steps::before{content:'';position:absolute;top:1.8rem;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--blue),var(--purple));opacity:.2}
+.how-step{text-align:center;position:relative}
+.how-num{width:40px;height:40px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;margin:0 auto 1rem;position:relative;z-index:1}
+.how-icon{font-size:1.5rem;margin-bottom:.7rem}
+.how-step h3{font-weight:700;font-size:.9rem;margin-bottom:.4rem}
+.how-step p{font-size:.78rem;color:var(--gray);line-height:1.6}
+
+/* TUTORS */
+.tutors{padding:6rem 5%;background:var(--light)}
+.tutors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+.tutor-full-card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,.06);transition:.3s}
+.tutor-full-card:hover{box-shadow:0 12px 35px rgba(0,0,0,.08);transform:translateY(-4px)}
+.tutor-full-img{height:200px;overflow:hidden}
+.tutor-full-img img{width:100%;height:100%;object-fit:cover;object-position:top;transition:.3s}
+.tutor-full-card:hover .tutor-full-img img{transform:scale(1.04)}
+.tutor-full-body{padding:1.2rem}
+.tutor-full-name{font-weight:700;font-size:1rem;margin-bottom:.2rem}
+.tutor-full-spec{font-size:.72rem;color:var(--blue);font-weight:700;letter-spacing:1px;margin-bottom:.4rem}
+.tutor-full-rate{font-size:.78rem;color:var(--gray);margin-bottom:.6rem}
+.tutor-full-price{font-weight:800;font-size:1rem;color:var(--dark);margin-bottom:.8rem}
+.tutor-full-price small{font-size:.7rem;font-weight:400;color:var(--gray)}
+.tutor-btn{display:block;background:var(--sky);color:var(--blue);padding:.5rem;border-radius:6px;text-align:center;font-weight:700;font-size:.8rem;transition:.2s}
+.tutor-btn:hover{background:var(--blue);color:#fff}
+
+/* STATS */
+.stats{background:var(--dark);padding:5rem 5%;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-item{text-align:center;padding:2rem;border-right:1px solid rgba(255,255,255,.07)}
+.stat-item:last-child{border:none}
+.stat-num{font-size:2.8rem;font-weight:800;color:var(--blue)}
+.stat-label{font-size:.72rem;letter-spacing:2px;color:rgba(255,255,255,.4);margin-top:.4rem}
+
+/* TESTIMONIALS */
+.testimonials{padding:6rem 5%;background:var(--light)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.testi-card{background:#fff;border-radius:12px;padding:2rem;border:1px solid rgba(0,0,0,.06)}
+.testi-stars{color:#f59e0b;font-size:.9rem;margin-bottom:.8rem}
+.testi-text{font-size:.87rem;color:var(--gray);line-height:1.7;margin-bottom:1rem}
+.testi-author{display:flex;align-items:center;gap:.7rem}
+.testi-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0}
+.testi-name{font-weight:700;font-size:.88rem}
+.testi-sub{font-size:.72rem;color:var(--gray)}
+
+/* CTA */
+.cta{padding:6rem 5%;background:linear-gradient(135deg,var(--blue),var(--purple));text-align:center}
+.cta h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;margin-bottom:1rem;letter-spacing:-.3px}
+.cta p{color:rgba(255,255,255,.8);margin-bottom:2.5rem;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-white{background:#fff;color:var(--blue);padding:.9rem 2rem;border-radius:8px;font-weight:700;font-size:.9rem;transition:.2s}
+.btn-white:hover{background:var(--light);transform:translateY(-2px)}
+.btn-outline-w{border:2px solid rgba(255,255,255,.4);color:#fff;padding:.85rem 2rem;border-radius:8px;font-weight:600;transition:.2s}
+.btn-outline-w:hover{border-color:#fff}
+
+/* FOOTER */
+footer{background:var(--dark);padding:2.5rem 5%;text-align:center;font-size:.8rem;color:rgba(255,255,255,.3)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .subjects-grid{grid-template-columns:repeat(2,1fr)}
+  .how-steps{grid-template-columns:repeat(2,1fr)}
+  .tutors-grid{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<nav>
+  <div class="nav-logo">PROFE<span>CONNECT</span></div>
+  <div class="nav-links">
+    <a href="#materias">Materias</a>
+    <a href="#profesores">Profesores</a>
+    <a href="#como">Cómo funciona</a>
+    <a href="#contacto">Contacto</a>
   </div>
+  <a href="https://wa.me/56900000000?text=Hola,%20busco%20un%20profesor%20particular" class="nav-cta">Buscar Profe</a>
+</nav>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Profe Particular<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Materias</a></li>
-        <li><a href="#nosotros" class="nav-link">El Profe</a></li>
-        <li><a href="#opiniones" class="nav-link">Alumnos</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Clase gratis</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #042a1a 0%, #065f46 50%, #042a1a 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Clases Particulares</p>
-      <h1 class="hero-title">Aprende a tu ritmo,<br><em>sin límites.</em></h1>
-      <p class="hero-sub">Clases particulares online o presenciales adaptadas a tu nivel y ritmo. Matemáticas, ciencias y preparación PAES con resultados garantizados desde la primera clase.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Clase de prueba gratis</a>
-        <a href="#servicios" class="btn btn-outline">Ver materias</a>
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">+200 PROFESORES VERIFICADOS</div>
+      <h1>El profe ideal<br/>para tu <span>hijo</span><br/>está aquí</h1>
+      <p class="hero-desc">Clases particulares a domicilio u online con profesores verificados. Matemáticas, Lenguaje, Inglés, Ciencias y más. Primera clase con garantía.</p>
+      <div class="search-bar">
+        <select>
+          <option>¿Qué materia necesitas?</option>
+          <option>Matemáticas</option>
+          <option>Lenguaje</option>
+          <option>Inglés</option>
+          <option>Ciencias</option>
+          <option>Historia</option>
+          <option>Física</option>
+        </select>
+        <button class="search-btn">🔍 Buscar profe</button>
       </div>
+      <div class="hero-trust">📍 Disponibles en <strong>Santiago, Valparaíso, Concepción</strong> y online</div>
     </div>
-  </section>
-
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Materias disponibles</span>
-        <h2 class="section-title">Apoyo escolar en las materias más difíciles</h2>
-        <p class="section-desc">Clases personalizadas para cada alumno. No importa tu nivel de partida: trabajamos desde donde estás hasta donde quieres llegar.</p>
+    <div class="hero-visual">
+      <div class="tutor-card">
+        <div class="tutor-top">
+          <div class="tutor-av"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=100&q=80" alt=""/></div>
+          <div><div class="tutor-name">Ana Rodríguez</div><div class="tutor-subject">Matemáticas · Ing. Civil</div><div class="tutor-rating"><span>★★★★★</span> 4.9 (48 clases)</div></div>
+        </div>
+        <div class="tutor-price">$15.000/hora · A domicilio</div>
       </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">➕</div>
-          <h3 class="card-title">Matemáticas</h3>
-          <p class="card-desc">Aritmética, álgebra, geometría, cálculo y estadística. Desde básica hasta universitaria. Metodología visual y práctica con ejercicios reales.</p>
-          <p class="card-price">$18.000/hora</p>
+      <div class="tutor-card">
+        <div class="tutor-top">
+          <div class="tutor-av"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=100&q=80" alt=""/></div>
+          <div><div class="tutor-name">Pablo Mora</div><div class="tutor-subject">Inglés · Cambridge C2</div><div class="tutor-rating"><span>★★★★★</span> 5.0 (92 clases)</div></div>
         </div>
-        <div class="card">
-          <div class="card-icon">🔬</div>
-          <h3 class="card-title">Ciencias (Física y Química)</h3>
-          <p class="card-desc">Física y química de enseñanza media y universitaria. Ejercicios prácticos, laboratorios virtuales y preparación para certámenes.</p>
-          <p class="card-price">$18.000/hora</p>
+        <div class="tutor-price">$18.000/hora · Online</div>
+      </div>
+      <div class="tutor-card">
+        <div class="tutor-top">
+          <div class="tutor-av"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&q=80" alt=""/></div>
+          <div><div class="tutor-name">Sofía Vega</div><div class="tutor-subject">Lenguaje · Prof. de Castellano</div><div class="tutor-rating"><span>★★★★★</span> 4.8 (67 clases)</div></div>
         </div>
-        <div class="card">
-          <div class="card-icon">📝</div>
-          <h3 class="card-title">Lenguaje y Comunicación</h3>
-          <p class="card-desc">Comprensión lectora, escritura, ortografía y redacción académica. También preparación para ensayos de postulación a universidades.</p>
-          <p class="card-price">$16.000/hora</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🎯</div>
-          <h3 class="card-title">Preparación PAES</h3>
-          <p class="card-desc">Programa intensivo de 3 meses enfocado en PAES Matemática 1 y 2, Comprensión Lectora y Ciencias. Simulacros mensuales incluidos.</p>
-          <p class="card-price">$120.000/mes</p>
-        </div>
+        <div class="tutor-price">$12.000/hora · A domicilio</div>
+      </div>
+      <div class="tutor-card" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff">
+        <div style="font-size:2rem;margin-bottom:.5rem">🎓</div>
+        <div style="font-weight:700;font-size:.9rem;margin-bottom:.3rem">+200 profesores</div>
+        <div style="font-size:.75rem;opacity:.8">Verificados y calificados</div>
+        <div style="margin-top:.8rem;font-size:.72rem;font-weight:700">Ver todos →</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">📚</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">5 años ayudando a estudiantes a superar sus dificultades académicas</h2>
-          <p class="about-text">Soy profesor titulado con especialización en matemáticas y ciencias. Más de 200 alumnos han mejorado sus notas y calificaciones PAES trabajando conmigo de forma personalizada.</p>
-          <p class="about-text">Cada alumno recibe una evaluación inicial gratuita para identificar sus brechas y diseñar un plan de trabajo a su medida. Horarios flexibles de lunes a domingo.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+200</div><div class="stat-label">Alumnos apoyados</div></div>
-        <div class="stat"><div class="stat-number">5</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación Google</div></div>
-        <div class="stat"><div class="stat-number">Flexible</div><div class="stat-label">Horarios disponibles</div></div>
+<section class="subjects" id="materias">
+  <div class="section-label">MATERIAS DISPONIBLES</div>
+  <h2 class="section-title reveal">Encontramos al profe indicado<br/>para cualquier materia</h2>
+  <div class="subjects-grid">
+    <div class="subj-card reveal"><div class="subj-icon">📐</div><h3>Matemáticas</h3><div class="subj-count">48 profesores</div></div>
+    <div class="subj-card reveal"><div class="subj-icon">📚</div><h3>Lenguaje</h3><div class="subj-count">35 profesores</div></div>
+    <div class="subj-card reveal"><div class="subj-icon">🇺🇸</div><h3>Inglés</h3><div class="subj-count">62 profesores</div></div>
+    <div class="subj-card reveal"><div class="subj-icon">🔬</div><h3>Ciencias</h3><div class="subj-count">29 profesores</div></div>
+    <div class="subj-card reveal"><div class="subj-icon">⚡</div><h3>Física</h3><div class="subj-count">22 profesores</div></div>
+    <div class="subj-card reveal"><div class="subj-icon">🧪</div><h3>Química</h3><div class="subj-count">18 profesores</div></div>
+    <div class="subj-card reveal"><div class="subj-icon">🏛️</div><h3>Historia</h3><div class="subj-count">24 profesores</div></div>
+    <div class="subj-card reveal"><div class="subj-icon">📊</div><h3>PSU/PAES</h3><div class="subj-count">31 profesores</div></div>
+  </div>
+</section>
+
+<section class="how" id="como">
+  <div class="section-label">CÓMO FUNCIONA</div>
+  <h2 class="section-title reveal">Conectarte con tu profe es simple</h2>
+  <div class="how-steps">
+    <div class="how-step reveal">
+      <div class="how-num">1</div>
+      <div class="how-icon">🔍</div>
+      <h3>Cuéntanos qué necesitas</h3>
+      <p>Dinos la materia, nivel y si prefieres presencial u online</p>
+    </div>
+    <div class="how-step reveal">
+      <div class="how-num">2</div>
+      <div class="how-icon">👩‍🏫</div>
+      <h3>Te presentamos opciones</h3>
+      <p>Te enviamos perfiles de profesores disponibles en tu zona</p>
+    </div>
+    <div class="how-step reveal">
+      <div class="how-num">3</div>
+      <div class="how-icon">📅</div>
+      <h3>Agendas la primera clase</h3>
+      <p>Con garantía: si no quedas conforme, te buscamos otro profe gratis</p>
+    </div>
+    <div class="how-step reveal">
+      <div class="how-num">4</div>
+      <div class="how-icon">📈</div>
+      <h3>Ves los resultados</h3>
+      <p>Seguimiento del progreso y comunicación directa con el profe</p>
+    </div>
+  </div>
+</section>
+
+<section class="tutors" id="profesores">
+  <div class="section-label">PROFESORES DESTACADOS</div>
+  <h2 class="section-title reveal">Verificados, calificados y con experiencia</h2>
+  <div class="tutors-grid">
+    <div class="tutor-full-card reveal">
+      <div class="tutor-full-img"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80" alt="Ana"/></div>
+      <div class="tutor-full-body">
+        <div class="tutor-full-name">Ana Rodríguez</div>
+        <div class="tutor-full-spec">MATEMÁTICAS</div>
+        <div class="tutor-full-rate">★★★★★ 4.9 · Ing. Civil UCH · 5 años</div>
+        <div class="tutor-full-price">$15.000<small>/hora</small></div>
+        <a href="https://wa.me/56900000000" class="tutor-btn">Contactar</a>
       </div>
     </div>
-  </section>
-
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Testimonios</span>
-        <h2 class="section-title">Lo que dicen nuestros alumnos y apoderados</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Mi hijo reprobaba matemáticas hace 2 años y después de 3 meses de clases particulares subió a nota 6. La metodología del profe es muy clara y paciente. Totalmente transformó su relación con la materia."</p>
-          <div class="testi-author">Sandra Muñoz</div>
-          <div class="testi-role">Apoderada · matemáticas 1° medio</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Me preparé para la PAES con el profe y subí 130 puntos en matemática respecto a mi ensayo inicial. Gracias a eso entré a la carrera que quería. La mejor inversión que hice en mi proceso de admisión."</p>
-          <div class="testi-author">Tomás Gómez</div>
-          <div class="testi-role">Ex alumno · PAES 2024</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Las clases de química me parecían imposibles hasta que empecé con este profesor. Explica de una forma muy visual y conecta los conceptos con la vida real. Ahora es una de mis materias favoritas."</p>
-          <div class="testi-author">Gabriela Pérez</div>
-          <div class="testi-role">Alumna · química 3° medio</div>
-        </div>
+    <div class="tutor-full-card reveal">
+      <div class="tutor-full-img"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" alt="Pablo"/></div>
+      <div class="tutor-full-body">
+        <div class="tutor-full-name">Pablo Mora</div>
+        <div class="tutor-full-spec">INGLÉS</div>
+        <div class="tutor-full-rate">★★★★★ 5.0 · Cambridge C2 · 8 años</div>
+        <div class="tutor-full-price">$18.000<small>/hora</small></div>
+        <a href="https://wa.me/56900000000" class="tutor-btn">Contactar</a>
       </div>
     </div>
-  </section>
-
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Listo para mejorar tus calificaciones?</h2>
-      <p class="section-desc">Agenda tu clase de prueba gratuita de 45 minutos por WhatsApp. Sin compromiso, evalúa la metodología antes de decidir.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Clase gratis por WhatsApp
-      </a>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Profesor Particular Online</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
+    <div class="tutor-full-card reveal">
+      <div class="tutor-full-img"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80" alt="Sofía"/></div>
+      <div class="tutor-full-body">
+        <div class="tutor-full-name">Sofía Vega</div>
+        <div class="tutor-full-spec">LENGUAJE · LITERATURA</div>
+        <div class="tutor-full-rate">★★★★★ 4.8 · Prof. Castellano PUC</div>
+        <div class="tutor-full-price">$12.000<small>/hora</small></div>
+        <a href="https://wa.me/56900000000" class="tutor-btn">Contactar</a>
       </div>
     </div>
-  </footer>
+    <div class="tutor-full-card reveal">
+      <div class="tutor-full-img"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Carlos"/></div>
+      <div class="tutor-full-body">
+        <div class="tutor-full-name">Carlos Fuentes</div>
+        <div class="tutor-full-spec">FÍSICA · MATEMÁTICAS</div>
+        <div class="tutor-full-rate">★★★★★ 4.9 · Lic. Física USACH</div>
+        <div class="tutor-full-price">$16.000<small>/hora</small></div>
+        <a href="https://wa.me/56900000000" class="tutor-btn">Contactar</a>
+      </div>
+    </div>
+  </div>
+</section>
 
+<div class="stats">
+  <div class="stat-item reveal"><div class="stat-num" data-count="200" data-suffix="+">0</div><div class="stat-label">PROFESORES</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="3500" data-suffix="+">0</div><div class="stat-label">CLASES DICTADAS</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="98" data-suffix="%">0</div><div class="stat-label">SATISFACCIÓN</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="8" data-suffix="+">0</div><div class="stat-label">MATERIAS</div></div>
+</div>
+
+<section class="testimonials">
+  <div class="section-label">OPINIONES</div>
+  <h2 class="section-title reveal">Lo que dicen padres y estudiantes</h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Mi hijo pasó de un 4.0 a un 6.5 en matemáticas en solo 2 meses con Ana. Es increíble cómo le explica, tiene mucha paciencia."</p>
+      <div class="testi-author"><div class="testi-av">LM</div><div><div class="testi-name">Lorena Moya</div><div class="testi-sub">Mamá de Benjamín, 14 años</div></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Subí 80 puntos en la PAES después de 3 meses de clases. El profe Carlos se concentró exactamente en lo que yo necesitaba. Entré a la carrera que quería."</p>
+      <div class="testi-author"><div class="testi-av">FP</div><div><div class="testi-name">Felipe Pino</div><div class="testi-sub">Estudiante · PAES 2024</div></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"La garantía de la primera clase me convenció. Si no te gusta el profe, te consiguen otro sin cargo. Eso dice mucho de su seriedad."</p>
+      <div class="testi-author"><div class="testi-av">RA</div><div><div class="testi-name">Rodrigo Andrade</div><div class="testi-sub">Papá de Valentina, 16 años</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <h2 class="reveal">¿A qué esperas para conectar<br/>con el profe ideal?</h2>
+  <p class="reveal">Primera clase con garantía de satisfacción. Si el profe no convence, te buscamos otro sin costo adicional.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/56900000000?text=Hola,%20busco%20un%20profesor%20particular" class="btn-white">💬 Buscar profe por WhatsApp</a>
+    <a href="tel:+56900000000" class="btn-outline-w">📞 Llamar ahora</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 ProfeConnect · Clases Particulares · Santiago, Valparaíso, Concepción</p>
+</footer>
+
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(15,23,42,.93);border:1px solid rgba(59,130,246,.35);border-radius:8px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.75)">🎯 Página de Muestra · <a href="../" style="color:#3b82f6;font-weight:700">Felipe Figueroa</a></div>
+
+<script>
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const io=new IntersectionObserver(([e])=>{
+    if(!e.isIntersecting)return;
+    const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+    let cur=0;const step=target/60;
+    const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.round(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+    io.unobserve(el);
+  },{threshold:.5});io.observe(el);
+});
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+});
+</script>
 </body>
 </html>

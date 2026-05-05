@@ -1,157 +1,312 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="PetWorld — Alimentos premium, accesorios, peluquería canina y veterinaria en Santiago. Página de muestra" />
-  <title>PetWorld — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PataFeliz — Veterinaria & Pet Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #0891b2;
-      --primary-rgb: 8,145,178;
-      --bg: #fff;
-      --bg-alt: #ecfeff;
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--teal:#0d7377;--teal-light:#14a9ae;--orange:#f77f00;--yellow:#f9c74f;--cream:#fefcf7;--light:#e8f8f8;--dark:#072730;--text:#0d2b30;--dim:#5a8a8d}
+    body{font-family:'Nunito Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:.4s}
+    nav.scrolled{background:rgba(254,252,247,.97);backdrop-filter:blur(16px);box-shadow:0 2px 20px rgba(13,115,119,.1)}
+    .nav-logo{font-family:'Nunito',sans-serif;font-size:1.5rem;font-weight:900;color:#fff;text-decoration:none}
+    .nav-logo span{color:var(--yellow)}
+    nav.scrolled .nav-logo{color:var(--teal)}
+    nav.scrolled .nav-logo span{color:var(--orange)}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-link{text-decoration:none;color:rgba(255,255,255,.85);font-size:.85rem;font-weight:700;transition:.3s}
+    nav.scrolled .nav-link{color:var(--dim)}
+    .nav-link:hover{color:var(--yellow)}
+    nav.scrolled .nav-link:hover{color:var(--teal)}
+    .nav-cta{background:var(--orange)!important;color:#fff!important;padding:.5rem 1.4rem;border-radius:100px}
+
+    /* HERO */
+    .hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(110deg,rgba(7,39,48,.95) 0%,rgba(13,115,119,.8) 55%,rgba(7,39,48,.5) 100%)}
+    .hero-content{position:relative;z-index:2;padding:8rem 3rem 4rem;max-width:620px;margin-left:max(2rem,6vw)}
+    .hero-emoji{font-size:3rem;display:block;margin-bottom:1rem;animation:bounce 2s ease-in-out infinite}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .hero-title{font-family:'Nunito',sans-serif;font-size:clamp(2.8rem,5.5vw,4.8rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:1rem}
+    .hero-title span{color:var(--yellow)}
+    .hero-sub{color:rgba(255,255,255,.75);line-height:1.75;margin-bottom:2.5rem;font-size:.98rem}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn-orange{display:inline-block;background:var(--orange);color:#fff;padding:.95rem 2.4rem;border-radius:100px;text-decoration:none;font-weight:800;font-size:.9rem;transition:.3s}
+    .btn-orange:hover{background:#e06e00;transform:translateY(-2px);box-shadow:0 8px 24px rgba(247,127,0,.4)}
+    .btn-teal{display:inline-block;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.4);color:#fff;padding:.9rem 2.2rem;border-radius:100px;text-decoration:none;font-weight:700;font-size:.88rem;transition:.3s;backdrop-filter:blur(8px)}
+    .btn-teal:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.7)}
+
+    /* SERVICES PILLS */
+    .pills-bar{background:var(--teal);padding:1.2rem 2rem;overflow:hidden;white-space:nowrap}
+    .pills-inner{display:inline-flex;gap:1rem;animation:scroll 18s linear infinite;align-items:center}
+    .pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.12);color:#fff;padding:.4rem 1rem;border-radius:100px;font-size:.78rem;font-weight:700}
+    .pill em{opacity:.6;font-style:normal}
+    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* SECTIONS */
+    section{padding:6rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .sec-label{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);font-weight:800}
+    .sec-title{font-family:'Nunito',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:900;margin:.4rem 0 1rem;line-height:1.2}
+    .sec-desc{color:var(--dim);line-height:1.75;font-weight:400;max-width:500px}
+
+    /* SERVICES CARDS */
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .serv-card{background:#fff;border-radius:20px;padding:2rem;box-shadow:0 4px 20px rgba(13,115,119,.08);transition:.4s;cursor:pointer;border:2px solid transparent}
+    .serv-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(13,115,119,.18);border-color:var(--teal-light)}
+    .serv-icon{font-size:3rem;margin-bottom:1rem}
+    .serv-card h3{font-family:'Nunito',sans-serif;font-weight:800;font-size:1.1rem;margin-bottom:.5rem}
+    .serv-card p{font-size:.84rem;color:var(--dim);line-height:1.6;margin-bottom:1rem}
+    .serv-price{font-weight:800;color:var(--teal);font-size:1rem}
+    .serv-badge{display:inline-block;background:var(--light);color:var(--teal);font-size:.65rem;font-weight:800;padding:.2rem .6rem;border-radius:100px;margin-top:.4rem;letter-spacing:.05em}
+
+    /* PET SHOP */
+    .shop-section{background:var(--light);padding:6rem 2rem}
+    .shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+    .shop-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(13,115,119,.06);transition:.4s;cursor:pointer}
+    .shop-card:hover{transform:translateY(-5px);box-shadow:0 14px 40px rgba(13,115,119,.15)}
+    .shop-img{height:180px;overflow:hidden;position:relative;background:var(--cream)}
+    .shop-img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+    .shop-card:hover .shop-img img{transform:scale(1.06)}
+    .shop-tag{position:absolute;top:.7rem;left:.7rem;background:var(--orange);color:#fff;font-size:.62rem;font-weight:800;padding:.2rem .7rem;border-radius:100px}
+    .shop-body{padding:1rem}
+    .shop-pet{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);font-weight:800;margin-bottom:.3rem}
+    .shop-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;margin-bottom:.3rem}
+    .shop-desc{font-size:.75rem;color:var(--dim);margin-bottom:.7rem;line-height:1.4}
+    .shop-price{font-weight:800;color:var(--orange);font-size:.95rem}
+
+    /* ABOUT */
+    .about-section{background:var(--dark);color:#fff;padding:7rem 2rem}
+    .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:0 auto}
+    .about-img{border-radius:24px;overflow:hidden;position:relative}
+    .about-img img{width:100%;height:480px;object-fit:cover}
+    .about-badge{position:absolute;bottom:2rem;left:2rem;background:var(--orange);color:#fff;padding:1rem 1.5rem;border-radius:16px}
+    .about-badge p{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.8rem;line-height:1}
+    .about-badge span{font-size:.75rem;font-weight:600;opacity:.85}
+    .about-label{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow);font-weight:800}
+    .about-title{font-family:'Nunito',sans-serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:900;margin:.4rem 0 1.2rem;line-height:1.2}
+    .about-text{color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:1rem;font-weight:300}
+    .vets-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+    .vet-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem;display:flex;align-items:center;gap:.8rem}
+    .vet-emoji{font-size:1.8rem}
+    .vet-name{font-weight:800;font-size:.88rem}
+    .vet-spec{font-size:.73rem;color:rgba(255,255,255,.5)}
+
+    /* STATS */
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;border-top:1px solid rgba(255,255,255,.08);padding-top:3rem;margin-top:3rem;text-align:center}
+    .st-n{font-family:'Nunito',sans-serif;font-size:3rem;font-weight:900;color:var(--yellow)}
+    .st-l{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.3rem}
+
+    /* TESTIMONIALS */
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .testi{background:#fff;border-radius:20px;padding:2rem;box-shadow:0 2px 16px rgba(13,115,119,.07)}
+    .testi-pet{font-size:2rem;margin-bottom:.5rem}
+    .stars{color:var(--orange);margin-bottom:.8rem;letter-spacing:.08em}
+    .testi-q{font-size:.9rem;line-height:1.7;color:var(--text);margin-bottom:1.2rem;font-style:italic}
+    .testi-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem}
+    .testi-sub{font-size:.75rem;color:var(--dim);margin-top:.2rem}
+
+    /* CTA */
+    .cta{background:linear-gradient(135deg,var(--teal) 0%,var(--dark) 100%);padding:7rem 2rem;text-align:center;position:relative;overflow:hidden}
+    .cta::before{content:'🐾';position:absolute;font-size:20rem;opacity:.04;top:50%;left:50%;transform:translate(-50%,-50%)}
+    .cta-title{font-family:'Nunito',sans-serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:#fff;margin-bottom:1rem}
+    .cta-title span{color:var(--yellow)}
+    .cta-sub{color:rgba(255,255,255,.75);margin-bottom:2.5rem;font-size:.95rem;line-height:1.7}
+    .btn-lg{display:inline-block;background:var(--orange);color:#fff;padding:1.1rem 3rem;border-radius:100px;text-decoration:none;font-weight:800;font-size:1rem;transition:.3s}
+    .btn-lg:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(247,127,0,.4)}
+
+    footer{background:var(--dark);color:rgba(255,255,255,.4);padding:3rem 2rem;text-align:center;font-size:.82rem}
+    footer a{color:var(--teal-light);text-decoration:none}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:900px){.services-grid{grid-template-columns:1fr}.shop-grid{grid-template-columns:repeat(2,1fr)}.about-inner{grid-template-columns:1fr}.about-img{display:none}.stats-row{grid-template-columns:repeat(2,1fr)}.testi-grid{grid-template-columns:1fr}.nav-links{display:none}.hero-content{padding:7rem 1.5rem 3rem;margin-left:0}}
   </style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(7,39,48,.97);border:1px solid rgba(20,169,174,.3);border-radius:100px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#14a9ae;font-weight:700">Felipe Figueroa</a></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Pata<span>Feliz.</span></a>
+  <ul class="nav-links">
+    <li><a href="#servicios" class="nav-link">Servicios</a></li>
+    <li><a href="#tienda" class="nav-link">Pet Shop</a></li>
+    <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+    <li><a href="#contacto" class="nav-link nav-cta">Agendar</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-emoji">🐾</span>
+    <h1 class="hero-title">Tu mascota merece<br><span>lo mejor</span></h1>
+    <p class="hero-sub">Veterinaria, grooming, hotel y pet shop en un solo lugar. Atención de urgencia 24/7. Porque ellos son familia.</p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn-orange">Agendar hora</a>
+      <a href="#servicios" class="btn-teal">Ver servicios</a>
+    </div>
   </div>
+</section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Pet<span>World.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Contactar</a></li>
-      </ul>
-    </div>
-  </nav>
+<div class="pills-bar">
+  <div class="pills-inner">
+    <span class="pill">🏥 Veterinaria</span><em>·</em>
+    <span class="pill">✂️ Grooming</span><em>·</em>
+    <span class="pill">🏨 Hotel mascotas</span><em>·</em>
+    <span class="pill">💊 Farmacia</span><em>·</em>
+    <span class="pill">🦴 Pet Shop</span><em>·</em>
+    <span class="pill">🚑 Urgencias 24/7</span><em>·</em>
+    <span class="pill">🏥 Veterinaria</span><em>·</em>
+    <span class="pill">✂️ Grooming</span><em>·</em>
+    <span class="pill">🏨 Hotel mascotas</span><em>·</em>
+    <span class="pill">💊 Farmacia</span><em>·</em>
+    <span class="pill">🦴 Pet Shop</span><em>·</em>
+    <span class="pill">🚑 Urgencias 24/7</span>
+  </div>
+</div>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #0a2540 0%, #164e63 50%, #0a2540 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Tienda de Mascotas</p>
-      <h1 class="hero-title">Porque ellos son<br><em>parte de la familia.</em></h1>
-      <p class="hero-sub">Todo lo que tu mascota necesita en un solo lugar. Alimentos premium, accesorios, peluquería y atención veterinaria express con el cariño que se merecen.</p>
-      <div class="hero-btns">
-        <a href="#servicios" class="btn btn-primary">Ver servicios</a>
-        <a href="#contacto" class="btn btn-outline">Contactar</a>
+<section id="servicios">
+  <div class="container">
+    <span class="sec-label">Lo que hacemos</span>
+    <h2 class="sec-title">Cuidado integral<br>para toda la familia</h2>
+    <p class="sec-desc">Desde controles de rutina hasta cirugías complejas. Un equipo de veterinarios especialistas siempre disponible.</p>
+    <div class="services-grid">
+      <div class="serv-card reveal">
+        <div class="serv-icon">🩺</div>
+        <h3>Medicina veterinaria</h3>
+        <p>Consultas, controles, vacunas, desparasitación y cirugías. Atención de urgencia las 24 horas.</p>
+        <div class="serv-price">Consulta desde $25.000</div>
+        <span class="serv-badge">24/7 Urgencias</span>
+      </div>
+      <div class="serv-card reveal" style="transition-delay:.15s">
+        <div class="serv-icon">✂️</div>
+        <h3>Grooming & Peluquería</h3>
+        <p>Baño, corte, secado y arreglo de uñas. Especialistas en todas las razas. Pickup a domicilio disponible.</p>
+        <div class="serv-price">desde $18.000</div>
+        <span class="serv-badge">Pickup a domicilio</span>
+      </div>
+      <div class="serv-card reveal" style="transition-delay:.3s">
+        <div class="serv-icon">🏨</div>
+        <h3>Hotel para mascotas</h3>
+        <p>Estadías individuales, supervisión 24/7, paseos diarios y cámaras en tiempo real para los papás.</p>
+        <div class="serv-price">desde $22.000/noche</div>
+        <span class="serv-badge">Cámaras live</span>
+      </div>
+      <div class="serv-card reveal">
+        <div class="serv-icon">💊</div>
+        <h3>Farmacia & Nutrición</h3>
+        <p>Medicamentos veterinarios, alimentos premium y suplementos. Prescripción y seguimiento incluido.</p>
+        <div class="serv-price">Consulta gratuita</div>
+      </div>
+      <div class="serv-card reveal" style="transition-delay:.15s">
+        <div class="serv-icon">🔬</div>
+        <h3>Diagnóstico por imagen</h3>
+        <p>Ecografía, radiografía y laboratorio clínico en el lugar. Resultados en el día.</p>
+        <div class="serv-price">desde $35.000</div>
+        <span class="serv-badge">Resultados express</span>
+      </div>
+      <div class="serv-card reveal" style="transition-delay:.3s">
+        <div class="serv-icon">🦷</div>
+        <h3>Odontología veterinaria</h3>
+        <p>Limpieza dental, extracción y ortodoncia. Bajo anestesia controlada con monitoreo constante.</p>
+        <div class="serv-price">desde $65.000</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">Bienestar completo para tu mascota</h2>
-        <p class="section-desc">Desde la alimentación hasta la salud, cubrimos todas las necesidades de tu perro, gato o mascota exótica.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🍖</div>
-          <h3 class="card-title">Alimentos Premium</h3>
-          <p class="card-desc">Royal Canin, Hill's, Purina Pro Plan, Orijen y más marcas premium. También alimentos BARF y dietas especiales.</p>
-          <p class="card-price">Desde $5.990</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🎾</div>
-          <h3 class="card-title">Accesorios y Juguetes</h3>
-          <p class="card-desc">Camas, comederos, arneses, ropa, juguetes interactivos y todo lo que necesitas para mantener a tu mascota feliz.</p>
-          <p class="card-price">Desde $2.990</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">✂️</div>
-          <h3 class="card-title">Peluquería Canina</h3>
-          <p class="card-desc">Baño y corte, hidratación de pelaje, limpieza de oídos y corte de uñas. Todas las razas, con amor y paciencia.</p>
-          <p class="card-price">Desde $12.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🏥</div>
-          <h3 class="card-title">Veterinaria Express</h3>
-          <p class="card-desc">Consultas sin cita para vacunas, desparasitación y revisiones rápidas. Atendemos perros, gatos y animales pequeños.</p>
-          <p class="card-price">Desde $8.000</p>
-        </div>
-      </div>
+<section class="shop-section" id="tienda">
+  <div class="container">
+    <span class="sec-label">Pet Shop</span>
+    <h2 class="sec-title">Todo para su felicidad</h2>
+    <p class="sec-desc">Las mejores marcas premium disponibles en nuestra tienda física y con despacho a domicilio.</p>
+    <div class="shop-grid">
+      <div class="shop-card reveal"><div class="shop-img"><img src="https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?auto=format&fit=crop&w=500&q=80" alt="Alimento"/><span class="shop-tag">🐶 PERROS</span></div><div class="shop-body"><p class="shop-pet">Nutrición</p><p class="shop-name">Royal Canin Medium Adult 15kg</p><p class="shop-desc">Nutrición balanceada razas medianas</p><p class="shop-price">$62.900</p></div></div>
+      <div class="shop-card reveal" style="transition-delay:.1s"><div class="shop-img"><img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=500&q=80" alt="Juguete"/><span class="shop-tag">⭐ TOP</span></div><div class="shop-body"><p class="shop-pet">Juguetes</p><p class="shop-name">Kong Classic Rellenable</p><p class="shop-desc">Estimulación mental y dental</p><p class="shop-price">$12.900</p></div></div>
+      <div class="shop-card reveal" style="transition-delay:.2s"><div class="shop-img"><img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=500&q=80" alt="Gato"/><span class="shop-tag">🐱 GATOS</span></div><div class="shop-body"><p class="shop-pet">Cuidado</p><p class="shop-name">Hills Science Diet Gato 3kg</p><p class="shop-desc">Fórmula veterinaria de alta digestibilidad</p><p class="shop-price">$32.500</p></div></div>
+      <div class="shop-card reveal" style="transition-delay:.3s"><div class="shop-img"><img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=500&q=80" alt="Accesorios"/></div><div class="shop-body"><p class="shop-pet">Accesorios</p><p class="shop-name">Arnés Antipull Regulable</p><p class="shop-desc">Diseño ergonómico, talla XS a XL</p><p class="shop-price">$18.900</p></div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🐾</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">5 años cuidando a las mascotas de Santiago con amor</h2>
-          <p class="about-text">Somos un equipo de amantes de los animales: nuestros peluqueros caninos y veterinario tienen formación especializada y trabajan con paciencia y cariño con cada mascota.</p>
-          <p class="about-text">Ofrecemos delivery de alimentos a domicilio y agendamiento online para peluquería y veterinaria. Tu comodidad y la felicidad de tu mascota son nuestra prioridad.</p>
-        </div>
+<section class="about-section" id="nosotros">
+  <div class="about-inner">
+    <div class="about-img reveal">
+      <img src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&fit=crop&w=800&q=80" alt="Veterinaria"/>
+      <div class="about-badge"><p data-count="10" data-suffix=" años">0</p><span>cuidando mascotas</span></div>
+    </div>
+    <div>
+      <span class="about-label">Nuestro equipo</span>
+      <h2 class="about-title">Veterinarios que<br>aman lo que hacen</h2>
+      <p class="about-text">Somos un equipo de más de 15 profesionales apasionados por el bienestar animal. Cada integrante tiene al menos 5 años de experiencia clínica.</p>
+      <p class="about-text">Contamos con equipos de diagnóstico de última generación y quirófano equipado para todo tipo de procedimientos.</p>
+      <div class="vets-grid">
+        <div class="vet-item"><span class="vet-emoji">👩‍⚕️</span><div><div class="vet-name">Dra. Fernanda Ruiz</div><div class="vet-spec">Cirugía & Medicina Interna</div></div></div>
+        <div class="vet-item"><span class="vet-emoji">👨‍⚕️</span><div><div class="vet-name">Dr. Rodrigo Pinto</div><div class="vet-spec">Dermatología & Oncología</div></div></div>
+        <div class="vet-item"><span class="vet-emoji">👩‍⚕️</span><div><div class="vet-name">Dra. Valentina Meza</div><div class="vet-spec">Urgencias & Traumatología</div></div></div>
+        <div class="vet-item"><span class="vet-emoji">👨‍⚕️</span><div><div class="vet-name">Dr. Carlos Ibáñez</div><div class="vet-spec">Odontología Veterinaria</div></div></div>
       </div>
       <div class="stats-row">
-        <div class="stat"><div class="stat-number">+500</div><div class="stat-label">Productos disponibles</div></div>
-        <div class="stat"><div class="stat-number">5</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.8★</div><div class="stat-label">Calificación Google</div></div>
-        <div class="stat"><div class="stat-number">+300</div><div class="stat-label">Clientes frecuentes</div></div>
+        <div><div class="st-n" data-count="5000" data-suffix="+">0</div><div class="st-l">Pacientes</div></div>
+        <div><div class="st-n" data-count="15" data-suffix="+">0</div><div class="st-l">Veterinarios</div></div>
+        <div><div class="st-n" data-count="4.9" data-suffix="★">0</div><div class="st-l">Rating</div></div>
+        <div><div class="st-n" data-count="24" data-suffix="/7">0</div><div class="st-l">Urgencias</div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Mi Labrador es muy nervioso con la peluquería pero aquí lo tratan con tanta paciencia que ya no le cuesta. Siempre queda hermoso y el precio es muy justo. No cambio este lugar."</p>
-          <div class="testi-author">Karina Morales</div>
-          <div class="testi-role">Clienta · peluquería canina</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Traje a mi gato de urgencia con un problema en la pata y me atendieron de inmediato. La veterinaria fue muy profesional y cariñosa con él. Precios muy razonables y buena atención."</p>
-          <div class="testi-author">Manuel Espinoza</div>
-          <div class="testi-role">Cliente · veterinaria</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El delivery de alimento es muy práctico y siempre llega puntual. Los precios son mejores que en el supermercado y tienen más variedad de marcas. Mi única tienda para mis tres perros."</p>
-          <div class="testi-author">Viviana Carrasco</div>
-          <div class="testi-role">Clienta · alimentos y delivery</div>
-        </div>
-      </div>
+<section id="opiniones">
+  <div class="container">
+    <div style="text-align:center">
+      <span class="sec-label">Papás & mamás felices</span>
+      <h2 class="sec-title">Lo que dice la familia PataFeliz</h2>
     </div>
-  </section>
-
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Tu mascota merece lo mejor?</h2>
-      <p class="section-desc">Contáctanos por WhatsApp para agendar peluquería, hacer tu pedido de alimentos o consultar por veterinaria.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Contactar por WhatsApp
-      </a>
+    <div class="testi-grid">
+      <div class="testi reveal"><div class="testi-pet">🐕</div><div class="stars">★★★★★</div><p class="testi-q">"Mi perro Topo tuvo una urgencia a las 2am y la atención fue increíble. El Dr. Pinto fue muy profesional y calmó también mis nervios. ¡Gracias por salvarle la vida!"</p><div class="testi-name">Catalina Herrera</div><div class="testi-sub">Mamá de Topo (Labrador, 4 años)</div></div>
+      <div class="testi reveal" style="transition-delay:.15s"><div class="testi-pet">🐈</div><div class="stars">★★★★★</div><p class="testi-q">"El grooming de Mochi quedó perfecto. Es muy ansiosa y le tuvieron mucha paciencia. Las cámaras del hotel me dejaron tranquila durante mis vacaciones."</p><div class="testi-name">Andrea Fuentes</div><div class="testi-sub">Mamá de Mochi (Persa, 3 años)</div></div>
+      <div class="testi reveal" style="transition-delay:.3s"><div class="testi-pet">🐶</div><div class="stars">★★★★★</div><p class="testi-q">"Llevo 5 años trayendo a mis dos perros aquí. La atención siempre es excelente, el equipo te conoce por nombre y recuerdan la historia de tus mascotas. Impagable."</p><div class="testi-name">Roberto Muñoz</div><div class="testi-sub">Papá de Bruno y Luna</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>PetWorld</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
+<section class="cta" id="contacto">
+  <h2 class="cta-title">¿Cuándo vemos<br>a tu <span>peludito</span>?</h2>
+  <p class="cta-sub">Agenda online, sin filas. Confirmación inmediata por WhatsApp. Urgencias disponibles las 24 horas.</p>
+  <a href="https://wa.me/56900000000?text=Hola%2C+quiero+agendar+una+hora+en+PataFeliz" target="_blank" rel="noopener" class="btn-lg">🐾 Agendar por WhatsApp</a>
+</section>
 
+<footer>
+  <div class="container">
+    <p style="font-family:'Nunito',sans-serif;font-size:1.3rem;font-weight:900;color:rgba(255,255,255,.5);margin-bottom:.5rem">PataFeliz. 🐾</p>
+    <p>Av. Ñuñoa 2345, Santiago · Urgencias 24/7: +56 9 0000 0000</p>
+    <p style="margin-top:1rem">Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      let cur=0;const step=target/60;
+      const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=+(cur.toFixed(1))+suffix;if(cur>=target)clearInterval(t);},20);
+      io.unobserve(el);
+    },{threshold:.5});io.observe(el);
+  });
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+  });
+</script>
 </body>
 </html>

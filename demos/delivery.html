@@ -1,163 +1,600 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="RapidoDelivery — Más rápido de lo que imaginas. Página de muestra." />
-  <title>RapidoDelivery — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #dc2626;
-      --primary-rgb: 220,38,38;
-      --bg: #ffffff;
-      --bg-alt: #fff5f5;
-      --surface: #fff5f5;
-      --text: #0f172a;
-      --text-dim: #64748b;
-      --text-muted: #94a3b8;
-      --border: #e2e8f0;
-      --nav-bg: rgba(255,255,255,0.94);
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>RapidBox · Delivery Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0c10;
+  --card:#111520;
+  --border:#1e2538;
+  --orange:#ff6b1a;
+  --yellow:#ffc107;
+  --white:#f8f9ff;
+  --muted:#8892a4;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:background .3s,backdrop-filter .3s}
+nav.scrolled{background:rgba(10,12,16,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Righteous',cursive;font-size:1.5rem;color:var(--white);text-decoration:none}
+.nav-logo span{color:var(--orange)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .25s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--orange);color:#fff;padding:.5rem 1.4rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.88rem;transition:opacity .2s}
+.nav-cta:hover{opacity:.85}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(120deg,rgba(10,12,16,.97) 45%,rgba(255,107,26,.12) 100%)}
+.hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,107,26,.12);border:1px solid rgba(255,107,26,.3);border-radius:50px;padding:.4rem 1rem;font-size:.82rem;font-weight:600;color:var(--orange);margin-bottom:1.5rem}
+.hero-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--orange);animation:blink 1.2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+h1{font-family:'Righteous',cursive;font-size:clamp(2.8rem,6vw,4.5rem);line-height:1.1;margin-bottom:1.4rem}
+h1 span{color:var(--orange)}
+.hero-sub{color:var(--muted);font-size:1.05rem;line-height:1.7;margin-bottom:2rem;max-width:480px}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--orange);color:#fff;padding:.8rem 2rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.95rem;transition:transform .2s,opacity .2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary:hover{transform:translateY(-2px);opacity:.9}
+.btn-outline{border:1.5px solid var(--border);color:var(--white);padding:.8rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.95rem;transition:border-color .2s}
+.btn-outline:hover{border-color:var(--orange)}
+.hero-proof{display:flex;align-items:center;gap:.8rem;margin-top:2rem}
+.avatars{display:flex}
+.avatars img{width:34px;height:34px;border-radius:50%;border:2px solid var(--bg);object-fit:cover;margin-right:-8px}
+.proof-text{font-size:.82rem;color:var(--muted)}
+.proof-text strong{color:var(--white)}
+/* floating delivery card */
+.hero-visual{position:relative}
+.delivery-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.5rem;max-width:320px;margin-left:auto;animation:floatY 4s ease-in-out infinite}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.dc-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
+.dc-icon{width:44px;height:44px;border-radius:12px;background:rgba(255,107,26,.15);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.dc-title{font-weight:700;font-size:.95rem}
+.dc-sub{font-size:.78rem;color:var(--muted)}
+.dc-item{display:flex;justify-content:space-between;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--border)}
+.dc-item:last-child{border-bottom:none}
+.dc-item-name{font-size:.85rem;display:flex;align-items:center;gap:.6rem}
+.dc-item-em{font-size:1.1rem}
+.dc-item-price{font-size:.85rem;font-weight:700;color:var(--orange)}
+.dc-total{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;margin-top:.3rem}
+.dc-total span{font-size:.9rem;color:var(--muted)}
+.dc-total strong{color:var(--orange);font-size:1.1rem}
+.dc-btn{width:100%;margin-top:1rem;background:var(--orange);color:#fff;border:none;border-radius:12px;padding:.8rem;font-weight:700;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.dc-eta{display:flex;align-items:center;gap:.5rem;margin-top:.8rem;font-size:.78rem;color:var(--muted)}
+.dc-eta-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:blink 1.4s infinite}
+
+/* TICKER */
+.ticker-wrap{background:var(--orange);padding:.7rem 0;overflow:hidden}
+.ticker{display:flex;gap:0;animation:ticker 22s linear infinite;white-space:nowrap}
+.ticker span{padding:0 2.5rem;font-family:'Righteous',cursive;font-size:.85rem;color:#fff;letter-spacing:.04em}
+.ticker span::after{content:'🛵';margin-left:2rem}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* CATEGORIES */
+.categories{padding:6rem 2rem;max-width:1200px;margin:0 auto}
+.section-label{font-size:.78rem;font-weight:700;letter-spacing:.12em;color:var(--orange);text-transform:uppercase;margin-bottom:.8rem}
+.section-title{font-family:'Righteous',cursive;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.2;margin-bottom:.8rem}
+.section-sub{color:var(--muted);font-size:1rem;max-width:500px}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3rem}
+.cat-card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;cursor:pointer;transition:border-color .25s,transform .25s;text-decoration:none;color:inherit}
+.cat-card:hover{border-color:var(--orange);transform:translateY(-4px)}
+.cat-img{height:140px;overflow:hidden;position:relative}
+.cat-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.cat-card:hover .cat-img img{transform:scale(1.06)}
+.cat-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7),transparent)}
+.cat-body{padding:1rem 1.2rem}
+.cat-emoji{font-size:1.8rem;display:block;margin-bottom:.4rem}
+.cat-name{font-weight:700;font-size:.95rem;margin-bottom:.2rem}
+.cat-count{font-size:.78rem;color:var(--muted)}
+.cat-card.featured{grid-column:span 2}
+.cat-card.featured .cat-img{height:200px}
+
+/* HOW IT WORKS */
+.how{padding:6rem 2rem;background:linear-gradient(180deg,var(--bg) 0%,#0d1018 100%)}
+.how-inner{max-width:1200px;margin:0 auto}
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3rem}
+.how-img{border-radius:24px;overflow:hidden;position:relative}
+.how-img img{width:100%;display:block;border-radius:24px}
+.how-steps{display:flex;flex-direction:column;gap:0}
+.step{display:flex;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border);position:relative}
+.step:last-child{border-bottom:none}
+.step-num{width:44px;height:44px;border-radius:50%;background:rgba(255,107,26,.12);border:1.5px solid rgba(255,107,26,.3);display:flex;align-items:center;justify-content:center;font-family:'Righteous',cursive;color:var(--orange);font-size:1rem;flex-shrink:0}
+.step-content h4{font-weight:700;margin-bottom:.3rem}
+.step-content p{font-size:.88rem;color:var(--muted);line-height:1.6}
+
+/* PRODUCTS */
+.products{padding:6rem 2rem;max-width:1200px;margin:0 auto}
+.products-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem}
+.filter-row{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.5rem}
+.filter-btn{border:1.5px solid var(--border);background:transparent;color:var(--muted);padding:.45rem 1.2rem;border-radius:50px;cursor:pointer;font-size:.85rem;font-family:'DM Sans',sans-serif;transition:all .2s}
+.filter-btn.active,.filter-btn:hover{background:var(--orange);border-color:var(--orange);color:#fff}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.product-card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:border-color .25s,transform .25s}
+.product-card:hover{border-color:var(--orange);transform:translateY(-4px)}
+.product-img{height:180px;overflow:hidden;position:relative}
+.product-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.product-card:hover .product-img img{transform:scale(1.05)}
+.product-tag{position:absolute;top:.8rem;left:.8rem;background:var(--orange);color:#fff;font-size:.7rem;font-weight:700;padding:.25rem .7rem;border-radius:50px}
+.product-body{padding:1.2rem}
+.product-name{font-weight:700;margin-bottom:.3rem}
+.product-rest{font-size:.8rem;color:var(--muted);margin-bottom:.8rem}
+.product-footer{display:flex;align-items:center;justify-content:space-between}
+.product-price{font-size:1.1rem;font-weight:700;color:var(--orange)}
+.product-add{width:34px;height:34px;border-radius:50%;background:var(--orange);border:none;color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.product-add:hover{transform:scale(1.1)}
+.product-rating{font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:.3rem}
+.stars{color:var(--yellow)}
+
+/* STATS */
+.stats{background:var(--orange);padding:4rem 2rem}
+.stats-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.stat-num{font-family:'Righteous',cursive;font-size:2.6rem;color:#fff}
+.stat-label{font-size:.85rem;color:rgba(255,255,255,.75);margin-top:.3rem}
+
+/* APP SECTION */
+.app-section{padding:6rem 2rem;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.app-phones{position:relative;display:flex;justify-content:center}
+.phone-mock{width:220px;border-radius:36px;overflow:hidden;border:3px solid var(--border);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.phone-mock img{width:100%;display:block}
+.phone-back{position:absolute;left:0;top:30px;opacity:.5;filter:blur(2px)}
+.app-badges{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+.app-badge{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:.8rem 1.2rem;display:flex;align-items:center;gap:.8rem;cursor:pointer;transition:border-color .2s}
+.app-badge:hover{border-color:var(--orange)}
+.app-badge-icon{font-size:1.6rem}
+.app-badge-text{font-size:.72rem;color:var(--muted)}
+.app-badge-text strong{display:block;color:var(--white);font-size:.88rem}
+
+/* TESTIMONIALS */
+.testimonials{padding:6rem 2rem;background:var(--card)}
+.test-inner{max-width:1100px;margin:0 auto}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:3rem}
+.test-card{background:var(--bg);border:1px solid var(--border);border-radius:18px;padding:1.5rem}
+.test-stars{color:var(--yellow);font-size:.9rem;margin-bottom:.8rem}
+.test-text{font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:1.2rem}
+.test-author{display:flex;align-items:center;gap:.8rem}
+.test-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.test-name{font-weight:700;font-size:.88rem}
+.test-meta{font-size:.75rem;color:var(--muted)}
+
+/* CTA */
+.cta{padding:8rem 2rem;position:relative;overflow:hidden;text-align:center}
+.cta-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat}
+.cta-overlay{position:absolute;inset:0;background:rgba(10,12,16,.88)}
+.cta-content{position:relative;z-index:2;max-width:600px;margin:0 auto}
+.cta h2{font-family:'Righteous',cursive;font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem}
+.cta p{color:var(--muted);margin-bottom:2rem;font-size:1.05rem}
+
+/* FOOTER */
+footer{background:#060709;padding:3rem 2rem;text-align:center;border-top:1px solid var(--border)}
+.footer-logo{font-family:'Righteous',cursive;font-size:1.5rem;margin-bottom:.5rem}
+.footer-logo span{color:var(--orange)}
+footer p{font-size:.82rem;color:var(--muted)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero-content{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .cat-card.featured{grid-column:span 2}
+  .how-grid{grid-template-columns:1fr}
+  .products-grid{grid-template-columns:1fr}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .app-section{grid-template-columns:1fr}
+  .test-grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<nav id="nav">
+  <a class="nav-logo" href="#"><span>Rapid</span>Box</a>
+  <ul class="nav-links">
+    <li><a href="#categorias">Categorías</a></li>
+    <li><a href="#como">Cómo funciona</a></li>
+    <li><a href="#app">App</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/56900000000?text=Hola,%20quiero%20pedir%20delivery">Pedir Ahora 🛵</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">🛵 Entrega en menos de 30 minutos</div>
+      <h1>Tu comida favorita,<br/><span>a tu puerta</span></h1>
+      <p class="hero-sub">Restaurantes, supermercados y tiendas de tu ciudad. Pedidos en segundos, entregas en minutos. Fresco, rápido y seguro.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://wa.me/56900000000?text=Hola,%20quiero%20pedir">🛵 Pedir Ahora</a>
+        <a class="btn-outline" href="#como">Cómo funciona</a>
+      </div>
+      <div class="hero-proof">
+        <div class="avatars">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=60&q=80" alt=""/>
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=60&q=80" alt=""/>
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=60&q=80" alt=""/>
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=60&q=80" alt=""/>
+        </div>
+        <div class="proof-text"><strong>+14.000</strong> clientes satisfechos este mes</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="delivery-card">
+        <div class="dc-header">
+          <div class="dc-icon">📦</div>
+          <div>
+            <div class="dc-title">Tu pedido</div>
+            <div class="dc-sub">Estimado: <strong>22 min</strong></div>
+          </div>
+        </div>
+        <div class="dc-item">
+          <span class="dc-item-name"><span class="dc-item-em">🍔</span> Smash Burger Clásica</span>
+          <span class="dc-item-price">$7.500</span>
+        </div>
+        <div class="dc-item">
+          <span class="dc-item-name"><span class="dc-item-em">🍟</span> Papas Medianas</span>
+          <span class="dc-item-price">$2.800</span>
+        </div>
+        <div class="dc-item">
+          <span class="dc-item-name"><span class="dc-item-em">🥤</span> Bebida 500ml</span>
+          <span class="dc-item-price">$1.500</span>
+        </div>
+        <div class="dc-total">
+          <span>Total</span>
+          <strong>$11.800</strong>
+        </div>
+        <button class="dc-btn">Confirmar Pedido →</button>
+        <div class="dc-eta"><span class="dc-eta-dot"></span> Repartidor a 1.2 km de ti</div>
+      </div>
+    </div>
   </div>
+</section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Rapido<span>Delivery.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Pedir ahora</a></li>
-      </ul>
-    </div>
-  </nav>
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>Delivery Express en 30 min</span><span>+200 Restaurantes</span><span>Pago Online Seguro</span><span>Rastreo en Tiempo Real</span><span>Sin Mínimo de Pedido</span><span>Delivery Express en 30 min</span><span>+200 Restaurantes</span><span>Pago Online Seguro</span><span>Rastreo en Tiempo Real</span><span>Sin Mínimo de Pedido</span>
+  </div>
+</div>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #1a0505 0%, #2d0a0a 50%, #1a0303 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Delivery Express · Santiago</p>
-      <h1 class="hero-title">Más rápido de lo<br>que <em>imaginas</em></h1>
-      <p class="hero-sub">Comida, productos y encomiendas en tu puerta en 30 minutos. Cobertura en toda la ciudad, los 7 días de la semana.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Hacer un pedido</a>
-        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
+<!-- CATEGORIES -->
+<section class="categories" id="categorias">
+  <div class="section-label">Explorar</div>
+  <h2 class="section-title reveal">Todo lo que necesitas,<br/>en un solo lugar</h2>
+  <p class="section-sub reveal">Desde comida rápida hasta mercado fresco. Elige tu categoría y recibe en minutos.</p>
+  <div class="cat-grid">
+    <a class="cat-card featured reveal" href="#">
+      <div class="cat-img">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" alt="Burgers"/>
+        <div class="cat-img-overlay"></div>
+      </div>
+      <div class="cat-body">
+        <span class="cat-emoji">🍔</span>
+        <div class="cat-name">Hamburguesas</div>
+        <div class="cat-count">38 locales disponibles</div>
+      </div>
+    </a>
+    <a class="cat-card reveal" href="#">
+      <div class="cat-img">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80" alt="Sushi"/>
+        <div class="cat-img-overlay"></div>
+      </div>
+      <div class="cat-body">
+        <span class="cat-emoji">🍣</span>
+        <div class="cat-name">Sushi</div>
+        <div class="cat-count">22 locales disponibles</div>
+      </div>
+    </a>
+    <a class="cat-card reveal" href="#">
+      <div class="cat-img">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80" alt="Pizza"/>
+        <div class="cat-img-overlay"></div>
+      </div>
+      <div class="cat-body">
+        <span class="cat-emoji">🍕</span>
+        <div class="cat-name">Pizza</div>
+        <div class="cat-count">29 locales disponibles</div>
+      </div>
+    </a>
+    <a class="cat-card reveal" href="#">
+      <div class="cat-img">
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80" alt="Mercado"/>
+        <div class="cat-img-overlay"></div>
+      </div>
+      <div class="cat-body">
+        <span class="cat-emoji">🛒</span>
+        <div class="cat-name">Mercado</div>
+        <div class="cat-count">12 supermercados</div>
+      </div>
+    </a>
+    <a class="cat-card reveal" href="#">
+      <div class="cat-img">
+        <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=400&q=80" alt="Farmacia"/>
+        <div class="cat-img-overlay"></div>
+      </div>
+      <div class="cat-body">
+        <span class="cat-emoji">💊</span>
+        <div class="cat-name">Farmacia</div>
+        <div class="cat-count">8 farmacias</div>
+      </div>
+    </a>
+    <a class="cat-card reveal" href="#">
+      <div class="cat-img">
+        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=400&q=80" alt="Tiendas"/>
+        <div class="cat-img-overlay"></div>
+      </div>
+      <div class="cat-body">
+        <span class="cat-emoji">🛍️</span>
+        <div class="cat-name">Tiendas</div>
+        <div class="cat-count">45 tiendas</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="como">
+  <div class="how-inner">
+    <div class="section-label">Proceso</div>
+    <h2 class="section-title reveal">Pedir es así de simple</h2>
+    <div class="how-grid">
+      <div class="how-img reveal">
+        <img src="https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?auto=format&fit=crop&w=600&q=80" alt="App delivery"/>
+      </div>
+      <div class="how-steps">
+        <div class="step reveal">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Elige tu local favorito</h4>
+            <p>Explora cientos de restaurantes y tiendas cerca de ti. Filtra por categoría, precio o tiempo de entrega.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Arma tu pedido</h4>
+            <p>Agrega tus productos al carrito y personaliza tu orden. Pagas en línea de forma segura o contra entrega.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Rastrea tu envío en vivo</h4>
+            <p>Sigue a tu repartidor en tiempo real en el mapa. Recibes notificaciones en cada etapa del pedido.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>¡Recíbelo en tu puerta!</h4>
+            <p>Tu pedido llega caliente, fresco y en el tiempo prometido. Garantía de satisfacción o te devolvemos tu dinero.</p>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">Todo lo que necesitas, cuando lo necesitas</h2>
-        <p class="section-desc">Servicio de delivery rápido, confiable y con seguimiento en tiempo real.</p>
+<!-- PRODUCTS -->
+<section class="products" id="productos">
+  <div class="products-header">
+    <div>
+      <div class="section-label">Lo más pedido</div>
+      <h2 class="section-title reveal">Favoritos de la semana</h2>
+      <div class="filter-row">
+        <button class="filter-btn active">Todos</button>
+        <button class="filter-btn">Comida Rápida</button>
+        <button class="filter-btn">Saludable</button>
+        <button class="filter-btn">Oriental</button>
+        <button class="filter-btn">Postres</button>
       </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🍕</div>
-          <h3 class="card-title">Delivery de comida</h3>
-          <p class="card-desc">Recogemos de tu restaurante favorito y te lo entregamos caliente. Todos los tipos de cocina, toda la ciudad.</p>
-          <p class="card-price">Desde $1.500 el envío</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📦</div>
-          <h3 class="card-title">Delivery de productos</h3>
-          <p class="card-desc">Farmacias, supermercados, tiendas de barrio. Compramos y te entregamos cualquier producto que necesites.</p>
-          <p class="card-price">Desde $2.000 el envío</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">⚡</div>
-          <h3 class="card-title">Encomiendas express</h3>
-          <p class="card-desc">Envía documentos, paquetes o encomiendas entre puntos de la ciudad de forma rápida y segura.</p>
-          <p class="card-price">Desde $2.500 el envío</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🗓️</div>
-          <h3 class="card-title">Envíos programados</h3>
-          <p class="card-desc">Programa tus entregas con anticipación. Ideal para negocios que necesitan logística recurrente y confiable.</p>
-          <p class="card-price">Planes mensuales disponibles</p>
+    </div>
+  </div>
+  <div class="products-grid">
+    <div class="product-card reveal">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" alt="Burger"/>
+        <span class="product-tag">🔥 Más Pedido</span>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Smash Burger Doble</div>
+        <div class="product-rest">🏪 Burger Station · 18 min</div>
+        <div class="product-footer">
+          <div>
+            <div class="product-price">$7.500</div>
+            <div class="product-rating"><span class="stars">★★★★★</span> 4.9 (320)</div>
+          </div>
+          <button class="product-add">+</button>
         </div>
       </div>
     </div>
-  </section>
-
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🛵</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">4 años siendo la solución de entrega de Santiago</h2>
-          <p class="about-text">Contamos con más de 50 repartidores activos en toda la ciudad. Nuestra plataforma de seguimiento en tiempo real te permite saber exactamente dónde está tu pedido en cada momento.</p>
-          <p class="about-text">Trabajamos con negocios locales, restaurantes y particulares. Si tienes un negocio, pregunta por nuestros planes de delivery mensual con tarifas especiales.</p>
-        </div>
+    <div class="product-card reveal">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=500&q=80" alt="Pizza"/>
+        <span class="product-tag">⭐ Top Valorado</span>
       </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">30 min</div><div class="stat-label">Tiempo de entrega promedio</div></div>
-        <div class="stat"><div class="stat-number">+200</div><div class="stat-label">Pedidos por día</div></div>
-        <div class="stat"><div class="stat-number">4.7★</div><div class="stat-label">Calificación clientes</div></div>
-        <div class="stat"><div class="stat-number">7 días</div><div class="stat-label">Disponibilidad semanal</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Pedí comida de un restaurante que no hacía delivery y RapidoDelivery me lo trajo en 25 minutos. La comida llegó caliente. Increíble servicio."</p>
-          <div class="testi-author">Nicolás Araya</div>
-          <div class="testi-role">Cliente frecuente, Providencia</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Tengo una tienda online y uso su servicio de delivery diario. Puntualísimos, cuidadosos con los paquetes y muy profesionales. ¡Los recomiendo!"</p>
-          <div class="testi-author">Catalina Vega</div>
-          <div class="testi-role">Emprendedora, Las Condes</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★☆</div>
-          <p class="testi-text">"Necesitaba medicamentos a las 11 de la noche y los trajeron en 35 minutos. El repartidor fue muy amable. El seguimiento en tiempo real es un plus enorme."</p>
-          <div class="testi-author">Jorge Henríquez</div>
-          <div class="testi-role">Cliente, Ñuñoa</div>
+      <div class="product-body">
+        <div class="product-name">Pizza Artesanal Quattro</div>
+        <div class="product-rest">🏪 La Fornace · 25 min</div>
+        <div class="product-footer">
+          <div>
+            <div class="product-price">$12.900</div>
+            <div class="product-rating"><span class="stars">★★★★★</span> 4.8 (210)</div>
+          </div>
+          <button class="product-add">+</button>
         </div>
       </div>
     </div>
-  </section>
-
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Necesitas algo ahora?</h2>
-      <p class="section-desc">Haz tu pedido en segundos. Estamos disponibles todos los días de 9:00 a 23:00 hrs.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20hacer%20un%20pedido%20de%20delivery" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Pedir por WhatsApp
-      </a>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>RapidoDelivery</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
+    <div class="product-card reveal">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?auto=format&fit=crop&w=500&q=80" alt="Sushi"/>
+        <span class="product-tag">🆕 Nuevo</span>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Combo Sushi 20 piezas</div>
+        <div class="product-rest">🏪 Sakura Express · 30 min</div>
+        <div class="product-footer">
+          <div>
+            <div class="product-price">$18.500</div>
+            <div class="product-rating"><span class="stars">★★★★☆</span> 4.7 (148)</div>
+          </div>
+          <button class="product-add">+</button>
+        </div>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="reveal">
+      <div class="stat-num" data-count="200" data-suffix="+">0+</div>
+      <div class="stat-label">Restaurantes aliados</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num" data-count="14000" data-suffix="+">0+</div>
+      <div class="stat-label">Pedidos por mes</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num" data-count="28" data-suffix=" min">0 min</div>
+      <div class="stat-label">Tiempo promedio de entrega</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num" data-count="98" data-suffix="%">0%</div>
+      <div class="stat-label">Clientes satisfechos</div>
+    </div>
+  </div>
+</div>
+
+<!-- APP SECTION -->
+<section class="app-section" id="app">
+  <div class="reveal">
+    <div class="section-label">Aplicación Móvil</div>
+    <h2 class="section-title">Descarga la app<br/>y pide en segundos</h2>
+    <p style="color:var(--muted);margin:1rem 0 2rem;line-height:1.7;font-size:1rem">Lleva RapidBox en tu bolsillo. Rastrea tu pedido en tiempo real, guarda tus direcciones favoritas y recibe ofertas exclusivas.</p>
+    <div class="app-badges">
+      <div class="app-badge">
+        <div class="app-badge-icon">🍎</div>
+        <div class="app-badge-text">Disponible en<strong>App Store</strong></div>
+      </div>
+      <div class="app-badge">
+        <div class="app-badge-icon">🤖</div>
+        <div class="app-badge-text">Disponible en<strong>Google Play</strong></div>
+      </div>
+    </div>
+  </div>
+  <div class="app-phones reveal">
+    <img class="phone-mock phone-back" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=300&q=80" alt="App"/>
+    <img class="phone-mock" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=300&q=80" alt="App" style="position:relative;z-index:1"/>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="test-inner">
+    <div class="section-label">Testimonios</div>
+    <h2 class="section-title reveal">Lo que dicen nuestros clientes</h2>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Pedí a las 8pm y llegó en 24 minutos. La comida caliente, el repartidor súper amable. Sin duda la mejor app de delivery que he usado."</p>
+        <div class="test-author">
+          <img class="test-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=60&q=80" alt=""/>
+          <div>
+            <div class="test-name">Rodrigo Fuentes</div>
+            <div class="test-meta">Santiago Centro · 🍔 Burger Station</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Uso RapidBox todos los viernes. El rastreo en tiempo real es genial, sabes exactamente cuándo llega. Nunca me ha fallado."</p>
+        <div class="test-author">
+          <img class="test-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=60&q=80" alt=""/>
+          <div>
+            <div class="test-name">Camila Torres</div>
+            <div class="test-meta">Providencia · 🍕 La Fornace</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Increíble que entreguen también farmacias y supermercado. Hice todo en un solo pedido. Ahorro de tiempo enorme."</p>
+        <div class="test-author">
+          <img class="test-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=60&q=80" alt=""/>
+          <div>
+            <div class="test-name">Diego Morales</div>
+            <div class="test-meta">Las Condes · 🛒 Mercado Express</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contacto">
+  <div class="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="cta-content reveal">
+    <h2>¿Listo para tu primer pedido?</h2>
+    <p>Regístrate gratis y obtén <strong style="color:var(--orange)">envío gratis</strong> en tu primer pedido. Sin costos ocultos.</p>
+    <a class="btn-primary" href="https://wa.me/56900000000?text=Hola,%20quiero%20pedir%20delivery">🛵 Pedir por WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><span>Rapid</span>Box</div>
+  <p style="margin-top:.5rem">Delivery Express · Santiago, Chile</p>
+  <p style="margin-top:.3rem">© 2025 RapidBox. Todos los derechos reservados.</p>
+</footer>
+
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(10,12,16,.85);border:1px solid rgba(255,107,26,.25);border-radius:50px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.7)">🎯 Página de Muestra · <a href="../" style="color:#ff6b1a;font-weight:700">Felipe Figueroa</a></div>
+
+<script>
+// Nav
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+
+// Scroll reveal
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+});
+
+// Counters
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const io=new IntersectionObserver(([e])=>{
+    if(!e.isIntersecting)return;
+    const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+    let cur=0;const step=target/60;
+    const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.round(cur).toLocaleString('es-CL')+suffix;if(cur>=target)clearInterval(t);},20);
+    io.unobserve(el);
+  },{threshold:.5});io.observe(el);
+});
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
 </body>
 </html>

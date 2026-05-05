@@ -1,163 +1,282 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Viajes & Aventuras — Agencia de viajes. El mundo te espera. Página de muestra." />
-  <title>Viajes & Aventuras — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #0369a1;
-      --primary-rgb: 3,105,161;
-      --bg: #ffffff;
-      --bg-alt: #f0f9ff;
-      --surface: #f0f9ff;
-      --text: #0f172a;
-      --text-dim: #64748b;
-      --text-muted: #94a3b8;
-      --border: #e2e8f0;
-      --nav-bg: rgba(255,255,255,0.94);
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Wanderlust — Agencia de Viajes Chile</title>
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--azure:#0077b6;--sky:#90e0ef;--dark:#03045e;--coral:#f4845f;--cream:#fff8f0;--offwhite:#f0f7ff;--gray:#5a6b7a;--light:#e0f4ff}
+body{font-family:'Mulish',sans-serif;background:#fff;color:#1a2535;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 5%;display:flex;align-items:center;justify-content:space-between;transition:.3s}
+nav.scrolled{background:rgba(3,4,94,.98);backdrop-filter:blur(10px)}
+.nav-logo{font-family:'Tenor Sans',sans-serif;font-size:1.4rem;letter-spacing:2px;color:#fff}
+.nav-logo span{color:var(--sky)}
+.nav-links{display:flex;gap:2rem;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.7)}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--coral);color:#fff;padding:.6rem 1.4rem;border-radius:30px;font-weight:700;font-size:.85rem;transition:.2s}
+.nav-cta:hover{background:#e06840}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center}
+.hero-slides{position:absolute;inset:0}
+.hero-slides img{width:100%;height:100%;object-fit:cover;animation:ken 10s ease-in-out infinite alternate}
+@keyframes ken{from{transform:scale(1)}to{transform:scale(1.07)}}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(3,4,94,.9) 0%,rgba(3,4,94,.5) 60%,transparent 100%)}
+.hero-content{position:relative;z-index:2;padding:0 5%;max-width:650px;padding-top:90px}
+.hero-pill{display:inline-flex;align-items:center;gap.5rem;gap:.5rem;background:rgba(144,224,239,.15);border:1px solid rgba(144,224,239,.3);color:var(--sky);font-size:.72rem;letter-spacing:2px;font-weight:700;padding:.4rem 1rem;border-radius:30px;margin-bottom:1.5rem}
+.hero h1{font-family:'Tenor Sans',sans-serif;font-size:clamp(2.5rem,5.5vw,4.5rem);line-height:1.1;color:#fff;margin-bottom:1.2rem;letter-spacing:-.5px}
+.hero h1 span{color:var(--sky)}
+.hero-desc{color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:2rem;max-width:460px;font-size:.95rem;font-weight:300}
+.search-form{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:1.2rem;backdrop-filter:blur(8px);margin-bottom:2rem}
+.search-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:.8rem;align-items:end}
+.sf-field label{display:block;font-size:.65rem;letter-spacing:2px;color:rgba(255,255,255,.5);font-weight:700;margin-bottom:.4rem}
+.sf-field select,.sf-field input{width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;padding:.65rem .8rem;font-family:'Mulish',sans-serif;font-size:.85rem;border-radius:6px}
+.sf-field select option{background:#03045e}
+.sf-btn{background:var(--coral);color:#fff;padding:.78rem 1.5rem;border-radius:6px;font-weight:700;font-size:.85rem;border:none;cursor:pointer;white-space:nowrap;transition:.2s}
+.sf-btn:hover{background:#e06840}
+.hero-trust{display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+.trust-item{font-size:.78rem;color:rgba(255,255,255,.55);display:flex;align-items:center;gap.4rem;gap:.4rem}
+.trust-item span{color:var(--sky);font-weight:700}
+
+/* DESTINATIONS */
+.destinations{padding:7rem 5%;background:#fff}
+.section-label{font-size:.68rem;letter-spacing:3px;color:var(--azure);font-weight:700;margin-bottom.5rem;margin-bottom:.5rem}
+.section-title{font-family:'Tenor Sans',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.3px;margin-bottom.5rem;margin-bottom:.5rem;line-height:1.2}
+.section-sub{color:var(--gray);margin-bottom:3rem;font-size:.9rem}
+.dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.dest-card{position:relative;border-radius:12px;overflow:hidden;cursor:pointer;height:300px}
+.dest-card img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.dest-card:hover img{transform:scale(1.06)}
+.dest-card::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,4,94,.85) 0%,transparent 55%)}
+.dest-info{position:absolute;bottom:1.5rem;left:1.5rem;z-index:2}
+.dest-region{font-size:.65rem;letter-spacing:3px;color:var(--sky);font-weight:700;margin-bottom.3rem;margin-bottom:.3rem}
+.dest-name{font-family:'Tenor Sans',sans-serif;font-size:1.3rem;color:#fff;letter-spacing.5px;letter-spacing:.5px}
+.dest-price{font-size.78rem;font-size:.78rem;color:rgba(255,255,255,.65);margin-top:.3rem}
+.dest-price strong{color:var(--sky)}
+.dest-card.featured{grid-row:span 2;height:620px}
+.dest-badge{position:absolute;top.8rem;top:.8rem;right:.8rem;background:var(--coral);color:#fff;font-size.62rem;font-size:.62rem;font-weight:700;padding.25rem .6rem;padding:.25rem .6rem;border-radius:20px;z-index:3;letter-spacing:1px}
+
+/* PACKAGES */
+.packages{padding:7rem 5%;background:var(--offwhite)}
+.packages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.pkg-card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,.07);transition:.3s}
+.pkg-card:hover{box-shadow:0 15px 40px rgba(0,119,182,.1);transform:translateY(-4px)}
+.pkg-img{height:200px;overflow:hidden}
+.pkg-img img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.pkg-card:hover .pkg-img img{transform:scale(1.05)}
+.pkg-body{padding:1.5rem}
+.pkg-days{font-size.65rem;font-size:.65rem;letter-spacing:2px;color:var(--azure);font-weight:700;margin-bottom:.3rem}
+.pkg-card h3{font-family:'Tenor Sans',sans-serif;font-size:1.1rem;margin-bottom.6rem;margin-bottom:.6rem;letter-spacing.3px;letter-spacing:.3px}
+.pkg-includes{display:flex;gap.5rem;flex-wrap:wrap;margin-bottom.8rem;margin-bottom:.8rem}
+.pkg-inc{font-size.65rem;font-size:.65rem;background:var(--light);color:var(--azure);padding.2rem .5rem;padding:.2rem .5rem;border-radius:3px;font-weight:600}
+.pkg-footer{display:flex;align-items:center;justify-content:space-between;padding-top.8rem;padding-top:.8rem;border-top:1px solid rgba(0,0,0,.06)}
+.pkg-price{font-size:1.1rem;font-weight:700;color:var(--dark)}
+.pkg-price small{font-size.7rem;font-size:.7rem;font-weight:400;color:var(--gray)}
+.pkg-btn{background:var(--azure);color:#fff;padding.45rem 1rem;padding:.45rem 1rem;border-radius:6px;font-size.78rem;font-size:.78rem;font-weight:700;transition:.2s;border:none;cursor:pointer}
+.pkg-btn:hover{background:var(--dark)}
+
+/* WHY */
+.why{padding:7rem 5%;background:#fff}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem}
+.why-card{text-align:center;padding:2rem;border:1px solid rgba(0,0,0,.07);border-radius:10px;transition:.3s}
+.why-card:hover{box-shadow:0 8px 25px rgba(0,119,182,.08);border-color:rgba(0,119,182,.2)}
+.why-icon{font-size:2.5rem;margin-bottom:1rem}
+.why-card h3{font-weight:700;font-size.92rem;font-size:.92rem;margin-bottom.4rem;margin-bottom:.4rem}
+.why-card p{font-size.78rem;font-size:.78rem;color:var(--gray);line-height:1.6}
+
+/* TESTIMONIALS */
+.testimonials{padding:7rem 5%;background:var(--offwhite)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.testi-card{background:#fff;border-radius:10px;padding:1.8rem;border:1px solid rgba(0,0,0,.06)}
+.testi-dest{font-size.65rem;font-size:.65rem;letter-spacing:2px;color:var(--azure);font-weight:700;margin-bottom.6rem;margin-bottom:.6rem}
+.testi-stars{color:#f59e0b;font-size.85rem;font-size:.85rem;margin-bottom.6rem;margin-bottom:.6rem}
+.testi-text{font-size.85rem;font-size:.85rem;color:var(--gray);line-height:1.7;margin-bottom:1rem}
+.testi-author{font-weight:700;font-size.82rem;font-size:.82rem}
+
+/* CTA */
+.cta{padding:7rem 5%;background:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;position:relative;text-align:center}
+.cta::before{content:'';position:absolute;inset:0;background:rgba(3,4,94,.85)}
+.cta-inner{position:relative;z-index:2;max-width:580px;margin:0 auto}
+.cta h2{font-family:'Tenor Sans',sans-serif;font-size:clamp(2rem,4vw,3rem);color:#fff;margin-bottom:1rem;letter-spacing.5px;letter-spacing:.5px}
+.cta p{color:rgba(255,255,255,.65);margin-bottom:2.5rem;line-height:1.8;font-size.95rem;font-size:.95rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-coral{background:var(--coral);color:#fff;padding:.9rem 2rem;border-radius:30px;font-weight:700;font-size.9rem;font-size:.9rem;transition:.2s}
+.btn-coral:hover{background:#e06840;transform:translateY(-2px)}
+.btn-outline-w{border:1px solid rgba(255,255,255,.4);color:#fff;padding.85rem 2rem;padding:.85rem 2rem;border-radius:30px;font-size.85rem;font-size:.85rem;font-weight:600;transition:.2s}
+.btn-outline-w:hover{border-color:#fff}
+
+/* FOOTER */
+footer{background:var(--dark);padding:2.5rem 5%;text-align:center;font-size.78rem;font-size:.78rem;color:rgba(255,255,255,.3)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .search-grid{grid-template-columns:1fr}
+  .dest-grid{grid-template-columns:1fr}
+  .dest-card.featured{grid-row:auto;height:300px}
+  .packages-grid,.testi-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<nav id="nav">
+  <div class="nav-logo">WANDER<span>LUST</span></div>
+  <div class="nav-links">
+    <a href="#destinos">Destinos</a>
+    <a href="#paquetes">Paquetes</a>
+    <a href="#testimonios">Opiniones</a>
+    <a href="#contacto">Contacto</a>
   </div>
+  <a href="https://wa.me/56900000000?text=Hola,%20quiero%20cotizar%20un%20viaje" class="nav-cta">Cotizar viaje</a>
+</nav>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Viajes & Aventuras<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Destinos</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #0a1e40 0%, #1044a0 50%, #081530 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Agencia de Viajes · Chile</p>
-      <h1 class="hero-title">El mundo<br><em>te espera</em></h1>
-      <p class="hero-sub">Diseñamos el viaje de tus sueños con los mejores precios del mercado. Más de 50 destinos nacionales e internacionales a tu alcance.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Cotizar mi viaje</a>
-        <a href="#servicios" class="btn btn-outline">Ver destinos</a>
+<section class="hero">
+  <div class="hero-slides"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80" alt="Viajes"/></div>
+  <div class="hero-content">
+    <div class="hero-pill">✈️ EXPERTOS EN TURISMO DESDE 2010</div>
+    <h1>El mundo te<br/>espera. Nosotros<br/><span>te llevamos.</span></h1>
+    <p class="hero-desc">Paquetes personalizados al Caribe, Europa, Asia y todo Chile. Con nosotros viajas tranquilo: nos encargamos de todo.</p>
+    <div class="search-form">
+      <div class="search-grid">
+        <div class="sf-field"><label>DESTINO</label><select><option>¿A dónde quieres ir?</option><option>Caribe</option><option>Europa</option><option>Asia</option><option>Patagonia</option><option>Brasil</option></select></div>
+        <div class="sf-field"><label>MES DE VIAJE</label><select><option>¿Cuándo?</option><option>Mayo 2025</option><option>Junio 2025</option><option>Julio 2025</option></select></div>
+        <button class="sf-btn">🔍 BUSCAR</button>
       </div>
     </div>
-  </section>
+    <div class="hero-trust">
+      <div class="trust-item"><span>5.000+</span> viajeros felices</div>
+      <div class="trust-item"><span>15+</span> años de experiencia</div>
+      <div class="trust-item"><span>Sernatur</span> certificados</div>
+    </div>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros paquetes</span>
-        <h2 class="section-title">Viajes para todos los gustos</h2>
-        <p class="section-desc">Desde escapadas de fin de semana hasta aventuras por el mundo. Armamos el paquete perfecto para ti.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🗺️</div>
-          <h3 class="card-title">Paquetes nacionales</h3>
-          <p class="card-desc">Torres del Paine, Atacama, Chiloé, Pucón y más. Descubre Chile con guías expertos y todo incluido.</p>
-          <p class="card-price">Desde $180.000/persona</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">✈️</div>
-          <h3 class="card-title">Viajes internacionales</h3>
-          <p class="card-desc">Europa, Caribe, Asia y Sudamérica. Vuelos, hotel y traslados coordinados para que solo disfrutes.</p>
-          <p class="card-price">Desde $950.000/persona</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🚢</div>
-          <h3 class="card-title">Cruceros</h3>
-          <p class="card-desc">Cruceros por los canales patagónicos, Mediterráneo o el Caribe. Experiencias únicas en alta mar.</p>
-          <p class="card-price">Desde $1.200.000/persona</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">💍</div>
-          <h3 class="card-title">Viajes de novios</h3>
-          <p class="card-desc">Tu luna de miel perfecta en destinos románticos. Hoteles boutique, cenas especiales y sorpresas incluidas.</p>
-          <p class="card-price">Cotización personalizada</p>
-        </div>
+<section class="destinations" id="destinos">
+  <div class="section-label">DESTINOS</div>
+  <h2 class="section-title reveal">Los favoritos<br/>de nuestros viajeros</h2>
+  <div class="dest-grid">
+    <div class="dest-card featured reveal">
+      <img src="https://images.unsplash.com/photo-1548247416-ec66f4900b2e?auto=format&fit=crop&w=800&q=80" alt="Caribe"/>
+      <div class="dest-badge">🔥 MÁS VENDIDO</div>
+      <div class="dest-info"><div class="dest-region">CARIBE</div><div class="dest-name">Cancún, México</div><div class="dest-price">Desde <strong>$890.000</strong>/persona</div></div>
+    </div>
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=600&q=80" alt="París"/>
+      <div class="dest-info"><div class="dest-region">EUROPA</div><div class="dest-name">París & Roma</div><div class="dest-price">Desde <strong>$1.450.000</strong>/p.</div></div>
+    </div>
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1522083165195-3424ed129620?auto=format&fit=crop&w=600&q=80" alt="Patagonia"/>
+      <div class="dest-info"><div class="dest-region">CHILE</div><div class="dest-name">Torres del Paine</div><div class="dest-price">Desde <strong>$490.000</strong>/p.</div></div>
+    </div>
+    <div class="dest-card reveal">
+      <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=600&q=80" alt="Japón"/>
+      <div class="dest-info"><div class="dest-region">ASIA</div><div class="dest-name">Japón · Tokio & Kioto</div><div class="dest-price">Desde <strong>$1.890.000</strong>/p.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="packages" id="paquetes">
+  <div class="section-label">PAQUETES INCLUIDOS</div>
+  <h2 class="section-title reveal">Todo organizado,<br/>tú solo disfruta</h2>
+  <div class="packages-grid">
+    <div class="pkg-card reveal">
+      <div class="pkg-img"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Caribe"/></div>
+      <div class="pkg-body">
+        <div class="pkg-days">7 DÍAS · 6 NOCHES</div>
+        <h3>Caribe All Inclusive — Punta Cana</h3>
+        <div class="pkg-includes"><span class="pkg-inc">✈️ Vuelo</span><span class="pkg-inc">🏨 Hotel 5★</span><span class="pkg-inc">🍽 All Inc.</span><span class="pkg-inc">🚌 Traslados</span></div>
+        <div class="pkg-footer"><div class="pkg-price">$1.250.000<small>/persona</small></div><button class="pkg-btn">Ver paquete</button></div>
       </div>
     </div>
-  </section>
-
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🌍</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">12 años llevando chilenos a conocer el mundo</h2>
-          <p class="about-text">Somos una agencia chilena con presencia en todo el país. Nuestro equipo de expertos viajeros diseña itinerarios únicos adaptados a tu presupuesto y preferencias.</p>
-          <p class="about-text">Trabajamos con las mejores aerolíneas y cadenas hoteleras del mundo para garantizar la mejor relación calidad-precio en cada destino.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+2000</div><div class="stat-label">Viajeros felices</div></div>
-        <div class="stat"><div class="stat-number">12</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación clientes</div></div>
-        <div class="stat"><div class="stat-number">50+</div><div class="stat-label">Destinos disponibles</div></div>
+    <div class="pkg-card reveal">
+      <div class="pkg-img"><img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=600&q=80" alt="Europa"/></div>
+      <div class="pkg-body">
+        <div class="pkg-days">14 DÍAS · 13 NOCHES</div>
+        <h3>Europa Clásica — 5 Países</h3>
+        <div class="pkg-includes"><span class="pkg-inc">✈️ Vuelo</span><span class="pkg-inc">🏨 Hoteles</span><span class="pkg-inc">🚌 Tour</span><span class="pkg-inc">🎫 Entradas</span></div>
+        <div class="pkg-footer"><div class="pkg-price">$2.100.000<small>/persona</small></div><button class="pkg-btn">Ver paquete</button></div>
       </div>
     </div>
-  </section>
-
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Viajeros que confían en nosotros</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Organizaron nuestra luna de miel en Italia y fue un sueño. Cada detalle perfectamente coordinado. No tuvimos que preocuparnos de nada."</p>
-          <div class="testi-author">Daniela y Cristóbal</div>
-          <div class="testi-role">Luna de miel en Europa</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El paquete a Torres del Paine fue espectacular. Guías excelentes, hoteles cómodos y una organización impecable. ¡Ya queremos volver!"</p>
-          <div class="testi-author">Sebastián Fuentes</div>
-          <div class="testi-role">Viaje familiar, Valparaíso</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El crucero por los canales patagónicos fue una experiencia que jamás olvidaré. La agencia nos consiguió un precio increíble. 100% recomendados."</p>
-          <div class="testi-author">Rosa Ibáñez</div>
-          <div class="testi-role">Viajera jubilada</div>
-        </div>
+    <div class="pkg-card reveal">
+      <div class="pkg-img"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="Patagonia"/></div>
+      <div class="pkg-body">
+        <div class="pkg-days">6 DÍAS · 5 NOCHES</div>
+        <h3>Torres del Paine — Trekking y Safari</h3>
+        <div class="pkg-includes"><span class="pkg-inc">✈️ Vuelo</span><span class="pkg-inc">🏕 Lodge</span><span class="pkg-inc">🥾 Guía</span><span class="pkg-inc">🍽 Pensión</span></div>
+        <div class="pkg-footer"><div class="pkg-price">$680.000<small>/persona</small></div><button class="pkg-btn">Ver paquete</button></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿A dónde quieres ir?</h2>
-      <p class="section-desc">Cuéntanos tu destino soñado y te armamos el paquete perfecto. Cotización gratuita y sin compromiso.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar%20un%20viaje" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Cotizar mi viaje gratis
-      </a>
+<section class="why">
+  <div class="section-label">¿POR QUÉ NOSOTROS?</div>
+  <h2 class="section-title reveal">Viaja con quienes saben</h2>
+  <div class="why-grid">
+    <div class="why-card reveal"><div class="why-icon">🏆</div><h3>15 años de experiencia</h3><p>Somos agencia certificada por Sernatur con más de 15 años operando.</p></div>
+    <div class="why-card reveal"><div class="why-icon">🤝</div><h3>Asesoría personalizada</h3><p>Te ayudamos a diseñar el viaje perfecto según tu presupuesto y sueños.</p></div>
+    <div class="why-card reveal"><div class="why-icon">📞</div><h3>Soporte 24/7 en viaje</h3><p>Siempre tienes un número al que llamar si algo pasa durante tu viaje.</p></div>
+    <div class="why-card reveal"><div class="why-icon">💳</div><h3>Pago en cuotas sin interés</h3><p>Viaja ahora y paga cómodo. Hasta 12 cuotas sin interés con tarjeta.</p></div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonios">
+  <div class="section-label">VIAJEROS FELICES</div>
+  <h2 class="section-title reveal">5.000 historias<br/>que contar</h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-dest">✈️ CANCÚN, MÉXICO</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"El paquete all-inclusive fue perfecto. El hotel era hermoso y los traslados puntuales. Wanderlust nos organizó todo y no tuvimos que preocuparnos de nada."</p>
+      <div class="testi-author">Carolina Soto · Santiago</div>
     </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Viajes & Aventuras</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
+    <div class="testi-card reveal">
+      <div class="testi-dest">✈️ EUROPA CLÁSICA</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Viajamos en pareja por primera vez a Europa y fue increíble. El itinerario estaba perfectamente planificado. Volvimos enamorados del mundo."</p>
+      <div class="testi-author">Nicolás y María · Valparaíso</div>
     </div>
-  </footer>
+    <div class="testi-card reveal">
+      <div class="testi-dest">🏔 TORRES DEL PAINE</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Las Torres del Paine en 6 días fueron una experiencia de vida. El guía fue excelente y el lodge espectacular. Gracias Wanderlust por hacerlo posible."</p>
+      <div class="testi-author">Familia Ortiz · Concepción</div>
+    </div>
+  </div>
+</section>
 
+<section class="cta" id="contacto">
+  <div class="cta-inner reveal">
+    <div class="section-label" style="text-align:center;color:var(--sky);margin-bottom:.5rem">PLANIFICA TU PRÓXIMO VIAJE</div>
+    <h2>¿A dónde quieres<br/>ir este año?</h2>
+    <p>Cuéntanos tus sueños y te diseñamos el viaje perfecto. Primera consulta sin costo ni compromiso.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/56900000000?text=Hola,%20quiero%20cotizar%20un%20paquete%20de%20viaje" class="btn-coral">💬 Cotizar por WhatsApp</a>
+      <a href="tel:+56900000000" class="btn-outline-w">📞 Llamar ahora</a>
+    </div>
+  </div>
+</section>
+
+<footer><p>© 2025 Wanderlust Agencia de Viajes · Sernatur Certificada · Santiago, Chile</p></footer>
+
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(3,4,94,.93);border:1px solid rgba(0,119,182,.4);border-radius:30px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.75)">🎯 Página de Muestra · <a href="../" style="color:#90e0ef;font-weight:700">Felipe Figueroa</a></div>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+});
+</script>
 </body>
 </html>

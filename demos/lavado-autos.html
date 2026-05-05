@@ -1,157 +1,199 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SpeedWash — Lavado de autos, encerado y pulido en Santiago. Listo en 20 minutos. Página de muestra" />
-  <title>SpeedWash — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AquaShine — Lavado & Detailing Automotriz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #0ea5e9;
-      --primary-rgb: 14,165,233;
-      --bg: #fff;
-      --bg-alt: #f0f9ff;
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--cyan:#00b4d8;--cyan-dark:#0096c7;--dark:#020b12;--surface:#071623;--surface2:#0d2035;--text:#e0f0f8;--dim:#6a8a9a}
+    body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(2,11,18,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,180,216,.15)}
+    .nav-logo{font-family:'Unbounded',sans-serif;font-size:1.2rem;font-weight:900;color:#fff;text-decoration:none}
+    .nav-logo span{color:var(--cyan)}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-link{text-decoration:none;color:var(--dim);font-size:.82rem;font-weight:500;transition:.3s}
+    .nav-link:hover{color:var(--cyan)}
+    .nav-cta{background:var(--cyan)!important;color:var(--dark)!important;padding:.45rem 1.4rem;border-radius:6px;font-weight:700}
+
+    .hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(110deg,rgba(2,11,18,.98) 0%,rgba(0,150,199,.6) 60%,rgba(2,11,18,.7) 100%)}
+    /* Water drops */
+    .drops{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none}
+    .drop{position:absolute;width:2px;height:20px;background:linear-gradient(to bottom,transparent,rgba(0,180,216,.6));border-radius:2px;animation:fall linear infinite}
+    @keyframes fall{0%{transform:translateY(-20px);opacity:1}100%{transform:translateY(100vh);opacity:0}}
+    .hero-content{position:relative;z-index:2;padding:8rem 3rem 4rem;max-width:600px;margin-left:max(2rem,6vw)}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,180,216,.12);border:1px solid rgba(0,180,216,.3);color:var(--cyan);padding:.4rem 1rem;border-radius:100px;font-size:.72rem;font-weight:700;margin-bottom:1.5rem;letter-spacing:.06em}
+    .hero-title{font-family:'Unbounded',sans-serif;font-size:clamp(2rem,5vw,4rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:1rem;letter-spacing:-.02em}
+    .hero-title span{color:var(--cyan)}
+    .hero-sub{color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:2.5rem;font-size:.93rem;max-width:460px}
+    .btn-cyan{display:inline-block;background:var(--cyan);color:var(--dark);padding:.95rem 2.4rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.9rem;transition:.3s;margin-right:.8rem}
+    .btn-cyan:hover{background:var(--cyan-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,180,216,.3)}
+    .btn-outline{display:inline-block;border:1px solid rgba(0,180,216,.3);color:var(--cyan);padding:.9rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.88rem;transition:.3s}
+    .btn-outline:hover{background:rgba(0,180,216,.08)}
+
+    .stats-bar{background:var(--cyan);padding:1.5rem 2rem;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:1rem}
+    .sb-n{font-family:'Unbounded',sans-serif;font-size:1.8rem;font-weight:900;color:var(--dark);line-height:1}
+    .sb-l{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(0,0,0,.55);margin-top:.3rem;font-weight:700}
+
+    section{padding:6rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .sec-label{font-family:'Unbounded',sans-serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan)}
+    .sec-title{font-family:'Unbounded',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;margin:.4rem 0 1rem;letter-spacing:-.02em;line-height:1.2}
+    .sec-desc{color:var(--dim);line-height:1.75;max-width:480px;font-size:.92rem}
+
+    .plans-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+    .plan{background:var(--surface);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:2rem;transition:.4s;cursor:pointer;position:relative;overflow:hidden}
+    .plan:hover{border-color:rgba(0,180,216,.4);transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,180,216,.15)}
+    .plan.featured{background:var(--cyan);border-color:var(--cyan)}
+    .plan.featured *{color:var(--dark)!important}
+    .plan-pop{position:absolute;top:1rem;right:1rem;background:var(--dark);color:var(--cyan)!important;font-size:.6rem;font-weight:900;padding:.2rem .6rem;border-radius:100px;letter-spacing:.06em}
+    .plan-icon{font-size:2.5rem;margin-bottom:1.2rem}
+    .plan-name{font-family:'Unbounded',sans-serif;font-size:1rem;font-weight:900;margin-bottom:.4rem;color:#fff}
+    .plan-price{font-family:'Unbounded',sans-serif;font-size:1.8rem;font-weight:900;color:var(--cyan);margin-bottom:1rem;line-height:1}
+    .plan-features{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+    .plan-features li{font-size:.78rem;color:var(--dim);display:flex;align-items:center;gap:.5rem}
+    .plan-features li::before{content:'✓';color:var(--cyan);font-weight:900;font-size:.8rem}
+    .plan.featured .plan-features li{color:rgba(0,0,0,.7)}
+    .plan.featured .plan-features li::before{color:var(--dark)}
+    .plan-btn{display:block;text-align:center;background:var(--cyan);color:var(--dark);padding:.7rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.8rem;transition:.3s}
+    .plan.featured .plan-btn{background:var(--dark);color:#fff}
+    .plan-btn:hover{opacity:.9}
+
+    .services-extra{background:var(--surface);padding:6rem 2rem}
+    .extra-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .extra-card{background:var(--dark);border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:1.8rem;transition:.3s}
+    .extra-card:hover{border-color:rgba(0,180,216,.3)}
+    .extra-icon{font-size:1.8rem;margin-bottom:.8rem}
+    .extra-card h3{font-family:'Unbounded',sans-serif;font-size:.88rem;font-weight:900;margin-bottom:.4rem;letter-spacing:-.01em}
+    .extra-card p{font-size:.8rem;color:var(--dim);line-height:1.6}
+    .extra-price{margin-top:.8rem;color:var(--cyan);font-weight:700;font-size:.85rem}
+
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .testi{background:var(--surface);border-radius:12px;padding:2rem;border-left:3px solid var(--cyan)}
+    .stars{color:var(--cyan);margin-bottom:.8rem;letter-spacing:.08em}
+    .testi-q{font-size:.88rem;line-height:1.7;color:var(--dim);margin-bottom:1.2rem;font-style:italic}
+    .testi-name{font-family:'Unbounded',sans-serif;font-weight:700;font-size:.78rem;color:#fff}
+    .testi-sub{font-size:.72rem;color:var(--dim);margin-top:.2rem}
+
+    .cta{background:var(--cyan);padding:6rem 2rem;text-align:center}
+    .cta-title{font-family:'Unbounded',sans-serif;font-size:clamp(2rem,5vw,4rem);font-weight:900;color:var(--dark);margin-bottom:1rem;letter-spacing:-.02em;line-height:1.1}
+    .cta-sub{color:rgba(0,0,0,.6);margin-bottom:2.5rem;font-size:.95rem}
+    .btn-dark{display:inline-block;background:var(--dark);color:#fff;padding:1.1rem 3rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.9rem;transition:.3s}
+    .btn-dark:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+
+    footer{background:var(--dark);color:var(--dim);padding:3rem 2rem;text-align:center;font-size:.8rem;border-top:1px solid rgba(255,255,255,.04)}
+    footer a{color:var(--cyan);text-decoration:none}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:900px){.plans-grid{grid-template-columns:repeat(2,1fr)}.extra-grid{grid-template-columns:1fr}.testi-grid{grid-template-columns:1fr}.stats-bar{grid-template-columns:repeat(2,1fr)}.nav-links{display:none}.hero-content{padding:7rem 1.5rem 3rem;margin-left:0}}
   </style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(2,11,18,.97);border:1px solid rgba(0,180,216,.3);border-radius:6px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#00b4d8;font-weight:700">Felipe Figueroa</a></div>
+
+<nav>
+  <a href="#" class="nav-logo">Aqua<span>Shine.</span></a>
+  <ul class="nav-links">
+    <li><a href="#planes" class="nav-link">Planes</a></li>
+    <li><a href="#detailing" class="nav-link">Detailing</a></li>
+    <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+    <li><a href="#contacto" class="nav-link nav-cta">Reservar</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">💧 Lavado & Detailing Premium · Santiago</div>
+    <h1 class="hero-title">Tu auto,<br>siempre<br><span>brillando</span></h1>
+    <p class="hero-sub">Lavado a mano, detailing completo y nano-cerámica. Tu vehículo en manos de especialistas que lo tratan como propio.</p>
+    <div>
+      <a href="#planes" class="btn-cyan">Ver planes</a>
+      <a href="#detailing" class="btn-outline">Detailing profesional</a>
+    </div>
   </div>
+</section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Speed<span>Wash.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Reservar</a></li>
-      </ul>
+<div class="stats-bar">
+  <div><div class="sb-n" data-count="8000" data-suffix="+">0</div><div class="sb-l">Autos lavados</div></div>
+  <div><div class="sb-n" data-count="5" data-suffix=" años">0</div><div class="sb-l">Experiencia</div></div>
+  <div><div class="sb-n" data-count="4.9" data-suffix="★">0</div><div class="sb-l">Rating</div></div>
+  <div><div class="sb-n" data-count="100" data-suffix="%">0</div><div class="sb-l">Eco-friendly</div></div>
+</div>
+
+<section id="planes">
+  <div class="container">
+    <span class="sec-label">Planes de lavado</span>
+    <h2 class="sec-title">Elige el cuidado<br>que tu auto merece</h2>
+    <div class="plans-grid">
+      <div class="plan reveal"><div class="plan-icon">💦</div><p class="plan-name">Básico</p><p class="plan-price" style="color:var(--cyan)">$8.900</p><ul class="plan-features"><li>Lavado exterior</li><li>Aspirado interior</li><li>Limpia vidrios</li></ul><a href="#contacto" class="plan-btn">Reservar</a></div>
+      <div class="plan reveal" style="transition-delay:.1s"><div class="plan-icon">✨</div><p class="plan-name">Premium</p><p class="plan-price" style="color:var(--cyan)">$18.900</p><ul class="plan-features"><li>Lavado exterior a mano</li><li>Aspirado + limpieza interior</li><li>Cera de carnauba</li><li>Neumáticos brillados</li></ul><a href="#contacto" class="plan-btn">Reservar</a></div>
+      <div class="plan featured reveal" style="transition-delay:.2s"><div class="plan-pop">POPULAR</div><div class="plan-icon">💎</div><p class="plan-name" style="color:var(--dark)">Full Detailing</p><p class="plan-price" style="color:var(--dark)">$45.000</p><ul class="plan-features"><li>Todo el Premium</li><li>Pulido de pintura</li><li>Limpieza motor</li><li>Ozono interior</li><li>Tapiz y cuero</li></ul><a href="#contacto" class="plan-btn">Reservar</a></div>
+      <div class="plan reveal" style="transition-delay:.3s"><div class="plan-icon">🛡️</div><p class="plan-name">Nano Cerámica</p><p class="plan-price" style="color:var(--cyan)">$280.000</p><ul class="plan-features"><li>Pulido completo</li><li>Aplicación cerámica 9H</li><li>Protección 3-5 años</li><li>Certificado con garantía</li></ul><a href="#contacto" class="plan-btn">Reservar</a></div>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #0a2040 0%, #0c4a6e 50%, #0a1830 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Lavado de Autos</p>
-      <h1 class="hero-title">Tu auto impecable<br><em>en minutos.</em></h1>
-      <p class="hero-sub">Lavado profesional en 20 minutos usando productos biodegradables de primera calidad. Porque tu auto merece el mejor cuidado sin hacerte perder el día.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Reservar hora</a>
-        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
-      </div>
+<section class="services-extra" id="detailing">
+  <div class="container">
+    <span class="sec-label">Servicios extra</span>
+    <h2 class="sec-title">Detailing<br>especializado</h2>
+    <div class="extra-grid">
+      <div class="extra-card reveal"><div class="extra-icon">🚗</div><h3>Pulido de faros</h3><p>Recuperación de faros amarillos. Claridad total y protección UV. Listo en 1 hora.</p><p class="extra-price">$25.000</p></div>
+      <div class="extra-card reveal" style="transition-delay:.1s"><div class="extra-icon">🌿</div><h3>Ozono interior</h3><p>Elimina bacterias, hongos y malos olores del habitáculo. Ideal para mascotas y fumadores.</p><p class="extra-price">$18.000</p></div>
+      <div class="extra-card reveal" style="transition-delay:.2s"><div class="extra-icon">💆</div><h3>Tapiz cuero</h3><p>Limpieza profunda, hidratación y protección de tapizado de cuero. Resultado premium.</p><p class="extra-price">$35.000</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">El lavado perfecto para cada auto</h2>
-        <p class="section-desc">Desde lavado rápido hasta detailing completo. Productos premium que cuidan la pintura y el interior de tu vehículo.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🚿</div>
-          <h3 class="card-title">Lavado Exterior</h3>
-          <p class="card-desc">Lavado a presión, enjuague y secado manual con microfiber. Rápido, eficiente y sin rayaduras. Listo en 15 minutos.</p>
-          <p class="card-price">$5.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">✨</div>
-          <h3 class="card-title">Lavado Completo</h3>
-          <p class="card-desc">Lavado exterior + limpieza interior con aspirado, vidrios y tablero. El servicio más completo para el día a día.</p>
-          <p class="card-price">$9.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">💎</div>
-          <h3 class="card-title">Encerado y Pulido</h3>
-          <p class="card-desc">Pulido de pintura con pulidora orbital y aplicación de cera carnauba. Protege la pintura y da un brillo espejo increíble.</p>
-          <p class="card-price">Desde $35.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🪑</div>
-          <h3 class="card-title">Aspirado Interior</h3>
-          <p class="card-desc">Aspirado profundo de tapiz, alfombras, butacas y maletero. Con desodorización incluida para eliminar malos olores.</p>
-          <p class="card-price">$8.000</p>
-        </div>
-      </div>
+<section id="opiniones">
+  <div class="container">
+    <span class="sec-label">Reviews</span>
+    <h2 class="sec-title">Clientes que<br>siempre vuelven</h2>
+    <div class="testi-grid">
+      <div class="testi reveal"><div class="stars">★★★★★</div><p class="testi-q">"El detailing completo dejó mi auto como recién salido de la agencia. La pintura brillaba como nunca antes. Precio muy justo para el resultado que entregan."</p><div class="testi-name">Gonzalo Muñoz</div><div class="testi-sub">BMW Serie 3, Full Detailing</div></div>
+      <div class="testi reveal" style="transition-delay:.15s"><div class="stars">★★★★★</div><p class="testi-q">"La nano cerámica es una inversión que vale completamente. Ya llevan 8 meses y el auto parece recién lavado con la lluvia. El equipo es muy profesional."</p><div class="testi-name">Valentina Ojeda</div><div class="testi-sub">Audi Q5, Nano Cerámica</div></div>
+      <div class="testi reveal" style="transition-delay:.3s"><div class="stars">★★★★★</div><p class="testi-q">"Vengo cada 2 semanas con el plan Premium. El auto siempre queda espectacular y la atención es excelente. Ya los recomendé a todos mis compañeros de trabajo."</p><div class="testi-name">Felipe Castro</div><div class="testi-sub">Cliente semanal</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🚗</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">5 años siendo el lavado favorito de Santiago</h2>
-          <p class="about-text">Usamos exclusivamente productos biodegradables que cuidan el medioambiente sin sacrificar rendimiento. Nuestra tecnología de lavado a baja presión protege la pintura y el sellado de tu vehículo.</p>
-          <p class="about-text">Sistema de reserva online para que llegues a tu hora sin esperar. También contamos con servicio a domicilio para clientes que no pueden desplazarse.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">20 min</div><div class="stat-label">Lavado completo</div></div>
-        <div class="stat"><div class="stat-number">5</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.8★</div><div class="stat-label">Calificación Google</div></div>
-        <div class="stat"><div class="stat-number">+100</div><div class="stat-label">Autos por día</div></div>
-      </div>
-    </div>
-  </section>
+<section class="cta" id="contacto">
+  <h2 class="cta-title">Reserva tu<br>lavado hoy</h2>
+  <p class="cta-sub">Atendemos de lunes a domingo. Agenda en minutos por WhatsApp.</p>
+  <a href="https://wa.me/56900000000?text=Hola%2C+quiero+reservar+en+AquaShine" target="_blank" rel="noopener" class="btn-dark">💧 Reservar por WhatsApp</a>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El mejor lavado de la zona sin duda. Mi Ford Ranger queda impecable en menos de 30 minutos. Los productos que usan son de primera y el precio es muy justo. Vengo todas las semanas."</p>
-          <div class="testi-author">Rodrigo Campos</div>
-          <div class="testi-role">Cliente frecuente · lavado semanal</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Les hice el pulido completo a mi auto y quedó como recién salido del salón. Se notaba que usaron máquinas profesionales y no dejaron una sola marca. Precio justo para la calidad del trabajo."</p>
-          <div class="testi-author">Mauricio Valenzuela</div>
-          <div class="testi-role">Cliente · pulido completo</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Mando el auto de la empresa cada lunes y siempre queda perfecto. El sistema de reserva online es muy cómodo y el equipo siempre muy atento y rápido. Totalmente recomendados."</p>
-          <div class="testi-author">Lorena Castillo</div>
-          <div class="testi-role">Clienta · cliente empresarial</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<footer>
+  <div class="container">
+    <p style="font-family:'Unbounded',sans-serif;font-size:1rem;font-weight:900;color:rgba(255,255,255,.3);margin-bottom:.5rem">AquaShine.</p>
+    <p>Av. Américo Vespucio 3456, Maipú · Lunes a Domingo 8:00–19:00</p>
+    <p style="margin-top:1rem">Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p>
+  </div>
+</footer>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Listo para dejar tu auto impecable?</h2>
-      <p class="section-desc">Reserva tu hora por WhatsApp o llega directamente. Atendemos de lunes a sábado de 8:00 a 19:00 hrs.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Reservar por WhatsApp
-      </a>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>SpeedWash</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
-
+<script>
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      let cur=0;const step=target/60;
+      const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=+(cur.toFixed(1))+suffix;if(cur>=target)clearInterval(t);},20);
+      io.unobserve(el);
+    },{threshold:.5});io.observe(el);
+  });
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+  });
+</script>
 </body>
 </html>

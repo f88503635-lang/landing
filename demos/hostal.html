@@ -1,163 +1,291 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hostal El Viajero — Alojamiento cómodo y accesible. Página de muestra." />
-  <title>Hostal El Viajero — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #0d9488;
-      --primary-rgb: 13,148,136;
-      --bg: #ffffff;
-      --bg-alt: #f0fdfa;
-      --surface: #f0fdfa;
-      --text: #0f172a;
-      --text-dim: #64748b;
-      --text-muted: #94a3b8;
-      --border: #e2e8f0;
-      --nav-bg: rgba(255,255,255,0.94);
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Hostal La Ruta — Viajeros del Mundo en Chile</title>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--earth:#a0522d;--warm:#d4845a;--light-earth:#fdf0e8;--teal:#2e9688;--dark:#1a1008;--cream:#fffef9;--gray:#6b6560;--offwhite:#faf7f3}
+body{font-family:'Josefin+Sans','Josefin Sans',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(255,254,249,.97);border-bottom:1px solid rgba(0,0,0,.07)}
+.nav-logo{font-size:1.3rem;font-weight:700;letter-spacing:3px;color:var(--dark)}
+.nav-logo span{color:var(--earth)}
+.nav-links{display:flex;gap:2rem;font-size:.82rem;font-weight:600;color:var(--gray);letter-spacing:1px}
+.nav-links a:hover{color:var(--earth)}
+.nav-cta{background:var(--earth);color:#fff;padding:.55rem 1.4rem;font-weight:700;font-size:.82rem;letter-spacing:1px;border-radius:4px;transition:.2s}
+.nav-cta:hover{background:var(--warm)}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding-bottom:5rem}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(26,16,8,.95) 0%,rgba(26,16,8,.4) 60%,transparent 100%)}
+.hero-content{position:relative;z-index:2;padding:0 5%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:flex-end}
+.hero-text .hero-tag{font-size:.72rem;letter-spacing:4px;color:var(--warm);font-weight:600;margin-bottom:1rem;display:block}
+.hero-text h1{font-family:'Merriweather',serif;font-size:clamp(2rem,4.5vw,3.5rem);line-height:1.2;color:#fff;margin-bottom:1rem;font-weight:300;font-style:italic}
+.hero-text h1 strong{font-style:normal;font-weight:400;color:var(--warm)}
+.hero-text p{color:rgba(255,255,255,.6);font-size:.9rem;line-height:1.8;margin-bottom:2rem;font-family:'Merriweather',serif;font-weight:300;font-style:italic}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-earth{background:var(--earth);color:#fff;padding:.85rem 1.8rem;font-weight:700;font-size:.82rem;letter-spacing:1px;border-radius:4px;transition:.2s}
+.btn-earth:hover{background:var(--warm);transform:translateY(-2px)}
+.btn-white{border:1px solid rgba(255,255,255,.4);color:#fff;padding:.8rem 1.8rem;font-size:.82rem;font-weight:600;letter-spacing:1px;border-radius:4px;transition:.2s}
+.btn-white:hover{border-color:#fff}
+.hero-cards{display:flex;flex-direction:column;gap:.8rem;align-items:flex-end}
+.hcard{background:rgba(255,254,249,.92);border-radius:8px;padding:.9rem 1.2rem;display:flex;align-items:center;gap.8rem;gap:.8rem;min-width:220px;backdrop-filter:blur(4px)}
+.hcard-icon{font-size:1.2rem}
+.hcard-text{font-size:.78rem;font-weight:700;color:var(--dark);letter-spacing:.5px}
+.hcard-sub{font-size:.68rem;color:var(--gray);margin-top:.1rem}
+
+/* WHY */
+.why{background:var(--earth);padding:4rem 5%;display:grid;grid-template-columns:repeat(4,1fr)}
+.why-item{text-align:center;padding:1.5rem 1rem;border-right:1px solid rgba(255,255,255,.15)}
+.why-item:last-child{border:none}
+.why-icon{font-size:1.6rem;margin-bottom.6rem;margin-bottom:.6rem}
+.why-title{font-size:.8rem;font-weight:700;color:#fff;letter-spacing:1px;margin-bottom:.3rem}
+.why-desc{font-size:.72rem;color:rgba(255,255,255,.65)}
+
+/* ROOMS */
+.rooms{padding:7rem 5%;background:var(--offwhite)}
+.section-label{font-size:.68rem;letter-spacing:3px;color:var(--earth);font-weight:700;margin-bottom:.5rem}
+.section-title{font-family:'Merriweather',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);margin-bottom:.5rem;font-weight:300;font-style:italic}
+.rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.room-card{background:var(--cream);border:1px solid rgba(0,0,0,.07);border-radius:8px;overflow:hidden;transition:.3s}
+.room-card:hover{box-shadow:0 12px 35px rgba(160,82,45,.1);transform:translateY(-4px)}
+.room-img{height:200px;overflow:hidden;position:relative}
+.room-img img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.room-card:hover .room-img img{transform:scale(1.05)}
+.room-type{position:absolute;top:.7rem;left:.7rem;background:var(--earth);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:2px;padding:.25rem .6rem;border-radius:3px}
+.room-body{padding:1.5rem}
+.room-body h3{font-weight:700;font-size:1rem;letter-spacing:.5px;margin-bottom:.5rem}
+.room-features{display:flex;gap.5rem;gap:.5rem;flex-wrap:wrap;margin-bottom.8rem;margin-bottom:.8rem}
+.room-feat{font-size:.68rem;background:var(--light-earth);color:var(--earth);padding:.2rem .5rem;border-radius:3px;font-weight:600}
+.room-footer{display:flex;align-items:center;justify-content:space-between;padding-top:.8rem;border-top:1px solid rgba(0,0,0,.06)}
+.room-price{font-size:1rem;font-weight:700;color:var(--earth)}
+.room-price small{font-size:.7rem;font-weight:400;color:var(--gray)}
+.room-btn{background:var(--earth);color:#fff;padding:.4rem .9rem;border-radius:4px;font-size:.75rem;font-weight:700;letter-spacing.5px;letter-spacing:.5px;transition:.2s;border:none;cursor:pointer}
+.room-btn:hover{background:var(--warm)}
+
+/* ABOUT */
+.about{padding:7rem 5%;background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-img{position:relative}
+.about-img img{width:100%;height:460px;object-fit:cover;border-radius:8px}
+.about-flag{position:absolute;bottom:-1.5rem;right:-1.5rem;background:var(--earth);color:#fff;padding:1.2rem;border-radius:6px;text-align:center}
+.flag-big{font-size:2rem;font-weight:700;letter-spacing:-1px}
+.flag-sm{font-size:.65rem;letter-spacing:2px;opacity:.85}
+.about-text{color:var(--gray);line-height:1.9;margin-bottom:1.5rem;font-size:.9rem}
+.lang-flags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.lang-flag{background:var(--light-earth);border:1px solid rgba(160,82,45,.2);border-radius:4px;padding:.3rem .7rem;font-size:.75rem;font-weight:700;color:var(--dark)}
+
+/* EXPERIENCES */
+.experiences{padding:7rem 5%;background:var(--offwhite)}
+.exp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:3rem}
+.exp-card{position:relative;height:280px;overflow:hidden;border-radius:8px;cursor:pointer}
+.exp-card img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.exp-card:hover img{transform:scale(1.06)}
+.exp-card::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(26,16,8,.85) 0%,transparent 50%)}
+.exp-info{position:absolute;bottom:1.5rem;left:1.5rem;z-index:2}
+.exp-cat{font-size:.65rem;letter-spacing:3px;color:var(--warm);font-weight:600;margin-bottom.4rem;margin-bottom:.4rem}
+.exp-name{font-size:1.1rem;font-weight:700;color:#fff;letter-spacing.5px;letter-spacing:.5px}
+.exp-price{font-size:.78rem;color:rgba(255,255,255,.65);margin-top.3rem;margin-top:.3rem}
+
+/* REVIEWS */
+.reviews{padding:7rem 5%;background:var(--cream)}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.review-card{background:var(--offwhite);border:1px solid rgba(0,0,0,.06);border-radius:8px;padding:1.8rem}
+.review-header{display:flex;align-items:center;gap.8rem;gap:.8rem;margin-bottom:1rem}
+.review-flag{font-size:1.4rem}
+.review-meta{font-size:.72rem;color:var(--gray)}
+.review-meta strong{display:block;color:var(--dark);font-size:.85rem;font-weight:700}
+.review-stars{color:#f59e0b;font-size:.8rem;margin-bottom.6rem;margin-bottom:.6rem}
+.review-text{font-family:'Merriweather',serif;font-style:italic;font-size:.83rem;color:var(--gray);line-height:1.7;font-weight:300}
+
+/* CTA */
+.cta{padding:7rem 5%;background:var(--earth);text-align:center}
+.cta h2{font-family:'Merriweather',serif;font-size:clamp(1.8rem,4vw,3rem);color:#fff;margin-bottom:1rem;font-weight:300;font-style:italic}
+.cta p{color:rgba(255,255,255,.75);margin-bottom:2.5rem;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.8;font-size:.9rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-cream{background:var(--cream);color:var(--earth);padding:.9rem 2rem;font-weight:700;font-size:.85rem;letter-spacing:1px;border-radius:4px;transition:.2s}
+.btn-cream:hover{background:#fff;transform:translateY(-2px)}
+.btn-outline-w{border:1px solid rgba(255,255,255,.4);color:#fff;padding:.85rem 2rem;font-size:.82rem;font-weight:600;letter-spacing:1px;border-radius:4px;transition:.2s}
+.btn-outline-w:hover{border-color:#fff}
+
+/* FOOTER */
+footer{background:var(--dark);padding:2.5rem 5%;text-align:center;font-size:.8rem;color:rgba(255,255,255,.3);letter-spacing.5px;letter-spacing:.5px}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .hero-content{grid-template-columns:1fr}
+  .hero-cards{display:none}
+  .why{grid-template-columns:repeat(2,1fr)}
+  .rooms-grid,.exp-grid,.reviews-grid{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<nav>
+  <div class="nav-logo">LA<span>RUTA</span></div>
+  <div class="nav-links">
+    <a href="#habitaciones">HABITACIONES</a>
+    <a href="#nosotros">NOSOTROS</a>
+    <a href="#experiencias">EXPERIENCIAS</a>
+    <a href="#contacto">RESERVAR</a>
   </div>
+  <a href="https://wa.me/56900000000?text=Hola,%20quiero%20reservar%20en%20el%20Hostal%20La%20Ruta" class="nav-cta">RESERVAR</a>
+</nav>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">El Viajero<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Habitaciones</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Reservar</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #0a2830 0%, #0d5060 50%, #082028 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Alojamiento · Santiago</p>
-      <h1 class="hero-title">Tu hogar <em>lejos de casa</em></h1>
-      <p class="hero-sub">Habitaciones cómodas, ambiente familiar y la mejor ubicación para explorar la ciudad. Desde $15.000 la noche.</p>
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=1920&q=80" alt="Hostal"/>
+  <div class="hero-content">
+    <div class="hero-text">
+      <span class="hero-tag">HOSTAL BOUTIQUE · SANTIAGO, CHILE</span>
+      <h1>El <strong>punto de encuentro</strong><br/>de los viajeros<br/>del mundo</h1>
+      <p>Donde cada viajero trae una historia y se va con muchas más. Ambiente único, precios justos y conexiones reales.</p>
       <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Reservar ahora</a>
-        <a href="#servicios" class="btn btn-outline">Ver habitaciones</a>
+        <a href="https://wa.me/56900000000?text=Hola,%20quiero%20reservar%20en%20el%20hostal" class="btn-earth">Reservar ahora</a>
+        <a href="#habitaciones" class="btn-white">Ver habitaciones</a>
       </div>
     </div>
-  </section>
+    <div class="hero-cards">
+      <div class="hcard"><div class="hcard-icon">🌍</div><div><div class="hcard-text">+50 países</div><div class="hcard-sub">Representados este año</div></div></div>
+      <div class="hcard"><div class="hcard-icon">⭐</div><div><div class="hcard-text">4.9 Hostelworld</div><div class="hcard-sub">+800 reseñas</div></div></div>
+      <div class="hcard"><div class="hcard-icon">📍</div><div><div class="hcard-text">Barrio Italia</div><div class="hcard-sub">Santiago · Metro cercano</div></div></div>
+    </div>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestras habitaciones</span>
-        <h2 class="section-title">Elige tu espacio ideal</h2>
-        <p class="section-desc">Todas nuestras habitaciones incluyen WiFi, ropa de cama y acceso a cocina compartida.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🛏️</div>
-          <h3 class="card-title">Cama en dormitorio compartido</h3>
-          <p class="card-desc">Dormitorio mixto o separado por género, con lockers individuales. Ideal para mochileros.</p>
-          <p class="card-price">Desde $15.000/noche</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🚪</div>
-          <h3 class="card-title">Habitación privada simple</h3>
-          <p class="card-desc">Tu propio espacio con cama doble, escritorio y ventana. Baño compartido en el pasillo.</p>
-          <p class="card-price">Desde $28.000/noche</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">👨‍👩‍👧</div>
-          <h3 class="card-title">Habitación familiar</h3>
-          <p class="card-desc">Perfecta para parejas o familias. Cama matrimonial más camarotes. Baño privado incluido.</p>
-          <p class="card-price">Desde $45.000/noche</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🍳</div>
-          <h3 class="card-title">Servicios incluidos</h3>
-          <p class="card-desc">Desayuno continental, cocina equipada, salón común, terraza con vista y WiFi de alta velocidad.</p>
-          <p class="card-price">Todo incluido</p>
-        </div>
+<div class="why">
+  <div class="why-item reveal"><div class="why-icon">🌐</div><div class="why-title">STAFF MULTILINGÜE</div><div class="why-desc">Inglés, Portugués, Francés</div></div>
+  <div class="why-item reveal"><div class="why-icon">☕</div><div class="why-title">DESAYUNO INCLUIDO</div><div class="why-desc">Para todos los huéspedes</div></div>
+  <div class="why-item reveal"><div class="why-icon">📡</div><div class="why-title">WIFI ULTRA RÁPIDO</div><div class="why-desc">100 Mbps en todo el hostal</div></div>
+  <div class="why-item reveal"><div class="why-icon">🚌</div><div class="why-title">TOURS ORGANIZADOS</div><div class="why-desc">Diariamente desde el hostal</div></div>
+</div>
+
+<section class="rooms" id="habitaciones">
+  <div class="section-label">ALOJAMIENTO</div>
+  <h2 class="section-title reveal">Espacios para cada<br/><em>tipo de viajero</em></h2>
+  <div class="rooms-grid">
+    <div class="room-card reveal">
+      <div class="room-img"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=600&q=80" alt="Privada"/><div class="room-type">PRIVADA</div></div>
+      <div class="room-body">
+        <h3>Habitación Privada Doble</h3>
+        <div class="room-features"><span class="room-feat">Baño privado</span><span class="room-feat">AC</span><span class="room-feat">TV</span></div>
+        <div class="room-footer"><div class="room-price">$45.000<small>/noche</small></div><button class="room-btn">Reservar</button></div>
       </div>
     </div>
-  </section>
-
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🏡</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">Un lugar donde siempre eres bienvenido</h2>
-          <p class="about-text">Llevamos 5 años recibiendo viajeros de todo el mundo en el corazón de Santiago. Nuestro equipo habla español e inglés y está disponible las 24 horas para ayudarte en lo que necesites.</p>
-          <p class="about-text">A pasos del metro y de los principales atractivos turísticos, somos el punto de partida perfecto para explorar Chile.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">30</div><div class="stat-label">Camas disponibles</div></div>
-        <div class="stat"><div class="stat-number">5</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.8★</div><div class="stat-label">Calificación promedio</div></div>
-        <div class="stat"><div class="stat-number">24/7</div><div class="stat-label">Recepción abierta</div></div>
+    <div class="room-card reveal">
+      <div class="room-img"><img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=600&q=80" alt="Dormitorio"/><div class="room-type">DORMITORIO</div></div>
+      <div class="room-body">
+        <h3>Dormitorio Mixto 6 camas</h3>
+        <div class="room-features"><span class="room-feat">Lockers</span><span class="room-feat">Ventilador</span><span class="room-feat">Lectura</span></div>
+        <div class="room-footer"><div class="room-price">$16.000<small>/cama</small></div><button class="room-btn">Reservar</button></div>
       </div>
     </div>
-  </section>
-
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros huéspedes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Increíble relación calidad-precio. La habitación estaba limpia, el desayuno rico y el personal súper amable. Ya tengo ganas de volver."</p>
-          <div class="testi-author">Camila Herrera</div>
-          <div class="testi-role">Mochilera, Concepción</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"La ubicación es perfecta, a dos cuadras del metro. El hostal tiene muy buen ambiente para conocer gente. Lo recomiendo al 100%."</p>
-          <div class="testi-author">Andrés Pizarro</div>
-          <div class="testi-role">Viajero frecuente</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★☆</div>
-          <p class="testi-text">"Muy buen lugar para estadías cortas y largas. La cocina compartida está muy bien equipada. El personal siempre dispuesto a ayudar."</p>
-          <div class="testi-author">Javiera Muñoz</div>
-          <div class="testi-role">Estudiante en intercambio</div>
-        </div>
+    <div class="room-card reveal">
+      <div class="room-img"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80" alt="Femenino"/><div class="room-type">FEMENINO</div></div>
+      <div class="room-body">
+        <h3>Dormitorio Solo Mujeres</h3>
+        <div class="room-features"><span class="room-feat">Lockers</span><span class="room-feat">Baño exclusivo</span><span class="room-feat">4 camas</span></div>
+        <div class="room-footer"><div class="room-price">$18.000<small>/cama</small></div><button class="room-btn">Reservar</button></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Cuándo nos visitas?</h2>
-      <p class="section-desc">Consulta disponibilidad y reserva tu cama o habitación hoy mismo. ¡Te esperamos con los brazos abiertos!</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20reservar%20en%20el%20hostal" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Reservar por WhatsApp
-      </a>
+<section class="about" id="nosotros">
+  <div class="about-img reveal">
+    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Viajeros"/>
+    <div class="about-flag"><div class="flag-big">10+</div><div class="flag-sm">AÑOS VIAJEROS</div></div>
+  </div>
+  <div class="reveal">
+    <div class="section-label">NUESTRO HOSTAL</div>
+    <h2 class="section-title">El hogar lejos<br/>del hogar</h2>
+    <p class="about-text">Somos más que un lugar para dormir. Somos un punto de encuentro donde los viajeros comparten historias, hacen amigos y descubren Chile juntos. Desde 2014 recibiendo aventureros de todo el mundo en el bohemio Barrio Italia de Santiago.</p>
+    <p class="about-text">Nuestro equipo habla inglés, portugués y francés. Organizamos tours, cenas comunitarias y actividades para que te conectes con otros viajeros.</p>
+    <div style="margin-bottom:1rem;font-size:.8rem;font-weight:700;color:var(--gray);letter-spacing:2px">IDIOMAS HABLADOS POR NUESTRO STAFF</div>
+    <div class="lang-flags">
+      <span class="lang-flag">🇨🇱 Español</span>
+      <span class="lang-flag">🇺🇸 Inglés</span>
+      <span class="lang-flag">🇧🇷 Portugués</span>
+      <span class="lang-flag">🇫🇷 Francés</span>
     </div>
-  </section>
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20más%20información%20del%20hostal" class="btn-earth">Saber más</a>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Hostal El Viajero</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
+<section class="experiences" id="experiencias">
+  <div class="section-label">EXPERIENCIAS</div>
+  <h2 class="section-title reveal">Descubre Chile<br/><em>con otros viajeros</em></h2>
+  <div class="exp-grid">
+    <div class="exp-card reveal">
+      <img src="https://images.unsplash.com/photo-1548247416-ec66f4900b2e?auto=format&fit=crop&w=800&q=80" alt="Tour Santiago"/>
+      <div class="exp-info"><div class="exp-cat">TOUR DIARIO</div><div class="exp-name">Free Tour Santiago Centro</div><div class="exp-price">Gratis · Sale 10:00 AM</div></div>
     </div>
-  </footer>
+    <div class="exp-card reveal">
+      <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Andes"/>
+      <div class="exp-info"><div class="exp-cat">EXCURSIÓN</div><div class="exp-name">Trekking Cordillera de los Andes</div><div class="exp-price">Desde $35.000 · Sábados</div></div>
+    </div>
+    <div class="exp-card reveal">
+      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80" alt="Viña del Mar"/>
+      <div class="exp-info"><div class="exp-cat">DÍA COMPLETO</div><div class="exp-name">Viña del Mar y Valparaíso</div><div class="exp-price">Desde $45.000 · Domingos</div></div>
+    </div>
+    <div class="exp-card reveal">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80" alt="Cena comunal"/>
+      <div class="exp-info"><div class="exp-cat">CADA VIERNES</div><div class="exp-name">Cena Comunitaria</div><div class="exp-price">$18.000 · Incluye bebida</div></div>
+    </div>
+  </div>
+</section>
 
+<section class="reviews">
+  <div class="section-label">RESEÑAS</div>
+  <h2 class="section-title reveal">Viajeros que nos amaron</h2>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="review-header"><div class="review-flag">🇺🇸</div><div class="review-meta"><strong>Jake Morrison</strong>California, USA</div></div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Best hostel I stayed at in my entire South America trip. Amazing staff, great vibe and the free tour they organize is excellent."</p>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-header"><div class="review-flag">🇩🇪</div><div class="review-meta"><strong>Maria Schmidt</strong>Berlín, Alemania</div></div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Das Hostel ist perfekt. Sehr sauber, freundliches Personal und ein toller Ort zum Kontakte knüpfen. Ich habe hier Freunde fürs Leben gefunden."</p>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-header"><div class="review-flag">🇧🇷</div><div class="review-meta"><strong>Bruno Silva</strong>São Paulo, Brasil</div></div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"O melhor hostel de Santiago! A equipe fala português, o que foi ótimo. As excursões são incríveis. Voltarei com certeza."</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <h2 class="reveal">¿Cuándo llega<br/>tu próxima aventura?</h2>
+  <p class="reveal">Reserva directamente con nosotros y obtén el mejor precio garantizado. Disponibilidad limitada en temporada alta.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20reservar%20en%20el%20Hostal%20La%20Ruta" class="btn-cream">💬 Reservar por WhatsApp</a>
+    <a href="mailto:hola@hostallaruta.cl" class="btn-outline-w">✉️ Enviar email</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Hostal La Ruta · Barrio Italia, Santiago · Para viajeros del mundo</p>
+</footer>
+
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(26,16,8,.93);border:1px solid rgba(160,82,45,.35);border-radius:4px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.75)">🎯 Página de Muestra · <a href="../" style="color:#a0522d;font-weight:700">Felipe Figueroa</a></div>
+
+<script>
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+});
+</script>
 </body>
 </html>

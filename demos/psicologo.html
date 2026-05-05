@@ -1,157 +1,330 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Centro de Psicología Integral — Psicoterapia individual, de pareja, familiar y online en Santiago. Página de muestra" />
-  <title>Centro de Psicología Integral — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #8b5cf6;
-      --primary-rgb: 139,92,246;
-      --bg: #fff;
-      --bg-alt: #f5f3ff;
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Psic. Andrea Fuentes — Psicología y Bienestar Mental</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--sage:#6b8f71;--dark-sage:#4a6b50;--light-sage:#e8f0e9;--lavender:#7c6b9e;--cream:#faf8f4;--warm:#f0ebe0;--dark:#1e2527;--gray:#5a6472;--soft-pink:#f7e8e8}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(250,248,244,.97);border-bottom:1px solid rgba(0,0,0,.06);backdrop-filter:blur(8px)}
+.nav-logo{font-family:'Lora',serif;font-size:1.1rem;font-weight:700;color:var(--dark)}
+.nav-logo span{color:var(--sage)}
+.nav-links{display:flex;gap:2rem;font-size:.88rem;font-weight:600;color:var(--gray)}
+.nav-links a:hover{color:var(--sage)}
+.nav-cta{background:var(--sage);color:#fff;padding:.55rem 1.4rem;border-radius:30px;font-weight:700;font-size:.85rem;transition:.2s}
+.nav-cta:hover{background:var(--dark-sage)}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:72px;overflow:hidden;background:var(--cream)}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:4rem 5% 4rem 5%}
+.hero-tag{display:inline-block;background:var(--light-sage);color:var(--dark-sage);font-size:.72rem;font-weight:700;letter-spacing:2px;padding:.4rem 1.2rem;border-radius:30px;margin-bottom:1.8rem;width:fit-content}
+.hero h1{font-family:'Lora',serif;font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:1.15;margin-bottom:1.2rem}
+.hero h1 em{font-style:italic;color:var(--sage)}
+.hero p{color:var(--gray);line-height:1.9;margin-bottom:2rem;max-width:420px;font-size:1rem}
+.hero-qualities{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2.5rem}
+.quality-chip{background:var(--warm);border:1px solid rgba(0,0,0,.07);border-radius:30px;padding:.4rem .9rem;font-size:.78rem;font-weight:600;color:var(--dark)}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn-sage{background:var(--sage);color:#fff;padding:.9rem 2rem;border-radius:30px;font-weight:700;font-size:.9rem;transition:.2s}
+.btn-sage:hover{background:var(--dark-sage);transform:translateY(-2px)}
+.btn-outline{border:2px solid var(--sage);color:var(--sage);padding:.85rem 2rem;border-radius:30px;font-weight:600;font-size:.9rem;transition:.2s}
+.btn-outline:hover{background:var(--sage);color:#fff}
+.hero-note{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:var(--gray)}
+.hero-note::before{content:'🔒';font-size:.9rem}
+.hero-right{position:relative;overflow:hidden;background:var(--light-sage)}
+.hero-right img{width:100%;height:100%;object-fit:cover;object-position:top}
+.hero-floating{position:absolute;background:rgba(250,248,244,.95);border-radius:12px;padding:1rem 1.2rem;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.hf1{top:8rem;left:1.5rem}
+.hf2{bottom:8rem;right:1.5rem}
+.hf-label{font-size:.65rem;color:var(--gray);letter-spacing:1px;margin-bottom:.3rem;font-weight:600}
+.hf-value{font-family:'Lora',serif;font-size:1rem;font-weight:700;color:var(--sage)}
+
+/* QUOTE */
+.quote-section{background:var(--sage);padding:4rem 5%;text-align:center}
+.quote-section blockquote{font-family:'Lora',serif;font-size:clamp(1.2rem,2.5vw,1.6rem);font-style:italic;color:rgba(255,255,255,.9);line-height:1.7;max-width:700px;margin:0 auto}
+.quote-section cite{display:block;margin-top:1rem;font-style:normal;font-size:.8rem;color:rgba(255,255,255,.6);letter-spacing:2px;font-family:'Nunito',sans-serif;font-weight:600}
+
+/* ABOUT */
+.about{padding:7rem 5%;background:var(--warm);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-img{position:relative}
+.about-img img{width:100%;height:500px;object-fit:cover;border-radius:20px;object-position:top}
+.about-credential{position:absolute;bottom:-1.5rem;left:-1.5rem;background:#fff;border-radius:12px;padding:1.2rem;box-shadow:0 8px 25px rgba(0,0,0,.1)}
+.ac-icon{font-size:1.5rem;margin-bottom:.4rem}
+.ac-title{font-size:.75rem;font-weight:700;color:var(--dark);margin-bottom:.2rem}
+.ac-desc{font-size:.68rem;color:var(--gray)}
+.section-label{font-size:.7rem;letter-spacing:3px;color:var(--sage);font-weight:700;margin-bottom:.5rem}
+.section-title{font-family:'Lora',serif;font-size:clamp(1.8rem,3.5vw,2.5rem);line-height:1.2;margin-bottom:1rem}
+.about-text{color:var(--gray);line-height:1.9;margin-bottom:1.5rem}
+.creds-list{display:flex;flex-direction:column;gap:.8rem;margin-bottom:2rem}
+.cred-item{display:flex;align-items:flex-start;gap:.7rem;background:#fff;border-radius:10px;padding:.8rem 1rem}
+.cred-icon{font-size:1.1rem;flex-shrink:0}
+.cred-text{font-size:.82rem;color:var(--dark);font-weight:600}
+.cred-sub{font-size:.72rem;color:var(--gray)}
+
+/* APPROACH */
+.approach{padding:7rem 5%;background:var(--cream)}
+.approach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.appr-card{background:var(--white,#fff);border-radius:16px;padding:2rem;border:1px solid rgba(0,0,0,.05);transition:.3s}
+.appr-card:hover{box-shadow:0 8px 30px rgba(107,143,113,.12);transform:translateY(-4px)}
+.appr-icon{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.2rem}
+.appr-card:nth-child(1) .appr-icon{background:var(--light-sage)}
+.appr-card:nth-child(2) .appr-icon{background:var(--soft-pink)}
+.appr-card:nth-child(3) .appr-icon{background:#e8e0f7}
+.appr-card h3{font-family:'Lora',serif;font-size:1.1rem;font-weight:700;margin-bottom:.6rem}
+.appr-card p{font-size:.83rem;color:var(--gray);line-height:1.7}
+
+/* AREAS */
+.areas{padding:7rem 5%;background:var(--warm)}
+.areas-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:3rem}
+.area-item{background:#fff;border-radius:12px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:.3s}
+.area-item:hover{box-shadow:0 4px 20px rgba(0,0,0,.07)}
+.area-emoji{font-size:1.5rem;flex-shrink:0}
+.area-item h4{font-weight:700;font-size:.92rem;color:var(--dark);margin-bottom:.3rem}
+.area-item p{font-size:.78rem;color:var(--gray);line-height:1.6}
+
+/* SESSIONS */
+.sessions{padding:7rem 5%;background:var(--cream)}
+.sessions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.sess-card{border-radius:16px;padding:2.5rem 2rem;text-align:center;transition:.3s;border:2px solid transparent}
+.sess-card:nth-child(1){background:var(--light-sage)}
+.sess-card:nth-child(2){background:var(--cream);border-color:var(--sage)}
+.sess-card:nth-child(3){background:var(--soft-pink)}
+.sess-card:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(0,0,0,.08)}
+.sess-icon{font-size:2.5rem;margin-bottom:1rem}
+.sess-card h3{font-family:'Lora',serif;font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.sess-desc{font-size:.82rem;color:var(--gray);line-height:1.6;margin-bottom:1.2rem}
+.sess-price{font-weight:700;color:var(--sage);font-size:1rem}
+.sess-btn{display:inline-block;background:var(--sage);color:#fff;padding:.55rem 1.5rem;border-radius:30px;font-size:.8rem;font-weight:700;margin-top:.8rem;transition:.2s}
+.sess-btn:hover{background:var(--dark-sage)}
+
+/* TESTIMONIALS */
+.testimonials{padding:7rem 5%;background:var(--warm)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.testi-card{background:#fff;border-radius:16px;padding:2rem}
+.testi-stars{color:#f59e0b;margin-bottom:.8rem;font-size:.9rem}
+.testi-text{font-family:'Lora',serif;font-style:italic;font-size:.9rem;color:var(--gray);line-height:1.8;margin-bottom:1.2rem}
+.testi-author{font-size:.8rem;font-weight:700;color:var(--dark)}
+.testi-detail{font-size:.72rem;color:var(--gray);margin-top:.2rem}
+
+/* CTA */
+.cta{padding:7rem 5%;background:var(--dark);text-align:center}
+.cta h2{font-family:'Lora',serif;font-size:clamp(2rem,4vw,3rem);color:#fff;margin-bottom:1rem;font-style:italic}
+.cta p{color:rgba(255,255,255,.55);margin-bottom:2.5rem;line-height:1.8;max-width:480px;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-sage-lg{background:var(--sage);color:#fff;padding:.95rem 2.5rem;border-radius:30px;font-weight:700;font-size:.95rem;transition:.2s}
+.btn-sage-lg:hover{background:var(--dark-sage);transform:translateY(-2px)}
+.btn-ghost{border:2px solid rgba(255,255,255,.25);color:rgba(255,255,255,.7);padding:.9rem 2rem;border-radius:30px;font-weight:600;transition:.2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.6);color:#fff}
+
+/* FOOTER */
+footer{background:rgba(0,0,0,.7);padding:2.5rem 5%;text-align:center;font-size:.8rem;color:rgba(255,255,255,.35)}
+footer a{color:var(--sage)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{height:350px}
+  .about{grid-template-columns:1fr}
+  .approach-grid,.sessions-grid,.testi-grid{grid-template-columns:1fr}
+  .areas-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<nav>
+  <div class="nav-logo">Andrea <span>Fuentes</span></div>
+  <div class="nav-links">
+    <a href="#nosotros">Sobre mí</a>
+    <a href="#areas">Áreas</a>
+    <a href="#sesiones">Sesiones</a>
+    <a href="#contacto">Contacto</a>
   </div>
+  <a href="https://wa.me/56900000000?text=Hola,%20quiero%20agendar%20una%20sesión" class="nav-cta">Agendar Sesión</a>
+</nav>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Psicología Integral<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Terapias</a></li>
-        <li><a href="#nosotros" class="nav-link">El Centro</a></li>
-        <li><a href="#opiniones" class="nav-link">Pacientes</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Agendar</a></li>
-      </ul>
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">PSICÓLOGA CLÍNICA · REG. MINSAL</div>
+    <h1>Un espacio<br/>seguro para<br/><em>sanar y crecer</em></h1>
+    <p>Acompañamiento psicológico profesional y empático. Juntos trabajamos las herramientas que necesitas para vivir mejor.</p>
+    <div class="hero-qualities">
+      <div class="quality-chip">Terapia individual</div>
+      <div class="quality-chip">Pareja</div>
+      <div class="quality-chip">Ansiedad</div>
+      <div class="quality-chip">Depresión</div>
+      <div class="quality-chip">Online y presencial</div>
     </div>
-  </nav>
-
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #180a38 0%, #2e1065 50%, #150830 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Centro de Psicología</p>
-      <h1 class="hero-title">Tu bienestar mental<br><em>importa.</em></h1>
-      <p class="hero-sub">Un espacio seguro para trabajar en tu bienestar emocional. Psicólogos titulados con formación en psicoterapia, con atención presencial y online.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Primera sesión</a>
-        <a href="#servicios" class="btn btn-outline">Ver terapias</a>
-      </div>
+    <div class="hero-btns">
+      <a href="https://wa.me/56900000000?text=Hola,%20quiero%20agendar%20una%20sesión%20de%20psicología" class="btn-sage">Agendar sesión</a>
+      <a href="#nosotros" class="btn-outline">Conocerme primero</a>
     </div>
-  </section>
-
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">Acompañamiento psicológico especializado</h2>
-        <p class="section-desc">Cada proceso terapéutico es único. Trabajamos con enfoque integrativo adaptado a las necesidades de cada persona.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🧠</div>
-          <h3 class="card-title">Psicoterapia Individual</h3>
-          <p class="card-desc">Proceso terapéutico para ansiedad, depresión, estrés, duelo, trauma y desarrollo personal. Sesiones semanales o quincenales.</p>
-          <p class="card-price">Desde $45.000/sesión</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">💑</div>
-          <h3 class="card-title">Terapia de Pareja</h3>
-          <p class="card-desc">Mejora la comunicación, resolución de conflictos y reconexión emocional. Terapia orientada a resultados concretos y duraderos.</p>
-          <p class="card-price">Desde $55.000/sesión</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">👨‍👩‍👧</div>
-          <h3 class="card-title">Terapia Familiar</h3>
-          <p class="card-desc">Intervención sistémica para mejorar la dinámica familiar, la comunicación y la resolución de conflictos intergeneracionales.</p>
-          <p class="card-price">Desde $60.000/sesión</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">💻</div>
-          <h3 class="card-title">Consulta Online</h3>
-          <p class="card-desc">Sesiones por videollamada con la misma calidad y confidencialidad que la atención presencial. Para Chile y el extranjero.</p>
-          <p class="card-price">Desde $40.000/sesión</p>
-        </div>
-      </div>
+    <div class="hero-note">Todo lo que compartas es completamente confidencial</div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="Psicóloga"/>
+    <div class="hero-floating hf1">
+      <div class="hf-label">EXPERIENCIA</div>
+      <div class="hf-value">8+ años clínicos</div>
     </div>
-  </section>
+    <div class="hero-floating hf2">
+      <div class="hf-label">MODALIDAD</div>
+      <div class="hf-value">Online o presencial</div>
+    </div>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🌿</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">8 años creando espacios de sanación y crecimiento</h2>
-          <p class="about-text">Nuestro equipo está formado por psicólogos titulados con posttítulo en psicoterapia. Trabajamos con enfoques basados en evidencia: cognitivo-conductual, humanista, sistémico y EMDR para trauma.</p>
-          <p class="about-text">Confidencialidad absoluta garantizada. Ofrecemos sesión de evaluación inicial gratuita de 30 minutos para conocerte y orientarte en el proceso más adecuado.</p>
-        </div>
+<div class="quote-section">
+  <blockquote>"No hay que ser fuerte todo el tiempo. Pedir ayuda es una de las cosas más valientes que puedes hacer por ti mismo."</blockquote>
+  <cite>— Andrea Fuentes, Psicóloga Clínica</cite>
+</div>
+
+<section class="about" id="nosotros">
+  <div class="about-img reveal">
+    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80" alt="Psicóloga"/>
+    <div class="about-credential">
+      <div class="ac-icon">🎓</div>
+      <div class="ac-title">Psicóloga Clínica</div>
+      <div class="ac-desc">U. de Chile · Mag. Psicoterapia PUC</div>
+    </div>
+  </div>
+  <div class="reveal">
+    <div class="section-label">SOBRE MÍ</div>
+    <h2 class="section-title">Hola, soy Andrea.<br/>Estoy aquí para acompañarte</h2>
+    <p class="about-text">Soy psicóloga clínica con más de 8 años de experiencia trabajando con adultos y parejas. Mi enfoque es integrativo: combino técnicas cognitivo-conductuales, mindfulness y terapia sistémica según lo que cada persona necesita.</p>
+    <p class="about-text">Creo en un espacio terapéutico donde te sientas escuchado sin juicio, libre de ser tú mismo y con las herramientas para avanzar.</p>
+    <div class="creds-list">
+      <div class="cred-item">
+        <div class="cred-icon">🎓</div>
+        <div><div class="cred-text">Psicóloga Clínica · U. de Chile</div><div class="cred-sub">Licenciada con distinción máxima</div></div>
       </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+400</div><div class="stat-label">Pacientes acompañados</div></div>
-        <div class="stat"><div class="stat-number">8</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">5.0★</div><div class="stat-label">Calificación perfecta</div></div>
-        <div class="stat"><div class="stat-number">Online</div><div class="stat-label">Y presencial</div></div>
+      <div class="cred-item">
+        <div class="cred-icon">📚</div>
+        <div><div class="cred-text">Magíster en Psicoterapia · PUC</div><div class="cred-sub">Mención Terapia Cognitivo-Conductual</div></div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon">🌿</div>
+        <div><div class="cred-text">Certificada en Mindfulness MBSR</div><div class="cred-sub">Universidad de Massachusetts</div></div>
       </div>
     </div>
-  </section>
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20agendar%20una%20primera%20sesión" class="btn-sage">Agendar primera sesión</a>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Testimonios</span>
-        <h2 class="section-title">Experiencias que inspiran</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Llegué con ansiedad severa que me impedía trabajar y después de 6 meses de terapia tengo herramientas reales para manejarla. Mi psicóloga es increíble, empática y muy profesional."</p>
-          <div class="testi-author">Francisca Lobos</div>
-          <div class="testi-role">Paciente · ansiedad</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"La terapia de pareja nos salvó. Estábamos muy mal comunicados y el proceso nos dio las herramientas para reconectarnos. El terapeuta nunca tomó partido y fue muy imparcial. Muy agradecidos."</p>
-          <div class="testi-author">Rodrigo y Ana Pérez</div>
-          <div class="testi-role">Pacientes · terapia de pareja</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Las sesiones online son igual de efectivas que las presenciales. Vivo en el extranjero y poder tener continuidad de proceso con mi psicóloga de confianza es invaluable. La tecnología no es barrera."</p>
-          <div class="testi-author">Mariana Torres</div>
-          <div class="testi-role">Paciente · sesiones online desde España</div>
-        </div>
-      </div>
+<section class="approach" id="metodo">
+  <div class="section-label">MI ENFOQUE</div>
+  <h2 class="section-title reveal">Cómo trabajo contigo</h2>
+  <div class="approach-grid">
+    <div class="appr-card reveal">
+      <div class="appr-icon">🧠</div>
+      <h3>Terapia Cognitivo-Conductual</h3>
+      <p>Identificamos patrones de pensamiento y comportamiento que te afectan, y los transformamos en recursos para tu bienestar.</p>
     </div>
-  </section>
-
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Listo para dar el primer paso?</h2>
-      <p class="section-desc">Agenda tu evaluación inicial gratuita de 30 minutos por WhatsApp. Confidencial, sin compromiso y con total respeto.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Agendar por WhatsApp
-      </a>
+    <div class="appr-card reveal">
+      <div class="appr-icon">🌸</div>
+      <h3>Mindfulness y Autocompasión</h3>
+      <p>Técnicas de atención plena para conectar con el presente, reducir la ansiedad y desarrollar una relación más amable contigo mismo.</p>
     </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Centro de Psicología Integral</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
+    <div class="appr-card reveal">
+      <div class="appr-icon">💜</div>
+      <h3>Terapia de Pareja</h3>
+      <p>Mejoramos la comunicación, trabajamos conflictos recurrentes y fortalecemos el vínculo con técnicas basadas en evidencia.</p>
     </div>
-  </footer>
+  </div>
+</section>
 
+<section class="areas" id="areas">
+  <div class="section-label">ÁREAS DE TRABAJO</div>
+  <h2 class="section-title reveal">¿En qué puedo ayudarte?</h2>
+  <div class="areas-grid">
+    <div class="area-item reveal"><div class="area-emoji">😔</div><div><h4>Ansiedad y Estrés</h4><p>Ataques de pánico, ansiedad generalizada, fobia social y estrés laboral o académico.</p></div></div>
+    <div class="area-item reveal"><div class="area-emoji">🌧️</div><div><h4>Depresión</h4><p>Tristeza persistente, pérdida de motivación, duelo y dificultad para encontrar sentido.</p></div></div>
+    <div class="area-item reveal"><div class="area-emoji">💔</div><div><h4>Relaciones y Pareja</h4><p>Conflictos de pareja, infidelidad, comunicación, límites y separaciones.</p></div></div>
+    <div class="area-item reveal"><div class="area-emoji">🪞</div><div><h4>Autoestima</h4><p>Inseguridad, autocrítica excesiva, dificultad para tomar decisiones y voz interior negativa.</p></div></div>
+    <div class="area-item reveal"><div class="area-emoji">😴</div><div><h4>Insomnio y Sueño</h4><p>Dificultad para dormir, pensamientos nocturnos intrusivos y fatiga crónica.</p></div></div>
+    <div class="area-item reveal"><div class="area-emoji">💼</div><div><h4>Burnout Laboral</h4><p>Agotamiento emocional, crisis profesional y dificultad para desconectarse del trabajo.</p></div></div>
+  </div>
+</section>
+
+<section class="sessions" id="sesiones">
+  <div class="section-label">MODALIDADES</div>
+  <h2 class="section-title reveal">Sesiones adaptadas a tu vida</h2>
+  <div class="sessions-grid">
+    <div class="sess-card reveal">
+      <div class="sess-icon">🌿</div>
+      <h3>Sesión Individual</h3>
+      <div class="sess-desc">50 minutos de atención personalizada. Online o presencial en Providencia.</div>
+      <div class="sess-price">$35.000 / sesión</div>
+      <a href="https://wa.me/56900000000?text=Hola,%20quiero%20agendar%20sesión%20individual" class="sess-btn">Agendar</a>
+    </div>
+    <div class="sess-card reveal">
+      <div class="sess-icon">💑</div>
+      <h3>Terapia de Pareja</h3>
+      <div class="sess-desc">60 minutos con ambos. Trabajamos comunicación y vínculos.</div>
+      <div class="sess-price">$50.000 / sesión</div>
+      <a href="https://wa.me/56900000000?text=Hola,%20quiero%20agendar%20terapia%20de%20pareja" class="sess-btn">Agendar</a>
+    </div>
+    <div class="sess-card reveal">
+      <div class="sess-icon">📦</div>
+      <h3>Pack de 4 sesiones</h3>
+      <div class="sess-desc">Descuento especial para quienes se comprometen con su proceso.</div>
+      <div class="sess-price">$120.000 (ahorra $20.000)</div>
+      <a href="https://wa.me/56900000000?text=Hola,%20quiero%20el%20pack%20de%204%20sesiones" class="sess-btn">Contratar pack</a>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-label">TESTIMONIOS</div>
+  <h2 class="section-title reveal">Personas que transformaron su vida</h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Llegué en mi peor momento y Andrea me ayudó a encontrar herramientas que nunca pensé tener. Es increíblemente empática y profesional."</p>
+      <div class="testi-author">S.M.</div><div class="testi-detail">Terapia Individual · 8 meses</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"La terapia de pareja que hicimos con mi esposa fue un antes y un después. Hoy nos comunicamos de verdad. Gracias Andrea."</p>
+      <div class="testi-author">R. y C.</div><div class="testi-detail">Terapia de Pareja · 6 meses</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Las sesiones online son igual de efectivas que las presenciales. Me encanta que puedo conectarme desde casa. Mi ansiedad bajó muchísimo."</p>
+      <div class="testi-author">K.V.</div><div class="testi-detail">Terapia Online · 4 meses</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <h2 class="reveal">El primer paso es el más valiente</h2>
+  <p class="reveal">Escríbeme hoy. Sin compromisos. Cuéntame brevemente qué te pasa y encontramos la mejor manera de comenzar.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/56900000000?text=Hola%20Andrea,%20quiero%20agendar%20una%20primera%20sesión" class="btn-sage-lg">💬 Escribirme por WhatsApp</a>
+    <a href="mailto:andrea@psicologia.cl" class="btn-ghost">✉️ Enviar email</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Andrea Fuentes · Psicóloga Clínica · Reg. MINSAL · Providencia, Santiago</p>
+  <p style="margin-top:.5rem">Confidencialidad garantizada · Primera consulta sin compromiso</p>
+</footer>
+
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(30,37,39,.93);border:1px solid rgba(107,143,113,.35);border-radius:8px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.75)">🎯 Página de Muestra · <a href="../" style="color:#6b8f71;font-weight:700">Felipe Figueroa</a></div>
+
+<script>
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+});
+</script>
 </body>
 </html>

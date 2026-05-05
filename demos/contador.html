@@ -1,157 +1,368 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Contador González — Contabilidad, declaración de impuestos y asesoría tributaria en Santiago. Página de muestra" />
-  <title>Contador González — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #16a34a;
-      --primary-rgb: 22,163,74;
-      --bg: #fff;
-      --bg-alt: #f0fdf4;
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Ríos & Asociados — Contadores Auditores</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0a1628;--blue:#1a3a6b;--gold:#c9a84c;--light-gold:#e8c97e;--cream:#f5f0e8;--text:#2a2a2a}
+body{font-family:'Manrope',sans-serif;background:#fff;color:var(--text);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(10,22,40,.98);border-bottom:1px solid rgba(201,168,76,.15)}
+.nav-logo{display:flex;align-items:center;gap:1rem}
+.nav-logo-icon{width:38px;height:38px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;color:var(--navy);font-family:'Cormorant Garamond',serif}
+.nav-logo-text{color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;letter-spacing:1px}
+.nav-logo-text span{color:var(--gold)}
+.nav-links{display:flex;gap:2rem;color:rgba(255,255,255,.7);font-size:.88rem;font-weight:500}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--navy);padding:.55rem 1.4rem;font-weight:700;font-size:.85rem;letter-spacing:.5px;border-radius:2px;transition:.2s}
+.nav-cta:hover{background:var(--light-gold)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:stretch;padding-top:72px}
+.hero-left{flex:0 0 55%;padding:5rem 5%;display:flex;flex-direction:column;justify-content:center;background:var(--navy)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;color:var(--gold);font-size:.72rem;letter-spacing:3px;font-weight:700;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid rgba(201,168,76,.2)}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);line-height:1.1;color:#fff;margin-bottom:1.5rem;font-weight:700}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero-desc{color:rgba(255,255,255,.6);line-height:1.8;font-size:1rem;margin-bottom:2.5rem;max-width:420px}
+.hero-certs{display:flex;gap:1.5rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.cert-item{display:flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.5);font-size:.8rem}
+.cert-item::before{content:'✓';color:var(--gold);font-weight:700}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:var(--navy);padding:.9rem 2rem;font-weight:700;border-radius:2px;transition:.2s;font-size:.9rem}
+.btn-gold:hover{background:var(--light-gold);transform:translateY(-2px)}
+.btn-outline-white{border:1.5px solid rgba(255,255,255,.3);color:#fff;padding:.85rem 2rem;border-radius:2px;font-weight:600;font-size:.9rem;transition:.2s}
+.btn-outline-white:hover{border-color:var(--gold);color:var(--gold)}
+.hero-right{flex:1;position:relative;overflow:hidden}
+.hero-right img{width:100%;height:100%;object-fit:cover;filter:brightness(.65)}
+.hero-right::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--navy) 0%,transparent 30%);z-index:1}
+.hero-badge{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);z-index:2;background:rgba(10,22,40,.9);border:1px solid rgba(201,168,76,.3);padding:1.2rem 2rem;text-align:center;backdrop-filter:blur(10px);white-space:nowrap}
+.hero-badge .years{font-family:'Cormorant Garamond',serif;font-size:3rem;color:var(--gold);line-height:1;font-weight:700}
+.hero-badge .text{font-size:.75rem;color:rgba(255,255,255,.6);letter-spacing:2px}
+
+/* SERVICES BAR */
+.services-bar{background:var(--gold);display:grid;grid-template-columns:repeat(4,1fr)}
+.sbar-item{padding:1.2rem 1.5rem;border-right:1px solid rgba(10,22,40,.15);display:flex;align-items:center;gap:.8rem;cursor:default;transition:.2s}
+.sbar-item:last-child{border:none}
+.sbar-item:hover{background:var(--light-gold)}
+.sbar-icon{font-size:1.3rem}
+.sbar-text{font-size:.78rem;font-weight:700;color:var(--navy);letter-spacing:.5px;line-height:1.3}
+
+/* ABOUT */
+.about{padding:7rem 5%;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;background:#fff}
+.about-img{position:relative}
+.about-img img{width:100%;height:500px;object-fit:cover}
+.about-img::after{content:'';position:absolute;top:16px;left:16px;right:-16px;bottom:-16px;border:2px solid var(--gold);z-index:-1}
+.about-stat{position:absolute;bottom:-2rem;right:-2rem;background:var(--navy);color:#fff;padding:1.5rem;text-align:center}
+.about-stat .big{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--gold);font-weight:700}
+.about-stat .sm{font-size:.72rem;letter-spacing:1px;opacity:.6}
+.section-label{font-size:.7rem;letter-spacing:3px;color:var(--gold);font-weight:700;margin-bottom:.5rem}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);margin-bottom:1rem;font-weight:700;line-height:1.15}
+.about-text{color:#555;line-height:1.8;margin-bottom:1.5rem}
+.check-list{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.check-list li{display:flex;align-items:center;gap:.6rem;font-size:.9rem;color:#444}
+.check-list li::before{content:'';width:20px;height:20px;background:rgba(201,168,76,.15);border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9a84c' stroke-width='3'%3E%3Cpath d='M5 13l4 4L19 7'/%3E%3C/svg%3E");background-size:12px;background-repeat:no-repeat;background-position:center}
+
+/* SERVICES */
+.services{padding:7rem 5%;background:var(--cream)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.serv-card{background:#fff;padding:2.5rem 2rem;border-bottom:3px solid transparent;transition:.3s;position:relative;overflow:hidden}
+.serv-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:.4s}
+.serv-card:hover::before{transform:scaleX(1)}
+.serv-card:hover{box-shadow:0 12px 40px rgba(10,22,40,.08);transform:translateY(-4px)}
+.serv-num{font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:rgba(201,168,76,.2);font-weight:700;line-height:1;margin-bottom:.5rem}
+.serv-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;margin-bottom:.8rem;color:var(--navy)}
+.serv-card p{font-size:.85rem;color:#666;line-height:1.7}
+.serv-tag{display:inline-block;background:rgba(201,168,76,.1);color:var(--gold);font-size:.65rem;font-weight:700;letter-spacing:1px;padding:.2rem .6rem;margin-top:.8rem;border-radius:2px}
+
+/* STATS */
+.stats{background:var(--navy);padding:5rem 5%;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-item{text-align:center;padding:2rem 1rem;border-right:1px solid rgba(255,255,255,.08)}
+.stat-item:last-child{border:none}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--gold);font-weight:700;line-height:1}
+.stat-label{font-size:.72rem;letter-spacing:2px;color:rgba(255,255,255,.4);margin-top:.5rem}
+
+/* TEAM */
+.team{padding:7rem 5%;background:#fff}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.team-card{text-align:center}
+.team-img{width:100%;height:280px;object-fit:cover;filter:grayscale(30%);margin-bottom:1.5rem;transition:.3s}
+.team-card:hover .team-img{filter:grayscale(0%)}
+.team-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:.3rem}
+.team-role{font-size:.78rem;color:var(--gold);font-weight:700;letter-spacing:2px;margin-bottom:.5rem}
+.team-desc{font-size:.83rem;color:#666;line-height:1.6}
+
+/* PROCESS */
+.process{padding:7rem 5%;background:var(--cream)}
+.process-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem;position:relative}
+.process-row::before{content:'';position:absolute;top:2rem;left:12.5%;right:12.5%;height:1px;background:var(--gold);opacity:.3}
+.proc-step{text-align:center;position:relative}
+.proc-num{width:50px;height:50px;border-radius:50%;background:var(--navy);border:2px solid var(--gold);color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;position:relative;z-index:1}
+.proc-step h4{font-weight:700;font-size:.92rem;color:var(--navy);margin-bottom:.5rem}
+.proc-step p{font-size:.82rem;color:#666;line-height:1.6}
+
+/* TESTIMONIALS */
+.testimonials{padding:7rem 5%;background:var(--navy)}
+.testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;margin-top:3rem}
+.testi-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.15);padding:2.5rem;position:relative}
+.testi-quote{font-family:'Cormorant Garamond',serif;font-size:5rem;color:rgba(201,168,76,.15);line-height:.5;position:absolute;top:1rem;left:1.5rem}
+.testi-text{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:1.5rem;position:relative}
+.testi-divider{width:40px;height:1px;background:var(--gold);margin-bottom:1.2rem}
+.testi-name{font-weight:700;color:#fff;font-size:.9rem}
+.testi-role{font-size:.75rem;color:rgba(255,255,255,.4)}
+
+/* CTA */
+.cta{padding:7rem 5%;background:#fff;text-align:center}
+.cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);color:var(--navy);margin-bottom:1rem;font-weight:700}
+.cta p{color:#666;margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+footer{background:var(--navy);padding:3rem 5%;border-top:1px solid rgba(201,168,76,.15);display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:rgba(255,255,255,.35);flex-wrap:wrap;gap:1rem}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .hero{flex-direction:column}
+  .hero-left{flex:none;padding:5rem 5% 3rem}
+  .hero-right{height:300px;flex:none}
+  .about,.services-grid,.team-grid,.process-row{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .services-bar{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  footer{text-align:center;justify-content:center}
+}
+</style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">R&A</div>
+    <div class="nav-logo-text">RÍOS <span>&</span> ASOCIADOS</div>
   </div>
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#equipo">Equipo</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <a href="https://wa.me/56900000000?text=Hola,%20necesito%20asesoría%20contable" class="nav-cta">Consulta Gratuita</a>
+</nav>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Contador González<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Clientes</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
-      </ul>
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">CONTADORES AUDITORES CERTIFICADOS · SII · CHILE</div>
+    <h1>Tu empresa,<br/><em>libre</em> de<br/>problemas<br/>tributarios</h1>
+    <p class="hero-desc">Asesoría contable, tributaria y laboral para empresas y emprendedores. Más de 20 años protegiendo patrimoni os y optimizando resultados.</p>
+    <div class="hero-certs">
+      <div class="cert-item">Inscrito en SII</div>
+      <div class="cert-item">Colegio de Contadores</div>
+      <div class="cert-item">Auditor Certificado</div>
+      <div class="cert-item">IFRS Expert</div>
     </div>
-  </nav>
-
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #071a10 0%, #14532d 50%, #052e16 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Contador Auditor</p>
-      <h1 class="hero-title">Tu empresa en orden,<br><em>tus finanzas claras.</em></h1>
-      <p class="hero-sub">12 años apoyando a pymes y emprendedores en contabilidad, tributación y gestión financiera. Nos encargamos de los números para que tú te enfoques en crecer.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Primera consulta gratis</a>
-        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
-      </div>
+    <div class="hero-btns">
+      <a href="https://wa.me/56900000000?text=Hola,%20quiero%20una%20consulta%20gratuita" class="btn-gold">Consulta Gratuita</a>
+      <a href="#servicios" class="btn-outline-white">Ver Servicios</a>
     </div>
-  </section>
-
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">Todo en un solo contador</h2>
-        <p class="section-desc">Servicios contables y tributarios para personas naturales con actividad y empresas de todos los tamaños.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">📊</div>
-          <h3 class="card-title">Contabilidad de Empresas</h3>
-          <p class="card-desc">Contabilidad mensual completa: libro diario, mayor, balance y estados financieros. Informes de gestión para toma de decisiones.</p>
-          <p class="card-price">Desde $45.000/mes</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📋</div>
-          <h3 class="card-title">Declaración de Impuestos</h3>
-          <p class="card-desc">F29 mensual, Renta Anual (F22), IVA, PPM y todos los formularios del SII. Evita multas y aprovecha las devoluciones.</p>
-          <p class="card-price">Desde $25.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">💰</div>
-          <h3 class="card-title">Liquidaciones de Sueldo</h3>
-          <p class="card-desc">Liquidaciones mensuales, cotizaciones previsionales, finiquitos y gestión de gratificaciones. Cumplimiento laboral garantizado.</p>
-          <p class="card-price">Desde $8.000/trabajador</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🏛️</div>
-          <h3 class="card-title">Asesoría Tributaria</h3>
-          <p class="card-desc">Planificación tributaria, resolución de diferencias con el SII, representación ante fiscalizaciones y optimización fiscal legal.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-      </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80" alt="Contabilidad"/>
+    <div class="hero-badge">
+      <div class="years">20+</div>
+      <div class="text">AÑOS DE EXPERIENCIA</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">📊</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">12 años ordenando las finanzas de más de 150 empresas</h2>
-          <p class="about-text">Soy contador auditor titulado con especialización en tributación y gestión de pymes. Mi equipo y yo usamos software contable certificado y mantenemos actualización permanente en la normativa del SII.</p>
-          <p class="about-text">Comunicación directa y respuesta rápida. No eres un número más: conocemos tu negocio a fondo para darte el mejor asesoramiento posible en cada decisión.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+150</div><div class="stat-label">Empresas clientes</div></div>
-        <div class="stat"><div class="stat-number">12</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación promedio</div></div>
-        <div class="stat"><div class="stat-number">SII</div><div class="stat-label">Contador certificado</div></div>
-      </div>
+<div class="services-bar">
+  <div class="sbar-item"><div class="sbar-icon">📊</div><div class="sbar-text">Contabilidad completa</div></div>
+  <div class="sbar-item"><div class="sbar-icon">🏛️</div><div class="sbar-text">Declaraciones SII</div></div>
+  <div class="sbar-item"><div class="sbar-icon">👥</div><div class="sbar-text">Remuneraciones</div></div>
+  <div class="sbar-item"><div class="sbar-icon">🔍</div><div class="sbar-text">Auditoría</div></div>
+</div>
+
+<section class="about" id="nosotros">
+  <div class="about-img reveal">
+    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="Contador"/>
+    <div class="about-stat"><div class="big">500+</div><div class="sm">EMPRESAS ATENDIDAS</div></div>
+  </div>
+  <div class="reveal">
+    <div class="section-label">QUIÉNES SOMOS</div>
+    <h2 class="section-title">Expertos en proteger tu negocio del SII</h2>
+    <p class="about-text">Somos una firma de contadores auditores con más de 20 años de trayectoria. Trabajamos con pymes, emprendedores y empresas medianas que necesitan un aliado confiable para sus finanzas.</p>
+    <p class="about-text">Nuestro enfoque no es solo llevar los libros: es ayudarte a tomar mejores decisiones financieras y a pagar solo los impuestos que corresponde.</p>
+    <ul class="check-list">
+      <li>Contabilidad mensual y anual completa</li>
+      <li>Declaración F22, IVA, PPM mensuales</li>
+      <li>Emisión de liquidaciones de sueldo</li>
+      <li>Constitución de sociedades y término de giro</li>
+      <li>Representación ante el SII</li>
+      <li>Asesoría tributaria preventiva</li>
+    </ul>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="section-label">NUESTROS SERVICIOS</div>
+  <h2 class="section-title reveal">Todo lo que tu empresa necesita</h2>
+  <div class="services-grid">
+    <div class="serv-card reveal">
+      <div class="serv-num">01</div>
+      <h3>Contabilidad Mensual</h3>
+      <p>Registro de todas las operaciones, libro de compras y ventas, balance mensual y estados financieros.</p>
+      <div class="serv-tag">DESDE $45.000/MES</div>
     </div>
-  </section>
-
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Llevaba años con un contador que nunca me explicaba nada. Con González por fin entiendo mis impuestos y la situación financiera de mi empresa. Es muy didáctico y siempre disponible."</p>
-          <div class="testi-author">Claudio Herrera</div>
-          <div class="testi-role">Cliente · empresa de servicios</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Tuve una fiscalización del SII y me representó con mucha solvencia. Resolvió la situación completamente a favor nuestro. Gracias a su asesoría tributaria ahorramos mucho en impuestos legalmente."</p>
-          <div class="testi-author">Mónica Riquelme</div>
-          <div class="testi-role">Clienta · empresa comercial</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Emprendí hace un año y desde el inicio me orientó en todo: iniciación de actividades, boletas de honorarios, IVA. Muy paciente para explicar conceptos nuevos. El mejor para emprendedores."</p>
-          <div class="testi-author">Antonia Vidal</div>
-          <div class="testi-role">Clienta · emprendedora</div>
-        </div>
-      </div>
+    <div class="serv-card reveal">
+      <div class="serv-num">02</div>
+      <h3>Tributación Empresarial</h3>
+      <p>Declaración del Formulario 22, pago de IVA, PPM y todos los formularios del SII sin errores.</p>
+      <div class="serv-tag">INCLUIDO EN PLAN</div>
     </div>
-  </section>
-
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Tu empresa necesita un contador de confianza?</h2>
-      <p class="section-desc">Primera consulta sin costo. Evaluamos tu situación tributaria y te explicamos cómo podemos ayudarte.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Consulta gratis por WhatsApp
-      </a>
+    <div class="serv-card reveal">
+      <div class="serv-num">03</div>
+      <h3>Remuneraciones</h3>
+      <p>Liquidaciones de sueldo, cotizaciones previsionales, AFP, ISAPRE y libro de remuneraciones.</p>
+      <div class="serv-tag">POR TRABAJADOR</div>
     </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Contador González</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
+    <div class="serv-card reveal">
+      <div class="serv-num">04</div>
+      <h3>Auditoría Financiera</h3>
+      <p>Revisión completa de estados financieros, detección de irregularidades y cumplimiento normativo.</p>
+      <div class="serv-tag">A CONSULTAR</div>
     </div>
-  </footer>
+    <div class="serv-card reveal">
+      <div class="serv-num">05</div>
+      <h3>Constitución de Empresas</h3>
+      <p>Creamos tu empresa en el Registro Civil o notaría. SPA, LTDA., SA. Inicio de actividades incluido.</p>
+      <div class="serv-tag">$99.000 TODO INCL.</div>
+    </div>
+    <div class="serv-card reveal">
+      <div class="serv-num">06</div>
+      <h3>Defensa ante el SII</h3>
+      <p>Te representamos ante notificaciones, fiscalizaciones y procesos de auditoría del SII.</p>
+      <div class="serv-tag">A CONSULTAR</div>
+    </div>
+  </div>
+</section>
 
+<div class="stats">
+  <div class="stat-item reveal"><div class="stat-num" data-count="20" data-suffix="+">0</div><div class="stat-label">AÑOS DE EXPERIENCIA</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="500" data-suffix="+">0</div><div class="stat-label">EMPRESAS ATENDIDAS</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="12" data-suffix="">0</div><div class="stat-label">CONTADORES EN EQUIPO</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="99" data-suffix="%">0</div><div class="stat-label">CUMPLIMIENTO SII</div></div>
+</div>
+
+<section class="team" id="equipo">
+  <div class="section-label">NUESTRO EQUIPO</div>
+  <h2 class="section-title reveal">Profesionales que marcan la diferencia</h2>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <img class="team-img" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=500&q=80" alt="Socio"/>
+      <div class="team-name">Carlos Ríos Mondaca</div>
+      <div class="team-role">SOCIO FUNDADOR · AUDITOR</div>
+      <div class="team-desc">Contador Auditor UChile. 20+ años en tributación corporativa. Experto IFRS.</div>
+    </div>
+    <div class="team-card reveal">
+      <img class="team-img" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=500&q=80" alt="Contadora"/>
+      <div class="team-name">Ana Valenzuela Torres</div>
+      <div class="team-role">CONTADORA SENIOR</div>
+      <div class="team-desc">Especialista en remuneraciones y laboral. Más de 300 empresas en cartera.</div>
+    </div>
+    <div class="team-card reveal">
+      <img class="team-img" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=500&q=80" alt="Tributarista"/>
+      <div class="team-name">Miguel Fuentes Salas</div>
+      <div class="team-role">ESPECIALISTA TRIBUTARIO</div>
+      <div class="team-desc">Ex-SII. Maestría en Derecho Tributario. Especialista en fiscalizaciones.</div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="section-label">CÓMO TRABAJAMOS</div>
+  <h2 class="section-title reveal">Simple, transparente y sin sorpresas</h2>
+  <div class="process-row">
+    <div class="proc-step reveal">
+      <div class="proc-num">1</div>
+      <h4>Diagnóstico gratuito</h4>
+      <p>Revisamos la situación actual de tu empresa sin costo</p>
+    </div>
+    <div class="proc-step reveal">
+      <div class="proc-num">2</div>
+      <h4>Propuesta a medida</h4>
+      <p>Te presentamos un plan con precio fijo mensual sin sorpresas</p>
+    </div>
+    <div class="proc-step reveal">
+      <div class="proc-num">3</div>
+      <h4>Traspaso sin estrés</h4>
+      <p>Nos encargamos de todo el proceso de cambio de contador</p>
+    </div>
+    <div class="proc-step reveal">
+      <div class="proc-num">4</div>
+      <h4>Asesoría permanente</h4>
+      <p>Canal directo por WhatsApp para todas tus consultas</p>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-label" style="color:var(--gold)">TESTIMONIOS</div>
+  <h2 class="section-title reveal" style="color:#fff">Lo que dicen nuestros clientes</h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Llevamos 8 años con Ríos & Asociados. Desde que los contratamos nunca más tuvimos problemas con el SII. Su asesoría nos ahorró millones en impuestos.</p>
+      <div class="testi-divider"></div>
+      <div class="testi-name">Roberto Andrade</div>
+      <div class="testi-role">Gerente · Constructora Andrade SpA</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <p class="testi-text">Cuando el SII nos notificó pensé lo peor. Carlos nos representó y resolvimos todo sin pagar multas. Son los mejores, un equipo de verdad confiable.</p>
+      <div class="testi-divider"></div>
+      <div class="testi-name">Patricia Morales</div>
+      <div class="testi-role">Dueña · Importadora PMG</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <div class="section-label">HABLEMOS</div>
+  <h2 class="reveal">¿Listo para ordenar tu contabilidad?</h2>
+  <p class="reveal">Primera consulta 100% gratuita. Sin compromiso. Te decimos exactamente cómo podemos ayudarte.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/56900000000?text=Hola,%20quiero%20una%20consulta%20contable%20gratuita" class="btn-gold">💬 Consulta Gratuita por WhatsApp</a>
+    <a href="tel:+56900000000" class="btn-outline-white" style="border-color:rgba(10,22,40,.3);color:var(--navy)">📞 Llamar ahora</a>
+  </div>
+</section>
+
+<footer>
+  <div>© 2025 Ríos & Asociados Contadores Auditores · Santiago, Chile</div>
+  <div>Miembro del Colegio de Contadores de Chile</div>
+</footer>
+
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(10,22,40,.95);border:1px solid rgba(201,168,76,.35);border-radius:2px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.7)">🎯 Página de Muestra · <a href="../" style="color:#c9a84c;font-weight:700">Felipe Figueroa</a></div>
+
+<script>
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const io=new IntersectionObserver(([e])=>{
+    if(!e.isIntersecting)return;
+    const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+    let cur=0;const step=target/60;
+    const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.round(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+    io.unobserve(el);
+  },{threshold:.5});io.observe(el);
+});
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+});
+</script>
 </body>
 </html>

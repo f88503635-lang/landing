@@ -1,157 +1,244 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Habitat Studio — Diseño de interiores, remodelación y asesoría en decoración en Santiago. Página de muestra" />
-  <title>Habitat Studio — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estudio Forma — Diseño & Decoración de Interiores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #b45309;
-      --primary-rgb: 180,83,9;
-      --bg: #fff;
-      --bg-alt: #fffbf5;
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--sand:#c9a96e;--sand-light:#e0c99a;--dark:#0e0b08;--warm:#f7f4ef;--surface:#1a1510;--text:#1a1510;--dim:#8a7a65}
+    body{font-family:'Jost',sans-serif;background:var(--warm);color:var(--text);overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.4rem 3rem;display:flex;align-items:center;justify-content:space-between;transition:.5s}
+    nav.scrolled{background:rgba(247,244,239,.97);backdrop-filter:blur(16px);box-shadow:0 1px 20px rgba(14,11,8,.08)}
+    .nav-logo{font-family:'Tenor Sans',sans-serif;font-size:1.3rem;color:#fff;text-decoration:none;letter-spacing:.12em;text-transform:uppercase}
+    nav.scrolled .nav-logo{color:var(--dark)}
+    .nav-links{display:flex;gap:3rem;list-style:none}
+    .nav-link{text-decoration:none;color:rgba(255,255,255,.75);font-size:.78rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;transition:.3s}
+    nav.scrolled .nav-link{color:var(--dim)}
+    .nav-link:hover{color:var(--sand)}
+    .nav-cta{border:1px solid rgba(255,255,255,.4)!important;color:#fff!important;padding:.45rem 1.5rem}
+    nav.scrolled .nav-cta{border-color:var(--sand)!important;color:var(--sand)!important}
+
+    /* HERO - full screen editorial */
+    .hero{height:100vh;position:relative;display:flex;align-items:flex-end;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,11,8,.92) 0%,rgba(14,11,8,.3) 50%,rgba(14,11,8,.1) 100%)}
+    .hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 3rem 5rem;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:flex-end}
+    .hero-left .hero-tag{font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--sand);margin-bottom:1.5rem;display:block}
+    .hero-title{font-family:'Tenor Sans',sans-serif;font-size:clamp(3rem,6vw,5.5rem);color:#fff;line-height:1.05;letter-spacing:.02em}
+    .hero-right{padding-bottom:.5rem}
+    .hero-sub{color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:2rem;font-weight:300;font-size:.95rem}
+    .btn-sand{display:inline-block;background:var(--sand);color:#fff;padding:.9rem 2.4rem;text-decoration:none;font-weight:500;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;transition:.3s;margin-right:1rem}
+    .btn-sand:hover{background:var(--sand-light);transform:translateY(-2px)}
+    .btn-ghost{display:inline-block;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);padding:.88rem 2rem;text-decoration:none;font-weight:400;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;transition:.3s}
+    .btn-ghost:hover{border-color:var(--sand);color:var(--sand)}
+
+    /* TICKER */
+    .ticker{background:var(--dark);padding:.8rem 0;overflow:hidden;white-space:nowrap}
+    .ticker-inner{display:inline-flex;gap:3rem;animation:tick 20s linear infinite;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+    .ticker-inner em{color:var(--sand);font-style:normal}
+    @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* SECTIONS */
+    section{padding:7rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .sec-eyebrow{font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--sand);font-weight:500}
+    .sec-title{font-family:'Tenor Sans',sans-serif;font-size:clamp(2rem,3.5vw,3rem);margin:.5rem 0 1rem;line-height:1.2;letter-spacing:.02em}
+    .sec-desc{color:var(--dim);line-height:1.8;max-width:500px;font-weight:300}
+
+    /* SERVICES */
+    .serv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:3rem;background:rgba(0,0,0,.06)}
+    .serv-card{background:var(--warm);padding:3rem 2.5rem;transition:.4s;cursor:pointer}
+    .serv-card:hover{background:var(--dark);transform:scale(1.02);z-index:1}
+    .serv-card:hover h3,.serv-card:hover p,.serv-card:hover .serv-price{color:#fff!important}
+    .serv-num{font-family:'Tenor Sans',sans-serif;font-size:3.5rem;color:rgba(0,0,0,.06);line-height:1;margin-bottom:1.5rem;transition:.3s}
+    .serv-card:hover .serv-num{color:rgba(255,255,255,.08)}
+    .serv-card h3{font-family:'Tenor Sans',sans-serif;font-size:1.2rem;margin-bottom:.8rem;transition:.3s}
+    .serv-card p{font-size:.85rem;color:var(--dim);line-height:1.7;transition:.3s;margin-bottom:1rem}
+    .serv-price{font-size:.78rem;color:var(--sand);font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:.3s}
+
+    /* PORTFOLIO - Masonry */
+    .portfolio{background:var(--dark);padding:7rem 2rem}
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:300px 300px;gap:4px;margin-top:3rem}
+    .porto{overflow:hidden;position:relative;cursor:pointer}
+    .porto.tall{grid-row:span 2}
+    .porto img{width:100%;height:100%;object-fit:cover;transition:.8s;filter:grayscale(20%)}
+    .porto:hover img{transform:scale(1.05);filter:grayscale(0)}
+    .porto-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,11,8,.85) 0%,transparent 60%);opacity:0;transition:.4s}
+    .porto:hover .porto-overlay{opacity:1}
+    .porto-info{position:absolute;bottom:2rem;left:2rem;right:2rem;transform:translateY(8px);transition:.4s;opacity:0}
+    .porto:hover .porto-info{transform:none;opacity:1}
+    .porto-style{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);margin-bottom:.3rem}
+    .porto-name{font-family:'Tenor Sans',sans-serif;font-size:1.1rem;color:#fff}
+
+    /* PROCESS */
+    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3rem;margin-top:4rem}
+    .proc{border-top:1px solid rgba(0,0,0,.1);padding-top:2rem}
+    .proc-num{font-family:'Tenor Sans',sans-serif;font-size:2.5rem;color:var(--sand);opacity:.4;line-height:1;margin-bottom:1rem}
+    .proc h3{font-family:'Tenor Sans',sans-serif;font-size:1rem;letter-spacing:.04em;margin-bottom:.5rem}
+    .proc p{font-size:.82rem;color:var(--dim);line-height:1.65}
+
+    /* STATS */
+    .stats-band{background:var(--sand);padding:4rem 2rem;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:2rem}
+    .st-n{font-family:'Tenor Sans',sans-serif;font-size:3.5rem;color:#fff;line-height:1}
+    .st-l{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:.4rem}
+
+    /* TESTIMONIALS */
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+    .testi{border:1px solid rgba(0,0,0,.08);padding:2.5rem}
+    .testi-q{font-family:'Tenor Sans',sans-serif;font-size:1rem;line-height:1.8;color:var(--text);margin-bottom:1.5rem}
+    .testi-author{font-size:.78rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}
+    .testi-line{width:2rem;height:1px;background:var(--sand);margin-bottom:.8rem}
+
+    /* CTA */
+    .cta{height:70vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+    .cta-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .cta-overlay{position:absolute;inset:0;background:rgba(14,11,8,.85)}
+    .cta-inner{position:relative;z-index:1;max-width:600px;padding:2rem}
+    .cta-title{font-family:'Tenor Sans',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:#fff;margin-bottom:1.2rem;letter-spacing:.04em;line-height:1.2}
+    .cta-sub{color:rgba(255,255,255,.6);margin-bottom:2.5rem;line-height:1.8;font-weight:300}
+    .btn-lg{display:inline-block;background:var(--sand);color:#fff;padding:1rem 2.8rem;text-decoration:none;font-weight:500;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;transition:.3s}
+    .btn-lg:hover{background:var(--sand-light);transform:translateY(-3px)}
+
+    footer{background:var(--dark);color:rgba(255,255,255,.35);padding:3rem 2rem;text-align:center;font-size:.8rem}
+    footer a{color:var(--sand);text-decoration:none}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:900px){.hero-content{grid-template-columns:1fr}.serv-grid{grid-template-columns:1fr}.portfolio-grid{grid-template-columns:1fr;grid-template-rows:auto}.porto.tall{grid-row:span 1}.porto{height:260px}.process-grid{grid-template-columns:repeat(2,1fr)}.stats-band{grid-template-columns:repeat(2,1fr)}.testi-grid{grid-template-columns:1fr}.nav-links{display:none}.hero-content{padding:0 1.5rem 4rem}}
   </style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(14,11,8,.97);border:1px solid rgba(201,169,110,.3);padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#c9a96e;font-weight:700">Felipe Figueroa</a></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Estudio Forma.</a>
+  <ul class="nav-links">
+    <li><a href="#servicios" class="nav-link">Servicios</a></li>
+    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+    <li><a href="#proceso" class="nav-link">Proceso</a></li>
+    <li><a href="#contacto" class="nav-link nav-cta">Consulta</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <span class="hero-tag">Estudio de diseño de interiores · Santiago</span>
+      <h1 class="hero-title">Espacios que<br>cuentan tu<br>historia</h1>
+    </div>
+    <div class="hero-right">
+      <p class="hero-sub">Diseño de interiores residencial y comercial. Transformamos espacios vacíos en ambientes que inspiran. Cada proyecto, una obra única.</p>
+      <a href="#contacto" class="btn-sand">Consulta gratuita</a>
+      <a href="#portfolio" class="btn-ghost">Ver proyectos</a>
+    </div>
   </div>
+</section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Habitat<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
-      </ul>
+<div class="ticker">
+  <div class="ticker-inner">
+    <em>Residencial</em> · Comercial · <em>Minimalismo</em> · Nórdico · <em>Contemporáneo</em> · Industrial · <em>Mediterráneo</em> · Clásico · <em>Residencial</em> · Comercial · <em>Minimalismo</em> · Nórdico · <em>Contemporáneo</em> · Industrial · <em>Mediterráneo</em> · Clásico
+  </div>
+</div>
+
+<section id="servicios">
+  <div class="container">
+    <span class="sec-eyebrow">Servicios</span>
+    <h2 class="sec-title">Todo lo que tu espacio<br>necesita para brillar</h2>
+    <div class="serv-grid reveal">
+      <div class="serv-card"><div class="serv-num">01</div><h3>Diseño completo de interiores</h3><p>Proyecto integral desde concepto hasta entrega. Planos, renders 3D, selección de materiales y supervisión de obra.</p><p class="serv-price">Desde $800.000 / ambiente</p></div>
+      <div class="serv-card"><div class="serv-num">02</div><h3>Remodelación & decoración</h3><p>Renovamos tu espacio existente: paleta de colores, muebles, textiles y accesorios sin necesidad de obra mayor.</p><p class="serv-price">Desde $350.000 / ambiente</p></div>
+      <div class="serv-card"><div class="serv-num">03</div><h3>Proyectos comerciales</h3><p>Restaurantes, tiendas y oficinas con identidad visual potente. Diseño que comunica tu marca y atrae clientes.</p><p class="serv-price">Presupuesto personalizado</p></div>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #1a0f05 0%, #2d1a08 50%, #1a0d03 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Diseño de Interiores</p>
-      <h1 class="hero-title">Espacios que<br><em>inspiran.</em></h1>
-      <p class="hero-sub">Transformamos tus espacios en ambientes que reflejan tu personalidad y estilo de vida. Diseño funcional y estético para hogares y comercios.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Consulta gratuita</a>
-        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
-      </div>
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <span class="sec-eyebrow" style="color:var(--sand)">Portfolio</span>
+    <h2 class="sec-title" style="color:#fff">Proyectos realizados</h2>
+    <div class="portfolio-grid reveal">
+      <div class="porto tall"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt=""/><div class="porto-overlay"></div><div class="porto-info"><p class="porto-style">Minimalismo · Las Condes</p><p class="porto-name">Casa El Bosque</p></div></div>
+      <div class="porto"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80" alt=""/><div class="porto-overlay"></div><div class="porto-info"><p class="porto-style">Nórdico · Ñuñoa</p><p class="porto-name">Depto Irarrázaval</p></div></div>
+      <div class="porto"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=600&q=80" alt=""/><div class="porto-overlay"></div><div class="porto-info"><p class="porto-style">Cocina · Vitacura</p><p class="porto-name">Cocina Abierta Los Militares</p></div></div>
+      <div class="porto"><img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=600&q=80" alt=""/><div class="porto-overlay"></div><div class="porto-info"><p class="porto-style">Oficinas · Providencia</p><p class="porto-name">Oficinas StartupHub</p></div></div>
+      <div class="porto"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80" alt=""/><div class="porto-overlay"></div><div class="porto-info"><p class="porto-style">Contemporáneo · La Florida</p><p class="porto-name">Suite Principal</p></div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">Diseño integral para tu espacio</h2>
-        <p class="section-desc">Desde la conceptualización hasta la entrega final, acompañamos cada etapa del proceso con creatividad y precisión.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🏠</div>
-          <h3 class="card-title">Diseño de Interiores</h3>
-          <p class="card-desc">Proyecto completo de diseño para tu hogar o local. Planimetría, selección de materiales, paleta de colores y mobiliario.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🔨</div>
-          <h3 class="card-title">Remodelación de Espacios</h3>
-          <p class="card-desc">Coordinamos obra, pintura, pisos y acabados. Entrega llave en mano con supervisión profesional en cada etapa.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🛋️</div>
-          <h3 class="card-title">Asesoría en Decoración</h3>
-          <p class="card-desc">Visita profesional a tu hogar para recomendaciones de decoración, reorganización de espacios y selección de piezas clave.</p>
-          <p class="card-price">Desde $45.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">✨</div>
-          <h3 class="card-title">Proyectos Completos</h3>
-          <p class="card-desc">Diseño y ejecución integral para casas, departamentos, oficinas y locales comerciales. De la idea a la realidad.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-      </div>
+<section id="proceso">
+  <div class="container">
+    <span class="sec-eyebrow">Metodología</span>
+    <h2 class="sec-title">El camino hacia<br>tu espacio ideal</h2>
+    <div class="process-grid">
+      <div class="proc reveal"><div class="proc-num">01</div><h3>Consulta inicial</h3><p>Reunión gratuita para conocerte, entender tu visión, estilo y presupuesto disponible.</p></div>
+      <div class="proc reveal" style="transition-delay:.15s"><div class="proc-num">02</div><h3>Concepto & propuesta</h3><p>Moodboard, paleta de colores y renders 3D fotorrealistas para aprobar el diseño antes de comprar nada.</p></div>
+      <div class="proc reveal" style="transition-delay:.3s"><div class="proc-num">03</div><h3>Compras & coordinación</h3><p>Gestionamos proveedores, compras y coordinación de obra. Tú solo apruebas.</p></div>
+      <div class="proc reveal" style="transition-delay:.45s"><div class="proc-num">04</div><h3>Entrega & styling</h3><p>Supervisamos la instalación y realizamos el styling final. Entrega de llaves en mano.</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🛋️</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">8 años creando espacios que enamoran</h2>
-          <p class="about-text">Nuestro equipo de diseñadores certificados tiene formación en arquitectura de interiores y tendencias internacionales. Cada proyecto es único y refleja la personalidad de quien lo habita.</p>
-          <p class="about-text">Trabajamos con una red de proveedores de confianza para conseguir los mejores materiales, muebles y accesorios al precio más competitivo del mercado.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+120</div><div class="stat-label">Proyectos realizados</div></div>
-        <div class="stat"><div class="stat-number">8</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación Google</div></div>
-        <div class="stat"><div class="stat-number">100%</div><div class="stat-label">Diseñadores certificados</div></div>
-      </div>
+<div class="stats-band">
+  <div><div class="st-n" data-count="85" data-suffix="+">0</div><div class="st-l">Proyectos</div></div>
+  <div><div class="st-n" data-count="8" data-suffix=" años">0</div><div class="st-l">Trayectoria</div></div>
+  <div><div class="st-n" data-count="3" data-suffix=" premios">0</div><div class="st-l">Reconocimientos</div></div>
+  <div><div class="st-n" data-count="100" data-suffix="%">0</div><div class="st-l">Proyectos entregados</div></div>
+</div>
+
+<section id="opiniones">
+  <div class="container">
+    <span class="sec-eyebrow">Clientes</span>
+    <h2 class="sec-title">Espacios que<br>transformaron vidas</h2>
+    <div class="testi-grid">
+      <div class="testi reveal"><div class="testi-line"></div><p class="testi-q">"Estudio Forma convirtió nuestro departamento genérico en un hogar con identidad propia. El proceso fue muy ordenado y los renders eran exactamente como quedó en realidad."</p><div class="testi-author">Carolina & Matías — Depto Las Condes</div></div>
+      <div class="testi reveal" style="transition-delay:.15s"><div class="testi-line"></div><p class="testi-q">"La renovación de mi restaurante superó todas las expectativas. El diseño industrial-nórdico que propusieron fue exactamente lo que el local necesitaba. Las ventas subieron notoriamente."</p><div class="testi-author">Alejandro Muñoz — Chef & Propietario</div></div>
+      <div class="testi reveal" style="transition-delay:.3s"><div class="testi-line"></div><p class="testi-q">"Trabajar con el Estudio Forma fue un placer total. Respetaron el presupuesto, cumplieron el plazo y el resultado fue extraordinario. Ya los contacté para el segundo piso."</p><div class="testi-author">Familia Ibáñez — Casa Vitacura</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Transformaron nuestro departamento de 3 ambientes en algo que parece sacado de una revista. Cada detalle fue pensado con cuidado y el resultado superó nuestras expectativas."</p>
-          <div class="testi-author">Gonzalo Pereira</div>
-          <div class="testi-role">Cliente · diseño integral departamento</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"La asesoría de decoración fue una hora muy bien invertida. Con consejos simples y económicos logré que mi living se vea completamente diferente. Lo recomiendo a quien quiera mejorar su hogar."</p>
-          <div class="testi-author">Paulina Torres</div>
-          <div class="testi-role">Clienta · asesoría de decoración</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Diseñaron mi local de gastronomía y quedó espectacular. Los clientes siempre comentan lo lindo que está el espacio. Sin duda la inversión en diseño se nota en las ventas."</p>
-          <div class="testi-author">Cristóbal Sepúlveda</div>
-          <div class="testi-role">Cliente · diseño local comercial</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="cta" id="contacto">
+  <div class="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="cta-inner">
+    <h2 class="cta-title">¿Cuál espacio<br>quieres transformar?</h2>
+    <p class="cta-sub">Primera consulta gratuita y sin compromiso. Cuéntanos tu proyecto y te enviamos una propuesta preliminar.</p>
+    <a href="https://wa.me/56900000000?text=Hola%2C+quiero+una+consulta+con+Estudio+Forma" target="_blank" rel="noopener" class="btn-lg">Agendar consulta gratuita</a>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Listo para transformar tu espacio?</h2>
-      <p class="section-desc">Primera consulta sin compromiso. Cuéntanos tu visión y te mostramos cómo podemos hacerla realidad.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Consulta gratis por WhatsApp
-      </a>
-    </div>
-  </section>
+<footer>
+  <div class="container">
+    <p style="font-family:'Tenor Sans',sans-serif;font-size:1.2rem;color:rgba(255,255,255,.4);margin-bottom:.5rem;letter-spacing:.12em">ESTUDIO FORMA.</p>
+    <p>Av. El Bosque Norte 500, Las Condes · contacto@estudioforma.cl</p>
+    <p style="margin-top:1rem">Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p>
+  </div>
+</footer>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Habitat Studio</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
-
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      let cur=0;const step=target/60;
+      const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+      io.unobserve(el);
+    },{threshold:.5});io.observe(el);
+  });
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+  });
+</script>
 </body>
 </html>

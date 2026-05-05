@@ -1,157 +1,232 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Constructora Sólida — Construcción de casas, remodelaciones y proyectos comerciales en Santiago. Página de muestra" />
-  <title>Constructora Sólida — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vértice Construcción — Empresa Constructora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #ea580c;
-      --primary-rgb: 234,88,12;
-      --bg: #fff;
-      --bg-alt: #fff7ed;
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--orange:#e85d04;--dark:#0f0f0f;--mid:#1a1a1a;--gray:#2a2a2a;--text:#e8e8e8;--dim:#888;--light:#f5f5f5}
+    body{font-family:'Open Sans',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(15,15,15,.95);backdrop-filter:blur(12px);border-bottom:2px solid var(--orange)}
+    .nav-logo{font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:700;color:#fff;text-decoration:none;letter-spacing:.06em}
+    .nav-logo span{color:var(--orange)}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-link{text-decoration:none;color:var(--dim);font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:.3s}
+    .nav-link:hover{color:var(--orange)}
+    .nav-cta{background:var(--orange)!important;color:#fff!important;padding:.5rem 1.4rem}
+
+    /* HERO */
+    .hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(15,15,15,.97) 0%,rgba(15,15,15,.8) 55%,rgba(15,15,15,.4) 100%)}
+    .hero-content{position:relative;z-index:2;padding:8rem 3rem 4rem;max-width:680px;margin-left:max(2rem,6vw)}
+    .hero-badge{display:inline-block;background:var(--orange);color:#fff;font-family:'Oswald',sans-serif;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;padding:.3rem 1rem;margin-bottom:2rem}
+    .hero-title{font-family:'Oswald',sans-serif;font-size:clamp(3rem,7vw,6.5rem);font-weight:700;color:#fff;line-height:.95;letter-spacing:.02em;margin-bottom:1.5rem;text-transform:uppercase}
+    .hero-title span{color:var(--orange);display:block}
+    .hero-sub{color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:2.5rem;font-size:.95rem;font-weight:300;max-width:500px}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn-o{display:inline-block;background:var(--orange);color:#fff;padding:.95rem 2.5rem;text-decoration:none;font-family:'Oswald',sans-serif;font-weight:600;font-size:.95rem;letter-spacing:.1em;text-transform:uppercase;transition:.3s}
+    .btn-o:hover{background:#d14d00;transform:translateY(-2px)}
+    .btn-border{display:inline-block;border:2px solid rgba(255,255,255,.3);color:#fff;padding:.88rem 2.2rem;text-decoration:none;font-family:'Oswald',sans-serif;font-weight:500;font-size:.88rem;letter-spacing:.1em;text-transform:uppercase;transition:.3s}
+    .btn-border:hover{border-color:var(--orange);color:var(--orange)}
+
+    /* CREDENTIALS */
+    .cred-bar{background:var(--orange);padding:1.2rem 2rem;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:1rem}
+    .cred-n{font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:#fff;line-height:1}
+    .cred-l{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-top:.2rem;font-weight:600}
+
+    /* SERVICES */
+    section{padding:6rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .sec-label{font-family:'Oswald',sans-serif;font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange)}
+    .sec-title{font-family:'Oswald',sans-serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:700;margin:.3rem 0 1rem;letter-spacing:.02em;text-transform:uppercase}
+    .sec-desc{color:var(--dim);line-height:1.75;max-width:520px;font-size:.92rem}
+
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:3rem}
+    .serv-card{background:var(--mid);padding:3rem 2rem;transition:.3s;cursor:pointer;border-top:3px solid transparent;position:relative;overflow:hidden}
+    .serv-card::before{content:'';position:absolute;inset:0;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:.4s}
+    .serv-card:hover::before{transform:scaleX(1)}
+    .serv-card:hover{border-top-color:var(--orange)}
+    .serv-icon{font-size:2.5rem;margin-bottom:1.5rem;position:relative;z-index:1}
+    .serv-card h3{font-family:'Oswald',sans-serif;font-size:1.3rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.8rem;position:relative;z-index:1}
+    .serv-card p{font-size:.84rem;color:var(--dim);line-height:1.65;position:relative;z-index:1;transition:.3s}
+    .serv-card:hover h3,.serv-card:hover p{color:#fff}
+    .serv-card:hover .serv-dim{color:rgba(255,255,255,.7)}
+
+    /* PROJECTS */
+    .projects{background:var(--mid);padding:6rem 2rem}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:280px 280px;gap:4px;margin-top:3rem}
+    .proj{overflow:hidden;position:relative;cursor:pointer}
+    .proj.big{grid-column:span 2;grid-row:span 2}
+    .proj img{width:100%;height:100%;object-fit:cover;transition:.6s}
+    .proj:hover img{transform:scale(1.06)}
+    .proj-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,15,15,.9) 0%,transparent 60%);transition:.3s}
+    .proj:hover .proj-overlay{background:linear-gradient(0deg,rgba(232,93,4,.85) 0%,rgba(15,15,15,.3) 60%)}
+    .proj-info{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;transform:translateY(4px);transition:.3s}
+    .proj:hover .proj-info{transform:none}
+    .proj-type{font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);margin-bottom:.3rem}
+    .proj-name{font-family:'Oswald',sans-serif;font-size:1.2rem;font-weight:600;color:#fff}
+
+    /* PROCESS */
+    .process{padding:6rem 2rem;background:var(--dark)}
+    .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem}
+    .proc{border-top:3px solid var(--gray);padding-top:2rem}
+    .proc.active-step{border-top-color:var(--orange)}
+    .proc-num{font-family:'Oswald',sans-serif;font-size:3.5rem;font-weight:700;color:var(--orange);opacity:.2;line-height:1;margin-bottom:.8rem}
+    .proc h3{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.6rem}
+    .proc p{font-size:.82rem;color:var(--dim);line-height:1.65}
+
+    /* TESTIMONIALS */
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .testi{background:var(--mid);padding:2rem;border-left:3px solid var(--orange)}
+    .stars{color:var(--orange);margin-bottom:1rem;letter-spacing:.08em}
+    .testi-q{font-size:.88rem;line-height:1.7;color:var(--dim);margin-bottom:1.5rem;font-style:italic}
+    .testi-name{font-family:'Oswald',sans-serif;font-weight:600;font-size:.95rem;letter-spacing:.04em;color:#fff}
+    .testi-sub{font-size:.72rem;color:var(--dim);margin-top:.2rem}
+
+    /* CTA */
+    .cta{position:relative;padding:8rem 2rem;text-align:center;overflow:hidden}
+    .cta-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .cta-overlay{position:absolute;inset:0;background:rgba(15,15,15,.9)}
+    .cta-inner{position:relative;z-index:1}
+    .cta-title{font-family:'Oswald',sans-serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.5rem}
+    .cta-title span{color:var(--orange)}
+    .cta-sub{color:var(--dim);margin-bottom:2.5rem;font-size:.95rem;line-height:1.7}
+    .btn-lg{display:inline-block;background:var(--orange);color:#fff;padding:1.1rem 3rem;text-decoration:none;font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;transition:.3s}
+    .btn-lg:hover{background:#d14d00;transform:translateY(-3px)}
+
+    footer{background:#050505;color:var(--dim);padding:3rem 2rem;text-align:center;font-size:.8rem;border-top:1px solid var(--gray)}
+    footer a{color:var(--orange);text-decoration:none}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:900px){.services-grid{grid-template-columns:1fr}.projects-grid{grid-template-columns:1fr;grid-template-rows:auto}.proj.big{grid-column:span 1;grid-row:span 1}.proj{height:250px}.process-steps{grid-template-columns:repeat(2,1fr)}.testi-grid{grid-template-columns:1fr}.cred-bar{grid-template-columns:repeat(2,1fr)}.nav-links{display:none}.hero-content{padding:7rem 1.5rem 3rem;margin-left:0}}
   </style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(15,15,15,.97);border:1px solid rgba(232,93,4,.35);border-radius:0;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#e85d04;font-weight:700">Felipe Figueroa</a></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Vértice <span>Construcción.</span></a>
+  <ul class="nav-links">
+    <li><a href="#servicios" class="nav-link">Servicios</a></li>
+    <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+    <li><a href="#proceso" class="nav-link">Proceso</a></li>
+    <li><a href="#contacto" class="nav-link nav-cta">Cotizar</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Constructora certificada · Santiago</div>
+    <h1 class="hero-title">Construimos<br><span>tu visión</span></h1>
+    <p class="hero-sub">Obras mayores y menores, remodelaciones y proyectos llave en mano. 20 años construyendo con excelencia, puntualidad y garantía total.</p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn-o">Solicitar cotización</a>
+      <a href="#proyectos" class="btn-border">Ver proyectos</a>
+    </div>
   </div>
+</section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Constructora Sólida<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
-      </ul>
+<div class="cred-bar">
+  <div><div class="cred-n" data-count="250" data-suffix="+">0</div><div class="cred-l">Proyectos</div></div>
+  <div><div class="cred-n" data-count="20" data-suffix=" años">0</div><div class="cred-l">Experiencia</div></div>
+  <div><div class="cred-n" data-count="100" data-suffix="%">0</div><div class="cred-l">Garantía escrita</div></div>
+  <div><div class="cred-n" data-count="48" data-suffix="hrs">0</div><div class="cred-l">Cotización express</div></div>
+</div>
+
+<section id="servicios">
+  <div class="container">
+    <span class="sec-label">Especialidades</span>
+    <h2 class="sec-title">Lo que<br>construimos</h2>
+    <p class="sec-desc">Desde ampliaciones hasta edificios completos. Trabajamos con arquitectos o usamos los nuestros. Todo con materiales certificados y mano de obra calificada.</p>
+    <div class="services-grid reveal">
+      <div class="serv-card"><div class="serv-icon">🏗️</div><h3>Obras Nuevas</h3><p class="serv-dim">Casas, edificios, oficinas y bodegas desde cero. Gestión de permisos municipales incluida.</p></div>
+      <div class="serv-card"><div class="serv-icon">🏚️</div><h3>Remodelación</h3><p class="serv-dim">Transformamos espacios existentes. Cocinas, baños, ampliaciones y segundo piso.</p></div>
+      <div class="serv-card"><div class="serv-icon">🔨</div><h3>Obras Menores</h3><p class="serv-dim">Tabiques, cielos, revestimientos y pisos. Trabajos puntuales con terminación premium.</p></div>
+      <div class="serv-card"><div class="serv-icon">🏢</div><h3>Proyectos Comerciales</h3><p class="serv-dim">Locales, restaurantes, oficinas y clínicas. Habilitación completa con normativa vigente.</p></div>
+      <div class="serv-card"><div class="serv-icon">🌡️</div><h3>Climatización & HVAC</h3><p class="serv-dim">Instalación y diseño de sistemas de calefacción, ventilación y aire acondicionado.</p></div>
+      <div class="serv-card"><div class="serv-icon">📐</div><h3>Arquitectura & Diseño</h3><p class="serv-dim">Arquitectos propios para proyectar tu obra desde cero. Planos y permisos en un solo lugar.</p></div>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #1a0a00 0%, #292000 50%, #1a0800 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Construcción & Remodelación</p>
-      <h1 class="hero-title">Construimos<br><em>tus sueños.</em></h1>
-      <p class="hero-sub">Más de 150 proyectos exitosos en Santiago y región. Construcción nueva, remodelaciones y ampliaciones con los más altos estándares de calidad y puntualidad.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Solicitar cotización</a>
-        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
-      </div>
+<section class="projects" id="proyectos">
+  <div class="container">
+    <span class="sec-label">Portfolio</span>
+    <h2 class="sec-title">Proyectos realizados</h2>
+    <div class="projects-grid reveal">
+      <div class="proj big"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80" alt=""/><div class="proj-overlay"></div><div class="proj-info"><p class="proj-type">Obra nueva · Las Condes</p><p class="proj-name">Edificio Vértice I — 8 pisos</p></div></div>
+      <div class="proj"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=500&q=80" alt=""/><div class="proj-overlay"></div><div class="proj-info"><p class="proj-type">Remodelación · Vitacura</p><p class="proj-name">Casa El Golf</p></div></div>
+      <div class="proj"><img src="https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&w=500&q=80" alt=""/><div class="proj-overlay"></div><div class="proj-info"><p class="proj-type">Comercial · Providencia</p><p class="proj-name">Oficinas Torre Central</p></div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">Construcción de principio a fin</h2>
-        <p class="section-desc">Nos encargamos de todo el proceso: proyecto, permisos, construcción y entrega llave en mano. Sin sorpresas.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🏠</div>
-          <h3 class="card-title">Construcción de Casas</h3>
-          <p class="card-desc">Casas desde cero con arquitecto y constructor. Gestionamos permisos municipales, calidad de materiales y plazos de entrega.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🔨</div>
-          <h3 class="card-title">Remodelaciones</h3>
-          <p class="card-desc">Renovación de cocinas, baños, dormitorios y espacios completos. Transformamos tu hogar con diseño moderno y materiales de calidad.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📐</div>
-          <h3 class="card-title">Ampliaciones</h3>
-          <p class="card-desc">Agregamos metros cuadrados a tu hogar con la misma calidad de construcción y permisos en regla. Ampliaciones en 60-90 días.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🏢</div>
-          <h3 class="card-title">Proyectos Comerciales</h3>
-          <p class="card-desc">Locales, oficinas, bodegas y proyectos de mayor envergadura. Experiencia en construcción comercial e industrial.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-      </div>
+<section class="process" id="proceso">
+  <div class="container">
+    <span class="sec-label">Metodología</span>
+    <h2 class="sec-title">Así trabajamos</h2>
+    <div class="process-steps">
+      <div class="proc active-step reveal"><div class="proc-num">01</div><h3>Visita & Diagnóstico</h3><p>Visita gratuita al sitio para entender el proyecto, medir y evaluar las condiciones existentes.</p></div>
+      <div class="proc reveal" style="transition-delay:.1s"><div class="proc-num">02</div><h3>Cotización detallada</h3><p>Presupuesto ítem por ítem con materiales, mano de obra y plazos definidos por escrito.</p></div>
+      <div class="proc reveal" style="transition-delay:.2s"><div class="proc-num">03</div><h3>Ejecución supervisada</h3><p>Jefe de obra dedicado, informes semanales de avance y acceso a cámara del proyecto.</p></div>
+      <div class="proc reveal" style="transition-delay:.3s"><div class="proc-num">04</div><h3>Entrega & garantía</h3><p>Entrega con checklist completo. Garantía escrita de 3 años en estructura y 1 año en terminaciones.</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🏗️</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">15 años construyendo con calidad y honestidad</h2>
-          <p class="about-text">Somos una empresa constructora familiar con 25 profesionales entre arquitectos, ingenieros civiles, maestros de primera y subcontratistas de confianza. Cada proyecto tiene un jefe de obra dedicado.</p>
-          <p class="about-text">Trabajamos con contratos claros, presupuestos fijos sin letra chica y comunicación permanente. El cliente siempre sabe en qué etapa está su proyecto.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+150</div><div class="stat-label">Proyectos terminados</div></div>
-        <div class="stat"><div class="stat-number">15</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación promedio</div></div>
-        <div class="stat"><div class="stat-number">25</div><div class="stat-label">Profesionales</div></div>
-      </div>
+<section id="opiniones" style="background:var(--mid)">
+  <div class="container">
+    <span class="sec-label">Referencias</span>
+    <h2 class="sec-title">Lo que dicen<br>nuestros clientes</h2>
+    <div class="testi-grid">
+      <div class="testi reveal"><div class="stars">★★★★★</div><p class="testi-q">"Construyeron nuestra casa en plazo y precio. El jefe de obra era muy comunicativo y resolvía cualquier duda de inmediato. La calidad de terminaciones es sobresaliente."</p><div class="testi-name">Familia Arteaga</div><div class="testi-sub">Casa nueva · La Florida</div></div>
+      <div class="testi reveal" style="transition-delay:.15s"><div class="stars">★★★★★</div><p class="testi-q">"La remodelación de nuestras oficinas quedó perfecta. Trabajaron de noche para no afectar nuestra operación y entregaron antes del plazo. Muy profesionales."</p><div class="testi-name">Rodrigo Henríquez</div><div class="testi-sub">Director Comercial, empresa TI</div></div>
+      <div class="testi reveal" style="transition-delay:.3s"><div class="stars">★★★★★</div><p class="testi-q">"El segundo piso que nos construyeron es exactamente lo que queríamos. Gestionaron todos los permisos, nosotros no tuvimos que hacer nada. Súper recomendados."</p><div class="testi-name">Carolina Espinoza</div><div class="testi-sub">Ampliación · Ñuñoa</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Construyeron nuestra casa en 8 meses, tal como habían prometido. La calidad es impresionante y el jefe de obra nos mantuvo informados en todo momento. Muy profesionales."</p>
-          <div class="testi-author">Fernando Reyes</div>
-          <div class="testi-role">Cliente · construcción de casa</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Remodelaron nuestra cocina y baño completamente en solo 3 semanas. El resultado es espectacular y se ajustaron exactamente al presupuesto acordado. Sin sorpresas, como prometieron."</p>
-          <div class="testi-author">Sandra Olivares</div>
-          <div class="testi-role">Clienta · remodelación</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"La ampliación de nuestra casa quedó perfectamente integrada con lo existente. Ni se nota que fue construida después. Maestros muy ordenados y respetuosos del espacio. Los recomiendo con los ojos cerrados."</p>
-          <div class="testi-author">Héctor Salinas</div>
-          <div class="testi-role">Cliente · ampliación</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="cta" id="contacto">
+  <div class="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="cta-inner">
+    <h2 class="cta-title">Tu proyecto<br><span>empieza aquí</span></h2>
+    <p class="cta-sub">Visita gratuita y cotización en 48 horas. Sin compromiso. Con experiencia real.</p>
+    <a href="https://wa.me/56900000000?text=Hola%2C+quiero+cotizar+un+proyecto+con+V%C3%A9rtice" target="_blank" rel="noopener" class="btn-lg">Solicitar cotización gratuita</a>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Listo para comenzar tu proyecto?</h2>
-      <p class="section-desc">Cotización sin compromiso. Un profesional visita tu propiedad y elabora un presupuesto detallado sin costo.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Solicitar cotización gratis
-      </a>
-    </div>
-  </section>
+<footer>
+  <div class="container">
+    <p style="font-family:'Oswald',sans-serif;font-size:1.2rem;color:rgba(255,255,255,.4);margin-bottom:.5rem;letter-spacing:.06em">VÉRTICE CONSTRUCCIÓN.</p>
+    <p>Av. Apoquindo 4900, Las Condes · contacto@vertice.cl</p>
+    <p style="margin-top:1rem">Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p>
+  </div>
+</footer>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Constructora Sólida</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
-
+<script>
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      let cur=0;const step=target/60;
+      const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+      io.unobserve(el);
+    },{threshold:.5});io.observe(el);
+  });
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+  });
+</script>
 </body>
 </html>

@@ -1,168 +1,459 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Studio Pixel — Diseño gráfico freelance: marca, web, redes sociales y packaging en Santiago. Página de muestra" />
-  <title>Studio Pixel — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #7c3aed;
-      --primary-rgb: 124,58,237;
-      --bg: #0d0d12;
-      --bg-alt: #111118;
-      --surface: #18181f;
-      --text: #f0f0f8;
-      --text-dim: #8888a8;
-      --text-muted: #505068;
-      --border: rgba(255,255,255,0.08);
-      --nav-bg: rgba(13,13,18,0.96);
-    }
-    .section-alt { background: var(--bg-alt); }
-    .card { background: var(--surface); border-color: var(--border); }
-    .testi { background: var(--surface); border-color: var(--border); }
-    .stat { background: var(--surface); border-color: var(--border); }
-    .footer { background: #080810; }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Studio Nara — Diseño Gráfico & Brand</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#050505;--surface:#0e0e0e;--mid:#171717;--white:#f5f5f0;--accent:#ff3d5a;--warm:#ffb347;--cool:#00ccff}
+body{font-family:'Space Grotesk',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+.cursor{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(255,61,90,.4);border-radius:50%;pointer-events:none;z-index:9997;transform:translate(-50%,-50%);transition:all .12s ease}
+body:has(a:hover) .cursor,.cursor.hover{width:16px;height:16px;background:var(--warm)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 5%;display:flex;align-items:center;justify-content:space-between;mix-blend-mode:normal;transition:.3s}
+nav.scrolled{background:rgba(5,5,5,.95);border-bottom:1px solid rgba(255,255,255,.07);backdrop-filter:blur(10px)}
+.nav-logo{font-size:1.1rem;font-weight:700;letter-spacing:3px;text-transform:uppercase}
+.nav-logo em{font-style:italic;font-family:'Playfair Display',serif;color:var(--accent)}
+.nav-links{display:flex;gap:2.5rem;font-size:.83rem;font-weight:500;color:rgba(255,255,255,.5);letter-spacing:.5px}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{font-size:.8rem;font-weight:700;letter-spacing:2px;color:var(--white);border-bottom:1px solid var(--accent);padding-bottom:2px;transition:.2s}
+.nav-cta:hover{color:var(--accent)}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;position:relative;overflow:hidden}
+.hero-top{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:9rem 5% 3rem;gap:3rem}
+.hero-text .pre{font-size:.75rem;letter-spacing:4px;color:rgba(255,255,255,.3);margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem}
+.hero-text .pre::before{content:'';flex:1;max-width:40px;height:1px;background:rgba(255,255,255,.2)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,6rem);line-height:1;margin-bottom:1.5rem;font-style:italic}
+.hero h1 strong{font-style:normal;font-family:'Space Grotesk',sans-serif;font-weight:700;display:block;font-size:.6em;letter-spacing:2px;color:rgba(255,255,255,.6)}
+.hero-desc{font-size:1rem;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:2rem;max-width:380px}
+.hero-actions{display:flex;align-items:center;gap:2rem}
+.btn-accent{background:var(--accent);color:#fff;padding:.85rem 2rem;font-size:.85rem;font-weight:700;letter-spacing:1px;border-radius:3px;transition:.2s}
+.btn-accent:hover{background:#e0002a;transform:translateY(-2px)}
+.btn-text{font-size:.83rem;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:.5rem;transition:.2s}
+.btn-text:hover{color:var(--white)}
+.hero-visual{position:relative;height:500px}
+.hero-main-img{width:100%;height:100%;object-fit:cover;border-radius:4px;filter:brightness(.85)}
+.hero-tag{position:absolute;bottom:1.5rem;left:-1.5rem;background:var(--surface);border:1px solid rgba(255,255,255,.08);padding:1rem 1.2rem;border-radius:4px}
+.hero-tag .label{font-size:.65rem;letter-spacing:2px;color:rgba(255,255,255,.3);margin-bottom:.3rem}
+.hero-tag .value{font-size:1rem;font-weight:700}
+.hero-chip{position:absolute;top:1.5rem;right:-1rem;background:var(--accent);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:1px;padding:.4rem .8rem;border-radius:30px;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero-bottom{border-top:1px solid rgba(255,255,255,.06);padding:1.5rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.hb-stat{text-align:center}
+.hb-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-style:italic;color:var(--accent)}
+.hb-label{font-size:.65rem;letter-spacing:2px;color:rgba(255,255,255,.3);margin-top:.2rem}
+
+/* MARQUEE */
+.marquee-wrap{background:var(--accent);padding:.6rem 0;overflow:hidden}
+.marquee{display:flex;animation:marquee 20s linear infinite;white-space:nowrap}
+.marquee span{padding:0 2.5rem;font-size:.8rem;font-weight:700;letter-spacing:2px}
+.marquee span::after{content:'✦';margin-left:2.5rem}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* WORK */
+.work{padding:8rem 5%;background:var(--black)}
+.work-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1rem}
+.section-label{font-size:.7rem;letter-spacing:4px;color:rgba(255,255,255,.25);font-weight:600}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-style:italic;margin-top:.3rem}
+.view-all{font-size:.82rem;color:rgba(255,255,255,.4);border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:2px;transition:.2s}
+.view-all:hover{color:var(--white)}
+.work-grid{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:auto auto;gap:1rem}
+.work-item{position:relative;overflow:hidden;border-radius:4px}
+.work-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s;display:block}
+.work-item:hover img{transform:scale(1.04)}
+.work-item.big{grid-row:span 2;min-height:600px}
+.work-item.sm{min-height:290px}
+.work-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,5,5,.85) 0%,transparent 50%);opacity:0;transition:.3s}
+.work-item:hover .work-overlay{opacity:1}
+.work-info{position:absolute;bottom:1.5rem;left:1.5rem;transform:translateY(10px);opacity:0;transition:.3s}
+.work-item:hover .work-info{transform:none;opacity:1}
+.work-cat{font-size:.65rem;letter-spacing:2px;color:var(--accent);font-weight:700;margin-bottom:.3rem}
+.work-name{font-weight:700;font-size:1.05rem}
+
+/* SERVICES */
+.services{padding:8rem 5%;background:var(--surface)}
+.services-header{text-align:center;margin-bottom:4rem}
+.services-row{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.04)}
+.serv-item{background:var(--surface);padding:3rem;display:flex;gap:2rem;align-items:flex-start;transition:.3s}
+.serv-item:hover{background:var(--mid)}
+.serv-num{font-family:'Playfair Display',serif;font-size:4rem;font-style:italic;color:rgba(255,255,255,.06);line-height:1;flex-shrink:0}
+.serv-body h3{font-weight:700;font-size:1.1rem;margin-bottom:.6rem}
+.serv-body p{font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.7;margin-bottom:1rem}
+.serv-tags{display:flex;gap:.5rem;flex-wrap:wrap}
+.serv-tag{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.4);font-size:.65rem;font-weight:600;letter-spacing:1px;padding:.2rem .6rem;border-radius:2px}
+
+/* PROCESS */
+.process{padding:8rem 5%;background:var(--black)}
+.process-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3rem}
+.process-visual img{width:100%;height:550px;object-fit:cover;border-radius:4px;filter:brightness(.7) grayscale(20%)}
+.process-steps{display:flex;flex-direction:column;gap:2.5rem}
+.pstep{display:flex;gap:1.5rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.pstep:last-child{border:none;padding-bottom:0}
+.pstep-num{font-family:'Playfair Display',serif;font-size:1.5rem;font-style:italic;color:var(--accent);flex-shrink:0;width:30px}
+.pstep-body h4{font-weight:700;font-size:.95rem;margin-bottom:.4rem}
+.pstep-body p{font-size:.83rem;color:rgba(255,255,255,.4);line-height:1.6}
+.pstep-time{font-size:.7rem;letter-spacing:1px;color:rgba(255,255,255,.2);margin-top:.5rem}
+
+/* PRICING */
+.pricing{padding:8rem 5%;background:var(--surface)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.04);margin-top:3rem}
+.price-card{background:var(--surface);padding:3rem 2.5rem;transition:.3s;position:relative}
+.price-card.featured{background:var(--mid);z-index:1;transform:scale(1.02)}
+.price-card:hover{background:var(--mid)}
+.price-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.65rem;font-weight:700;letter-spacing:2px;padding:.25rem .8rem;border-radius:30px;white-space:nowrap}
+.price-label{font-size:.7rem;letter-spacing:3px;color:rgba(255,255,255,.3);font-weight:600;margin-bottom:1rem}
+.price-name{font-family:'Playfair Display',serif;font-size:1.8rem;font-style:italic;margin-bottom:.5rem}
+.price-amount{font-size:2.5rem;font-weight:700;margin-bottom:.3rem}
+.price-amount span{font-size:.9rem;font-weight:400;color:rgba(255,255,255,.3)}
+.price-desc{font-size:.8rem;color:rgba(255,255,255,.4);margin-bottom:1.8rem;line-height:1.5}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:.8rem;margin-bottom:2rem}
+.price-features li{display:flex;align-items:center;gap:.6rem;font-size:.83rem;color:rgba(255,255,255,.6)}
+.price-features li::before{content:'→';color:var(--accent);font-size:.8rem}
+.price-btn{display:block;text-align:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--white);padding:.75rem;font-size:.82rem;font-weight:700;letter-spacing:1px;border-radius:3px;transition:.2s}
+.price-card.featured .price-btn{background:var(--accent);border-color:var(--accent)}
+.price-btn:hover{background:var(--accent);border-color:var(--accent)}
+
+/* TESTIMONIALS */
+.testimonials{padding:8rem 5%;background:var(--black)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.testi-card{padding:2.5rem;border:1px solid rgba(255,255,255,.05);border-radius:4px;transition:.3s}
+.testi-card:hover{border-color:rgba(255,61,90,.2)}
+.testi-stars{color:var(--warm);font-size:.85rem;margin-bottom:1rem}
+.testi-text{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:1.5rem}
+.testi-author{display:flex;align-items:center;gap:.8rem}
+.testi-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--warm));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}
+.testi-name{font-weight:700;font-size:.88rem}
+.testi-brand{font-size:.72rem;color:rgba(255,255,255,.3)}
+
+/* CTA */
+.cta{padding:8rem 5%;position:relative;overflow:hidden;text-align:center}
+.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,61,90,.12) 0%,transparent 70%)}
+.cta-inner{position:relative;z-index:2;max-width:550px;margin:0 auto}
+.cta h2{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4rem);font-style:italic;margin-bottom:1rem;line-height:1.1}
+.cta p{color:rgba(255,255,255,.45);margin-bottom:2.5rem;line-height:1.7}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-outline-w{border:1px solid rgba(255,255,255,.2);color:var(--white);padding:.85rem 2rem;font-size:.85rem;font-weight:600;border-radius:3px;transition:.2s}
+.btn-outline-w:hover{border-color:var(--white)}
+
+/* FOOTER */
+footer{background:var(--surface);padding:3rem 5%;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:rgba(255,255,255,.25);flex-wrap:wrap;gap:1rem}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .cursor,.cursor-ring{display:none}
+  body{cursor:auto}
+  .hero-top{grid-template-columns:1fr}
+  .hero-visual{display:none}
+  .work-grid{grid-template-columns:1fr}
+  .work-item.big{grid-row:auto}
+  .services-row{grid-template-columns:1fr}
+  .process-layout{grid-template-columns:1fr}
+  .process-visual{display:none}
+  .pricing-grid{grid-template-columns:1fr}
+  .price-card.featured{transform:none}
+  .testi-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  footer{text-align:center;justify-content:center}
+}
+</style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="nav">
+  <div class="nav-logo">STUDIO <em>Nara</em></div>
+  <div class="nav-links">
+    <a href="#trabajo">Trabajo</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#precios">Precios</a>
+    <a href="#contacto">Contacto</a>
   </div>
+  <a href="https://wa.me/56900000000?text=Hola,%20quiero%20cotizar%20un%20proyecto%20de%20diseño" class="nav-cta">COTIZAR PROYECTO</a>
+</nav>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Studio<span>Pixel.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Portafolio</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
+<section class="hero">
+  <div class="hero-top">
+    <div class="hero-text">
+      <div class="pre">DISEÑO GRÁFICO & BRANDING</div>
+      <h1>Diseño<br/><strong>que vende.</strong><br/>Identidad<br/>que queda.</h1>
+      <p class="hero-desc">Creamos marcas, identidades y piezas gráficas que hacen que tus clientes te elijan a ti sobre la competencia.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/56900000000?text=Hola,%20quiero%20cotizar%20un%20proyecto" class="btn-accent">Cotizar proyecto</a>
+        <a href="#trabajo" class="btn-text">Ver portafolio →</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=800&q=80" alt="Diseño"/>
+      <div class="hero-tag">
+        <div class="label">PROYECTOS ESTE AÑO</div>
+        <div class="value">+47 completados</div>
+      </div>
+      <div class="hero-chip">⚡ DISPONIBLE AHORA</div>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="hb-stat"><div class="hb-num">5+</div><div class="hb-label">AÑOS DE EXPERIENCIA</div></div>
+    <div class="hb-stat"><div class="hb-num">200+</div><div class="hb-label">PROYECTOS ENTREGADOS</div></div>
+    <div class="hb-stat"><div class="hb-num">98%</div><div class="hb-label">CLIENTES SATISFECHOS</div></div>
+    <div class="hb-stat"><div class="hb-num">48H</div><div class="hb-label">PRIMERA ENTREGA</div></div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>BRANDING</span><span>IDENTIDAD</span><span>LOGOTIPO</span><span>PACKAGING</span><span>SOCIAL MEDIA</span><span>WEB DESIGN</span><span>EDITORIAL</span><span>MOTION</span>
+    <span>BRANDING</span><span>IDENTIDAD</span><span>LOGOTIPO</span><span>PACKAGING</span><span>SOCIAL MEDIA</span><span>WEB DESIGN</span><span>EDITORIAL</span><span>MOTION</span>
+  </div>
+</div>
+
+<section class="work" id="trabajo">
+  <div class="work-header">
+    <div>
+      <div class="section-label">PORTAFOLIO</div>
+      <div class="section-title reveal">Trabajo selecto</div>
+    </div>
+    <a href="#contacto" class="view-all">Ver todo el trabajo →</a>
+  </div>
+  <div class="work-grid">
+    <div class="work-item big reveal">
+      <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=900&q=80" alt="Branding"/>
+      <div class="work-overlay"></div>
+      <div class="work-info">
+        <div class="work-cat">BRANDING COMPLETO</div>
+        <div class="work-name">Marca Caffé Antico</div>
+      </div>
+    </div>
+    <div class="work-item sm reveal">
+      <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80" alt="Editorial"/>
+      <div class="work-overlay"></div>
+      <div class="work-info">
+        <div class="work-cat">DISEÑO EDITORIAL</div>
+        <div class="work-name">Catálogo Moda 2024</div>
+      </div>
+    </div>
+    <div class="work-item sm reveal">
+      <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=600&q=80" alt="Packaging"/>
+      <div class="work-overlay"></div>
+      <div class="work-info">
+        <div class="work-cat">PACKAGING</div>
+        <div class="work-name">Cosmética Natural</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="services-header">
+    <div class="section-label">SERVICIOS</div>
+    <div class="section-title reveal">Lo que diseñamos para ti</div>
+  </div>
+  <div class="services-row">
+    <div class="serv-item reveal">
+      <div class="serv-num">01</div>
+      <div class="serv-body">
+        <h3>Identidad de Marca</h3>
+        <p>Logotipo, manual de marca, paleta de color, tipografía y guías de uso. Todo lo que tu marca necesita para ser reconocible.</p>
+        <div class="serv-tags"><span class="serv-tag">LOGO</span><span class="serv-tag">MANUAL</span><span class="serv-tag">COLORES</span></div>
+      </div>
+    </div>
+    <div class="serv-item reveal">
+      <div class="serv-num">02</div>
+      <div class="serv-body">
+        <h3>Diseño para Redes Sociales</h3>
+        <p>Templates, posts, stories e highlights para Instagram, Facebook y LinkedIn. Coherencia visual en todos tus canales.</p>
+        <div class="serv-tags"><span class="serv-tag">INSTAGRAM</span><span class="serv-tag">LINKEDIN</span><span class="serv-tag">TEMPLATES</span></div>
+      </div>
+    </div>
+    <div class="serv-item reveal">
+      <div class="serv-num">03</div>
+      <div class="serv-body">
+        <h3>Packaging & Etiquetas</h3>
+        <p>Diseño de envases, etiquetas y packaging para productos físicos. Desde boceto hasta archivo listo para imprenta.</p>
+        <div class="serv-tags"><span class="serv-tag">PACKAGING</span><span class="serv-tag">ETIQUETAS</span><span class="serv-tag">IMPRENTA</span></div>
+      </div>
+    </div>
+    <div class="serv-item reveal">
+      <div class="serv-num">04</div>
+      <div class="serv-body">
+        <h3>Material Corporativo</h3>
+        <p>Tarjetas de presentación, papelería, carpetas, pendones, folletería y todo lo que tu empresa necesita en físico.</p>
+        <div class="serv-tags"><span class="serv-tag">IMPRESIÓN</span><span class="serv-tag">PAPELERÍA</span><span class="serv-tag">PENDONES</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="section-label">PROCESO</div>
+  <h2 class="section-title reveal">De tu idea a la pantalla (o imprenta)</h2>
+  <div class="process-layout">
+    <div class="process-visual reveal">
+      <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80" alt="Proceso diseño"/>
+    </div>
+    <div class="process-steps reveal">
+      <div class="pstep">
+        <div class="pstep-num">1</div>
+        <div class="pstep-body">
+          <h4>Brief y descubrimiento</h4>
+          <p>Entiendo tu marca, tu público, tus competidores y qué emociones quieres generar. Es la base de todo.</p>
+          <div class="pstep-time">⏱ 1-2 días</div>
+        </div>
+      </div>
+      <div class="pstep">
+        <div class="pstep-num">2</div>
+        <div class="pstep-body">
+          <h4>Concepto y moodboard</h4>
+          <p>Te presento la dirección visual antes de diseñar. Así nos aseguramos de ir en el camino correcto.</p>
+          <div class="pstep-time">⏱ 2-3 días</div>
+        </div>
+      </div>
+      <div class="pstep">
+        <div class="pstep-num">3</div>
+        <div class="pstep-body">
+          <h4>Diseño y revisiones</h4>
+          <p>Primera entrega en 48 horas. Incluye hasta 3 rondas de revisión para ajustar hasta que quede perfecto.</p>
+          <div class="pstep-time">⏱ 5-7 días</div>
+        </div>
+      </div>
+      <div class="pstep">
+        <div class="pstep-num">4</div>
+        <div class="pstep-body">
+          <h4>Entrega de archivos</h4>
+          <p>Archivos en todos los formatos: AI, PDF, PNG, SVG. Listos para imprenta, web y redes sociales.</p>
+          <div class="pstep-time">⏱ 1 día</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="precios">
+  <div class="section-label" style="text-align:center">PRECIOS</div>
+  <h2 class="section-title reveal" style="text-align:center">Inversión que vale la pena</h2>
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <div class="price-label">STARTER</div>
+      <div class="price-name">Esencial</div>
+      <div class="price-amount">$120.000<span>/proyecto</span></div>
+      <div class="price-desc">Para emprendedores que recién inician y necesitan lo básico</div>
+      <ul class="price-features">
+        <li>Logotipo (1 versión)</li>
+        <li>Paleta de colores</li>
+        <li>Tipografía principal</li>
+        <li>2 rondas de revisión</li>
+        <li>Archivos PNG/PDF</li>
       </ul>
+      <a href="https://wa.me/56900000000?text=Hola,%20me%20interesa%20el%20plan%20Esencial" class="price-btn">Contratar plan</a>
     </div>
-  </nav>
-
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #0d0020 0%, #1a0040 50%, #200050 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Diseño Gráfico Freelance</p>
-      <h1 class="hero-title">Diseño que conecta.<br><em>Creatividad que vende.</em></h1>
-      <p class="hero-sub">6 años creando identidades de marca memorables, diseños web y contenido para redes sociales que generan resultados reales para negocios chilenos.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Cotizar proyecto</a>
-        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
-      </div>
+    <div class="price-card featured reveal">
+      <div class="price-badge">MÁS POPULAR</div>
+      <div class="price-label">PROFESIONAL</div>
+      <div class="price-name">Completo</div>
+      <div class="price-amount">$280.000<span>/proyecto</span></div>
+      <div class="price-desc">Para empresas que quieren una identidad sólida y completa</div>
+      <ul class="price-features">
+        <li>Logotipo (3 versiones)</li>
+        <li>Manual de marca</li>
+        <li>Paleta, tipografía, íconos</li>
+        <li>5 aplicaciones de marca</li>
+        <li>3 rondas de revisión</li>
+        <li>Archivos AI/PDF/PNG/SVG</li>
+      </ul>
+      <a href="https://wa.me/56900000000?text=Hola,%20me%20interesa%20el%20plan%20Completo" class="price-btn">Contratar plan</a>
     </div>
-  </section>
+    <div class="price-card reveal">
+      <div class="price-label">PREMIUM</div>
+      <div class="price-name">Premium</div>
+      <div class="price-amount">A consultar</div>
+      <div class="price-desc">Para proyectos grandes con necesidades especiales o rebranding</div>
+      <ul class="price-features">
+        <li>Todo del plan Completo</li>
+        <li>Estrategia de marca</li>
+        <li>Naming si es necesario</li>
+        <li>Diseño web incluido</li>
+        <li>Social media kit</li>
+        <li>Soporte 3 meses</li>
+      </ul>
+      <a href="https://wa.me/56900000000?text=Hola,%20quiero%20cotizar%20el%20plan%20Premium" class="price-btn">Solicitar cotización</a>
+    </div>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">Diseño para cada necesidad</h2>
-        <p class="section-desc">Desde la identidad de marca hasta el material de venta. Cada pieza diseñada con estrategia y estética de alto nivel.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">✨</div>
-          <h3 class="card-title">Identidad de Marca</h3>
-          <p class="card-desc">Logo, paleta cromática, tipografía, manual de marca y papelería corporativa. Una marca que comunica quién eres desde el primer vistazo.</p>
-          <p class="card-price">Desde $150.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🖥️</div>
-          <h3 class="card-title">Diseño Web</h3>
-          <p class="card-desc">Diseño UX/UI de sitios web profesionales y landing pages. Estética moderna, experiencia de usuario optimizada y enfocada en conversión.</p>
-          <p class="card-price">Desde $200.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📱</div>
-          <h3 class="card-title">Redes Sociales</h3>
-          <p class="card-desc">Diseño de feed, stories, highlights y plantillas personalizadas para Instagram, TikTok y LinkedIn. Contenido que para el scroll.</p>
-          <p class="card-price">Desde $80.000/mes</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📦</div>
-          <h3 class="card-title">Packaging y Material Impreso</h3>
-          <p class="card-desc">Diseño de envases, etiquetas, catálogos, flyers y toda la gráfica que acompaña tu producto al mundo físico.</p>
-          <p class="card-price">Desde $60.000</p>
-        </div>
+<section class="testimonials">
+  <div class="section-label">CLIENTES</div>
+  <h2 class="section-title reveal">Marcas que crecieron con nosotros</h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Me entregaron exactamente lo que imaginaba, pero mejor. El logo y los colores capturan perfectamente lo que queremos transmitir."</p>
+      <div class="testi-author">
+        <div class="testi-av">VP</div>
+        <div><div class="testi-name">Valentina Pino</div><div class="testi-brand">Cosmética Vana</div></div>
       </div>
     </div>
-  </section>
-
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🎨</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">6 años convirtiendo ideas en diseños que venden</h2>
-          <p class="about-text">Diseñador gráfico titulado con especialización en branding y UX/UI. He trabajado con más de 200 marcas de todos los rubros, desde emprendimientos hasta empresas multinacionales.</p>
-          <p class="about-text">Entrego archivos listos para imprimir y web, con briefing completo y revisiones incluidas. Comunicación directa, plazos claros y calidad de agencia con precio de freelancer.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+200</div><div class="stat-label">Proyectos entregados</div></div>
-        <div class="stat"><div class="stat-number">6</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">5.0★</div><div class="stat-label">Calificación perfecta</div></div>
-        <div class="stat"><div class="stat-number">100%</div><div class="stat-label">Clientes satisfechos</div></div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Desde que rediseñaron mi marca, mis clientes me preguntan si contraté a alguien nuevo. La percepción de mi empresa cambió completamente."</p>
+      <div class="testi-author">
+        <div class="testi-av">DM</div>
+        <div><div class="testi-name">Diego Morales</div><div class="testi-brand">Taller DM Arquitectura</div></div>
       </div>
     </div>
-  </section>
-
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Portafolio de clientes</span>
-        <h2 class="section-title">Lo que dicen mis clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El logo y la identidad de marca que me diseñó son simplemente perfectos. Capturó exactamente la esencia de mi negocio. Los clientes siempre preguntan quién hizo el diseño. Muy recomendado."</p>
-          <div class="testi-author">Beatriz Sánchez</div>
-          <div class="testi-role">Clienta · identidad de marca</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Las plantillas de Instagram que creó para mi tienda son hermosas y muy fáciles de usar. El engagement de mi cuenta subió notablemente en el primer mes. Vale cada peso invertido."</p>
-          <div class="testi-author">Sebastián Neira</div>
-          <div class="testi-role">Cliente · diseño de redes sociales</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El diseño de mi landing page es de nivel internacional. Muy intuitiva, estética y convierte muy bien. El proceso fue súper ordenado y entregó antes del plazo prometido. Lo recomiendo a todos."</p>
-          <div class="testi-author">Natalia Bravo</div>
-          <div class="testi-role">Clienta · diseño web</div>
-        </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Rápido, profesional y con un ojo creativo increíble. El packaging que diseñaron para mi producto se ve de nivel internacional."</p>
+      <div class="testi-author">
+        <div class="testi-av">RS</div>
+        <div><div class="testi-name">Rocío Saavedra</div><div class="testi-brand">Miel del Sur</div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Listo para elevar tu imagen?</h2>
-      <p class="section-desc">Cuéntame tu proyecto por WhatsApp y te envío una propuesta con tiempo de entrega y precio en 24 horas.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Cotizar por WhatsApp
-      </a>
+<section class="cta" id="contacto">
+  <div class="cta-inner reveal">
+    <div class="section-label" style="text-align:center;margin-bottom:.5rem">HABLEMOS</div>
+    <h2>Tu próxima gran marca<br/>empieza aquí</h2>
+    <p>¿Tienes un proyecto en mente? Cuéntame. Primera consulta sin costo, sin compromiso.</p>
+    <div class="cta-actions">
+      <a href="https://wa.me/56900000000?text=Hola,%20quiero%20cotizar%20un%20proyecto%20de%20diseño" class="btn-accent">💬 Cotizar por WhatsApp</a>
+      <a href="mailto:hola@studionara.cl" class="btn-outline-w">✉️ Enviar email</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Studio Pixel</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
+<footer>
+  <div>© 2025 Studio Nara · Diseño Gráfico & Branding · Santiago, Chile</div>
+  <div>hola@studionara.cl</div>
+</footer>
 
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(5,5,5,.95);border:1px solid rgba(255,61,90,.3);border-radius:4px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.7)">🎯 Página de Muestra · <a href="../" style="color:#ff3d5a;font-weight:700">Felipe Figueroa</a></div>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';
+  setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px'},80);
+});
+
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+});
+</script>
 </body>
 </html>

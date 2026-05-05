@@ -1,157 +1,240 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Agencia Digital Boost — Marketing digital, redes sociales, publicidad Meta/Google y diseño de marca. Página de muestra" />
-  <title>Agencia Boost — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PIXL Agency — Marketing Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #ec4899;
-      --primary-rgb: 236,72,153;
-      --bg: #fff;
-      --bg-alt: #fdf2f8;
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--purple:#7c3aed;--pink:#ec4899;--gradient:linear-gradient(135deg,#7c3aed,#ec4899);--dark:#08040f;--surface:#110a1e;--text:#f0e8ff;--dim:#8a7aa8}
+    body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(8,4,15,.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.05)}
+    .nav-logo{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-link{text-decoration:none;color:var(--dim);font-size:.83rem;font-weight:500;transition:.3s}
+    .nav-link:hover{color:#fff}
+    .nav-cta{background:var(--gradient)!important;-webkit-text-fill-color:#fff!important;color:#fff!important;padding:.45rem 1.4rem;border-radius:8px;font-weight:700}
+
+    /* HERO */
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:8rem 3rem 4rem}
+    /* Grid */
+    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.06) 1px,transparent 1px);background-size:50px 50px}
+    /* Glows */
+    .glow-1{position:absolute;top:-20%;left:0;width:500px;height:500px;background:radial-gradient(circle,rgba(124,58,237,.25),transparent 70%);pointer-events:none}
+    .glow-2{position:absolute;bottom:-10%;right:10%;width:400px;height:400px;background:radial-gradient(circle,rgba(236,72,153,.2),transparent 70%);pointer-events:none}
+    .hero-inner{position:relative;z-index:2;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);padding:.35rem 1rem;border-radius:100px;font-size:.72rem;font-weight:700;color:var(--purple);margin-bottom:1.5rem;letter-spacing:.06em}
+    .hero-title{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:800;line-height:1.05;margin-bottom:1rem;letter-spacing:-.02em}
+    .hero-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .hero-sub{color:var(--dim);line-height:1.75;margin-bottom:2.5rem;font-size:.95rem}
+    .btn-gradient{display:inline-block;background:var(--gradient);color:#fff;padding:.95rem 2.4rem;border-radius:10px;text-decoration:none;font-weight:700;font-size:.9rem;transition:.3s;box-shadow:0 4px 24px rgba(124,58,237,.3);margin-right:.8rem}
+    .btn-gradient:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(124,58,237,.45)}
+    .btn-outline{display:inline-block;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);padding:.9rem 2rem;border-radius:10px;text-decoration:none;font-weight:600;font-size:.88rem;transition:.3s}
+    .btn-outline:hover{border-color:rgba(124,58,237,.5)}
+
+    /* DASHBOARD MOCKUP */
+    .hero-visual{position:relative}
+    .dashboard{background:var(--surface);border:1px solid rgba(255,255,255,.07);border-radius:16px;overflow:hidden}
+    .dash-header{background:rgba(255,255,255,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid rgba(255,255,255,.05)}
+    .dot{width:10px;height:10px;border-radius:50%}
+    .dash-title{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;color:var(--dim);margin-left:.5rem}
+    .dash-body{padding:1.5rem}
+    .dash-metric{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:1rem;margin-bottom:.8rem}
+    .dash-metric-label{font-size:.65rem;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem}
+    .dash-metric-value{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .dash-metric-sub{font-size:.68rem;color:#4ade80;margin-top:.2rem}
+    .dash-chart{height:60px;display:flex;align-items:flex-end;gap:3px;margin-top:1rem}
+    .bar{background:var(--gradient);border-radius:2px;flex:1;opacity:.7;transition:.3s}
+    .bar:hover{opacity:1}
+
+    /* SERVICES */
+    section{padding:6rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .sec-label{font-family:'Syne',sans-serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .sec-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;margin:.4rem 0 .8rem;letter-spacing:-.02em;line-height:1.15}
+    .sec-desc{color:var(--dim);line-height:1.75;max-width:500px;font-size:.92rem}
+
+    .serv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .serv-card{background:var(--surface);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:2.5rem;transition:.4s;cursor:pointer;position:relative;overflow:hidden}
+    .serv-card::before{content:'';position:absolute;inset:0;background:var(--gradient);opacity:0;transition:.4s}
+    .serv-card:hover::before{opacity:.06}
+    .serv-card:hover{border-color:rgba(124,58,237,.3);transform:translateY(-4px);box-shadow:0 16px 48px rgba(124,58,237,.15)}
+    .serv-icon{font-size:2.5rem;margin-bottom:1.2rem;position:relative;z-index:1}
+    .serv-card h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:.5rem;position:relative;z-index:1}
+    .serv-card p{font-size:.82rem;color:var(--dim);line-height:1.65;position:relative;z-index:1;margin-bottom:.8rem}
+    .serv-tag{font-size:.65rem;font-weight:700;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);color:var(--purple);padding:.2rem .6rem;border-radius:100px;letter-spacing:.05em;position:relative;z-index:1}
+
+    /* RESULTS */
+    .results{background:var(--surface);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding:5rem 2rem}
+    .results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;max-width:1100px;margin:0 auto}
+    .res-n{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+    .res-l{font-size:.72rem;color:var(--dim);margin-top:.4rem;letter-spacing:.08em;text-transform:uppercase}
+
+    /* CASES */
+    .cases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:3rem}
+    .case-card{background:var(--surface);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:2.5rem;transition:.4s}
+    .case-card:hover{border-color:rgba(236,72,153,.3)}
+    .case-client{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:.5rem}
+    .case-card h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:.8rem}
+    .case-desc{font-size:.83rem;color:var(--dim);line-height:1.6;margin-bottom:1.2rem}
+    .case-metrics{display:flex;gap:1.5rem}
+    .case-metric{text-align:center}
+    .case-metric-n{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .case-metric-l{font-size:.62rem;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;margin-top:.1rem}
+
+    /* TESTIMONIALS */
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .testi{background:var(--surface);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:2rem}
+    .stars{margin-bottom:.8rem;font-size:1rem}
+    .testi-q{font-size:.88rem;line-height:1.7;color:var(--dim);margin-bottom:1.2rem;font-style:italic}
+    .testi-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;color:#fff}
+    .testi-sub{font-size:.72rem;color:var(--dim);margin-top:.2rem}
+
+    /* CTA */
+    .cta{padding:8rem 2rem;text-align:center;position:relative;overflow:hidden}
+    .cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(124,58,237,.2),transparent 70%);pointer-events:none}
+    .cta-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,4.5vw,3.8rem);font-weight:800;margin-bottom:1rem;letter-spacing:-.02em;line-height:1.1}
+    .cta-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .cta-sub{color:var(--dim);margin-bottom:2.5rem;line-height:1.7}
+    .btn-lg{display:inline-block;background:var(--gradient);color:#fff;padding:1.1rem 3rem;border-radius:12px;text-decoration:none;font-weight:700;font-size:1rem;transition:.3s;box-shadow:0 8px 32px rgba(124,58,237,.35)}
+    .btn-lg:hover{transform:translateY(-3px);box-shadow:0 14px 48px rgba(124,58,237,.5)}
+
+    footer{background:var(--dark);color:var(--dim);padding:3rem 2rem;text-align:center;font-size:.8rem;border-top:1px solid rgba(255,255,255,.04)}
+    footer a{color:var(--purple);text-decoration:none}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:900px){.hero-inner{grid-template-columns:1fr}.hero-visual{display:none}.serv-grid{grid-template-columns:1fr}.results-grid{grid-template-columns:repeat(2,1fr)}.cases-grid{grid-template-columns:1fr}.testi-grid{grid-template-columns:1fr}.nav-links{display:none}.hero{padding:6rem 1.5rem 3rem}}
   </style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(8,4,15,.97);border:1px solid rgba(124,58,237,.3);border-radius:8px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#ec4899;font-weight:700">Felipe Figueroa</a></div>
+
+<nav>
+  <a href="#" class="nav-logo">PIXL Agency.</a>
+  <ul class="nav-links">
+    <li><a href="#servicios" class="nav-link">Servicios</a></li>
+    <li><a href="#casos" class="nav-link">Casos de éxito</a></li>
+    <li><a href="#opiniones" class="nav-link">Clientes</a></li>
+    <li><a href="#contacto" class="nav-link nav-cta">Comenzar</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">🚀 Agencia de Marketing Digital · Santiago</div>
+      <h1 class="hero-title">Haz crecer tu<br>negocio <span>con datos,</span><br>no con suerte</h1>
+      <p class="hero-sub">Performance marketing, SEO, redes sociales y diseño digital que genera resultados medibles. Más de 150 marcas han escalado con nosotros.</p>
+      <div>
+        <a href="#contacto" class="btn-gradient">Empezar ahora</a>
+        <a href="#casos" class="btn-outline">Ver resultados</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="dashboard">
+        <div class="dash-header">
+          <div class="dot" style="background:#ff5f57"></div>
+          <div class="dot" style="background:#febc2e"></div>
+          <div class="dot" style="background:#28c840"></div>
+          <span class="dash-title">PIXL Dashboard — Abril 2025</span>
+        </div>
+        <div class="dash-body">
+          <div class="dash-metric"><div class="dash-metric-label">ROAS Campaña Google</div><div class="dash-metric-value">8.4x</div><div class="dash-metric-sub">↑ 42% vs mes anterior</div></div>
+          <div class="dash-metric"><div class="dash-metric-label">Sesiones orgánicas (SEO)</div><div class="dash-metric-value">+187%</div><div class="dash-metric-sub">↑ 23,450 visitas nuevas</div></div>
+          <div class="dash-metric"><div class="dash-metric-label">Costo por lead</div><div class="dash-metric-value">$2.40</div><div class="dash-metric-sub">↓ 38% optimizado</div></div>
+          <div class="dash-chart">
+            <div class="bar" style="height:30%"></div><div class="bar" style="height:50%"></div><div class="bar" style="height:45%"></div><div class="bar" style="height:65%"></div><div class="bar" style="height:55%"></div><div class="bar" style="height:80%"></div><div class="bar" style="height:70%"></div><div class="bar" style="height:95%"></div><div class="bar" style="height:85%"></div><div class="bar" style="height:100%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Boost<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Casos</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
-      </ul>
+<div class="results">
+  <div class="results-grid">
+    <div><div class="res-n" data-count="150" data-suffix="+">0</div><div class="res-l">Marcas trabajadas</div></div>
+    <div><div class="res-n" data-count="8" data-suffix="x">0</div><div class="res-l">ROAS promedio</div></div>
+    <div><div class="res-n" data-count="187" data-suffix="%">0</div><div class="res-l">Aumento tráfico SEO</div></div>
+    <div><div class="res-n" data-count="5" data-suffix=" años">0</div><div class="res-l">En el mercado</div></div>
+  </div>
+</div>
+
+<section id="servicios">
+  <div class="container">
+    <span class="sec-label">Servicios</span>
+    <h2 class="sec-title">Todo lo que necesitas<br>para dominar digital</h2>
+    <div class="serv-grid">
+      <div class="serv-card reveal"><div class="serv-icon">🎯</div><h3>Performance Marketing</h3><p>Google Ads, Meta Ads y TikTok Ads optimizados para maximizar ROAS y reducir costo por adquisición.</p><span class="serv-tag">Pago por resultados</span></div>
+      <div class="serv-card reveal" style="transition-delay:.1s"><div class="serv-icon">🔍</div><h3>SEO & Contenido</h3><p>Posicionamiento orgánico a largo plazo. Estrategia de contenido, link building y optimización técnica.</p><span class="serv-tag">Tráfico orgánico</span></div>
+      <div class="serv-card reveal" style="transition-delay:.2s"><div class="serv-icon">📱</div><h3>Redes Sociales</h3><p>Gestión de Instagram, TikTok y LinkedIn. Contenido estratégico, community management y crecimiento.</p><span class="serv-tag">Engagement real</span></div>
+      <div class="serv-card reveal"><div class="serv-icon">🎨</div><h3>Diseño & Branding</h3><p>Identidad de marca, diseño web, landing pages y creatividades para campañas que convierten.</p><span class="serv-tag">Conversión alta</span></div>
+      <div class="serv-card reveal" style="transition-delay:.1s"><div class="serv-icon">📊</div><h3>Analytics & BI</h3><p>Dashboards de datos en tiempo real, reportes mensuales y decisiones basadas en métricas reales.</p><span class="serv-tag">Data-driven</span></div>
+      <div class="serv-card reveal" style="transition-delay:.2s"><div class="serv-icon">📧</div><h3>Email & Automatización</h3><p>Flujos de automatización, email marketing y CRM para nutrir leads y fidelizar clientes.</p><span class="serv-tag">ROI comprobado</span></div>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #1a0030 0%, #3d0060 50%, #1a0040 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Agencia Digital</p>
-      <h1 class="hero-title">Tu marca en el<br><em>siguiente nivel.</em></h1>
-      <p class="hero-sub">Estrategias de marketing digital que generan ventas reales. Gestionamos tus redes sociales, publicidad y diseño de marca con resultados medibles desde el primer mes.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Auditoría gratis</a>
-        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
-      </div>
+<section id="casos" style="background:var(--surface)">
+  <div class="container">
+    <span class="sec-label">Casos de éxito</span>
+    <h2 class="sec-title">Resultados reales<br>de marcas reales</h2>
+    <div class="cases-grid">
+      <div class="case-card reveal"><p class="case-client">E-commerce · Moda</p><h3>Tienda de ropa aumentó ventas 340% en 6 meses</h3><p class="case-desc">Restructuramos sus campañas de Meta Ads con creative testing continuo y segmentación de audiencias look-alike basada en compradores existentes.</p><div class="case-metrics"><div class="case-metric"><div class="case-metric-n">340%</div><div class="case-metric-l">Aumento ventas</div></div><div class="case-metric"><div class="case-metric-n">9.2x</div><div class="case-metric-l">ROAS final</div></div><div class="case-metric"><div class="case-metric-n">-52%</div><div class="case-metric-l">CPL</div></div></div></div>
+      <div class="case-card reveal" style="transition-delay:.15s"><p class="case-client">Clínica · Salud</p><h3>Clínica médica triplicó consultas en 4 meses</h3><p class="case-desc">SEO local + Google Ads geolocalizados. Rediseñamos su landing page con A/B testing y aumentamos la tasa de conversión de formularios en un 280%.</p><div class="case-metrics"><div class="case-metric"><div class="case-metric-n">+187%</div><div class="case-metric-l">Tráfico orgánico</div></div><div class="case-metric"><div class="case-metric-n">280%</div><div class="case-metric-l">Conversión</div></div><div class="case-metric"><div class="case-metric-n">3x</div><div class="case-metric-l">Consultas</div></div></div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">Marketing que vende, no solo que se ve bien</h2>
-        <p class="section-desc">Combinamos creatividad con estrategia data-driven para generar resultados reales y medibles para tu negocio.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">📱</div>
-          <h3 class="card-title">Redes Sociales</h3>
-          <p class="card-desc">Gestión completa de Instagram, Facebook, TikTok y LinkedIn. Contenido estratégico, community management y reportes mensuales.</p>
-          <p class="card-price">Desde $120.000/mes</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📢</div>
-          <h3 class="card-title">Publicidad Meta & Google</h3>
-          <p class="card-desc">Campañas de performance marketing en Facebook Ads, Instagram Ads y Google Ads. Optimización continua para maximizar el ROI.</p>
-          <p class="card-price">Desde $80.000/mes</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🎨</div>
-          <h3 class="card-title">Diseño de Marca</h3>
-          <p class="card-desc">Identidad visual completa: logo, paleta de colores, tipografía, manual de marca y aplicaciones. Una marca que enamora.</p>
-          <p class="card-price">Desde $180.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">✍️</div>
-          <h3 class="card-title">Estrategia de Contenidos</h3>
-          <p class="card-desc">Calendario editorial, copywriting estratégico, SEO y email marketing. Contenido que atrae, convierte y fideliza clientes.</p>
-          <p class="card-price">Desde $90.000/mes</p>
-        </div>
-      </div>
+<section id="opiniones">
+  <div class="container">
+    <span class="sec-label">Clientes</span>
+    <h2 class="sec-title">Marcas que confían<br>en nosotros</h2>
+    <div class="testi-grid">
+      <div class="testi reveal"><div class="stars">⭐⭐⭐⭐⭐</div><p class="testi-q">"PIXL transformó nuestro marketing digital completamente. Antes gastábamos en ads sin saber si funcionaban. Ahora tenemos datos de todo y el ROAS habla solo."</p><div class="testi-name">Diego Campos</div><div class="testi-sub">CEO, empresa retail</div></div>
+      <div class="testi reveal" style="transition-delay:.15s"><div class="stars">⭐⭐⭐⭐⭐</div><p class="testi-q">"El SEO que implementaron tardó 4 meses en mostrar resultados, pero cuando llegaron fueron brutales. Pasamos de la página 3 a ser el primer resultado en nuestras palabras clave."</p><div class="testi-name">Pamela Ortiz</div><div class="testi-sub">Marketing Manager, clínica</div></div>
+      <div class="testi reveal" style="transition-delay:.3s"><div class="stars">⭐⭐⭐⭐⭐</div><p class="testi-q">"Las redes sociales de nuestra marca nunca habían tenido tanto engagement. El equipo entiende nuestro tono, nuestros clientes y sabe cómo hablarles. Recomendados al 100%."</p><div class="testi-name">Natalia Vera</div><div class="testi-sub">Fundadora, e-commerce moda</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🚀</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">5 años catapultando marcas chilenas al siguiente nivel</h2>
-          <p class="about-text">Somos un equipo de 8 profesionales especializados en marketing digital, diseño, contenido y publicidad pagada. Certificados en Meta, Google y HubSpot.</p>
-          <p class="about-text">No prometemos seguidores, prometemos ventas. Todos nuestros servicios incluyen reportes detallados con métricas reales para que veas exactamente qué estás obteniendo.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+100</div><div class="stat-label">Marcas gestionadas</div></div>
-        <div class="stat"><div class="stat-number">5</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación promedio</div></div>
-        <div class="stat"><div class="stat-number">+300%</div><div class="stat-label">ROI promedio</div></div>
-      </div>
-    </div>
-  </section>
+<section class="cta" id="contacto">
+  <div class="cta-glow"></div>
+  <h2 class="cta-title">¿Listo para<br><span>escalar tu negocio?</span></h2>
+  <p class="cta-sub" style="color:var(--dim)">Diagnóstico digital gratuito. Te decimos exactamente qué está fallando y cómo lo solucionamos.</p>
+  <a href="https://wa.me/56900000000?text=Hola%2C+quiero+un+diagn%C3%B3stico+digital+con+PIXL" target="_blank" rel="noopener" class="btn-lg">🚀 Diagnóstico gratuito</a>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Casos de éxito</span>
-        <h2 class="section-title">Resultados que hablan por sí solos</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"En 3 meses triplicamos las ventas online de nuestra tienda gracias a sus campañas en Meta. El equipo es muy profesional y siempre explica cada decisión con datos. Totalmente recomendados."</p>
-          <div class="testi-author">Camilo Reyes</div>
-          <div class="testi-role">Dueño · tienda online</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El rediseño de nuestra marca fue transformador. La nueva identidad visual es muchísimo más profesional y consistente. Nuestros clientes lo notaron de inmediato y las consultas aumentaron."</p>
-          <div class="testi-author">Valentina Ibáñez</div>
-          <div class="testi-role">Directora · empresa de servicios</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Gestionan nuestras redes sociales hace 1 año y el crecimiento ha sido notable. Más de 5.000 seguidores nuevos orgánicos y lo más importante: los seguidores se convierten en clientes reales."</p>
-          <div class="testi-author">Patricio Donoso</div>
-          <div class="testi-role">Gerente de Marketing · restaurante</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<footer>
+  <div class="container">
+    <p style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:rgba(255,255,255,.3);margin-bottom:.5rem">PIXL Agency.</p>
+    <p>Santiago, Chile · hola@pixlagency.cl</p>
+    <p style="margin-top:1rem">Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p>
+  </div>
+</footer>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Listo para hacer crecer tu marca?</h2>
-      <p class="section-desc">Solicita tu auditoría de marketing digital gratuita. Analizamos tu presencia online y te damos un plan de acción concreto.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Auditoría gratis por WhatsApp
-      </a>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Agencia Digital Boost</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
-
+<script>
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      let cur=0;const step=target/60;
+      const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=+(cur.toFixed(1))+suffix;if(cur>=target)clearInterval(t);},20);
+      io.unobserve(el);
+    },{threshold:.5});io.observe(el);
+  });
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+  });
+</script>
 </body>
 </html>

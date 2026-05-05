@@ -1,157 +1,368 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Nutrición y Vida — Evaluación nutricional, planes alimenticios y nutrición deportiva en Santiago. Página de muestra" />
-  <title>Nutrición & Vida — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #16a34a;
-      --primary-rgb: 22,163,74;
-      --bg: #fff;
-      --bg-alt: #f0fdf4;
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Nutri Balance — Nutrición y Bienestar</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;1,300;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--green:#2d6a4f;--lime:#74c69d;--light-green:#d8f3dc;--orange:#f4845f;--cream:#fffef7;--warm-white:#f9f6ef;--dark:#1a2e1a;--gray:#5c7060;--yellow:#f9c74f}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,254,247,.96);border-bottom:1px solid rgba(0,0,0,.07);padding:1rem 5%;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(8px)}
+.nav-logo{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:var(--dark)}
+.nav-logo span{color:var(--green)}
+.nav-links{display:flex;gap:2rem;font-size:.88rem;font-weight:500;color:var(--gray)}
+.nav-links a:hover{color:var(--green)}
+.nav-cta{background:var(--green);color:#fff;padding:.55rem 1.4rem;border-radius:6px;font-weight:600;font-size:.85rem;transition:.2s}
+.nav-cta:hover{background:#1b4332}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:55% 45%;padding-top:68px;overflow:hidden}
+.hero-left{padding:4rem 5% 3rem 5%;display:flex;flex-direction:column;justify-content:center;background:var(--cream)}
+.hero-eyebrow{display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem}
+.hero-eyebrow span{font-size:.72rem;font-weight:700;letter-spacing:2px;color:var(--green);background:var(--light-green);padding:.3rem .8rem;border-radius:4px}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(2.5rem,5vw,4rem);line-height:1.1;margin-bottom:1.2rem;font-weight:700}
+.hero h1 em{font-style:italic;color:var(--green)}
+.hero h1 strong{font-weight:300;font-style:italic;display:block;color:var(--orange)}
+.hero-desc{color:var(--gray);line-height:1.8;margin-bottom:2rem;max-width:420px}
+.results-bar{display:flex;gap:2rem;margin-bottom:2.5rem;padding:1.2rem 1.5rem;background:var(--light-green);border-radius:12px}
+.res-item{text-align:center}
+.res-num{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:var(--green)}
+.res-label{font-size:.65rem;color:var(--gray);margin-top:.2rem;font-weight:600;letter-spacing:.5px}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-green{background:var(--green);color:#fff;padding:.9rem 1.8rem;border-radius:6px;font-weight:700;font-size:.9rem;transition:.2s}
+.btn-green:hover{background:#1b4332;transform:translateY(-2px)}
+.btn-outline{border:2px solid var(--green);color:var(--green);padding:.85rem 1.8rem;border-radius:6px;font-weight:600;font-size:.9rem;transition:.2s}
+.btn-outline:hover{background:var(--green);color:#fff}
+.hero-right{position:relative;overflow:hidden;background:var(--light-green)}
+.hero-right img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.food-chips{position:absolute;top:3rem;right:1.5rem;display:flex;flex-direction:column;gap:.7rem}
+.food-chip{background:rgba(255,254,247,.95);border-radius:30px;padding:.5rem .9rem;font-size:.75rem;font-weight:700;color:var(--dark);box-shadow:0 2px 12px rgba(0,0,0,.08);animation:floatChip 3s ease-in-out infinite}
+.food-chip:nth-child(2){animation-delay:.5s}
+.food-chip:nth-child(3){animation-delay:1s}
+@keyframes floatChip{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* BENEFITS */
+.benefits{background:var(--green);padding:4rem 5%;display:grid;grid-template-columns:repeat(4,1fr);gap:1px}
+.ben-item{text-align:center;padding:2rem 1rem;border-right:1px solid rgba(255,255,255,.15)}
+.ben-item:last-child{border:none}
+.ben-icon{font-size:2rem;margin-bottom:.7rem}
+.ben-title{font-weight:700;color:#fff;font-size:.88rem;margin-bottom:.3rem}
+.ben-desc{font-size:.75rem;color:rgba(255,255,255,.65);line-height:1.5}
+
+/* ABOUT */
+.about{padding:7rem 5%;background:var(--warm-white);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-img{position:relative}
+.about-img img{width:100%;height:500px;object-fit:cover;border-radius:16px;object-position:top}
+.about-badge{position:absolute;bottom:-1.5rem;right:-1.5rem;background:#fff;border-radius:12px;padding:1.2rem;box-shadow:0 8px 25px rgba(0,0,0,.1);border-left:4px solid var(--green)}
+.ab-num{font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:var(--green)}
+.ab-text{font-size:.72rem;color:var(--gray);margin-top:.2rem}
+.section-label{font-size:.7rem;letter-spacing:3px;color:var(--green);font-weight:700;margin-bottom:.5rem}
+.section-title{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.15;margin-bottom:1rem}
+.about-text{color:var(--gray);line-height:1.8;margin-bottom:1.5rem}
+.specialties{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.spec-chip{background:var(--light-green);color:var(--dark);font-size:.75rem;font-weight:600;padding:.35rem .8rem;border-radius:6px}
+
+/* PROCESS */
+.process{padding:7rem 5%;background:var(--cream)}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+.proc-card{background:var(--warm-white);border-radius:16px;padding:2rem;text-align:center;border:1px solid rgba(0,0,0,.06);transition:.3s;position:relative}
+.proc-card:hover{box-shadow:0 8px 30px rgba(45,106,79,.12);transform:translateY(-4px)}
+.proc-num{width:40px;height:40px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto 1rem;font-family:'Fraunces',serif;font-size:1.1rem}
+.proc-icon{font-size:1.8rem;margin-bottom:.8rem}
+.proc-card h3{font-weight:700;font-size:.95rem;color:var(--dark);margin-bottom:.5rem}
+.proc-card p{font-size:.8rem;color:var(--gray);line-height:1.6}
+
+/* PLANS */
+.plans{padding:7rem 5%;background:var(--warm-white)}
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.plan-card{border-radius:16px;overflow:hidden;border:2px solid rgba(0,0,0,.06);transition:.3s;background:#fff}
+.plan-card.featured{border-color:var(--green)}
+.plan-card:hover{box-shadow:0 12px 40px rgba(45,106,79,.12);transform:translateY(-4px)}
+.plan-head{padding:2rem 2rem 1.5rem;position:relative}
+.plan-card.featured .plan-head{background:var(--green)}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:.65rem;font-weight:700;letter-spacing:2px;padding:.25rem .8rem;border-radius:30px;white-space:nowrap}
+.plan-icon{font-size:2rem;margin-bottom:.5rem}
+.plan-name{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700}
+.plan-card.featured .plan-name{color:#fff}
+.plan-price{font-size:2rem;font-weight:700;margin:.5rem 0}
+.plan-card.featured .plan-price{color:#fff}
+.plan-price span{font-size:.85rem;font-weight:400;color:var(--gray)}
+.plan-card.featured .plan-price span{color:rgba(255,255,255,.7)}
+.plan-body{padding:1.5rem 2rem 2rem}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.5rem}
+.plan-features li{display:flex;align-items:center;gap:.6rem;font-size:.83rem;color:var(--dark)}
+.plan-features li::before{content:'✓';color:var(--green);font-weight:900;font-size:.8rem}
+.plan-btn{display:block;text-align:center;background:var(--green);color:#fff;padding:.75rem;border-radius:6px;font-weight:700;font-size:.85rem;transition:.2s}
+.plan-card:not(.featured) .plan-btn{background:var(--light-green);color:var(--dark)}
+.plan-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+/* STATS */
+.stats-band{background:var(--dark);padding:5rem 5%;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-item{text-align:center;padding:1.5rem;border-right:1px solid rgba(255,255,255,.07)}
+.stat-item:last-child{border:none}
+.stat-num{font-family:'Fraunces',serif;font-size:3rem;color:var(--lime)}
+.stat-label{font-size:.72rem;letter-spacing:2px;color:rgba(255,255,255,.35);margin-top:.5rem}
+
+/* TESTIMONIALS */
+.testimonials{padding:7rem 5%;background:var(--cream)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.testi-card{background:var(--warm-white);border-radius:16px;padding:2rem;border:1px solid rgba(0,0,0,.05)}
+.testi-before-after{display:flex;gap:.5rem;margin-bottom:1rem}
+.ba-chip{font-size:.65rem;font-weight:700;padding:.2rem .6rem;border-radius:4px;letter-spacing:1px}
+.ba-before{background:rgba(244,132,95,.15);color:var(--orange)}
+.ba-after{background:var(--light-green);color:var(--green)}
+.testi-text{font-family:'Fraunces',serif;font-style:italic;font-size:.9rem;color:var(--gray);line-height:1.7;margin-bottom:1rem}
+.testi-name{font-weight:700;font-size:.85rem;color:var(--dark)}
+.testi-result{font-size:.72rem;color:var(--green);font-weight:700;margin-top:.2rem}
+
+/* CTA */
+.cta{padding:7rem 5%;background:var(--green);text-align:center}
+.cta h2{font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3rem);color:#fff;margin-bottom:1rem}
+.cta p{color:rgba(255,255,255,.75);margin-bottom:2.5rem;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-white{background:#fff;color:var(--green);padding:.9rem 2rem;border-radius:6px;font-weight:700;font-size:.9rem;transition:.2s}
+.btn-white:hover{background:var(--cream);transform:translateY(-2px)}
+.btn-outline-w{border:2px solid rgba(255,255,255,.4);color:#fff;padding:.85rem 2rem;border-radius:6px;font-weight:600;transition:.2s}
+.btn-outline-w:hover{border-color:#fff}
+
+/* FOOTER */
+footer{background:var(--dark);padding:2.5rem 5%;text-align:center;font-size:.8rem;color:rgba(255,255,255,.3)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{height:350px}
+  .about{grid-template-columns:1fr}
+  .benefits,.process-steps,.stats-band{grid-template-columns:repeat(2,1fr)}
+  .plans-grid,.testi-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<nav>
+  <div class="nav-logo">Nutri<span>Balance</span></div>
+  <div class="nav-links">
+    <a href="#proceso">Proceso</a>
+    <a href="#planes">Planes</a>
+    <a href="#resultados">Resultados</a>
+    <a href="#contacto">Contacto</a>
   </div>
+  <a href="https://wa.me/56900000000?text=Hola,%20quiero%20una%20consulta%20de%20nutrición" class="nav-cta">Primera Consulta</a>
+</nav>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Nutrición<span> & Vida.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Servicios</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Pacientes</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Agendar</a></li>
-      </ul>
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow"><span>NUTRICIONISTA CERTIFICADA</span></div>
+    <h1>Come rico,<br/><em>siente</em> bien,<br/><strong>vive mejor</strong></h1>
+    <p class="hero-desc">Planes de alimentación personalizados, sin dietas extremas ni pasar hambre. Ciencia nutricional que se adapta a tu vida real.</p>
+    <div class="results-bar">
+      <div class="res-item"><div class="res-num">-8 kg</div><div class="res-label">PROMEDIO EN 3 MESES</div></div>
+      <div class="res-item"><div class="res-num">94%</div><div class="res-label">MANTIENEN EL PESO</div></div>
+      <div class="res-item"><div class="res-num">600+</div><div class="res-label">PACIENTES</div></div>
     </div>
-  </nav>
-
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #071a10 0%, #14532d 50%, #052e16 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Nutricionista Clínica</p>
-      <h1 class="hero-title">Come bien,<br><em>vive mejor.</em></h1>
-      <p class="hero-sub">Planes alimenticios personalizados basados en evidencia científica. Sin dietas restrictivas, sin pasar hambre. Una relación sana con la comida para toda la vida.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Primera consulta</a>
-        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
-      </div>
+    <div class="hero-btns">
+      <a href="https://wa.me/56900000000?text=Hola,%20quiero%20agendar%20una%20consulta%20nutricional" class="btn-green">Agendar primera consulta</a>
+      <a href="#planes" class="btn-outline">Ver planes</a>
     </div>
-  </section>
-
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros servicios</span>
-        <h2 class="section-title">Nutrición que transforma tu vida</h2>
-        <p class="section-desc">Cada plan es 100% personalizado según tu metabolismo, estilo de vida y objetivos. Acompañamiento continuo hasta lograr tus metas.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🔍</div>
-          <h3 class="card-title">Evaluación Nutricional</h3>
-          <p class="card-desc">Análisis completo de composición corporal, hábitos alimentarios, exámenes de laboratorio y evaluación del metabolismo basal.</p>
-          <p class="card-price">$35.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🥗</div>
-          <h3 class="card-title">Plan Alimenticio Personalizado</h3>
-          <p class="card-desc">Pauta nutricional adaptada a tus gustos, horarios y objetivos. Sin alimentos prohibidos, con variedad y placer en cada comida.</p>
-          <p class="card-price">$45.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">⚖️</div>
-          <h3 class="card-title">Control de Peso</h3>
-          <p class="card-desc">Programa de baja o mantenimiento de peso con seguimiento mensual. Enfoque en cambios de hábitos sostenibles a largo plazo.</p>
-          <p class="card-price">$35.000/control</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🏃</div>
-          <h3 class="card-title">Nutrición Deportiva</h3>
-          <p class="card-desc">Planes específicos para deportistas: optimización del rendimiento, recuperación muscular y estrategias de suplementación.</p>
-          <p class="card-price">$50.000</p>
-        </div>
-      </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80" alt="Nutrición"/>
+    <div class="food-chips">
+      <div class="food-chip">🥑 Sin restricciones absurdas</div>
+      <div class="food-chip">🥗 100% personalizado</div>
+      <div class="food-chip">📱 Seguimiento semanal</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🥦</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">6 años ayudando a personas a transformar su relación con la comida</h2>
-          <p class="about-text">Nutricionista titulada con especialización en nutrición clínica y deportiva. Trabajo con enfoque conductual que integra hábitos, emociones y conducta alimentaria para resultados sostenibles.</p>
-          <p class="about-text">Consulta online disponible para pacientes de todo Chile. Plataforma de seguimiento digital para registrar avances entre sesiones y comunicación directa por mensaje.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+350</div><div class="stat-label">Pacientes tratados</div></div>
-        <div class="stat"><div class="stat-number">6</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación Google</div></div>
-        <div class="stat"><div class="stat-number">Online</div><div class="stat-label">También disponible</div></div>
-      </div>
+<div class="benefits">
+  <div class="ben-item"><div class="ben-icon">🎯</div><div class="ben-title">Plan personalizado</div><div class="ben-desc">Adaptado a tus gustos, horarios y objetivos</div></div>
+  <div class="ben-item"><div class="ben-icon">📊</div><div class="ben-title">Seguimiento real</div><div class="ben-desc">Control semanal por WhatsApp</div></div>
+  <div class="ben-item"><div class="ben-icon">🍽️</div><div class="ben-title">Sin pasar hambre</div><div class="ben-desc">Aprende a comer, no a sufrir</div></div>
+  <div class="ben-item"><div class="ben-icon">📱</div><div class="ben-title">Atención online</div><div class="ben-desc">Desde cualquier lugar de Chile</div></div>
+</div>
+
+<section class="about" id="nosotros">
+  <div class="about-img reveal">
+    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80" alt="Nutricionista"/>
+    <div class="about-badge"><div class="ab-num">600+</div><div class="ab-text">pacientes satisfechos</div></div>
+  </div>
+  <div class="reveal">
+    <div class="section-label">SOBRE MÍ</div>
+    <h2 class="section-title">Soy Valeria.<br/>Tu aliada para una vida más sana</h2>
+    <p class="about-text">Soy nutricionista-dietista titulada de la Pontificia Universidad Católica de Chile, con más de 7 años ayudando a personas a encontrar su peso saludable sin pasar hambre ni renunciar a lo que les gusta.</p>
+    <p class="about-text">Mi filosofía es simple: la alimentación debe ser un placer, no una condena. Trabajo con evidencia científica para crear planes que funcionen en tu vida real.</p>
+    <div class="specialties">
+      <div class="spec-chip">Pérdida de peso</div>
+      <div class="spec-chip">Ganancia muscular</div>
+      <div class="spec-chip">Diabetes tipo 2</div>
+      <div class="spec-chip">Síndrome de ovario poliquístico</div>
+      <div class="spec-chip">Nutrición deportiva</div>
+      <div class="spec-chip">Vegetarianismo</div>
     </div>
-  </section>
+    <a href="https://wa.me/56900000000?text=Hola%20Valeria,%20quiero%20agendar%20mi%20primera%20consulta" class="btn-green">Comenzar hoy</a>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Testimonios</span>
-        <h2 class="section-title">Transformaciones reales</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Bajé 14 kilos en 6 meses sin pasar hambre ni eliminar ningún alimento que me gusta. La clave fue el plan personalizado y el seguimiento semanal. Cambió completamente mi relación con la comida."</p>
-          <div class="testi-author">Raquel Espinoza</div>
-          <div class="testi-role">Paciente · control de peso</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Como deportista amateur siempre tuve dudas sobre la alimentación y la suplementación. El plan de nutrición deportiva mejoró notablemente mi rendimiento y recuperación. Altamente recomendado."</p>
-          <div class="testi-author">Andrés Carrasco</div>
-          <div class="testi-role">Paciente · nutrición deportiva</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Tengo diabetes tipo 2 y el plan alimenticio ayudó a estabilizar mi glicemia de forma muy importante. Mi médico quedó impresionado con los resultados de los últimos exámenes. Muy recomendada."</p>
-          <div class="testi-author">Héctor Vallejos</div>
-          <div class="testi-role">Paciente · diabetes tipo 2</div>
-        </div>
-      </div>
+<section class="process" id="proceso">
+  <div class="section-label">CÓMO FUNCIONA</div>
+  <h2 class="section-title reveal">Tu camino al bienestar en 4 pasos</h2>
+  <div class="process-steps">
+    <div class="proc-card reveal">
+      <div class="proc-num">1</div>
+      <div class="proc-icon">📋</div>
+      <h3>Evaluación inicial</h3>
+      <p>Análisis completo de tu composición corporal, hábitos, historial de salud y objetivos.</p>
     </div>
-  </section>
-
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Listo para cambiar tu alimentación?</h2>
-      <p class="section-desc">Agenda tu primera consulta por WhatsApp. Presencial en Santiago o por videollamada desde cualquier lugar de Chile.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Agendar por WhatsApp
-      </a>
+    <div class="proc-card reveal">
+      <div class="proc-num">2</div>
+      <div class="proc-icon">🥗</div>
+      <h3>Plan personalizado</h3>
+      <p>Diseñamos un plan de alimentación adaptado a ti: gustos, horarios y presupuesto real.</p>
     </div>
-  </section>
+    <div class="proc-card reveal">
+      <div class="proc-num">3</div>
+      <div class="proc-icon">📱</div>
+      <h3>Seguimiento semanal</h3>
+      <p>Contacto directo por WhatsApp. Ajustamos el plan según tus avances y dificultades.</p>
+    </div>
+    <div class="proc-card reveal">
+      <div class="proc-num">4</div>
+      <div class="proc-icon">🏆</div>
+      <h3>Resultados sostenibles</h3>
+      <p>Aprendes a comer de forma autónoma. El objetivo es que no necesites dietas para siempre.</p>
+    </div>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Nutrición & Vida</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
+<section class="plans" id="planes">
+  <div class="section-label">PLANES</div>
+  <h2 class="section-title reveal">Encuentra tu plan ideal</h2>
+  <div class="plans-grid">
+    <div class="plan-card reveal">
+      <div class="plan-head">
+        <div class="plan-icon">🌱</div>
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">$35.000<span>/mes</span></div>
+      </div>
+      <div class="plan-body">
+        <ul class="plan-features">
+          <li>Consulta inicial (60 min)</li>
+          <li>Plan alimentario mensual</li>
+          <li>Recetas incluidas</li>
+          <li>1 control mensual</li>
+          <li>Soporte por email</li>
+        </ul>
+        <a href="https://wa.me/56900000000?text=Hola,%20me%20interesa%20el%20plan%20Starter" class="plan-btn">Empezar ahora</a>
       </div>
     </div>
-  </footer>
+    <div class="plan-card featured reveal">
+      <div class="plan-badge">MÁS ELEGIDO</div>
+      <div class="plan-head">
+        <div class="plan-icon">🚀</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price" style="color:#fff">$65.000<span>/mes</span></div>
+      </div>
+      <div class="plan-body">
+        <ul class="plan-features">
+          <li>Todo del plan Starter</li>
+          <li>Seguimiento semanal</li>
+          <li>WhatsApp directo</li>
+          <li>Ajuste de plan cada 2 semanas</li>
+          <li>Lista de compras incluida</li>
+          <li>Medición composición corporal</li>
+        </ul>
+        <a href="https://wa.me/56900000000?text=Hola,%20me%20interesa%20el%20plan%20Pro" class="plan-btn">Empezar ahora</a>
+      </div>
+    </div>
+    <div class="plan-card reveal">
+      <div class="plan-head">
+        <div class="plan-icon">⭐</div>
+        <div class="plan-name">Premium</div>
+        <div class="plan-price">$95.000<span>/mes</span></div>
+      </div>
+      <div class="plan-body">
+        <ul class="plan-features">
+          <li>Todo del plan Pro</li>
+          <li>2 consultas mensuales</li>
+          <li>Plan familiar (+1 persona)</li>
+          <li>Menú semanal detallado</li>
+          <li>Talleres de cocina saludable</li>
+          <li>Acceso 24/7 via app</li>
+        </ul>
+        <a href="https://wa.me/56900000000?text=Hola,%20me%20interesa%20el%20plan%20Premium" class="plan-btn">Empezar ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
 
+<div class="stats-band">
+  <div class="stat-item reveal"><div class="stat-num" data-count="600" data-suffix="+">0</div><div class="stat-label">PACIENTES ATENDIDOS</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="7" data-suffix=" años">0</div><div class="stat-label">DE EXPERIENCIA</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="94" data-suffix="%">0</div><div class="stat-label">MANTIENEN SU PESO</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="8" data-suffix=" kg">0</div><div class="stat-label">PÉRDIDA PROMEDIO</div></div>
+</div>
+
+<section class="testimonials" id="resultados">
+  <div class="section-label">RESULTADOS REALES</div>
+  <h2 class="section-title reveal">Personas que cambiaron su relación con la comida</h2>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-before-after"><div class="ba-chip ba-before">ANTES: 78 kg</div><div class="ba-chip ba-after">AHORA: 64 kg</div></div>
+      <p class="testi-text">"Nunca pensé que podría bajar de peso sin pasar hambre. El plan de Valeria se adapta perfectamente a mi vida."</p>
+      <div class="testi-name">Javiera C.</div><div class="testi-result">-14 kg en 4 meses</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-before-after"><div class="ba-chip ba-before">Glucosa alta</div><div class="ba-chip ba-after">Normalizada</div></div>
+      <p class="testi-text">"Me diagnosticaron diabetes tipo 2 y gracias a Valeria bajé mi glucosa sin medicamentos. El plan es sostenible."</p>
+      <div class="testi-name">Roberto M., 52 años</div><div class="testi-result">Glucosa normalizada en 3 meses</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-before-after"><div class="ba-chip ba-before">Antes: SOP</div><div class="ba-chip ba-after">Síntomas reducidos</div></div>
+      <p class="testi-text">"El plan específico para mi síndrome de ovario poliquístico fue un cambio de vida. Más energía y mejor humor."</p>
+      <div class="testi-name">Daniela R., 28 años</div><div class="testi-result">Síntomas SOP reducidos 60%</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <h2 class="reveal">¿Lista para cambiar tu relación con la comida?</h2>
+  <p class="reveal">Primera consulta de evaluación sin costo. Conocemos tu situación y te decimos exactamente cómo podemos ayudarte.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/56900000000?text=Hola%20Valeria,%20quiero%20agendar%20mi%20primera%20consulta" class="btn-white">💬 Agendar por WhatsApp</a>
+    <a href="tel:+56900000000" class="btn-outline-w">📞 Llamar ahora</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 NutriBalance · Nutricionista-Dietista · Reg. SIS · Santiago y Online</p>
+</footer>
+
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(26,46,26,.93);border:1px solid rgba(45,106,79,.4);border-radius:6px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.75)">🎯 Página de Muestra · <a href="../" style="color:#74c69d;font-weight:700">Felipe Figueroa</a></div>
+
+<script>
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const io=new IntersectionObserver(([e])=>{
+    if(!e.isIntersecting)return;
+    const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+    let cur=0;const step=target/60;
+    const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.round(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+    io.unobserve(el);
+  },{threshold:.5});io.observe(el);
+});
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+});
+</script>
 </body>
 </html>

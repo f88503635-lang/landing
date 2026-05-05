@@ -1,163 +1,288 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Cabañas El Bosque — Naturaleza, silencio y tranquilidad. Página de muestra." />
-  <title>Cabañas El Bosque — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #4d7c0f;
-      --primary-rgb: 77,124,15;
-      --bg: #ffffff;
-      --bg-alt: #f7fee7;
-      --surface: #f7fee7;
-      --text: #0f172a;
-      --text-dim: #64748b;
-      --text-muted: #94a3b8;
-      --border: #e2e8f0;
-      --nav-bg: rgba(255,255,255,0.94);
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Cabañas del Bosque — Naturaleza y Descanso en Chile</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--forest:#2d5a27;--light-forest:#4a7c3f;--pine:#1a3818;--earth:#8b6914;--cream:#f8f4ec;--offwhite:#f2ede3;--dark:#0f1a0e;--gray:#6b7c69;--moss:#d4e6d0}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 5%;display:flex;align-items:center;justify-content:space-between;transition:.3s}
+nav.scrolled{background:rgba(15,26,14,.97);border-bottom:1px solid rgba(45,90,39,.3)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-style:italic;color:#fff;letter-spacing:.5px}
+.nav-logo span{color:#a8d5a2;font-style:normal}
+.nav-links{display:flex;gap:2rem;font-size:.82rem;font-weight:500;color:rgba(255,255,255,.65);letter-spacing:.5px}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--forest);border:1px solid rgba(255,255,255,.2);color:#fff;padding:.55rem 1.4rem;font-size:.82rem;font-weight:600;letter-spacing.5px;letter-spacing:.5px;border-radius:4px;transition:.2s}
+.nav-cta:hover{background:var(--light-forest)}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,26,14,.92) 45%,rgba(15,26,14,.4) 100%)}
+.hero-content{position:relative;z-index:2;padding:0 5%;max-width:600px;padding-top:80px}
+.hero-season{display:inline-flex;align-items:center;gap:.5rem;background:rgba(45,90,39,.3);border:1px solid rgba(168,213,162,.3);color:#a8d5a2;font-size:.72rem;letter-spacing:2px;font-weight:600;padding:.4rem 1rem;border-radius:4px;margin-bottom:1.5rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5.5vw,4.2rem);line-height:1.15;color:#fff;margin-bottom:1.2rem;font-weight:700}
+.hero h1 em{font-style:italic;color:#a8d5a2}
+.hero-desc{color:rgba(255,255,255,.65);line-height:1.9;margin-bottom:2rem;max-width:440px;font-size:.95rem;font-weight:300}
+.availability-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:1.2rem;display:grid;grid-template-columns:1fr 1fr auto;gap:.8rem;align-items:end;margin-bottom:2rem;backdrop-filter:blur(4px)}
+.avail-field label{display:block;font-size:.65rem;letter-spacing:2px;color:rgba(255,255,255,.5);font-weight:600;margin-bottom.4rem;margin-bottom:.4rem}
+.avail-field input{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;padding:.6rem .8rem;font-family:'Jost',sans-serif;font-size:.85rem;border-radius:4px;width:100%}
+.avail-btn{background:var(--forest);color:#fff;padding:.72rem 1.2rem;font-weight:600;font-size:.82rem;border-radius:4px;border:none;cursor:pointer;white-space:nowrap;transition:.2s;letter-spacing.5px;letter-spacing:.5px}
+.avail-btn:hover{background:var(--light-forest)}
+.hero-features{display:flex;gap:1.5rem;flex-wrap:wrap}
+.hero-feat{display:flex;align-items:center;gap:.4rem;font-size:.78rem;color:rgba(255,255,255,.6)}
+.hero-feat span{color:#a8d5a2;font-size:.9rem}
+
+/* NATURE BAR */
+.nature-bar{background:var(--forest);padding:2rem 5%;display:grid;grid-template-columns:repeat(4,1fr)}
+.nature-item{text-align:center;padding:.8rem;border-right:1px solid rgba(255,255,255,.1)}
+.nature-item:last-child{border:none}
+.nature-icon{font-size:1.4rem;margin-bottom.4rem;margin-bottom:.4rem}
+.nature-title{font-size:.78rem;font-weight:600;color:#fff;margin-bottom.2rem;margin-bottom:.2rem}
+.nature-desc{font-size:.68rem;color:rgba(255,255,255,.55)}
+
+/* CABINS */
+.cabins{padding:7rem 5%;background:var(--cream)}
+.section-label{font-size:.68rem;letter-spacing:3px;color:var(--forest);font-weight:700;margin-bottom.5rem;margin-bottom:.5rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom.5rem;margin-bottom:.5rem;font-style:italic}
+.section-sub{color:var(--gray);margin-bottom:3rem;font-size:.9rem}
+.cabins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.cabin-card{background:#fff;border-radius:10px;overflow:hidden;border:1px solid rgba(0,0,0,.07);transition:.3s}
+.cabin-card:hover{box-shadow:0 15px 40px rgba(45,90,39,.12);transform:translateY(-5px)}
+.cabin-img{height:220px;overflow:hidden;position:relative}
+.cabin-img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.cabin-card:hover .cabin-img img{transform:scale(1.06)}
+.cabin-tag{position:absolute;top.8rem;top:.8rem;left:.8rem;background:var(--forest);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:2px;padding:.25rem .6rem;border-radius:3px}
+.cabin-body{padding:1.5rem}
+.cabin-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;margin-bottom.4rem;margin-bottom:.4rem}
+.cabin-features{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom.8rem;margin-bottom:.8rem}
+.cabin-feat{background:var(--moss);color:var(--forest);font-size:.65rem;font-weight:600;padding:.2rem .5rem;border-radius:3px}
+.cabin-footer{display:flex;align-items:center;justify-content:space-between;padding-top:.8rem;border-top:1px solid rgba(0,0,0,.06)}
+.cabin-price{font-size:1.1rem;font-weight:700;color:var(--forest)}
+.cabin-price small{font-size:.7rem;font-weight:400;color:var(--gray)}
+.cabin-btn{background:var(--forest);color:#fff;padding:.4rem .9rem;border-radius:4px;font-size:.75rem;font-weight:600;letter-spacing.5px;letter-spacing:.5px;transition:.2s;border:none;cursor:pointer}
+.cabin-btn:hover{background:var(--light-forest)}
+
+/* ABOUT */
+.about{padding:7rem 5%;background:var(--offwhite);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-img img{width:100%;height:480px;object-fit:cover;border-radius:10px}
+.about-text{color:var(--gray);line-height:1.9;margin-bottom:1.5rem;font-size:.9rem}
+.eco-badges{display:flex;flex-wrap:wrap;gap.5rem;gap:.5rem;margin-bottom:1.5rem}
+.eco-badge{background:var(--moss);color:var(--forest);font-size:.72rem;font-weight:700;padding:.35rem .8rem;border-radius:20px;display:flex;align-items:center;gap.4rem;gap:.4rem}
+.activities{margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap.8rem;gap:.8rem}
+.act-item{display:flex;align-items:center;gap.6rem;gap:.6rem;font-size.85rem;font-size:.85rem;font-weight:500;color:var(--dark)}
+.act-item::before{content:'🌿';font-size:.85rem}
+
+/* GALLERY */
+.gallery{padding:0 5% 7rem;background:var(--cream)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:220px 220px;gap:.8rem}
+.gallery-item{overflow:hidden;border-radius:6px}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:.5s;filter:brightness(.9)}
+.gallery-item:hover img{transform:scale(1.05);filter:brightness(1)}
+.gallery-item.tall{grid-row:span 2}
+
+/* REVIEWS */
+.reviews{padding:7rem 5%;background:var(--offwhite)}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.review-card{background:#fff;border-radius:8px;padding:1.8rem;border:1px solid rgba(0,0,0,.06)}
+.review-stars{color:#f59e0b;font-size:.85rem;margin-bottom.8rem;margin-bottom:.8rem}
+.review-text{font-family:'Playfair Display',serif;font-style:italic;font-size.88rem;font-size:.88rem;color:var(--gray);line-height:1.7;margin-bottom:1rem}
+.review-author{font-weight:600;font-size.82rem;font-size:.82rem;color:var(--dark)}
+.review-date{font-size.72rem;font-size:.72rem;color:var(--gray);margin-top.2rem;margin-top:.2rem}
+
+/* CTA */
+.cta{padding:7rem 5%;position:relative;overflow:hidden;text-align:center}
+.cta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cta::before{content:'';position:absolute;inset:0;background:rgba(15,26,14,.88)}
+.cta-inner{position:relative;z-index:2;max-width:580px;margin:0 auto}
+.cta h2{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(2rem,4vw,3rem);color:#fff;margin-bottom:1rem}
+.cta p{color:rgba(255,255,255,.6);margin-bottom:2.5rem;line-height:1.8;font-size.95rem;font-size:.95rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-green{background:var(--forest);color:#fff;padding:.9rem 2rem;border-radius:4px;font-weight:600;font-size.88rem;font-size:.88rem;letter-spacing.5px;letter-spacing:.5px;transition:.2s}
+.btn-green:hover{background:var(--light-forest);transform:translateY(-2px)}
+.btn-outline-w{border:1px solid rgba(255,255,255,.35);color:#fff;padding:.85rem 2rem;border-radius:4px;font-size.85rem;font-size:.85rem;font-weight:500;transition:.2s}
+.btn-outline-w:hover{border-color:#fff}
+
+/* FOOTER */
+footer{background:var(--pine);padding:2.5rem 5%;text-align:center;font-size.78rem;font-size:.78rem;color:rgba(255,255,255,.3);letter-spacing.5px;letter-spacing:.5px}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .availability-box{grid-template-columns:1fr}
+  .nature-bar{grid-template-columns:repeat(2,1fr)}
+  .cabins-grid,.reviews-grid{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .gallery-item.tall{grid-row:auto}
+}
+</style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<nav id="nav">
+  <div class="nav-logo"><em>Cabañas</em> <span>del Bosque</span></div>
+  <div class="nav-links">
+    <a href="#cabanas">Cabañas</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#galeria">Galería</a>
+    <a href="#reservar">Reservar</a>
   </div>
+  <a href="https://wa.me/56900000000?text=Hola,%20quiero%20reservar%20una%20cabaña" class="nav-cta">Consultar fechas</a>
+</nav>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">El Bosque<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Cabañas</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Reservar</a></li>
-      </ul>
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=1920&q=80" alt="Cabañas bosque"/>
+  <div class="hero-content">
+    <div class="hero-season">🌲 TEMPORADA ALTA · RESERVA CON ANTICIPACIÓN</div>
+    <h1>Desconéctate<br/>del mundo,<br/><em>conéctate</em><br/>a la naturaleza</h1>
+    <p class="hero-desc">Cabañas de madera nativa en plena naturaleza. Sin ruidos de ciudad, con todo el confort que mereces. A solo 2 horas de Santiago.</p>
+    <div class="availability-box">
+      <div class="avail-field"><label>LLEGADA</label><input type="date"/></div>
+      <div class="avail-field"><label>SALIDA</label><input type="date"/></div>
+      <button class="avail-btn">VERIFICAR</button>
     </div>
-  </nav>
-
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #0f1e05 0%, #1a380a 50%, #0d1803 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Alojamiento · Pucón, Chile</p>
-      <h1 class="hero-title">Naturaleza, silencio<br>y <em>tranquilidad</em></h1>
-      <p class="hero-sub">Escápate del ruido de la ciudad. Cabañas rodeadas de bosque nativo, con todas las comodidades para que tu descanso sea perfecto.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Reservar cabaña</a>
-        <a href="#servicios" class="btn btn-outline">Ver opciones</a>
-      </div>
+    <div class="hero-features">
+      <div class="hero-feat"><span>🌿</span> Entorno natural</div>
+      <div class="hero-feat"><span>🔥</span> Chimenea incluida</div>
+      <div class="hero-feat"><span>♨️</span> Tina caliente</div>
+      <div class="hero-feat"><span>🐾</span> Pet friendly</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestras cabañas</span>
-        <h2 class="section-title">Encuentra tu refugio ideal</h2>
-        <p class="section-desc">Cada cabaña está equipada con cocina, calefacción a leña y terraza con vista al bosque.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🌿</div>
-          <h3 class="card-title">Cabaña Simple</h3>
-          <p class="card-desc">Para 2 personas. Cama matrimonial, cocina americana, baño completo y terraza privada. Perfecta para parejas.</p>
-          <p class="card-price">Desde $55.000/noche</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🏕️</div>
-          <h3 class="card-title">Cabaña Familiar</h3>
-          <p class="card-desc">Para hasta 6 personas. 2 habitaciones, cocina completa, living con chimenea y amplia terraza.</p>
-          <p class="card-price">Desde $90.000/noche</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🛁</div>
-          <h3 class="card-title">Cabaña Premium con Jacuzzi</h3>
-          <p class="card-desc">Para 2-4 personas. Jacuzzi exterior, vista al lago, cocina gourmet y desayuno incluido. Ideal para ocasiones especiales.</p>
-          <p class="card-price">Desde $140.000/noche</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🎣</div>
-          <h3 class="card-title">Actividades en naturaleza</h3>
-          <p class="card-desc">Senderismo guiado, pesca deportiva, kayak en el lago y tours al volcán. Reserva con anticipación.</p>
-          <p class="card-price">Desde $15.000/actividad</p>
-        </div>
+<div class="nature-bar">
+  <div class="nature-item reveal"><div class="nature-icon">🌲</div><div class="nature-title">BOSQUE NATIVO</div><div class="nature-desc">10 hectáreas de naturaleza</div></div>
+  <div class="nature-item reveal"><div class="nature-icon">🚗</div><div class="nature-title">2 HRS DE STGO</div><div class="nature-desc">Ruta 5 Sur · Señalizado</div></div>
+  <div class="nature-item reveal"><div class="nature-icon">🐾</div><div class="nature-title">PET FRIENDLY</div><div class="nature-desc">Tu mascota es bienvenida</div></div>
+  <div class="nature-item reveal"><div class="nature-icon">⭐</div><div class="nature-title">4.9 AIRBNB</div><div class="nature-desc">+400 reseñas</div></div>
+</div>
+
+<section class="cabins" id="cabanas">
+  <div class="section-label">NUESTRAS CABAÑAS</div>
+  <h2 class="section-title reveal">El refugio perfecto<br/><em>para cada grupo</em></h2>
+  <div class="cabins-grid">
+    <div class="cabin-card reveal">
+      <div class="cabin-img"><img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=600&q=80" alt="Cabaña pareja"/><div class="cabin-tag">PAREJA</div></div>
+      <div class="cabin-body">
+        <div class="cabin-name">Cabaña Roble — 2 personas</div>
+        <div class="cabin-features"><span class="cabin-feat">🔥 Chimenea</span><span class="cabin-feat">♨️ Tina</span><span class="cabin-feat">🛏 Cama doble</span></div>
+        <div class="cabin-footer"><div class="cabin-price">$85.000<small>/noche</small></div><button class="cabin-btn">Reservar</button></div>
       </div>
     </div>
-  </section>
-
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🌲</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">10 años creando momentos inolvidables</h2>
-          <p class="about-text">Nuestras cabañas están ubicadas a orillas del bosque nativo en Pucón, a solo 10 minutos del centro y del lago Villarrica. Cada detalle está pensado para que te desconectes del mundo y disfrutes la naturaleza.</p>
-          <p class="about-text">Estamos abiertos todo el año: verano para disfrutar el lago, invierno para el esquí y la nieve. ¡Cada temporada tiene su magia!</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">12</div><div class="stat-label">Cabañas disponibles</div></div>
-        <div class="stat"><div class="stat-number">10</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.9★</div><div class="stat-label">Calificación huéspedes</div></div>
-        <div class="stat"><div class="stat-number">365</div><div class="stat-label">Días al año</div></div>
+    <div class="cabin-card reveal">
+      <div class="cabin-img"><img src="https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=600&q=80" alt="Cabaña familia"/><div class="cabin-tag">FAMILIA</div></div>
+      <div class="cabin-body">
+        <div class="cabin-name">Cabaña Coigüe — 4-6 personas</div>
+        <div class="cabin-features"><span class="cabin-feat">🔥 Chimenea</span><span class="cabin-feat">🍽 Cocina</span><span class="cabin-feat">🛏 2 habitaciones</span></div>
+        <div class="cabin-footer"><div class="cabin-price">$145.000<small>/noche</small></div><button class="cabin-btn">Reservar</button></div>
       </div>
     </div>
-  </section>
-
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros huéspedes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"La cabaña premium fue perfecta para nuestro aniversario. El jacuzzi con vista al bosque en la noche fue algo mágico. Definitivamente volvemos."</p>
-          <div class="testi-author">Francisca y Pablo</div>
-          <div class="testi-role">Pareja de Santiago</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Vinimos con los niños y fue una experiencia increíble. Las actividades de senderismo y el kayak los tienen hablando hasta hoy. ¡Gracias!"</p>
-          <div class="testi-author">Felipe Morales</div>
-          <div class="testi-role">Padre de familia, Temuco</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Llegamos en invierno y fue espectacular. La cabaña con chimenea, nieve afuera y el calor adentro. El desayuno incluido estaba riquísimo."</p>
-          <div class="testi-author">Constanza Riquelme</div>
-          <div class="testi-role">Viajera frecuente</div>
-        </div>
+    <div class="cabin-card reveal">
+      <div class="cabin-img"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80" alt="Cabaña grupo"/><div class="cabin-tag">GRUPO</div></div>
+      <div class="cabin-body">
+        <div class="cabin-name">Cabaña Araucaria — 8-10 personas</div>
+        <div class="cabin-features"><span class="cabin-feat">🔥 Chimenea</span><span class="cabin-feat">🎮 Entretenimiento</span><span class="cabin-feat">♨️ Tina</span></div>
+        <div class="cabin-footer"><div class="cabin-price">$220.000<small>/noche</small></div><button class="cabin-btn">Reservar</button></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Cuándo te escapas?</h2>
-      <p class="section-desc">Consulta disponibilidad para tus fechas y asegura tu cabaña. Las reservas vuelan en temporada alta.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20reservar%20una%20caba%C3%B1a" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Consultar disponibilidad
-      </a>
+<section class="about" id="nosotros">
+  <div class="about-img reveal">
+    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" alt="Bosque"/>
+  </div>
+  <div class="reveal">
+    <div class="section-label">NUESTRO REFUGIO</div>
+    <h2 class="section-title">Un rincón de<br/><em>naturaleza auténtica</em></h2>
+    <p class="about-text">Somos una familia que ha cuidado este bosque por 3 generaciones. Decidimos compartirlo construyendo cabañas de madera nativa que respetan el entorno y ofrecen el máximo confort.</p>
+    <p class="about-text">Aquí el ruido de la ciudad desaparece. Solo escucharás el viento entre los árboles, los pájaros del bosque y el crepitar del fuego en la chimenea.</p>
+    <div class="eco-badges">
+      <div class="eco-badge">🌱 Eco-friendly</div>
+      <div class="eco-badge">♻️ Energía solar</div>
+      <div class="eco-badge">💧 Agua de vertiente</div>
+      <div class="eco-badge">🪵 Madera nativa</div>
     </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>Cabañas El Bosque</strong> · Pucón, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
+    <div class="activities">
+      <div class="act-item">Senderismo guiado</div>
+      <div class="act-item">Avistamiento de aves</div>
+      <div class="act-item">Fotografía naturaleza</div>
+      <div class="act-item">Fogatas nocturnas</div>
     </div>
-  </footer>
+  </div>
+</section>
 
+<section class="gallery" id="galeria">
+  <div class="section-label">GALERÍA</div>
+  <h2 class="section-title reveal">Un lugar para<br/><em>imaginar y vivir</em></h2>
+  <div class="gallery-grid" style="margin-top:2.5rem">
+    <div class="gallery-item tall reveal"><img src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=600&q=80" alt="Bosque"/></div>
+    <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=600&q=80" alt="Cabaña"/></div>
+    <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="Montaña"/></div>
+    <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=600&q=80" alt="Lago"/></div>
+    <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80" alt="Paisaje"/></div>
+  </div>
+</section>
+
+<section class="reviews">
+  <div class="section-label">HUÉSPEDES</div>
+  <h2 class="section-title reveal">Lo que dicen<br/><em>quienes vinieron</em></h2>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Una experiencia mágica. Llegamos agotados de la ciudad y volvimos completamente renovados. La tina caliente bajo las estrellas no tiene precio."</p>
+      <div class="review-author">Daniela y Rodrigo · Santiago</div>
+      <div class="review-date">Enero 2025</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Vinimos con toda la familia (4 niños incluidos) y fue perfecto. Los niños jugaron en el bosque todo el día. Cabaña limpia, equipada y acogedora."</p>
+      <div class="review-author">Familia Molina · Concepción</div>
+      <div class="review-date">Febrero 2025</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Vine con mi perro y fue increíble. El bosque es enorme, el lugar limpio y los dueños son súper amables. Sin duda el mejor lugar para desconectarse."</p>
+      <div class="review-author">Marco T. · Santiago</div>
+      <div class="review-date">Marzo 2025</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="reservar">
+  <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1920&q=80" alt="Bosque noche"/>
+  <div class="cta-inner reveal">
+    <h2>¿Cuándo escapas<br/>a la naturaleza?</h2>
+    <p>Consulta disponibilidad directamente por WhatsApp. Las fechas de temporada se agotan rápido.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/56900000000?text=Hola,%20quiero%20consultar%20disponibilidad%20de%20cabañas" class="btn-green">💬 Consultar por WhatsApp</a>
+      <a href="tel:+56900000000" class="btn-outline-w">📞 Llamar ahora</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Cabañas del Bosque · Naturaleza y Descanso · Región Metropolitana, Chile</p>
+</footer>
+
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(15,26,14,.93);border:1px solid rgba(45,90,39,.4);border-radius:4px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.75)">🎯 Página de Muestra · <a href="../" style="color:#4a7c3f;font-weight:700">Felipe Figueroa</a></div>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+});
+</script>
 </body>
 </html>

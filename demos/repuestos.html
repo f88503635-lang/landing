@@ -1,157 +1,384 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AutoPartes Total — Repuestos originales, motor, frenos y aceites para todas las marcas en Santiago. Página de muestra" />
-  <title>AutoPartes Total — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
-  <style>
-    :root {
-      --primary: #f97316;
-      --primary-rgb: 249,115,22;
-      --bg: #fff;
-      --bg-alt: #fff7ed;
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AutoPartes Pro — Repuestos y Accesorios</title>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Exo+2:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#e63946;--dark:#0d0d0d;--gray:#1a1a1a;--mid:#2a2a2a;--light:#f0f0f0;--accent:#ff6b35}
+body{font-family:'Exo 2',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 5%;display:flex;align-items:center;justify-content:space-between;transition:.3s}
+nav.scrolled{background:rgba(13,13,13,.97);border-bottom:1px solid rgba(230,57,70,.2)}
+.nav-logo{font-family:'Russo One',sans-serif;font-size:1.4rem;letter-spacing:2px}
+.nav-logo span{color:var(--red)}
+.nav-links{display:flex;gap:2rem;font-weight:600;font-size:.9rem;letter-spacing:1px}
+.nav-links a:hover{color:var(--red)}
+.nav-cta{background:var(--red);color:#fff;padding:.55rem 1.4rem;font-weight:700;font-size:.85rem;letter-spacing:1px;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+.nav-cta:hover{background:var(--accent)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,13,13,.97) 55%,rgba(13,13,13,.5))}
+.hero-content{position:relative;z-index:2;padding:0 5%;max-width:680px;margin-top:80px}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(230,57,70,.15);border:1px solid rgba(230,57,70,.4);color:var(--red);font-size:.78rem;font-weight:700;letter-spacing:2px;padding:.4rem 1rem;margin-bottom:1.5rem;clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%)}
+.hero h1{font-family:'Russo One',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);line-height:1;letter-spacing:2px;margin-bottom:1rem}
+.hero h1 span{color:var(--red)}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:2rem;max-width:500px}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-red{background:var(--red);color:#fff;padding:.85rem 2rem;font-weight:700;letter-spacing:1px;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:.2s}
+.btn-red:hover{background:var(--accent);transform:translateY(-2px)}
+.btn-outline{border:2px solid rgba(255,255,255,.3);color:#fff;padding:.8rem 2rem;font-weight:600;letter-spacing:1px;transition:.2s}
+.btn-outline:hover{border-color:var(--red);color:var(--red)}
+.hero-side{position:absolute;right:5%;top:50%;transform:translateY(-50%);z-index:2;display:flex;flex-direction:column;gap:.8rem}
+.stat-card{background:rgba(26,26,26,.9);border:1px solid rgba(230,57,70,.3);padding:1rem 1.5rem;text-align:center;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+.stat-card .num{font-family:'Russo One',sans-serif;font-size:1.8rem;color:var(--red)}
+.stat-card .lbl{font-size:.72rem;letter-spacing:1px;color:rgba(255,255,255,.5)}
+
+/* TICKER */
+.ticker-wrap{background:var(--red);padding:.6rem 0;overflow:hidden}
+.ticker{display:flex;animation:ticker 28s linear infinite;white-space:nowrap}
+.ticker span{padding:0 2rem;font-family:'Russo One',sans-serif;font-size:.85rem;letter-spacing:2px}
+.ticker span::after{content:'⚡';margin-left:2rem}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* CATEGORIES */
+.categories{padding:6rem 5%}
+.section-label{font-size:.75rem;letter-spacing:3px;color:var(--red);font-weight:700;margin-bottom:.5rem}
+.section-title{font-family:'Russo One',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:.5rem}
+.section-sub{color:rgba(255,255,255,.5);margin-bottom:3rem}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.cat-card{position:relative;height:200px;overflow:hidden;cursor:pointer}
+.cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.cat-card::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,13,13,.9) 0%,rgba(13,13,13,.3) 60%)}
+.cat-card:hover img{transform:scale(1.08)}
+.cat-label{position:absolute;bottom:1rem;left:1rem;z-index:2}
+.cat-label h3{font-family:'Russo One',sans-serif;font-size:1.1rem;letter-spacing:1px}
+.cat-label p{font-size:.78rem;color:rgba(255,255,255,.6)}
+.cat-strip{position:absolute;top:.8rem;right:.8rem;background:var(--red);font-size:.65rem;font-weight:700;padding:.25rem .6rem;letter-spacing:1px;z-index:3}
+
+/* FEATURED PRODUCTS */
+.products{padding:0 5% 6rem}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.prod-card{background:var(--gray);border:1px solid rgba(255,255,255,.06);transition:.3s}
+.prod-card:hover{border-color:rgba(230,57,70,.4);transform:translateY(-4px)}
+.prod-img{height:200px;overflow:hidden;position:relative}
+.prod-img img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.prod-card:hover .prod-img img{transform:scale(1.05)}
+.prod-badge{position:absolute;top:.8rem;left:.8rem;background:var(--red);font-size:.65rem;font-weight:700;padding:.25rem .7rem;letter-spacing:1px}
+.prod-info{padding:1.2rem}
+.prod-brand{font-size:.72rem;color:var(--red);font-weight:700;letter-spacing:2px;margin-bottom:.3rem}
+.prod-name{font-weight:700;font-size:1.05rem;margin-bottom:.5rem}
+.prod-compat{font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:.8rem}
+.prod-compat span{background:rgba(255,255,255,.05);padding:.2rem .5rem;margin-right:.3rem;font-size:.72rem}
+.prod-footer{display:flex;align-items:center;justify-content:space-between}
+.prod-price{font-family:'Russo One',sans-serif;font-size:1.2rem;color:var(--red)}
+.prod-btn{background:var(--red);color:#fff;padding:.4rem 1rem;font-size:.8rem;font-weight:700;letter-spacing:1px;clip-path:polygon(5px 0,100% 0,calc(100% - 5px) 100%,0 100%);transition:.2s;border:none;cursor:pointer}
+.prod-btn:hover{background:var(--accent)}
+
+/* BRANDS */
+.brands{background:var(--gray);padding:4rem 5%}
+.brands-title{font-size:.75rem;letter-spacing:3px;color:rgba(255,255,255,.4);font-weight:700;text-align:center;margin-bottom:2rem}
+.brands-grid{display:flex;justify-content:center;align-items:center;gap:3rem;flex-wrap:wrap}
+.brand-item{font-family:'Russo One',sans-serif;font-size:1.3rem;color:rgba(255,255,255,.15);letter-spacing:3px;transition:.3s}
+.brand-item:hover{color:rgba(255,255,255,.6)}
+
+/* WHY US */
+.why{padding:6rem 5%;background:var(--dark)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.why-image{position:relative}
+.why-image img{width:100%;height:500px;object-fit:cover}
+.why-image::before{content:'';position:absolute;top:-12px;left:-12px;right:12px;bottom:12px;border:2px solid var(--red);z-index:-1}
+.why-guarantee{position:absolute;bottom:-1.5rem;right:-1.5rem;background:var(--red);padding:1.5rem;text-align:center;clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%)}
+.why-guarantee .big{font-family:'Russo One',sans-serif;font-size:2rem}
+.why-guarantee .sm{font-size:.7rem;letter-spacing:1px}
+.why-list{list-style:none;display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem}
+.why-item{display:flex;gap:1rem;align-items:flex-start}
+.why-icon{width:44px;height:44px;background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.3);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;clip-path:polygon(5px 0,100% 0,calc(100% - 5px) 100%,0 100%)}
+.why-text h4{font-weight:700;margin-bottom:.3rem}
+.why-text p{font-size:.88rem;color:rgba(255,255,255,.5)}
+
+/* STATS */
+.stats{background:var(--red);padding:4rem 5%;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-item{text-align:center;padding:1rem;border-right:1px solid rgba(255,255,255,.2)}
+.stat-item:last-child{border:none}
+.stat-num{font-family:'Russo One',sans-serif;font-size:2.5rem;letter-spacing:1px}
+.stat-label{font-size:.78rem;letter-spacing:2px;opacity:.8;margin-top:.3rem}
+
+/* DELIVERY */
+.delivery{padding:6rem 5%;background:var(--gray)}
+.delivery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.del-card{background:var(--dark);padding:2rem;border-bottom:3px solid transparent;transition:.3s}
+.del-card:hover{border-color:var(--red)}
+.del-icon{font-size:2.5rem;margin-bottom:1rem}
+.del-card h3{font-family:'Russo One',sans-serif;font-size:1.1rem;margin-bottom:.5rem;letter-spacing:1px}
+.del-card p{font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.6}
+
+/* CTA */
+.cta{padding:6rem 5%;background:url('https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;position:relative}
+.cta::before{content:'';position:absolute;inset:0;background:rgba(13,13,13,.92)}
+.cta-inner{position:relative;z-index:2;text-align:center;max-width:600px;margin:0 auto}
+.cta h2{font-family:'Russo One',sans-serif;font-size:clamp(1.8rem,4vw,3rem);margin-bottom:1rem;letter-spacing:1px}
+.cta p{color:rgba(255,255,255,.6);margin-bottom:2rem;line-height:1.7}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+footer{background:rgba(0,0,0,.8);padding:3rem 5%;border-top:1px solid rgba(230,57,70,.2);text-align:center;font-size:.82rem;color:rgba(255,255,255,.4)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .nav-links,.hero-side{display:none}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .products-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .delivery-grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<nav id="nav">
+  <div class="nav-logo">AUTO<span>PARTES</span> PRO</div>
+  <div class="nav-links">
+    <a href="#categorias">Categorías</a>
+    <a href="#productos">Productos</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#contacto">Contacto</a>
   </div>
+  <a href="https://wa.me/56900000000?text=Hola,%20busco%20repuestos" class="nav-cta">COTIZAR AHORA</a>
+</nav>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">AutoPartes<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Productos</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⚡ REPUESTOS ORIGINALES Y ALTERNATIVOS</div>
+    <h1>TU TALLER<br/>NECESITA<br/><span>LO MEJOR</span></h1>
+    <p>Miles de repuestos en stock para todas las marcas. Garantía certificada, entrega el mismo día y asesoría técnica gratuita.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/56900000000?text=Hola,%20necesito%20cotizar%20repuestos" class="btn-red">COTIZAR POR WHATSAPP</a>
+      <a href="#productos" class="btn-outline">VER CATÁLOGO</a>
+    </div>
+  </div>
+  <div class="hero-side">
+    <div class="stat-card"><div class="num">+15K</div><div class="lbl">REFERENCIAS</div></div>
+    <div class="stat-card"><div class="num">24H</div><div class="lbl">DESPACHO</div></div>
+    <div class="stat-card"><div class="num">100%</div><div class="lbl">GARANTIZADO</div></div>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>MOTOR</span><span>FRENOS</span><span>SUSPENSIÓN</span><span>TRANSMISIÓN</span><span>ELÉCTRICO</span><span>FILTROS</span><span>LUBRICANTES</span><span>CARROCERÍA</span>
+    <span>MOTOR</span><span>FRENOS</span><span>SUSPENSIÓN</span><span>TRANSMISIÓN</span><span>ELÉCTRICO</span><span>FILTROS</span><span>LUBRICANTES</span><span>CARROCERÍA</span>
+  </div>
+</div>
+
+<section class="categories" id="categorias">
+  <div class="section-label">CATÁLOGO COMPLETO</div>
+  <h2 class="section-title reveal">Todo lo que tu vehículo necesita</h2>
+  <p class="section-sub reveal">Más de 15.000 referencias disponibles en stock</p>
+  <div class="cat-grid reveal">
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=600&q=80" alt="Motor"/>
+      <div class="cat-strip">MÁS VENDIDO</div>
+      <div class="cat-label"><h3>MOTOR</h3><p>Pistones · Culatas · Juntas</p></div>
+    </div>
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80" alt="Frenos"/>
+      <div class="cat-label"><h3>FRENOS</h3><p>Pastillas · Discos · Líquido</p></div>
+    </div>
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=600&q=80" alt="Suspensión"/>
+      <div class="cat-label"><h3>SUSPENSIÓN</h3><p>Amortiguadores · Muelles</p></div>
+    </div>
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80" alt="Eléctrico"/>
+      <div class="cat-label"><h3>ELÉCTRICO</h3><p>Baterías · Alternadores · ECU</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="productos">
+  <div class="section-label">PRODUCTOS DESTACADOS</div>
+  <h2 class="section-title reveal">Repuestos más solicitados</h2>
+  <p class="section-sub reveal">Stock disponible · Despacho inmediato</p>
+  <div class="products-grid">
+    <div class="prod-card reveal">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80" alt="Pastillas"/>
+        <div class="prod-badge">ORIGINAL</div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-brand">BOSCH</div>
+        <div class="prod-name">Pastillas de Freno Delanteras</div>
+        <div class="prod-compat"><span>Toyota</span><span>Hyundai</span><span>Kia</span></div>
+        <div class="prod-footer">
+          <div class="prod-price">$28.900</div>
+          <button class="prod-btn">COTIZAR</button>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card reveal">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1600704683082-a03e91f7c30d?auto=format&fit=crop&w=600&q=80" alt="Filtro"/>
+        <div class="prod-badge">STOCK</div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-brand">MANN FILTER</div>
+        <div class="prod-name">Kit de Filtros Completo</div>
+        <div class="prod-compat"><span>Honda</span><span>Mazda</span><span>Suzuki</span></div>
+        <div class="prod-footer">
+          <div class="prod-price">$45.500</div>
+          <button class="prod-btn">COTIZAR</button>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card reveal">
+      <div class="prod-img">
+        <img src="https://images.unsplash.com/photo-1621361365424-06f0e1eb5c49?auto=format&fit=crop&w=600&q=80" alt="Amortiguador"/>
+        <div class="prod-badge">OFERTA</div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-brand">GABRIEL</div>
+        <div class="prod-name">Amortiguadores Par Delantero</div>
+        <div class="prod-compat"><span>Chevrolet</span><span>Ford</span></div>
+        <div class="prod-footer">
+          <div class="prod-price">$89.900</div>
+          <button class="prod-btn">COTIZAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="brands">
+  <div class="brands-title">MARCAS QUE MANEJAMOS</div>
+  <div class="brands-grid">
+    <div class="brand-item">BOSCH</div>
+    <div class="brand-item">NGK</div>
+    <div class="brand-item">DENSO</div>
+    <div class="brand-item">MANN</div>
+    <div class="brand-item">GABRIEL</div>
+    <div class="brand-item">SKF</div>
+    <div class="brand-item">GATES</div>
+  </div>
+</div>
+
+<section class="why" id="nosotros">
+  <div class="why-grid">
+    <div class="why-image reveal">
+      <img src="https://images.unsplash.com/photo-1632823471565-1ec25769e819?auto=format&fit=crop&w=800&q=80" alt="Bodega repuestos"/>
+      <div class="why-guarantee"><div class="big">12</div><div class="sm">MESES GARANTÍA</div></div>
+    </div>
+    <div class="reveal">
+      <div class="section-label">¿POR QUÉ ELEGIRNOS?</div>
+      <h2 class="section-title">Más de 15 años en<br/>el mercado automotriz</h2>
+      <p style="color:rgba(255,255,255,.55);line-height:1.7;margin:1rem 0 1.5rem">Somos importadores directos con bodega propia. Sin intermediarios, precios justos y repuestos garantizados para todas las marcas del mercado chileno.</p>
+      <ul class="why-list">
+        <li class="why-item">
+          <div class="why-icon">🔍</div>
+          <div class="why-text"><h4>Búsqueda por patente</h4><p>Ingresa tu patente y encontramos el repuesto exacto para tu vehículo</p></div>
+        </li>
+        <li class="why-item">
+          <div class="why-icon">🚛</div>
+          <div class="why-text"><h4>Despacho a todo Chile</h4><p>Envío express en 24-48 horas a cualquier ciudad del país</p></div>
+        </li>
+        <li class="why-item">
+          <div class="why-icon">🛡️</div>
+          <div class="why-text"><h4>Garantía certificada</h4><p>12 meses de garantía en todos nuestros repuestos originales y alternativos</p></div>
+        </li>
+        <li class="why-item">
+          <div class="why-icon">💬</div>
+          <div class="why-text"><h4>Asesoría técnica gratuita</h4><p>Nuestros expertos te ayudan a identificar el repuesto correcto</p></div>
+        </li>
       </ul>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #1a0800 0%, #292000 50%, #1a0800 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Repuestos Automotrices</p>
-      <h1 class="hero-title">El repuesto que<br><em>necesitas está aquí.</em></h1>
-      <p class="hero-sub">Más de 5.000 referencias de repuestos originales y alternativos para todas las marcas. Atención de lunes a sábado con asesoría técnica incluida.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Cotizar repuesto</a>
-        <a href="#servicios" class="btn btn-outline">Ver catálogo</a>
-      </div>
+<div class="stats">
+  <div class="stat-item reveal">
+    <div class="stat-num" data-count="15" data-suffix="K+">0</div>
+    <div class="stat-label">REFERENCIAS</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num" data-count="15" data-suffix=" AÑOS">0</div>
+    <div class="stat-label">DE EXPERIENCIA</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num" data-count="8500" data-suffix="+">0</div>
+    <div class="stat-label">CLIENTES</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num" data-count="98" data-suffix="%">0</div>
+    <div class="stat-label">SATISFACCIÓN</div>
+  </div>
+</div>
+
+<section class="delivery">
+  <div class="section-label">CÓMO FUNCIONA</div>
+  <h2 class="section-title reveal">Rápido, fácil y garantizado</h2>
+  <div class="delivery-grid">
+    <div class="del-card reveal">
+      <div class="del-icon">📋</div>
+      <h3>1. COTIZA</h3>
+      <p>Envíanos la marca, modelo y año de tu vehículo por WhatsApp. Te respondemos en minutos.</p>
     </div>
-  </section>
-
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestro catálogo</span>
-        <h2 class="section-title">Todo para tu auto en un solo lugar</h2>
-        <p class="section-desc">Repuestos originales OEM y alternativos de calidad certificada. Si no lo tenemos en stock, lo conseguimos en 24 horas.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🔩</div>
-          <h3 class="card-title">Repuestos Originales</h3>
-          <p class="card-desc">Repuestos OEM para Toyota, Chevrolet, Hyundai, Kia, Nissan, Ford y más. Garantía de fábrica en todos los originales.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">⚙️</div>
-          <h3 class="card-title">Motor y Transmisión</h3>
-          <p class="card-desc">Pistones, cojinetes, juntas, filtros de motor, cajas de cambio y embragues. Stock permanente para las marcas más comunes.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🛞</div>
-          <h3 class="card-title">Frenos y Suspensión</h3>
-          <p class="card-desc">Pastillas, discos, zapatas, cilindros de freno, amortiguadores y resortes para todas las marcas y modelos.</p>
-          <p class="card-price">Desde $15.000</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🛢️</div>
-          <h3 class="card-title">Aceites y Lubricantes</h3>
-          <p class="card-desc">Castrol, Mobil, Shell Helix y marcas premium en todas las viscosidades. Líquido de frenos, refrigerante y más.</p>
-          <p class="card-price">Desde $8.990</p>
-        </div>
-      </div>
+    <div class="del-card reveal">
+      <div class="del-icon">✅</div>
+      <h3>2. CONFIRMA</h3>
+      <p>Te enviamos disponibilidad, precio y tiempo de entrega. Sin cobros ocultos.</p>
     </div>
-  </section>
-
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🔩</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">10 años siendo el proveedor de talleres y particulares</h2>
-          <p class="about-text">Somos distribuidores directos de las principales marcas de repuestos. Nuestro equipo técnico puede ayudarte a identificar el repuesto exacto para tu modelo usando el número de bastidor.</p>
-          <p class="about-text">Atendemos tanto a particulares como a talleres mecánicos con precios mayoristas. Despacho a domicilio mismo día para pedidos antes de las 12:00 hrs.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+5000</div><div class="stat-label">Referencias en stock</div></div>
-        <div class="stat"><div class="stat-number">10</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.7★</div><div class="stat-label">Calificación promedio</div></div>
-        <div class="stat"><div class="stat-number">Todas</div><div class="stat-label">Las marcas</div></div>
-      </div>
+    <div class="del-card reveal">
+      <div class="del-icon">🚀</div>
+      <h3>3. RECIBE</h3>
+      <p>Despacho el mismo día en Santiago. 24-48 horas a regiones. Seguimiento en tiempo real.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Busqué un repuesto para mi Corolla 2006 que nadie tenía y lo encontraron en un día. El precio fue muy bueno y la calidad es exactamente lo que esperaba. Mi proveedor de confianza."</p>
-          <div class="testi-author">Felipe Morales</div>
-          <div class="testi-role">Cliente particular</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Compro aquí para mi taller hace 3 años. Precios mayoristas, repuestos de calidad y despacho rápido. Muy pocas veces me ha fallado el stock y cuando pasa, consiguen el repuesto en 24 horas."</p>
-          <div class="testi-author">Ricardo Jara</div>
-          <div class="testi-role">Mecánico · cliente mayorista</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"La asesoría técnica es excelente. No sé mucho de mecánica pero me explicaron exactamente qué repuesto necesitaba y por qué. Muy honesto y profesional, no intentaron venderme más de lo necesario."</p>
-          <div class="testi-author">Pamela Vega</div>
-          <div class="testi-role">Clienta particular</div>
-        </div>
-      </div>
+<section class="cta" id="contacto">
+  <div class="cta-inner reveal">
+    <div class="section-label" style="text-align:center;margin-bottom:.5rem">CONTACTO DIRECTO</div>
+    <h2>¿Buscas un repuesto<br/>específico?</h2>
+    <p>Escríbenos con la marca, modelo y año de tu vehículo. Tenemos stock o lo importamos en 72 horas.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/56900000000?text=Hola,%20busco%20repuesto%20para%20mi%20auto" class="btn-red">💬 ESCRIBIR POR WHATSAPP</a>
+      <a href="tel:+56900000000" class="btn-outline">📞 LLAMAR AHORA</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Buscas un repuesto específico?</h2>
-      <p class="section-desc">Envíanos la marca, modelo y año de tu auto por WhatsApp y te cotizamos de inmediato. También atendemos talleres con precios mayoristas.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Cotizar por WhatsApp
-      </a>
-    </div>
-  </section>
+<footer>
+  <p>© 2025 AutoPartes Pro · Repuestos y Accesorios Automotrices · Santiago, Chile</p>
+</footer>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>AutoPartes Total</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(13,13,13,.9);border:1px solid rgba(230,57,70,.4);border-radius:4px;padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.7)">🎯 Página de Muestra · <a href="../" style="color:#e63946;font-weight:700">Felipe Figueroa</a></div>
 
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const io=new IntersectionObserver(([e])=>{
+    if(!e.isIntersecting)return;
+    const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+    let cur=0;const step=target/60;
+    const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.round(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+    io.unobserve(el);
+  },{threshold:.5});io.observe(el);
+});
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+});
+</script>
 </body>
 </html>

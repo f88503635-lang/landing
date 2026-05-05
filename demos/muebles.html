@@ -1,157 +1,237 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="MueblesArte — Muebles a medida de living, dormitorio, cocina y oficina en Santiago. Página de muestra" />
-  <title>MueblesArte — Página de Muestra</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="demo-base.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Craft Wood — Muebles a Medida</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --primary: #7c3aed;
-      --primary-rgb: 124,58,237;
-      --bg: #fff;
-      --bg-alt: #f5f3ff;
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--wood:#8b5e3c;--wood-light:#c49a6c;--dark:#1a0f07;--cream:#faf7f3;--warm:#f0e8dc;--text:#1a0f07;--dim:#7a6050}
+    body{font-family:'Mulish',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:.4s}
+    nav.scrolled{background:rgba(250,247,243,.97);backdrop-filter:blur(16px);box-shadow:0 1px 20px rgba(26,15,7,.08)}
+    .nav-logo{font-family:'Cardo',serif;font-size:1.4rem;color:#fff;text-decoration:none;letter-spacing:.04em}
+    nav.scrolled .nav-logo{color:var(--dark)}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-link{text-decoration:none;color:rgba(255,255,255,.8);font-size:.83rem;font-weight:600;transition:.3s}
+    nav.scrolled .nav-link{color:var(--dim)}
+    .nav-link:hover{color:var(--wood-light)}
+    nav.scrolled .nav-link:hover{color:var(--wood)}
+    .nav-cta{background:var(--wood)!important;color:#fff!important;padding:.5rem 1.4rem}
+
+    /* HERO */
+    .hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1920&q=80') center/cover}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(26,15,7,.96) 0%,rgba(139,94,60,.7) 55%,rgba(26,15,7,.4) 100%)}
+    .hero-content{position:relative;z-index:2;padding:8rem 3rem 4rem;max-width:620px;margin-left:max(2rem,7vw)}
+    .hero-tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--wood-light);font-weight:700;margin-bottom:1.5rem}
+    .hero-title{font-family:'Cardo',serif;font-size:clamp(3rem,6vw,5.5rem);color:#fff;line-height:1.05;margin-bottom:1.2rem;font-weight:700}
+    .hero-title em{font-style:italic;color:var(--wood-light)}
+    .hero-sub{color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:2.5rem;font-weight:300;max-width:450px}
+    .btn-wood{display:inline-block;background:var(--wood);color:#fff;padding:.95rem 2.4rem;text-decoration:none;font-weight:700;font-size:.88rem;transition:.3s;margin-right:.8rem}
+    .btn-wood:hover{background:var(--wood-light);transform:translateY(-2px)}
+    .btn-ghost{display:inline-block;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);padding:.9rem 2rem;text-decoration:none;font-weight:600;font-size:.86rem;transition:.3s}
+    .btn-ghost:hover{border-color:var(--wood-light);color:var(--wood-light)}
+    .hero-chip{display:inline-flex;align-items:center;gap:.7rem;background:rgba(139,94,60,.15);border:1px solid rgba(196,154,108,.3);padding:.6rem 1.2rem;margin-top:1.8rem;font-size:.78rem;color:rgba(255,255,255,.75)}
+    .hero-chip span{color:var(--wood-light);font-weight:700}
+
+    /* CATEGORIES */
+    section{padding:6rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .sec-label{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--wood);font-weight:700}
+    .sec-title{font-family:'Cardo',serif;font-size:clamp(2rem,3.5vw,3rem);margin:.4rem 0 1rem;line-height:1.2}
+    .sec-desc{color:var(--dim);line-height:1.8;max-width:480px;font-weight:300}
+
+    .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+    .cat-card{position:relative;overflow:hidden;aspect-ratio:3/4;cursor:pointer;background:var(--warm)}
+    .cat-card img{width:100%;height:100%;object-fit:cover;transition:.7s}
+    .cat-card:hover img{transform:scale(1.06)}
+    .cat-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(26,15,7,.85) 0%,rgba(26,15,7,.2) 60%,transparent 100%)}
+    .cat-content{position:absolute;bottom:0;left:0;right:0;padding:1.5rem}
+    .cat-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--wood-light);margin-bottom:.3rem}
+    .cat-name{font-family:'Cardo',serif;font-size:1.2rem;color:#fff}
+
+    /* PRODUCTS */
+    .prod-section{background:var(--warm);padding:6rem 2rem}
+    .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+    .prod-card{background:var(--cream);cursor:pointer;transition:.4s}
+    .prod-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(26,15,7,.1)}
+    .prod-img{aspect-ratio:4/3;overflow:hidden;background:var(--warm)}
+    .prod-img img{width:100%;height:100%;object-fit:cover;transition:.6s}
+    .prod-card:hover .prod-img img{transform:scale(1.04)}
+    .prod-body{padding:1.5rem}
+    .prod-material{font-size:.67rem;letter-spacing:.15em;text-transform:uppercase;color:var(--wood);font-weight:700;margin-bottom:.3rem}
+    .prod-name{font-family:'Cardo',serif;font-size:1.15rem;font-weight:700;margin-bottom:.3rem}
+    .prod-desc{font-size:.82rem;color:var(--dim);line-height:1.6;margin-bottom:.8rem}
+    .prod-footer{display:flex;justify-content:space-between;align-items:center}
+    .prod-price{font-weight:700;color:var(--wood);font-size:.95rem}
+    .prod-tag{font-size:.65rem;font-weight:700;padding:.2rem .7rem;background:rgba(139,94,60,.1);color:var(--wood);letter-spacing:.06em;text-transform:uppercase}
+
+    /* PROCESS */
+    .process{padding:6rem 2rem}
+    .process-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:3rem}
+    .process-img{position:sticky;top:5rem;border-radius:2px;overflow:hidden;aspect-ratio:3/4}
+    .process-img img{width:100%;height:100%;object-fit:cover}
+    .process-steps{display:flex;flex-direction:column;gap:2rem}
+    .proc-item{padding:1.5rem;border-bottom:1px solid rgba(139,94,60,.12);cursor:pointer;transition:.3s}
+    .proc-item:hover{padding-left:1rem;border-bottom-color:var(--wood)}
+    .proc-num{font-family:'Cardo',serif;font-size:2.5rem;color:rgba(139,94,60,.15);line-height:1;margin-bottom:.5rem}
+    .proc-item h3{font-family:'Cardo',serif;font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+    .proc-item p{font-size:.83rem;color:var(--dim);line-height:1.7}
+
+    /* STATS */
+    .stats-band{background:var(--dark);padding:4rem 2rem;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:2rem}
+    .st-n{font-family:'Cardo',serif;font-size:3.5rem;color:var(--wood-light);line-height:1}
+    .st-l{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.4rem}
+
+    /* TESTIMONIALS */
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+    .testi{padding:2.5rem;background:var(--warm)}
+    .stars{color:var(--wood);margin-bottom:.8rem;letter-spacing:.1em}
+    .testi-q{font-family:'Cardo',serif;font-style:italic;font-size:1.05rem;line-height:1.7;margin-bottom:1.2rem}
+    .testi-name{font-weight:700;font-size:.88rem}
+    .testi-sub{font-size:.75rem;color:var(--dim);margin-top:.2rem}
+
+    /* CTA */
+    .cta{background:var(--wood);padding:7rem 2rem;text-align:center}
+    .cta-title{font-family:'Cardo',serif;font-size:clamp(2.2rem,4vw,3.5rem);color:#fff;margin-bottom:1rem;font-weight:700}
+    .cta-sub{color:rgba(255,255,255,.8);margin-bottom:2.5rem;line-height:1.7;font-weight:300;max-width:450px;margin-left:auto;margin-right:auto}
+    .btn-wh{display:inline-block;background:#fff;color:var(--wood);padding:1rem 2.8rem;text-decoration:none;font-weight:700;font-size:.9rem;transition:.3s}
+    .btn-wh:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.2)}
+
+    footer{background:var(--dark);color:rgba(255,255,255,.35);padding:3rem 2rem;text-align:center;font-size:.8rem}
+    footer a{color:var(--wood-light);text-decoration:none}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+    .reveal.in{opacity:1;transform:none}
+
+    @media(max-width:900px){.cat-grid{grid-template-columns:repeat(2,1fr)}.prod-grid{grid-template-columns:1fr}.process-layout{grid-template-columns:1fr}.process-img{display:none}.stats-band{grid-template-columns:repeat(2,1fr)}.testi-grid{grid-template-columns:1fr}.nav-links{display:none}.hero-content{padding:7rem 1.5rem 3rem;margin-left:0}}
   </style>
 </head>
 <body>
 
-  <div class="demo-badge">
-    🎯 Página de Muestra · <a href="../" target="_blank">Felipe Figueroa</a>
+<div style="position:fixed;bottom:1rem;right:1rem;z-index:9999;background:rgba(26,15,7,.97);border:1px solid rgba(196,154,108,.3);padding:.4rem 1rem;font-size:.72rem;font-family:sans-serif;color:rgba(255,255,255,.8)">🎯 Página de Muestra · <a href="../" style="color:#c49a6c;font-weight:700">Felipe Figueroa</a></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Craft Wood.</a>
+  <ul class="nav-links">
+    <li><a href="#catalogo" class="nav-link">Catálogo</a></li>
+    <li><a href="#proceso" class="nav-link">Proceso</a></li>
+    <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+    <li><a href="#contacto" class="nav-link nav-cta">Cotizar</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-tag">Muebles a medida · Carpintería artesanal · Santiago</p>
+    <h1 class="hero-title">Muebles que<br>duran <em>toda<br>la vida</em></h1>
+    <p class="hero-sub">Diseñamos y fabricamos muebles a medida en madera maciza. Cada pieza es única, construida para tu espacio y estilo de vida.</p>
+    <div>
+      <a href="#contacto" class="btn-wood">Cotizar proyecto</a>
+      <a href="#catalogo" class="btn-ghost">Ver catálogo</a>
+    </div>
+    <div class="hero-chip">🌳 Madera de <span>origen sustentable</span> · Certificada FSC</div>
   </div>
+</section>
 
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">MueblesArte<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#servicios" class="nav-link">Productos</a></li>
-        <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-        <li><a href="#contacto" class="nav-cta nav-link">Cotizar</a></li>
-      </ul>
+<section id="catalogo">
+  <div class="container">
+    <span class="sec-label">Especialidades</span>
+    <h2 class="sec-title">Lo que fabricamos<br>con nuestras manos</h2>
+    <div class="cat-grid reveal">
+      <div class="cat-card"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=500&q=80" alt="Sofás"/><div class="cat-overlay"></div><div class="cat-content"><p class="cat-label">Living</p><p class="cat-name">Sofás & Sillones</p></div></div>
+      <div class="cat-card"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=500&q=80" alt="Cocina"/><div class="cat-overlay"></div><div class="cat-content"><p class="cat-label">Cocina</p><p class="cat-name">Muebles de cocina</p></div></div>
+      <div class="cat-card"><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=500&q=80" alt="Dormitorio"/><div class="cat-overlay"></div><div class="cat-content"><p class="cat-label">Dormitorio</p><p class="cat-name">Camas & Closets</p></div></div>
+      <div class="cat-card"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=500&q=80" alt="Oficina"/><div class="cat-overlay"></div><div class="cat-content"><p class="cat-label">Oficina</p><p class="cat-name">Escritorios & Estantes</p></div></div>
     </div>
-  </nav>
+  </div>
+</section>
 
-  <section class="hero" id="inicio">
-    <div class="hero-bg" style="background: linear-gradient(135deg, #1e1040 0%, #2e1065 50%, #1a0d38 100%)"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-tag">Muebles a Medida</p>
-      <h1 class="hero-title">Diseño y calidad<br><em>para tu hogar.</em></h1>
-      <p class="hero-sub">Fabricamos muebles a medida con materiales premium. Living, dormitorios, cocinas y oficinas diseñados exactamente como los imaginas.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn btn-primary">Cotizar mueble</a>
-        <a href="#servicios" class="btn btn-outline">Ver catálogo</a>
-      </div>
+<section class="prod-section">
+  <div class="container">
+    <span class="sec-label">Más solicitados</span>
+    <h2 class="sec-title">Piezas que definen<br>los espacios</h2>
+    <div class="prod-grid">
+      <div class="prod-card reveal"><div class="prod-img"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80" alt=""/></div><div class="prod-body"><p class="prod-material">Roble Americano</p><p class="prod-name">Mesa de comedor Oslo</p><p class="prod-desc">Mesa en madera maciza de roble con patas metálicas negras. Hasta 10 personas.</p><div class="prod-footer"><span class="prod-price">desde $380.000</span><span class="prod-tag">A medida</span></div></div></div>
+      <div class="prod-card reveal" style="transition-delay:.15s"><div class="prod-img"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=600&q=80" alt=""/></div><div class="prod-body"><p class="prod-material">Pino Oregón</p><p class="prod-name">Cocina integral Nórdica</p><p class="prod-desc">Modulares de cocina en madera natural. Encimera de granito o cuarzo incluida.</p><div class="prod-footer"><span class="prod-price">desde $1.200.000</span><span class="prod-tag">A medida</span></div></div></div>
+      <div class="prod-card reveal" style="transition-delay:.3s"><div class="prod-img"><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=600&q=80" alt=""/></div><div class="prod-body"><p class="prod-material">Nogal Americano</p><p class="prod-name">Closet walk-in Nordic</p><p class="prod-desc">Sistema de closet modular con iluminación LED integrada. Colores e interiores personalizables.</p><div class="prod-footer"><span class="prod-price">desde $650.000</span><span class="prod-tag">A medida</span></div></div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="servicios">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Nuestros productos</span>
-        <h2 class="section-title">Muebles para cada espacio</h2>
-        <p class="section-desc">Todo fabricado en nuestro taller con maderas seleccionadas y herrajes de alta calidad. Entrega e instalación incluidas.</p>
+<section class="process" id="proceso">
+  <div class="container">
+    <span class="sec-label">Proceso de trabajo</span>
+    <h2 class="sec-title">De tu idea<br>al mueble perfecto</h2>
+    <div class="process-layout">
+      <div class="process-img">
+        <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&w=800&q=80" alt="Carpintería"/>
       </div>
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🛋️</div>
-          <h3 class="card-title">Muebles de Living</h3>
-          <p class="card-desc">Centros de entretenimiento, bibliotecas, racks TV, mesas de centro y muebles multifuncionales a medida del espacio.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🛏️</div>
-          <h3 class="card-title">Dormitorios</h3>
-          <p class="card-desc">Closets con sistema organizador, camas con cajones, veladores y cómodas. Diseño moderno o clásico según tu estilo.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🍳</div>
-          <h3 class="card-title">Cocinas a Medida</h3>
-          <p class="card-desc">Muebles de cocina en melamina, MDF laqueado o madera maciza. Diseño funcional con iluminación LED incluida.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">💼</div>
-          <h3 class="card-title">Oficinas</h3>
-          <p class="card-desc">Escritorios, estanterías, divisiones de oficina y mobiliario corporativo a medida. Ergonomía y diseño profesional.</p>
-          <p class="card-price">Cotización gratis</p>
-        </div>
+      <div class="process-steps">
+        <div class="proc-item reveal"><div class="proc-num">01</div><h3>Visita & medición</h3><p>Visitamos tu espacio, tomamos medidas y entendemos tu visión, estilo y necesidades funcionales.</p></div>
+        <div class="proc-item reveal" style="transition-delay:.1s"><div class="proc-num">02</div><h3>Diseño 3D</h3><p>Diseñamos tu mueble en 3D para que puedas ver cómo quedará antes de fabricar nada.</p></div>
+        <div class="proc-item reveal" style="transition-delay:.2s"><div class="proc-num">03</div><h3>Selección de madera</h3><p>Elegimos juntos la especie, veta y terminación. Madera maciza certificada FSC.</p></div>
+        <div class="proc-item reveal" style="transition-delay:.3s"><div class="proc-num">04</div><h3>Fabricación artesanal</h3><p>Cada pieza se fabrica a mano en nuestro taller en Santiago. Plazo de 3–6 semanas.</p></div>
+        <div class="proc-item reveal" style="transition-delay:.4s"><div class="proc-num">05</div><h3>Instalación</h3><p>Instalación por nuestro equipo. Ajustes y nivelación incluidos. Garantía de 5 años.</p></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="nosotros">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-img">🪵</div>
-        <div>
-          <span class="about-label">¿Por qué elegirnos?</span>
-          <h2 class="about-title">12 años fabricando muebles con orgullo propio</h2>
-          <p class="about-text">Somos una empresa familiar con taller propio. Nuestros maestros carpinteros tienen más de 20 años de oficio y trabajan con los materiales más duraderos del mercado.</p>
-          <p class="about-text">El proceso incluye: visita a domicilio gratuita, diseño 3D para ver el mueble antes de fabricar, producción en nuestro taller y instalación profesional en tu hogar.</p>
-        </div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-number">+200</div><div class="stat-label">Diseños únicos</div></div>
-        <div class="stat"><div class="stat-number">12</div><div class="stat-label">Años de experiencia</div></div>
-        <div class="stat"><div class="stat-number">4.8★</div><div class="stat-label">Calificación Google</div></div>
-        <div class="stat"><div class="stat-number">100%</div><div class="stat-label">Fabricación propia</div></div>
-      </div>
+<div class="stats-band">
+  <div><div class="st-n" data-count="400" data-suffix="+">0</div><div class="st-l">Muebles fabricados</div></div>
+  <div><div class="st-n" data-count="10" data-suffix=" años">0</div><div class="st-l">De experiencia</div></div>
+  <div><div class="st-n" data-count="5" data-suffix=" años">0</div><div class="st-l">De garantía</div></div>
+  <div><div class="st-n" data-count="100" data-suffix="%">0</div><div class="st-l">Madera certificada FSC</div></div>
+</div>
+
+<section id="opiniones">
+  <div class="container">
+    <span class="sec-label">Testimonios</span>
+    <h2 class="sec-title">Muebles que<br>trascienden generaciones</h2>
+    <div class="testi-grid">
+      <div class="testi reveal"><div class="stars">★★★★★</div><p class="testi-q">"La mesa de roble que nos fabricaron es una obra de arte. La calidad de la madera y el acabado son extraordinarios. Ya llevamos 3 años con ella y está perfecta."</p><div class="testi-name">Sofía & Marcos</div><div class="testi-sub">Mesa comedor Oslo</div></div>
+      <div class="testi reveal" style="transition-delay:.15s"><div class="stars">★★★★★</div><p class="testi-q">"El closet walk-in es un sueño. Aprovechan cada centímetro del espacio y la calidad es impresionante. El proceso fue muy ordenado desde la primera visita hasta la instalación."</p><div class="testi-name">Claudia Herrera</div><div class="testi-sub">Closet Nordic · Vitacura</div></div>
+      <div class="testi reveal" style="transition-delay:.3s"><div class="stars">★★★★★</div><p class="testi-q">"La cocina integral que diseñaron para nuestro departamento aprovecha cada espacio perfectamente. La madera de pino oregón es preciosa y la calidad es para toda la vida."</p><div class="testi-name">Alejandro Pinto</div><div class="testi-sub">Cocina integral · Las Condes</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section section-alt" id="opiniones">
-    <div class="container">
-      <div class="section-head">
-        <span class="section-label">Opiniones</span>
-        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"El closet que nos fabricaron es perfecto. Aprovechar cada centímetro de espacio y el sistema organizador es increíble. La calidad de la madera es excelente. Muy recomendados."</p>
-          <div class="testi-author">Andrea Núñez</div>
-          <div class="testi-role">Clienta · closet a medida</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Equiparon toda nuestra cocina nueva y quedó espectacular. El diseño 3D previo fue muy útil para ajustar detalles. Los plazos se cumplieron exactamente y la instalación fue impecable."</p>
-          <div class="testi-author">Marcelo Bustamante</div>
-          <div class="testi-role">Cliente · cocina completa</div>
-        </div>
-        <div class="testi">
-          <div class="stars">★★★★★</div>
-          <p class="testi-text">"Diseñaron los muebles de nuestra oficina de 6 personas y transformaron un espacio poco funcional en algo muy profesional y cómodo. El precio fue muy competitivo versus tiendas grandes."</p>
-          <div class="testi-author">Isabel Rojas</div>
-          <div class="testi-role">Clienta · mobiliario de oficina</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="cta" id="contacto">
+  <h2 class="cta-title">¿Qué mueble<br>vamos a crear?</h2>
+  <p class="cta-sub">Cuéntanos tu idea y te enviamos un presupuesto sin compromiso. Visita al domicilio gratuita.</p>
+  <a href="https://wa.me/56900000000?text=Hola%2C+quiero+cotizar+un+mueble+en+Craft+Wood" target="_blank" rel="noopener" class="btn-wh">🌳 Cotizar por WhatsApp</a>
+</section>
 
-  <section class="cta-section" id="contacto">
-    <div class="container">
-      <h2 class="section-title">¿Listo para diseñar tu mueble ideal?</h2>
-      <p class="section-desc">Cuéntanos tu idea y coordinamos una visita gratuita a tu hogar para cotizar y diseñar en 3D sin compromiso.</p>
-      <a href="https://wa.me/56900000000?text=Hola%2C%20quiero%20cotizar" target="_blank" rel="noopener" class="btn btn-light">
-        💬 Cotizar por WhatsApp
-      </a>
-    </div>
-  </section>
+<footer>
+  <div class="container">
+    <p style="font-family:'Cardo',serif;font-size:1.3rem;color:rgba(255,255,255,.4);margin-bottom:.5rem">Craft Wood.</p>
+    <p>Av. Exposición 1234, Cerrillos · Taller propio · Santiago</p>
+    <p style="margin-top:1rem">Sitio creado por <a href="../">Felipe Figueroa</a> · Página de muestra</p>
+  </div>
+</footer>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <p><strong>MueblesArte</strong> · Santiago, Chile</p>
-        <p>Sitio creado por <a href="../" target="_blank">Felipe Figueroa</a> · Página de muestra</p>
-      </div>
-    </div>
-  </footer>
-
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      const target=+el.dataset.count,suffix=el.dataset.suffix||'';
+      let cur=0;const step=target/60;
+      const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},20);
+      io.unobserve(el);
+    },{threshold:.5});io.observe(el);
+  });
+  document.querySelectorAll('.reveal').forEach(el=>{
+    new IntersectionObserver(([e])=>{if(e.isIntersecting)el.classList.add('in')},{threshold:.1}).observe(el);
+  });
+</script>
 </body>
 </html>
